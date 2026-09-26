@@ -4,6 +4,8 @@ import { join } from "node:path";
 import type { z } from "zod";
 import { isBookingPhoto, isPublishable, isRendering } from "./image-policy.mjs";
 import {
+  attractionsCatalogSchema,
+  attractionsPageSchema,
   areasSchema,
   collectionSchema,
   homeSchema,
@@ -64,6 +66,14 @@ export function getSite(): Site {
 
 export function getHome(): Home {
   return cached("home", () => load("pages/home.json", homeSchema));
+}
+
+export function getAttractionsPage() {
+  return cached("attractions-page", () => load("pages/attractions.json", attractionsPageSchema));
+}
+
+export function getAttractionsCatalog() {
+  return cached("attractions-catalog", () => load("attractions.json", attractionsCatalogSchema));
 }
 
 export function getItem(key: CollectionKey, slug: string): Item | undefined {

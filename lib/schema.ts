@@ -323,3 +323,51 @@ export const homeSchema = z.object({
   }),
 });
 export type Home = z.infer<typeof homeSchema>;
+
+// content/pages/attractions.json (design 2a) + content/attractions.json (catalog)
+export const attractionsPageSchema = z.object({
+  url: text,
+  crumbs: text,
+  h1: text.min(1),
+  intro: text,
+  featured: z.object({ kicker: text, title: text, text: text, href: text }),
+  searchPlaceholder: text,
+  sort: text,
+  count: text,
+  filterGroups: z.array(z.object({ head: text, items: z.array(text) })),
+  items: z.array(
+    z.object({
+      id: text,
+      photo: text,
+      photoAlt: text,
+      name: text.min(1),
+      area: text,
+      areaSlug: text,
+      dur: text,
+      tags: z.array(text),
+      badge: text,
+      note: text.min(1),
+    }),
+  ),
+  editorialHeading: text,
+  editorialParagraphs: z.array(text),
+  box: z.object({ title: text, text: text }),
+  faqTitle: text,
+  faq: z.array(z.object({ q: text, a: text })),
+  catalog: z.object({ title: text, text: text, groups: z.record(z.string(), text) }),
+});
+export type AttractionsPage = z.infer<typeof attractionsPageSchema>;
+
+const catalogEntry = z.object({ name: text, nameEn: text.optional(), est: text.optional(), note: text.optional(), type: text.optional() });
+export const attractionsCatalogSchema = z
+  .object({
+    meta: z.object({ source: text, license: text, retrieved: text, note: text.optional() }).passthrough(),
+  })
+  .catchall(z.unknown())
+  .transform((raw) => {
+    const groups: Record<string, z.infer<typeof catalogEntry>[]> = {};
+    for (const [key, value] of Object.entries(raw)) {
+      if (key !== "meta" && Array.isArray(value)) groups[key] = z.array(catalogEntry).parse(value);
+    }
+    return { meta: raw.meta, groups };
+  });
