@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200..400,0,-25&display=block" rel="stylesheet">
+<style>
+  html { background:#F6F7F9 !important; }
+  html, body { margin:0; height:100%; background:#F6F7F9; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#1A63B8; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+
+<div dir="rtl" style="height:100vh; display:grid; grid-template-columns:minmax(180px,278px) minmax(0,1fr); background:#FFFFFF; overflow:hidden">
+  <div style="background:#1A1D42; display:flex; flex-direction:column; min-height:0">
+    <div style="padding:20px 20px 16px; border-bottom:1px solid #2C3160">
+      <img src="assets/baku40-logo.png" alt="Baku40" style="height:26px; width:auto; align-self:flex-start; filter:brightness(0) invert(1)">
+      <div style="font:400 13px 'Assistant',sans-serif; color:#8D92B8; margin-top:8px">מצב צפייה · {{ total }} מסכים</div>
+    </div>
+    <div style="flex:1; min-height:0; overflow:auto; padding:8px 0 20px">
+      <sc-for list="{{ groups }}" as="g" hint-placeholder-count="6">
+        <div style="padding:14px 20px 4px">
+          <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.12em; color:#8FBEF2">{{ g.title }}</div>
+        </div>
+        <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
+          <div onClick="{{ i.onClick }}" style="display:flex; align-items:center; gap:10px; padding:11px 20px; cursor:pointer; background:{{ i.bg }}; border-inline-end:3px solid {{ i.line }}">
+            <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:{{ i.fg }}; opacity:.9">{{ i.icon }}</span>
+            <div style="flex:1; min-width:0">
+              <div style="font:600 15px 'Assistant',sans-serif; color:{{ i.fg }}">{{ i.name }}</div>
+              <div style="font:400 11px ui-monospace,monospace; color:#8D92B8; overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ i.url }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="display:flex; flex-direction:column; min-height:0">
+    <div style="background:#FFFFFF; border-bottom:1px solid #D9E3F0; padding:12px 18px; display:flex; align-items:center; gap:12px; flex-wrap:wrap">
+      <div style="min-width:0">
+        <div style="font:800 22px 'Heebo',sans-serif; color:#262A5B; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ curName }}</div>
+        <div style="font:400 12px ui-monospace,monospace; color:#8C8577">{{ curUrl }}</div>
+      </div>
+      <div style="flex:1; min-width:12px"></div>
+      <div onClick="{{ toggleOutline }}" style="display:flex; align-items:center; gap:8px; border:1px solid {{ outlineBorder }}; background:{{ outlineBg }}; color:{{ outlineFg }}; border-radius:9px; padding:10px 14px; font:600 15px 'Assistant',sans-serif; cursor:pointer">
+        <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px">ads_click</span>
+        <span>הדגשת קישורים</span>
+      </div>
+      <div style="display:flex; border:1px solid #D9E3F0; border-radius:9px; overflow:hidden">
+        <sc-for list="{{ zooms }}" as="z" hint-placeholder-count="3">
+          <div onClick="{{ z.onClick }}" style="cursor:pointer; padding:10px 14px; background:{{ z.bg }}; color:{{ z.fg }}; font:600 15px 'Assistant',sans-serif; border-inline-start:1px solid #D9E3F0">{{ z.label }}</div>
+        </sc-for>
+      </div>
+      <div style="display:flex; gap:8px">
+        <div onClick="{{ prev }}" style="width:42px; height:42px; border:1px solid #D9E3F0; border-radius:9px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:#262A5B">chevron_right</span></div>
+        <div onClick="{{ next }}" style="width:42px; height:42px; border:1px solid #D9E3F0; border-radius:9px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:#262A5B">chevron_left</span></div>
+      </div>
+      <a href="{{ curFile }}" target="_blank" style="display:flex; align-items:center; gap:8px; background:#1665C1; color:#FFFFFF; border-radius:9px; padding:11px 16px; font:700 15px 'Assistant',sans-serif; text-decoration:none">
+        <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 300; font-size:19px">open_in_new</span>
+        <span>קובץ העיצוב</span>
+      </a>
+    </div>
+
+    <div ref="{{ stageRef }}" style="flex:1; min-height:0; overflow:auto; background:#FFFFFF; padding:18px">
+      <div style="width:{{ stageW }}px; height:{{ stageH }}px; margin:0 auto; position:relative">
+        <iframe src="{{ curSrc }}" title="{{ curName }}" onLoad="{{ onFrame }}" scrolling="no" style="position:absolute; top:0; right:0; width:{{ frameW }}px; height:{{ frameH }}px; border:1px solid #D9E3F0; border-radius:12px; background:#FFFFFF; transform:scale({{ scale }}); transform-origin:top right"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+  state = { cur: 'home-desktop', zoom: 0.62, outline: false, frameH: 2600 };
+  stage = React.createRef();
+
+  D = {
+    groups: [
+      { title: 'דף הבית', items: [
+        { id: 'home-desktop', name: 'דף הבית · דסקטופ', url: '/', icon: 'home', file: 'Baku40 Home.dc.html', anchor: '1a', w: 1500 },
+        { id: 'home-mobile', name: 'דף הבית · מובייל', url: '/ · mobile', icon: 'smartphone', file: 'Baku40 Home.dc.html', anchor: '1a-m', w: 620 }
+      ] },
+      { title: 'ליסטינג ופרטי ישות', items: [
+        { id: 'list', name: 'ליסטינג אטרקציות', url: '/attractions/', icon: 'grid_view', file: 'Baku40 Listing and Details.dc.html', anchor: '2a', w: 1500 },
+        { id: 'list-mobile', name: 'ליסטינג מובייל + פילטרים', url: '/attractions/ · mobile', icon: 'filter_list', file: 'Baku40 Listing and Details.dc.html', anchor: '2b', w: 1000 },
+        { id: 'attraction', name: 'עמוד אטרקציה', url: '/attractions/[slug]/', icon: 'castle', file: 'Baku40 Listing and Details.dc.html', anchor: '2c', w: 1500 },
+        { id: 'attraction-mobile', name: 'אטרקציה · מובייל', url: '/attractions/[slug]/ · mobile', icon: 'smartphone', file: 'Baku40 Listing and Details.dc.html', anchor: '2d', w: 620 },
+        { id: 'restaurant', name: 'עמוד מסעדה', url: '/restaurants/[slug]/', icon: 'restaurant', file: 'Baku40 Listing and Details.dc.html', anchor: '2e', w: 1500 },
+        { id: 'hotel', name: 'עמוד מלון', url: '/hotels/[slug]/', icon: 'hotel', file: 'Baku40 Listing and Details.dc.html', anchor: '2f', w: 1500 }
+      ] },
+      { title: 'תוכן עריכתי', items: [
+        { id: 'article', name: 'מאמר', url: '/blog/[slug]/', icon: 'menu_book', file: 'Baku40 Editorial Templates.dc.html', anchor: '3a', w: 1500 },
+        { id: 'area', name: 'עמוד אזור', url: '/baku/areas/[slug]/', icon: 'location_city', file: 'Baku40 Editorial Templates.dc.html', anchor: '3b', w: 1500 },
+        { id: 'destination', name: 'עמוד יעד', url: '/destinations/[slug]/', icon: 'terrain', file: 'Baku40 Editorial Templates.dc.html', anchor: '3c', w: 1500 },
+        { id: 'itinerary', name: 'עמוד מסלול', url: '/itineraries/3-days/', icon: 'route', file: 'Baku40 Editorial Templates.dc.html', anchor: '3d', w: 1500 }
+      ] },
+      { title: 'מסכי מוצר', items: [
+        { id: 'map', name: 'מפה גלובלית', url: '/map/', icon: 'map', file: 'Baku40 Product Screens.dc.html', anchor: '4a', w: 1500 },
+        { id: 'planner', name: 'Trip Planner · קלט', url: '/trip-planner/', icon: 'edit_calendar', file: 'Baku40 Product Screens.dc.html', anchor: '4b', w: 1500 },
+        { id: 'planner-result', name: 'Trip Planner · תוצאה', url: '/trip-planner/result/', icon: 'checklist', file: 'Baku40 Product Screens.dc.html', anchor: '4c', w: 1500 },
+        { id: 'favorites', name: 'המקומות שלי', url: '/favorites/', icon: 'bookmark', file: 'Baku40 Product Screens.dc.html', anchor: '4d', w: 1500 },
+        { id: 'search', name: 'תוצאות חיפוש', url: '/search/', icon: 'search', file: 'Baku40 Product Screens.dc.html', anchor: '4e', w: 1500 },
+        { id: '404', name: 'עמוד 404', url: '404', icon: 'error', file: 'Baku40 Product Screens.dc.html', anchor: '4f', w: 1500 }
+      ] },
+      { title: 'מידע למטייל', items: [
+        { id: 'info-hub', name: 'מידע למטייל · עמוד האב', url: '/travel-info/', icon: 'info', file: 'Baku40 Travel Info.dc.html', anchor: '7a', w: 1500 },
+        { id: 'info-visa', name: 'עמוד מידע · ויזה', url: '/travel-info/visa/', icon: 'badge', file: 'Baku40 Travel Info.dc.html', anchor: '7b', w: 1500 },
+        { id: 'info-money', name: 'כספים ומטבע', url: '/travel-info/currency/', icon: 'payments', file: 'Baku40 Travel Info.dc.html', anchor: '7d', w: 1500 },
+        { id: 'info-sim', name: 'SIM ואינטרנט', url: '/travel-info/sim/', icon: 'sim_card', file: 'Baku40 Travel Info.dc.html', anchor: '7e', w: 1500 },
+        { id: 'info-transport', name: 'תחבורה בעיר', url: '/travel-info/transportation/', icon: 'directions_subway', file: 'Baku40 Travel Info.dc.html', anchor: '7f', w: 1500 },
+        { id: 'info-safety', name: 'בטיחות ובריאות', url: '/travel-info/safety/', icon: 'shield', file: 'Baku40 Travel Info.dc.html', anchor: '7g', w: 1500 },
+        { id: 'info-flights', name: 'טיסות · תקציר', url: '/travel-info/flights/', icon: 'flight', file: 'Baku40 Travel Info.dc.html', anchor: '7h', w: 1500 },
+        { id: 'weather-month', name: 'מזג אוויר לחודש', url: '/weather/[month]/', icon: 'partly_cloudy_day', file: 'Baku40 Travel Info.dc.html', anchor: '7c', w: 1500 }
+      ] },
+      { title: 'ליסטינגים נוספים', items: [
+        { id: 'l-rest', name: 'ליסטינג מסעדות', url: '/restaurants/', icon: 'restaurant', file: 'Baku40 Collection Listings.dc.html', anchor: '8a', w: 1500 },
+        { id: 'l-hotel', name: 'ליסטינג מלונות', url: '/hotels/', icon: 'hotel', file: 'Baku40 Collection Listings.dc.html', anchor: '8b', w: 1500 },
+        { id: 'l-itin', name: 'ליסטינג מסלולים', url: '/itineraries/', icon: 'route', file: 'Baku40 Collection Listings.dc.html', anchor: '8c', w: 1500 },
+        { id: 'l-shop', name: 'קניות וחיי לילה', url: '/shopping/', icon: 'storefront', file: 'Baku40 Collection Listings.dc.html', anchor: '8d', w: 1500 },
+        { id: 'l-day', name: 'טיולי יום', url: '/day-trips/', icon: 'directions_bus', file: 'Baku40 Collection Listings.dc.html', anchor: '8e', w: 1500 },
+        { id: 'l-land', name: 'עמוד נחיתה · אוכל כשר', url: '/restaurants/kosher/', icon: 'verified', file: 'Baku40 Collection Listings.dc.html', anchor: '8f', w: 1500 }
+      ] },
+      { title: 'טיסות ועמודי מערכת', items: [
+        { id: 's-flights', name: 'טיסות מישראל', url: '/flights/israel-to-baku/', icon: 'flight', file: 'Baku40 Flights and System Pages.dc.html', anchor: '9a', w: 1500 },
+        { id: 's-airport', name: 'שדה התעופה', url: '/airport/', icon: 'flight_land', file: 'Baku40 Flights and System Pages.dc.html', anchor: '9b', w: 1500 },
+        { id: 's-about', name: 'אודות', url: '/about/', icon: 'info', file: 'Baku40 Flights and System Pages.dc.html', anchor: '9c', w: 1500 },
+        { id: 's-contact', name: 'צור קשר', url: '/contact/', icon: 'mail', file: 'Baku40 Flights and System Pages.dc.html', anchor: '9d', w: 1500 },
+        { id: 's-legal', name: 'עמוד משפטי', url: '/affiliate-disclosure/', icon: 'gavel', file: 'Baku40 Flights and System Pages.dc.html', anchor: '9e', w: 1500 },
+        { id: 's-thanks', name: 'תודה + ניוזלטר', url: 'noindex', icon: 'check_circle', file: 'Baku40 Flights and System Pages.dc.html', anchor: '9f', w: 1500 }
+      ] },
+      { title: 'מובייל 390', items: [
+        { id: 'm-itin', name: 'מסלול · מובייל', url: '/itineraries/3-days/', icon: 'route', file: 'Baku40 Mobile Screens.dc.html', anchor: '10a', w: 620 },
+        { id: 'm-article', name: 'מאמר · מובייל', url: '/blog/[slug]/', icon: 'menu_book', file: 'Baku40 Mobile Screens.dc.html', anchor: '10b', w: 620 },
+        { id: 'm-area', name: 'אזור · מובייל', url: '/baku/areas/[slug]/', icon: 'location_city', file: 'Baku40 Mobile Screens.dc.html', anchor: '10c', w: 620 },
+        { id: 'm-dest', name: 'יעד · מובייל', url: '/destinations/[slug]/', icon: 'terrain', file: 'Baku40 Mobile Screens.dc.html', anchor: '10d', w: 620 },
+        { id: 'm-map', name: 'מפה · מובייל', url: '/map/', icon: 'map', file: 'Baku40 Mobile Screens.dc.html', anchor: '10e', w: 620 },
+        { id: 'm-planner', name: 'Trip Planner · מובייל', url: '/trip-planner/', icon: 'edit_calendar', file: 'Baku40 Mobile Screens.dc.html', anchor: '10f', w: 620 },
+        { id: 'm-fav', name: 'המקומות שלי · מובייל', url: '/favorites/', icon: 'bookmark', file: 'Baku40 Mobile Screens.dc.html', anchor: '10g', w: 620 },
+        { id: 'm-re', name: 'נדל"ן · מובייל', url: '/real-estate/projects/', icon: 'domain', file: 'Baku40 Mobile Screens.dc.html', anchor: '10h', w: 620 }
+      ] },
+      { title: 'מסכי מובייל נוספים', items: [
+        { id: 'mb-itin', name: 'מסלול — מובייל', url: '/itineraries/[slug]/', icon: 'route', file: 'Baku40 Mobile Screens.dc.html', anchor: '14a', w: 460 },
+        { id: 'mb-art', name: 'מאמר — מובייל', url: '/blog/[slug]/', icon: 'article', file: 'Baku40 Mobile Screens.dc.html', anchor: '14b', w: 460 },
+        { id: 'mb-area', name: 'אזור — מובייל', url: '/baku/areas/[slug]/', icon: 'location_city', file: 'Baku40 Mobile Screens.dc.html', anchor: '14c', w: 460 },
+        { id: 'mb-map', name: 'מפה — מובייל', url: '/map/', icon: 'map', file: 'Baku40 Mobile Screens.dc.html', anchor: '14d', w: 460 },
+        { id: 'mb-plan', name: 'מתכנן — מובייל', url: '/trip-planner/', icon: 'edit_calendar', file: 'Baku40 Mobile Screens.dc.html', anchor: '14e', w: 460 },
+        { id: 'mb-fav', name: 'מועדפים — מובייל', url: '/favorites/', icon: 'bookmarks', file: 'Baku40 Mobile Screens.dc.html', anchor: '14f', w: 460 },
+        { id: 'mb-re', name: 'פרויקט — מובייל', url: '/real-estate/projects/[slug]/', icon: 'apartment', file: 'Baku40 Mobile Screens.dc.html', anchor: '14g', w: 460 }
+      ] },
+      { title: 'קניות, חיי לילה וקרדיטים', items: [
+        { id: 'sn-shop', name: 'עמוד קניות', url: '/shopping/[slug]/', icon: 'storefront', file: 'Baku40 Shopping Nightlife.dc.html', anchor: '13a', w: 1340 },
+        { id: 'sn-night', name: 'עמוד חיי לילה', url: '/nightlife/[slug]/', icon: 'local_bar', file: 'Baku40 Shopping Nightlife.dc.html', anchor: '13b', w: 1340 },
+        { id: 'sn-landing', name: 'נחיתה — ברי גג', url: '/nightlife/rooftops/', icon: 'category', file: 'Baku40 Shopping Nightlife.dc.html', anchor: '13c', w: 1340 },
+        { id: 'sn-credits', name: 'קרדיטים לתמונות', url: '/image-credits/', icon: 'copyright', file: 'Baku40 Shopping Nightlife.dc.html', anchor: '13d', w: 1340 }
+      ] },
+      { title: 'מקורות חיצוניים ו‑API', items: [
+        { id: 'ext-panel', name: 'פאנל מקורות חיצוניים', url: 'cms · entity', icon: 'hub', file: 'Baku40 External Data.dc.html', anchor: '12a', w: 1500 },
+        { id: 'ext-import', name: 'מסך ייבוא מועמדים', url: '/admin/import', icon: 'download', file: 'Baku40 External Data.dc.html', anchor: '12b', w: 1500 },
+        { id: 'ext-monitor', name: 'ניטור ספקים', url: 'cms · monitoring', icon: 'monitoring', file: 'Baku40 External Data.dc.html', anchor: '12c', w: 1500 },
+        { id: 'ext-avail', name: 'זמינות ומחיר חי', url: '/hotels/[slug]/', icon: 'price_check', file: 'Baku40 External Data.dc.html', anchor: '12d', w: 1500 },
+        { id: 'ext-attr', name: 'ייחוס תמונות ומפה', url: 'compliance', icon: 'copyright', file: 'Baku40 External Data.dc.html', anchor: '12e', w: 1500 }
+      ] },
+      { title: 'מערכת עיצוב', items: [
+        { id: 'ds-color', name: 'צבע וטיפוגרפיה', url: 'tokens', icon: 'palette', file: 'Baku40 Design System.dc.html', anchor: '11a', w: 1500 },
+        { id: 'ds-space', name: 'מרווחים ורדיוסים', url: 'tokens', icon: 'straighten', file: 'Baku40 Design System.dc.html', anchor: '11b', w: 1500 },
+        { id: 'ds-btn', name: 'כפתורים ושדות', url: 'components', icon: 'smart_button', file: 'Baku40 Design System.dc.html', anchor: '11c', w: 1500 },
+        { id: 'ds-card', name: 'כרטיסים ותגים', url: 'components', icon: 'style', file: 'Baku40 Design System.dc.html', anchor: '11d', w: 1500 },
+        { id: 'ds-states', name: 'מצבי מערכת', url: 'components', icon: 'pending', file: 'Baku40 Design System.dc.html', anchor: '11e', w: 1500 }
+      ] },
+      { title: 'נדל"ן', items: [
+        { id: 're-hub', name: 'נדל"ן · עמוד האב', url: '/real-estate/baku/', icon: 'apartment', file: 'Baku40 Real Estate.dc.html', anchor: '5a', w: 1500 },
+        { id: 're-project', name: 'נדל"ן · פרויקט', url: '/real-estate/projects/[slug]/', icon: 'domain', file: 'Baku40 Real Estate.dc.html', anchor: '5b', w: 1500 }
+      ] },
+      { title: 'מערכת ניהול התוכן', items: [
+        { id: 'cms', name: 'CMS · דשבורד', url: 'cms · dashboard', icon: 'dashboard', file: 'Baku40 CMS.dc.html', anchor: '6a', w: 1500 },
+        { id: 'cms-editor', name: 'CMS · עורך ישות', url: 'cms · editor', icon: 'edit_note', file: 'Baku40 CMS.dc.html', anchor: '6b', w: 1500 },
+        { id: 'cms-seo', name: 'CMS · פאנל SEO', url: 'cms · seo', icon: 'travel_explore', file: 'Baku40 CMS.dc.html', anchor: '6c', w: 1500 }
+      ] }
+    ]
+  };
+
+  all() { return this.D.groups.reduce((a, g) => a.concat(g.items), []); }
+
+  current() {
+    const items = this.all();
+    return items.find(i => i.id === this.state.cur) || items[0];
+  }
+
+  applyOutline() {
+    try {
+      const doc = this.frame && this.frame.contentDocument;
+      if (!doc) return;
+      let el = doc.getElementById('__om_outline');
+      if (this.state.outline) {
+        if (!el) {
+          el = doc.createElement('style');
+          el.id = '__om_outline';
+          doc.head.appendChild(el);
+        }
+        el.textContent = 'a, [onclick] { outline:2px solid rgba(22,101,193,.85) !important; outline-offset:2px; border-radius:6px; }';
+      } else if (el) {
+        el.textContent = '';
+      }
+    } catch (e) { /* cross-origin */ }
+  }
+
+  measure(tries) {
+    const f = this.frame;
+    if (!f) return;
+    let doc;
+    try { doc = f.contentDocument; } catch (e) { return; }
+    const h = doc && doc.body ? Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight) : 0;
+    if (h > 400) {
+      if (Math.abs(h - this.state.frameH) > 8) {
+        this.setState({ frameH: h }, () => window.requestAnimationFrame(() => this.scrollToAnchor()));
+      } else {
+        this.scrollToAnchor();
+      }
+    }
+    if (tries > 0) {
+      window.clearTimeout(this._m);
+      this._m = window.setTimeout(() => this.measure(tries - 1), 160);
+    }
+  }
+
+  scrollToAnchor() {
+    const f = this.frame;
+    if (!f || !this.stage.current) return;
+    let doc, hash = '', loadedFile = '';
+    try {
+      doc = f.contentDocument;
+      hash = (f.contentWindow.location.hash || '').replace('#', '');
+      loadedFile = decodeURIComponent((f.contentWindow.location.pathname || '').split('/').pop() || '');
+    } catch (e) { return; }
+    if (!doc) return;
+
+    const cur = this.current();
+    const hashChanged = hash && hash !== this._hash;
+    let anchor = cur.anchor;
+
+    if (hashChanged && doc.getElementById(hash)) {
+      // genuine in-frame navigation: the frame wins, sidebar follows it
+      this._hash = hash;
+      anchor = hash;
+      const match = this.all().find(i => i.anchor === hash && i.file === loadedFile)
+        || this.all().find(i => i.file === loadedFile);
+      if (match && match.id !== this.state.cur) {
+        this._file = loadedFile;
+        this._key = match.id + '|' + this.state.zoom + '|' + this.state.frameH;
+        this.setState({ cur: match.id });
+      }
+    } else {
+      // sidebar / arrow driven: the selection wins, keep the frame hash in sync
+      this._hash = anchor;
+      if (hash !== anchor && loadedFile === cur.file) {
+        try { f.contentWindow.location.replace('#' + anchor); } catch (e) { /* noop */ }
+      }
+    }
+
+    const el = doc.getElementById(anchor);
+    if (!el) return;
+    this.stage.current.scrollTop = Math.max(0, Math.round(el.offsetTop * this.state.zoom - 12));
+    this.applyOutline();
+  }
+
+  watchFrame() {
+    const f = this.frame;
+    if (!f) return;
+    try {
+      const w = f.contentWindow;
+      if (!w || w.__omWatched) return;
+      w.__omWatched = true;
+      w.addEventListener('hashchange', () => this.queueSync(40));
+      w.document.addEventListener('click', () => this.queueSync(90), true);
+    } catch (e) { /* noop */ }
+  }
+
+  queueSync(delay) {
+    window.clearTimeout(this._t);
+    this._t = window.setTimeout(() => this.measure(5), delay || 30);
+  }
+
+  componentDidUpdate() {
+    try {
+      const cur = this.current();
+      if (this._file !== cur.file) {
+        this._file = cur.file;
+        this._key = null;
+        if (this.state.frameH !== 800) { this.setState({ frameH: 800 }); return; }
+      }
+      const key = cur.id + '|' + this.state.zoom + '|' + this.state.frameH;
+      if (key !== this._key) {
+        this._key = key;
+        this.queueSync(30);
+      }
+      this.applyOutline();
+    } catch (e) { /* noop */ }
+  }
+
+  renderVals() {
+    const s = this.state;
+    const items = this.all();
+    const cur = items.find(i => i.id === s.cur) || items[0];
+    const idx = items.indexOf(cur);
+    const frameW = cur.w;
+    const frameH = s.frameH;
+    const enc = (f) => encodeURI(f);
+    return {
+      total: items.length,
+      groups: this.D.groups.map(g => ({
+        title: g.title,
+        items: g.items.map(i => ({
+          name: i.name, url: i.url, icon: i.icon,
+          onClick: () => this.setState({ cur: i.id }),
+          bg: s.cur === i.id ? 'rgba(22,101,193,.16)' : 'transparent',
+          line: s.cur === i.id ? '#1665C1' : 'transparent',
+          fg: s.cur === i.id ? '#FFFFFF' : '#D8DCF0'
+        }))
+      })),
+      curName: cur.name, curUrl: cur.url,
+      curFile: enc(cur.file), curSrc: enc(cur.file),
+      frameW: frameW, frameH: frameH,
+      scale: s.zoom, stageW: Math.round(frameW * s.zoom), stageH: Math.round(frameH * s.zoom),
+      zooms: [{ label: '50%', v: 0.5 }, { label: '62%', v: 0.62 }, { label: '80%', v: 0.8 }, { label: '100%', v: 1 }].map(z => ({
+        label: z.label, onClick: () => this.setState({ zoom: z.v }),
+        bg: Math.abs(s.zoom - z.v) < 0.01 ? '#262A5B' : '#FFFFFF',
+        fg: Math.abs(s.zoom - z.v) < 0.01 ? '#FFFFFF' : '#262A5B'
+      })),
+      prev: () => this.setState({ cur: items[(idx - 1 + items.length) % items.length].id }),
+      next: () => this.setState({ cur: items[(idx + 1) % items.length].id }),
+      stageRef: this.stage,
+      onFrame: (e) => { this.frame = e.target; this._file = this.current().file; this._hash = null; this._key = null; this.watchFrame(); this.queueSync(60); },
+      toggleOutline: () => this.setState({ outline: !s.outline }),
+      outlineBg: s.outline ? '#262A5B' : '#FFFFFF',
+      outlineFg: s.outline ? '#FFFFFF' : '#262A5B',
+      outlineBorder: s.outline ? '#262A5B' : '#D9E3F0'
+    };
+  }
+}
+</script>
+</body>
+</html>

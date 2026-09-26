@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200..400,0,-25&display=block" rel="stylesheet">
+<style>
+  html { background:#F6F7F9 !important; }
+  body { margin:0; background:#F6F7F9; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#1A63B8; }
+  a:hover { color:#1665C1; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+
+<section dir="rtl" style="padding:56px 64px 96px; display:flex; flex-direction:column; gap:44px; font-family:'Assistant',sans-serif">
+  <div style="display:flex; flex-direction:column; gap:10px; max-width:900px">
+    <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#1A63B8">BAKU40 · CMS</div>
+    <h1 style="font:800 40px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0">דשבורד, עורך תוכן ופאנל SEO</h1>
+    <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0"><a href="Baku40%20Site.dc.html" style="font-weight:600">← מפת המסכים</a> · 6a דשבורד, 6b עורך ישות, 6c פאנל SEO, 6d הרשאות, 6e חיפוש גלובלי. ממשק עבודה, לא אתר — אותה פלטה בגרסה שקטה יותר.</p>
+  </div>
+
+  <!-- ===== 6a DASHBOARD ===== -->
+  <div id="6a" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">6a</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">דשבורד — cms.domain.co.il</span>
+    </div>
+    <div style="width:1440px; background:#F1F3F7; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden; display:grid; grid-template-columns:248px 1fr; grid-template-rows:820px">
+      <div style="background:#1A1D42; padding:22px 0; min-height:0; overflow:auto">
+        <div style="padding:0 20px 20px">
+          <img src="assets/baku40-logo.png" alt="Baku40" style="height:26px; width:auto; align-self:flex-start; filter:brightness(0) invert(1)">
+          <div style="font:400 12px 'Assistant',sans-serif; color:#8D92B8; margin-top:6px">מערכת ניהול תוכן</div>
+        </div>
+        <sc-for list="{{ cmsNav }}" as="n" hint-placeholder-count="12">
+          <div onClick="{{ n.onClick }}" style="display:flex; align-items:center; gap:10px; padding:11px 20px; cursor:pointer; background:{{ n.bg }}; border-inline-end:3px solid {{ n.line }}">
+            <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:{{ n.fg }}; opacity:.85">{{ n.icon }}</span>
+            <span style="flex:1; font:600 15px 'Assistant',sans-serif; color:{{ n.fg }}">{{ n.label }}</span>
+            <sc-if value="{{ n.badge }}" hint-placeholder-val="{{ false }}">
+              <span style="background:#1665C1; color:#FFFFFF; border-radius:999px; padding:2px 8px; font:800 12px 'Heebo',sans-serif">{{ n.badge }}</span>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div style="padding:16px 20px; margin-top:12px; border-top:1px solid #2C3160; font:400 13px/1.6 'Assistant',sans-serif; color:#8D92B8">מחוברת: מערכת Baku40 · תפקיד: Admin</div>
+      </div>
+
+      <div style="min-height:0; overflow:auto; padding:26px 30px">
+        <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px">
+          <div>
+            <h1 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 4px">דשבורד</h1>
+            <div style="font:400 15px 'Assistant',sans-serif; color:#6E6B78">מצב התוכן, מה דורש טיפול ומה מתפרסם בקרוב</div>
+          </div>
+          <div style="flex:1"></div>
+          <div style="border:1px solid #D9E3F0; background:#FFFFFF; border-radius:9px; padding:11px 15px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">ייצוא דוח</div>
+          <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:11px 18px; font:700 15px 'Assistant',sans-serif; cursor:pointer">+ תוכן חדש</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:22px">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+            <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:20px">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+                <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:{{ k.color }}">{{ k.icon }}</span>
+                <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78">{{ k.label }}</div>
+              </div>
+              <div style="font:900 34px/1 'Heebo',sans-serif; color:#262A5B">{{ k.n }}</div>
+              <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78; margin-top:6px">{{ k.sub }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:18px; margin-bottom:22px">
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:22px">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:21px; color:#1A63B8">warning</span>
+              <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B">דורש טיפול</div>
+              <div style="flex:1"></div>
+              <div style="font:600 14px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer">הצגת הכול</div>
+            </div>
+            <sc-for list="{{ issues }}" as="i" hint-placeholder-count="5">
+              <div style="display:flex; align-items:center; gap:14px; padding:12px 0; border-top:1px solid #ECF1F8">
+                <span style="width:9px; height:9px; border-radius:50%; background:{{ i.dot }}; flex:0 0 auto"></span>
+                <div style="flex:1">
+                  <div style="font:600 16px 'Assistant',sans-serif; color:#262A5B">{{ i.title }}</div>
+                  <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78">{{ i.sub }}</div>
+                </div>
+                <div style="font:800 18px 'Heebo',sans-serif; color:#262A5B">{{ i.n }}</div>
+                <div style="border:1px solid #D9E3F0; border-radius:8px; padding:8px 12px; font:600 14px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">{{ i.action }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:22px">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:21px; color:#262A5B; opacity:.6">fact_check</span>
+              <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B">מצב אימות תוכן</div>
+            </div>
+            <sc-for list="{{ verification }}" as="v" hint-placeholder-count="3">
+              <div style="margin-bottom:14px">
+                <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:6px">
+                  <div style="display:flex; align-items:center; gap:8px">
+                    <span style="width:10px; height:10px; border-radius:50%; background:{{ v.color }}"></span>
+                    <span style="font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ v.label }}</span>
+                  </div>
+                  <span style="font:700 15px 'Heebo',sans-serif; color:#262A5B">{{ v.n }}</span>
+                </div>
+                <div style="height:8px; border-radius:4px; background:#ECF1F8">
+                  <div style="height:8px; border-radius:4px; background:{{ v.color }}; width:{{ v.pct }}%"></div>
+                </div>
+              </div>
+            </sc-for>
+            <div style="font:400 13px/1.6 'Assistant',sans-serif; color:#6E6B78; border-top:1px solid #ECF1F8; padding-top:12px; margin-top:6px">ספי האימות מוגדרים לכל סוג תוכן בנפרד. ויזה, טיסות ותחבורה דורשים בדיקה תכופה יותר.</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px">
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:22px">
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:14px">נערך לאחרונה</div>
+            <sc-for list="{{ recent }}" as="r" hint-placeholder-count="5">
+              <div style="display:flex; align-items:center; gap:12px; padding:11px 0; border-top:1px solid #ECF1F8">
+                <span style="background:{{ r.badgeBg }}; color:{{ r.badgeFg }}; border-radius:6px; padding:4px 9px; font:700 12px 'Heebo',sans-serif; white-space:nowrap">{{ r.status }}</span>
+                <div style="flex:1">
+                  <div style="font:600 16px 'Assistant',sans-serif; color:#262A5B">{{ r.title }}</div>
+                  <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ r.meta }}</div>
+                </div>
+                <a href="#6b" style="font:600 14px 'Assistant',sans-serif; color:#1A63B8; text-decoration:none">עריכה</a>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:22px">
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:14px">כמות תוכן לפי אוסף</div>
+            <sc-for list="{{ collections }}" as="c" hint-placeholder-count="6">
+              <div style="display:flex; align-items:center; gap:12px; padding:10px 0; border-top:1px solid #ECF1F8">
+                <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:#262A5B; opacity:.5">{{ c.icon }}</span>
+                <div style="flex:1; font:600 16px 'Assistant',sans-serif; color:#262A5B">{{ c.label }}</div>
+                <div style="width:160px; height:7px; border-radius:4px; background:#ECF1F8">
+                  <div style="height:7px; border-radius:4px; background:#262A5B; width:{{ c.pct }}%"></div>
+                </div>
+                <div style="font:700 16px 'Heebo',sans-serif; color:#262A5B; width:40px; text-align:left">{{ c.n }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6b CONTENT EDITOR ===== -->
+  <div id="6b" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">6b</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">עורך ישות — אטרקציה</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">שדות, קשרים, מקורות ותאריך בדיקה · QA לפני פרסום</span>
+    </div>
+    <div style="width:1440px; background:#F1F3F7; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #DFE7F2; padding:16px 30px; display:flex; align-items:center; gap:16px">
+        <a href="#6a" style="display:flex; align-items:center; gap:8px; font:600 15px 'Assistant',sans-serif; color:#262A5B; text-decoration:none">
+          <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px">arrow_forward</span>
+          <span>אטרקציות</span>
+        </a>
+        <div style="width:1px; height:28px; background:#DFE7F2"></div>
+        <div>
+          <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B">מרכז היידר אלייב</div>
+          <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">/attractions/heydar-aliyev-center/ · נשמר אוטומטית לפני 2 דקות</div>
+        </div>
+        <div style="flex:1"></div>
+        <div style="display:flex; align-items:center; gap:8px; background:#FFF6E6; border:1px solid #F0DCB0; border-radius:8px; padding:9px 13px; font:600 14px 'Assistant',sans-serif; color:#7A5A16">
+          <span style="width:9px; height:9px; border-radius:50%; background:#E8A93A"></span>
+          <span>בבדיקה · Review</span>
+        </div>
+        <div style="border:1px solid #D9E3F0; background:#FFFFFF; border-radius:9px; padding:11px 15px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">תצוגה מקדימה</div>
+        <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:11px 20px; font:700 15px 'Assistant',sans-serif; cursor:pointer">פרסום</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:200px 1fr 380px">
+        <div style="border-inline-end:1px solid #DFE7F2; background:#FFFFFF; padding:20px 0">
+          <sc-for list="{{ editorTabs }}" as="t" hint-placeholder-count="7">
+            <div onClick="{{ t.onClick }}" style="display:flex; align-items:center; gap:9px; padding:11px 18px; cursor:pointer; background:{{ t.bg }}; border-inline-end:3px solid {{ t.line }}">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:#262A5B; opacity:.55">{{ t.icon }}</span>
+              <span style="flex:1; font:600 15px 'Assistant',sans-serif; color:{{ t.fg }}">{{ t.label }}</span>
+              <sc-if value="{{ t.warn }}" hint-placeholder-val="{{ false }}">
+                <span style="width:8px; height:8px; border-radius:50%; background:#1A63B8"></span>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="padding:26px 30px; display:flex; flex-direction:column; gap:22px">
+          <div style="font:700 22px 'Heebo',sans-serif; color:#262A5B">{{ editorTitle }}</div>
+          <sc-for list="{{ fields }}" as="f" hint-placeholder-count="6">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:7px">
+                <div style="font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ f.label }}</div>
+                <sc-if value="{{ f.required }}" hint-placeholder-val="{{ false }}">
+                  <span style="font:700 12px 'Heebo',sans-serif; color:#1A63B8">חובה</span>
+                </sc-if>
+                <div style="flex:1"></div>
+                <div style="font:400 12px ui-monospace,monospace; color:#8C8577">{{ f.key }}</div>
+              </div>
+              <div style="background:#FFFFFF; border:1px solid {{ f.border }}; border-radius:9px; padding:{{ f.pad }}; font:400 16px/1.7 'Assistant',sans-serif; color:{{ f.color }}; min-height:{{ f.h }}px">{{ f.value }}</div>
+              <sc-if value="{{ f.help }}" hint-placeholder-val="{{ false }}">
+                <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78; margin-top:6px">{{ f.help }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="border-inline-start:1px solid #DFE7F2; background:#FFFFFF; padding:22px; display:flex; flex-direction:column; gap:18px">
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">בדיקות לפני פרסום</div>
+            <sc-for list="{{ qa }}" as="q" hint-placeholder-count="8">
+              <div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #ECF1F8">
+                <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:{{ q.color }}">{{ q.icon }}</span>
+                <span style="flex:1; font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ q.label }}</span>
+                <sc-if value="{{ q.blocking }}" hint-placeholder-val="{{ false }}">
+                  <span style="font:700 12px 'Heebo',sans-serif; color:#1A63B8">חוסם</span>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:10px">קשרים</div>
+            <div style="display:flex; flex-direction:column; gap:8px">
+              <sc-for list="{{ relations }}" as="r" hint-placeholder-count="4">
+                <div style="border:1px solid #DFE7F2; border-radius:9px; padding:12px 14px">
+                  <div style="display:flex; align-items:baseline; justify-content:space-between">
+                    <div style="font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ r.label }}</div>
+                    <div style="font:700 14px 'Heebo',sans-serif; color:#6E6B78">{{ r.n }}</div>
+                  </div>
+                  <div style="font:400 13px/1.5 'Assistant',sans-serif; color:#6E6B78; margin-top:3px">{{ r.items }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:10px">מקורות ואימות</div>
+            <div style="background:#FFFFFF; border-radius:10px; padding:14px; font:400 14px/1.6 'Assistant',sans-serif; color:#2A2A30">
+              2 מקורות · אתר רשמי + רשות התיירות
+              <div style="display:flex; align-items:center; gap:8px; margin-top:10px">
+                <span style="width:9px; height:9px; border-radius:50%; background:#2D7D6B"></span>
+                <span style="font-weight:600; color:#262A5B">נבדק 12.9.2026</span>
+              </div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; margin-top:10px; font:600 14px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px">add</span>
+              <span>הוספת מקור</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6c SEO PANEL ===== -->
+  <div id="6c" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">6c</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">פאנל SEO ואינדוקס</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">מטא, canonical, סכמה, הפניות ובעיות</span>
+    </div>
+    <div style="width:1440px; background:#F1F3F7; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #DFE7F2; padding:16px 30px; display:flex; align-items:center; gap:16px">
+        <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B">SEO</div>
+        <div style="display:flex; gap:6px; margin-inline-start:10px">
+          <sc-for list="{{ seoTabs }}" as="t" hint-placeholder-count="4">
+            <div onClick="{{ t.onClick }}" style="cursor:pointer; background:{{ t.bg }}; color:{{ t.fg }}; border:1px solid {{ t.border }}; border-radius:8px; padding:9px 15px; font:600 15px 'Assistant',sans-serif">{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <div style="flex:1"></div>
+        <a href="#6b" style="font:600 15px 'Assistant',sans-serif; color:#1A63B8; text-decoration:none">חזרה לעורך התוכן</a>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 440px; gap:0">
+        <div style="padding:26px 30px; display:flex; flex-direction:column; gap:20px">
+          <div style="font:700 22px 'Heebo',sans-serif; color:#262A5B">{{ seoTitle }}</div>
+          <sc-for list="{{ seoFields }}" as="f" hint-placeholder-count="6">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:7px">
+                <div style="font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ f.label }}</div>
+                <div style="flex:1"></div>
+                <sc-if value="{{ f.counter }}" hint-placeholder-val="{{ false }}">
+                  <div style="font:600 13px 'Assistant',sans-serif; color:{{ f.counterColor }}">{{ f.counter }}</div>
+                </sc-if>
+                <div style="font:400 12px ui-monospace,monospace; color:#8C8577">{{ f.key }}</div>
+              </div>
+              <div style="background:#FFFFFF; border:1px solid {{ f.border }}; border-radius:9px; padding:13px 15px; font:400 16px/1.7 'Assistant',sans-serif; color:{{ f.color }}; min-height:{{ f.h }}px">{{ f.value }}</div>
+              <sc-if value="{{ f.help }}" hint-placeholder-val="{{ false }}">
+                <div style="font:400 13px/1.55 'Assistant',sans-serif; color:#6E6B78; margin-top:6px">{{ f.help }}</div>
+              </sc-if>
+            </div>
+          </sc-for>
+
+          <div>
+            <div style="font:600 15px 'Assistant',sans-serif; color:#262A5B; margin-bottom:10px">אינדוקס</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <sc-for list="{{ robots }}" as="r" hint-placeholder-count="4">
+                <div onClick="{{ r.onClick }}" style="cursor:pointer; display:flex; align-items:center; gap:9px; border:1px solid {{ r.border }}; background:{{ r.bg }}; border-radius:9px; padding:12px 16px">
+                  <span style="width:18px; height:18px; border-radius:5px; border:2px solid {{ r.ring }}; background:{{ r.fill }}"></span>
+                  <span style="font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ r.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-inline-start:1px solid #DFE7F2; background:#FFFFFF; padding:26px; display:flex; flex-direction:column; gap:20px">
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">תצוגה בגוגל</div>
+            <div style="border:1px solid #DFE7F2; border-radius:10px; padding:16px">
+              <div style="font:400 13px 'Assistant',sans-serif; color:#3C7A4B; margin-bottom:4px">baku40.co.il › attractions › heydar-aliyev-center</div>
+              <div style="font:400 20px/1.35 'Assistant',sans-serif; color:#1A0DAB; margin-bottom:5px">{{ serpTitle }}</div>
+              <div style="font:400 14px/1.6 'Assistant',sans-serif; color:#4D5156">{{ serpDesc }}</div>
+            </div>
+          </div>
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">סכמה שתיווצר</div>
+            <div style="background:#1A1D42; border-radius:10px; padding:16px; font:400 13px/1.8 ui-monospace,monospace; color:#D8DCF0; white-space:pre-wrap">{{ schema }}</div>
+            <div style="font:400 13px/1.6 'Assistant',sans-serif; color:#6E6B78; margin-top:8px">נוצרת רק מהשדות שקיימים בישות. אין דירוגים או ביקורות מומצאים.</div>
+          </div>
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">בעיות באתר</div>
+            <sc-for list="{{ seoIssues }}" as="i" hint-placeholder-count="5">
+              <div style="display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #ECF1F8">
+                <span style="width:9px; height:9px; border-radius:50%; background:{{ i.dot }}"></span>
+                <span style="flex:1; font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ i.label }}</span>
+                <span style="font:700 15px 'Heebo',sans-serif; color:#262A5B">{{ i.n }}</span>
+              </div>
+            </sc-for>
+            <div style="display:flex; gap:10px; margin-top:14px">
+              <div style="flex:1; border:1px solid #D9E3F0; border-radius:9px; padding:12px; text-align:center; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">מנהל הפניות</div>
+              <div style="flex:1; border:1px solid #D9E3F0; border-radius:9px; padding:12px; text-align:center; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">מוניטור 404</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6d PERMISSIONS ===== -->
+  <div id="6d" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">6d</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">הרשאות — /system/roles/</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">מי מפרסם, מי רק מציע, ומה קורה כשאין הרשאה</span>
+    </div>
+    <div style="width:1440px; background:#F1F3F7; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #DFE7F2; padding:16px 30px; display:flex; align-items:center; gap:16px">
+        <a href="#6a" style="display:flex; align-items:center; gap:8px; font:600 15px 'Assistant',sans-serif; color:#262A5B; text-decoration:none">
+          <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px">arrow_forward</span>
+          <span>חזרה לדשבורד</span>
+        </a>
+        <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B">הרשאות ותפקידים</div>
+        <div style="flex:1"></div>
+        <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:11px 18px; font:700 15px 'Assistant',sans-serif; cursor:pointer">+ הזמנת משתמש</div>
+      </div>
+
+      <div style="padding:26px 30px; display:grid; grid-template-columns:1fr 400px; gap:22px; align-items:start">
+        <div style="display:flex; flex-direction:column; gap:20px">
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:24px 26px">
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:6px">מטריצת הרשאות</div>
+            <div style="font:400 15px 'Assistant',sans-serif; color:#6E6B78; margin-bottom:18px">שלוש רמות. ההבדל המשמעותי היחיד הוא מי יכול להעביר תוכן ל‑Published ומי יכול לאשר נתון כ"מאומת".</div>
+            <div style="display:grid; grid-template-columns:1.6fr repeat(3,1fr); gap:0; border:1px solid #DFE7F2; border-radius:10px; overflow:hidden">
+              <div style="background:#EDF2F9; padding:13px 16px; font:700 14px 'Heebo',sans-serif; color:#262A5B">פעולה</div>
+              <sc-for list="{{ roleCols }}" as="c" hint-placeholder-count="3">
+                <div style="background:#EDF2F9; padding:13px 10px; font:700 14px 'Heebo',sans-serif; color:#262A5B; text-align:center">{{ c }}</div>
+              </sc-for>
+              <sc-for list="{{ permMatrix }}" as="r" hint-placeholder-count="8">
+                <div style="padding:13px 16px; border-top:1px solid #EDF2F9; font:400 15px 'Assistant',sans-serif; color:#2A2A30">{{ r.action }}</div>
+                <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="3">
+                  <div style="padding:13px 10px; border-top:1px solid #EDF2F9; display:flex; align-items:center; justify-content:center">
+                    <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 300; font-size:21px; color:{{ c.color }}">{{ c.icon }}</span>
+                  </div>
+                </sc-for>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:24px 26px">
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:16px">משתמשים · 5</div>
+            <div style="display:flex; flex-direction:column">
+              <sc-for list="{{ cmsUsers }}" as="u" hint-placeholder-count="5">
+                <div style="display:flex; align-items:center; gap:14px; padding:14px 0; border-top:1px solid #EDF2F9">
+                  <div style="width:38px; height:38px; border-radius:50%; background:#E4EFFB; color:#262A5B; display:flex; align-items:center; justify-content:center; font:800 15px 'Heebo',sans-serif; flex:0 0 auto">{{ u.initial }}</div>
+                  <div style="flex:1">
+                    <div style="font:700 17px 'Heebo',sans-serif; color:#262A5B">{{ u.name }}</div>
+                    <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78">{{ u.scope }}</div>
+                  </div>
+                  <span style="background:{{ u.bg }}; color:{{ u.fg }}; border-radius:6px; padding:5px 11px; font:700 13px 'Heebo',sans-serif">{{ u.role }}</span>
+                  <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78; width:110px; text-align:end">{{ u.last }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:16px">
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:22px 24px">
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">כשאין הרשאת פרסום</div>
+            <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30; margin-bottom:16px">Writer שמסיים לערוך אינו רואה כפתור "פרסום" אפור ולא לחיץ — הוא רואה את הפעולה שהוא כן יכול לעשות:</div>
+            <div style="border:1px solid #DFE7F2; border-radius:10px; overflow:hidden">
+              <div style="background:#EDF2F9; padding:11px 14px; font:600 14px 'Assistant',sans-serif; color:#6E6B78">מרכז היידר אלייב · טיוטה</div>
+              <div style="padding:16px 14px; display:flex; flex-direction:column; gap:9px">
+                <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:12px; text-align:center; font:700 15px 'Assistant',sans-serif; cursor:pointer">שליחה לאישור עורך</div>
+                <div style="border:1px solid #D9E3F0; border-radius:9px; padding:12px; text-align:center; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">שמירת טיוטה</div>
+                <div style="display:flex; gap:9px; align-items:flex-start; background:#EDF2F9; border-radius:8px; padding:11px 13px">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px; color:#6E6B78">info</span>
+                  <span style="flex:1; font:400 14px/1.6 'Assistant',sans-serif; color:#5C5A66">פרסום דורש הרשאת Editor. הבקשה תגיע לדנה מ׳.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#FFF6E6; border:1px solid #F0DCB0; border-radius:12px; padding:22px 24px">
+            <div style="font:700 17px 'Heebo',sans-serif; color:#262A5B; margin-bottom:8px">אישור נתון כ"מאומת"</div>
+            <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">זו ההרשאה הרגישה במערכת. Writer יכול להוסיף מקור, אבל רק Editor יכול להפוך את תג האימות לירוק — כדי שאף נתון לא יסומן כמאומת בלי עין שנייה.</div>
+          </div>
+
+          <div style="background:#FFFFFF; border:1px solid #DFE7F2; border-radius:12px; padding:22px 24px">
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">יומן פעולות · אחרון</div>
+            <div style="display:flex; flex-direction:column; gap:11px">
+              <sc-for list="{{ auditLog }}" as="l" hint-placeholder-count="4">
+                <div style="display:flex; gap:10px; align-items:flex-start">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px; color:{{ l.color }}; margin-top:2px">{{ l.icon }}</span>
+                  <div style="flex:1">
+                    <div style="font:400 15px/1.5 'Assistant',sans-serif; color:#2A2A30">{{ l.text }}</div>
+                    <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ l.when }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 6e GLOBAL SEARCH ===== -->
+  <div id="6e" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">6e</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">חיפוש גלובלי — ⌘K</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">כל האוספים בתוצאה אחת, כולל שדות ומקורות</span>
+    </div>
+    <div style="width:1440px; background:#F1F3F7; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden; position:relative; min-height:720px">
+      <div style="position:absolute; inset:0; background:#F1F3F7"></div>
+      <div style="position:absolute; inset:0; background:rgba(26,29,66,.42)"></div>
+      <div style="position:relative; padding:64px 0; display:flex; justify-content:center">
+        <div style="width:760px; background:#FFFFFF; border:1px solid #DFE7F2; border-radius:14px; overflow:hidden; box-shadow:0 24px 64px rgba(26,29,66,.28)">
+          <div style="display:flex; align-items:center; gap:13px; padding:20px 24px; border-bottom:1px solid #EDF2F9">
+            <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:24px; color:#6E6B78">search</span>
+            <div style="flex:1; font:400 20px 'Assistant',sans-serif; color:#262A5B">היידר</div>
+            <div style="border:1px solid #D9E3F0; border-radius:6px; padding:4px 9px; font:600 12px 'Assistant',sans-serif; color:#6E6B78">ESC</div>
+          </div>
+
+          <div style="display:flex; gap:7px; padding:14px 24px; border-bottom:1px solid #EDF2F9; flex-wrap:wrap">
+            <sc-for list="{{ searchScopes }}" as="s" hint-placeholder-count="6">
+              <div onClick="{{ s.onClick }}" style="cursor:pointer; background:{{ s.bg }}; color:{{ s.fg }}; border:1px solid {{ s.border }}; border-radius:7px; padding:7px 12px; font:600 14px 'Assistant',sans-serif">{{ s.label }}</div>
+            </sc-for>
+          </div>
+
+          <div style="max-height:440px; overflow:auto">
+            <sc-for list="{{ searchGroups }}" as="g" hint-placeholder-count="4">
+              <div>
+                <div style="background:#EDF2F9; padding:9px 24px; font:700 12px 'Heebo',sans-serif; letter-spacing:.06em; color:#5C5A66">{{ g.title }}</div>
+                <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="2">
+                  <div style="display:flex; align-items:center; gap:14px; padding:14px 24px; border-bottom:1px solid #F4F6FA; cursor:pointer" style-hover="background:#F7FAFE">
+                    <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#262A5B; opacity:.6">{{ it.icon }}</span>
+                    <div style="flex:1">
+                      <div style="font:700 17px 'Heebo',sans-serif; color:#262A5B">{{ it.title }}</div>
+                      <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78">{{ it.meta }}</div>
+                    </div>
+                    <sc-if value="{{ it.hasStatus }}" hint-placeholder-val="{{ false }}">
+                      <span style="background:{{ it.bg }}; color:{{ it.fg }}; border-radius:6px; padding:4px 10px; font:700 12px 'Heebo',sans-serif">{{ it.status }}</span>
+                    </sc-if>
+                    <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:#6E6B78">chevron_left</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:18px; padding:13px 24px; border-top:1px solid #EDF2F9; background:#FBFCFE; font:400 13px 'Assistant',sans-serif; color:#6E6B78">
+            <span>↑↓ ניווט</span><span>↵ פתיחה</span><span>⌘↵ פתיחה בלשונית חדשה</span>
+            <div style="flex:1"></div>
+            <span>{{ searchCount }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600}}">
+class Component extends DCLogic {
+  state = { nav: 'דשבורד', tab: 'תוכן ראשי', seoTab: 'עמוד בודד', scope: 'הכול' };
+
+  D = {
+    nav: [
+      { label: 'דשבורד', icon: 'dashboard' },
+      { label: 'אטרקציות', icon: 'castle', badge: '68' },
+      { label: 'מסעדות', icon: 'restaurant', badge: '42' },
+      { label: 'מלונות', icon: 'hotel', badge: '36' },
+      { label: 'אזורים ויעדים', icon: 'location_city' },
+      { label: 'מסלולים', icon: 'route' },
+      { label: 'מאמרים', icon: 'menu_book', badge: '4' },
+      { label: 'מזג אוויר', icon: 'partly_cloudy_day' },
+      { label: 'נדל"ן', icon: 'apartment' },
+      { label: 'מדיה', icon: 'photo_library' },
+      { label: 'SEO', icon: 'travel_explore', badge: '7' },
+      { label: 'מערכת', icon: 'settings' }
+    ],
+    kpis: [
+      { label: 'מפורסם', n: '184', sub: 'כל האוספים', icon: 'public', color: '#2D7D6B' },
+      { label: 'טיוטות', n: '23', sub: '9 ממתינות לבדיקה', icon: 'edit_note', color: '#E8A93A' },
+      { label: 'דורש אימות', n: '11', sub: 'מעל 180 יום', icon: 'schedule', color: '#C2402F' },
+      { label: 'בעיות SEO', n: '7', sub: 'מטא, alt, קישורים', icon: 'travel_explore', color: '#C2402F' }
+    ],
+    roleCols: ['Writer', 'Editor', 'Admin'],
+    permMatrix: [
+      { action: 'יצירת טיוטה ועריכה', cells: [1, 1, 1] },
+      { action: 'העלאת מדיה והוספת ALT', cells: [1, 1, 1] },
+      { action: 'הוספת מקור לשדה', cells: [1, 1, 1] },
+      { action: 'אישור נתון כ"מאומת"', cells: [0, 1, 1] },
+      { action: 'פרסום ל‑Published', cells: [0, 1, 1] },
+      { action: 'שינוי slug והפניות', cells: [0, 1, 1] },
+      { action: 'מחיקת ישות', cells: [0, 0, 1] },
+      { action: 'ניהול משתמשים והרשאות', cells: [0, 0, 1] },
+      { action: 'חיבור מקורות API', cells: [0, 0, 1] }
+    ],
+    cmsUsers: [
+      { name: 'ניר ל׳', role: 'Admin', scope: 'כל האוספים', last: 'עכשיו' },
+      { name: 'דנה מ׳', role: 'Editor', scope: 'אוכל, מלונות, מאמרים', last: 'לפני שעה' },
+      { name: 'יובל ק׳', role: 'Editor', scope: 'אימות נתונים ומקורות', last: 'אתמול' },
+      { name: 'שיר ב׳', role: 'Writer', scope: 'אטרקציות, מסלולים', last: 'לפני 3 ימים' },
+      { name: 'עומר ט׳', role: 'Writer', scope: 'מידע למטייל', last: 'לפני שבוע' }
+    ],
+    auditLog: [
+      { icon: 'verified', color: '#2D7D6B', text: 'דנה מ׳ אישרה כ"מאומת": שעות פתיחה · מוזיאון השטיחים', when: 'לפני 24 דקות' },
+      { icon: 'block', color: '#C2402F', text: 'שיר ב׳ ניסתה לפרסם "גובוסטן" — נחסם, אין הרשאת Editor', when: 'לפני שעה' },
+      { icon: 'send', color: '#1665C1', text: 'עומר ט׳ שלח לאישור: "תחבורה בעיר"', when: 'לפני 3 שעות' },
+      { icon: 'person_add', color: '#6E6B78', text: 'ניר ל׳ הזמין את עומר ט׳ בתפקיד Writer', when: 'לפני שבוע' }
+    ],
+    searchScopes: ['הכול', 'אטרקציות', 'מאמרים', 'מסלולים', 'מדיה', 'שדות ומקורות'],
+    searchGroups: [
+      { title: 'אטרקציות · 2', scope: 'אטרקציות', items: [
+        { icon: 'castle', title: 'מרכז היידר אלייב', meta: 'נרימנוב · נערך לפני 12 דקות', status: 'Review', bg: '#FFF6E6', fg: '#7A5A16' },
+        { icon: 'castle', title: 'מסגד היידר', meta: 'בינה · מפורסם', status: 'Published', bg: '#E4EFE9', fg: '#1F5A48' }
+      ]},
+      { title: 'שדות ומקורות · 3', scope: 'שדות ומקורות', items: [
+        { icon: 'rule', title: 'openingHours · מרכז היידר אלייב', meta: 'סתירה בין שני מקורות · ממתין לאימות', status: 'תקוע', bg: '#FFF6E6', fg: '#7A5A16' },
+        { icon: 'rule', title: 'ticketPrice · מרכז היידר אלייב', meta: '12 מול 15 מאנאט · ממתין לאימות', status: 'תקוע', bg: '#FFF6E6', fg: '#7A5A16' },
+        { icon: 'link', title: 'heydaraliyevcenter.az', meta: 'מקור מקושר ל‑4 שדות', status: '', bg: '', fg: '' }
+      ]},
+      { title: 'מאמרים · 1', scope: 'מאמרים', items: [
+        { icon: 'menu_book', title: 'באקו עם ילדים', meta: 'מאמר · מזכיר את מרכז היידר אלייב', status: 'Published', bg: '#E4EFE9', fg: '#1F5A48' }
+      ]},
+      { title: 'מסלולים · 2', scope: 'מסלולים', items: [
+        { icon: 'route', title: 'שלושה ימים בבאקו', meta: 'מסלול · יום 2, עצירה 2', status: 'Published', bg: '#E4EFE9', fg: '#1F5A48' },
+        { icon: 'route', title: 'מסלול 5 ימים כולל גבאלה', meta: 'מסלול · טיוטה', status: 'Draft', bg: '#ECF1F8', fg: '#5C5A66' }
+      ]},
+      { title: 'מדיה · 2', scope: 'מדיה', items: [
+        { icon: 'image', title: 'heydar-center.png', meta: 'בשימוש ב‑5 עמודים · ALT קיים', status: '', bg: '', fg: '' },
+        { icon: 'image', title: 'heydar-mosque.png', meta: 'בשימוש ב‑2 עמודים · ALT חסר', status: 'חסר ALT', bg: '#FFF6E6', fg: '#7A5A16' }
+      ]}
+    ],
+    issues: [
+      { title: 'תוכן שלא נבדק מעל 180 יום', sub: 'ויזה, טיסות, תחבורה', n: '11', action: 'לרשימה', dot: '#C2402F' },
+      { title: 'מטא תיאור חסר', sub: '3 אטרקציות, 1 מסעדה', n: '4', action: 'תיקון', dot: '#E8A93A' },
+      { title: 'תמונות ללא ALT', sub: 'בעיקר בגלריות', n: '9', action: 'תיקון', dot: '#E8A93A' },
+      { title: 'קישורים פנימיים שבורים', sub: 'אחרי שינוי slug', n: '2', action: 'הפניה', dot: '#C2402F' },
+      { title: '404 חדשים בשבוע', sub: 'כולל כתובות מפנות', n: '18', action: 'מוניטור', dot: '#6E6B78' }
+    ],
+    verification: [
+      { label: 'ירוק · עד 90 יום', n: '142', pct: 78, color: '#2D7D6B' },
+      { label: 'צהוב · 91–180 יום', n: '31', pct: 17, color: '#E8A93A' },
+      { label: 'אדום · מעל 180 יום', n: '11', pct: 6, color: '#C2402F' }
+    ],
+    recent: [
+      { status: 'Review', title: 'מרכז היידר אלייב', meta: 'אטרקציה · נערך לפני 12 דקות', badgeBg: '#FFF6E6', badgeFg: '#7A5A16' },
+      { status: 'Published', title: 'באקו עם ילדים', meta: 'מאמר · נערך היום', badgeBg: '#E4EFE9', badgeFg: '#1F5A48' },
+      { status: 'Draft', title: 'מסלול 5 ימים כולל גבאלה', meta: 'מסלול · אתמול', badgeBg: '#ECF1F8', badgeFg: '#5C5A66' },
+      { status: 'Published', title: 'ויזה לישראלים', meta: 'מידע למטייל · נבדק ספטמבר', badgeBg: '#E4EFE9', badgeFg: '#1F5A48' },
+      { status: 'Draft', title: 'Sea Breeze', meta: 'פרויקט נדל"ן · ממתין למסמכים', badgeBg: '#ECF1F8', badgeFg: '#5C5A66' }
+    ],
+    collections: [
+      { label: 'אטרקציות', n: '68', pct: 100, icon: 'castle' },
+      { label: 'מסעדות', n: '42', pct: 62, icon: 'restaurant' },
+      { label: 'מלונות', n: '36', pct: 53, icon: 'hotel' },
+      { label: 'מאמרים', n: '28', pct: 41, icon: 'menu_book' },
+      { label: 'מסלולים', n: '9', pct: 14, icon: 'route' },
+      { label: 'פרויקטים', n: '3', pct: 5, icon: 'apartment' }
+    ],
+    editorTabs: [
+      { label: 'תוכן ראשי', icon: 'article' },
+      { label: 'מידע מהיר', icon: 'fact_check' },
+      { label: 'מיקום ומפה', icon: 'map' },
+      { label: 'שעות ומחירים', icon: 'schedule', warn: true },
+      { label: 'מדיה', icon: 'photo_library', warn: true },
+      { label: 'קשרים', icon: 'hub' },
+      { label: 'SEO', icon: 'travel_explore' }
+    ],
+    editorFields: {
+      'תוכן ראשי': [
+        { label: 'שם בעברית', key: 'name', required: true, value: 'מרכז היידר אלייב', h: 48 },
+        { label: 'שם באנגלית', key: 'englishName', value: 'Heydar Aliyev Center', h: 48 },
+        { label: 'Slug', key: 'slug', required: true, value: '/attractions/heydar-aliyev-center/', h: 48, help: 'שינוי slug יציע יצירת הפניה 301 מהכתובת הקודמת.' },
+        { label: 'תקציר', key: 'excerpt', required: true, value: 'בניין בעיצוב זהא חדיד מחוץ למרכז ההיסטורי. שווה חצי יום נפרד ולא תחנת ביניים.', h: 84 },
+        { label: 'תוכן מלא', key: 'richContent', required: true, value: 'למה להגיע · למי מתאים · איך מגיעים · מה כדאי לדעת לפני…', h: 150, help: 'הכותרות נכתבות לפי Intent, ולא לפי תבנית H2 קבועה.' },
+        { label: 'בלוקים מיוחדים', key: 'blocks', value: 'בשורה התחתונה · אפשר לוותר אם · כמה זה עולה · מה קרוב', h: 48 }
+      ],
+      'מידע מהיר': [
+        { label: 'אזור', key: 'area', required: true, value: 'נרימנוב', h: 48 },
+        { label: 'משך ביקור', key: 'visitDuration', required: true, value: '90–120 דקות', h: 48 },
+        { label: 'סוג כרטיס', key: 'ticketType', value: 'בתשלום · כרטיס במקום ובאתר הרשמי', h: 48 },
+        { label: 'מתאים ל', key: 'audience', value: 'זוגות · חברים · אדריכלות', h: 48 },
+        { label: 'מקורה', key: 'indoor', value: 'כן', h: 48 },
+        { label: 'זמן מומלץ', key: 'recommendedTime', value: 'בוקר · אחר הצהריים מוקדם', h: 48 }
+      ],
+      'מיקום ומפה': [
+        { label: 'קו רוחב', key: 'latitude', required: true, value: '40.3959', h: 48 },
+        { label: 'קו אורך', key: 'longitude', required: true, value: '49.8676', h: 48 },
+        { label: 'כתובת', key: 'address', value: 'Heydar Aliyev Ave, Baku', h: 48, help: 'הקואורדינטות מזינות גם את המפה, את "מה קרוב" ואת המתכנן.' },
+        { label: 'איך מגיעים', key: 'howToGetThere', value: 'מונית או Bolt מהמרכז · תחבורה ציבורית חלקית', h: 84 }
+      ],
+      'שעות ומחירים': [
+        { label: 'שעות פתיחה', key: 'openingHours', required: true, value: 'חסר — נדרש עדכון מהאתר הרשמי', h: 48, warn: true, help: 'שדה חוסם פרסום בתוכן רגיש לזמן.' },
+        { label: 'טווח מחיר', key: 'ticketPrice', value: 'חסר — נדרש מקור ותאריך', h: 48, warn: true },
+        { label: 'מקור לשעות', key: 'sources', value: 'אתר רשמי · נבדק 12.9.2026', h: 48 },
+        { label: 'תאריך בדיקה', key: 'lastVerifiedAt', required: true, value: '12.9.2026', h: 48 }
+      ],
+      'מדיה': [
+        { label: 'תמונת הירו', key: 'heroImage', required: true, value: 'heydar-center-plaza.png', h: 48 },
+        { label: 'ALT להירו', key: 'heroAlt', required: true, value: 'חסר — נדרש טקסט חלופי', h: 48, warn: true },
+        { label: 'גלריה', key: 'gallery', value: '14 תמונות · 3 ללא ALT', h: 48, warn: true },
+        { label: 'יחס תמונות', key: 'aspectRatio', value: '3:2 להירו · 4:5 לגלריה', h: 48 }
+      ],
+      'קשרים': [
+        { label: 'אטרקציות קרובות', key: 'nearbyAttractions', value: 'כיכר המזרקות · טיילת הים', h: 48 },
+        { label: 'מסעדות קרובות', key: 'nearbyRestaurants', value: 'Nakhchivan', h: 48 },
+        { label: 'מלונות קרובים', key: 'nearbyHotels', value: 'JW Marriott Absheron', h: 48 },
+        { label: 'מופיע במסלולים', key: 'includedInItineraries', value: '3 ימים · 4 ימים · לזוגות', h: 48, help: 'הקשרים מפעילים אוטומטית מודולי "מה קרוב" ו"מופיע במסלולים" באתר.' }
+      ],
+      'SEO': [
+        { label: 'Meta title', key: 'metaTitle', value: 'מרכז היידר אלייב בבאקו – מידע, מחירים וטיפים | Baku40', h: 48 },
+        { label: 'Meta description', key: 'metaDescription', value: 'מה שווה לראות במרכז היידר אלייב, כמה זמן להקדיש ואיך משלבים אותו ביום בבאקו.', h: 72 },
+        { label: 'Canonical', key: 'canonicalUrl', value: 'ברירת מחדל · כתובת העמוד', h: 48 },
+        { label: 'סוג סכמה', key: 'schemaType', value: 'TouristAttraction', h: 48 }
+      ]
+    },
+    qa: [
+      { label: 'Slug תקין', ok: true }, { label: 'H1 ומטא כותרת', ok: true },
+      { label: 'מטא תיאור', ok: true }, { label: 'תמונת הירו', ok: true },
+      { label: 'ALT לתמונות', ok: false, blocking: false },
+      { label: 'שעות פתיחה', ok: false, blocking: true },
+      { label: 'מקור לנתון משתנה', ok: false, blocking: true },
+      { label: 'קשרים פנימיים', ok: true }, { label: 'תאריך בדיקה', ok: true }
+    ],
+    relations: [
+      { label: 'אטרקציות קרובות', n: '2', items: 'כיכר המזרקות · טיילת הים' },
+      { label: 'מסעדות קרובות', n: '1', items: 'Nakhchivan' },
+      { label: 'מלונות קרובים', n: '1', items: 'JW Marriott Absheron' },
+      { label: 'מסלולים', n: '3', items: '3 ימים · 4 ימים · לזוגות' }
+    ],
+    seoTabs: ['עמוד בודד', 'הפניות', 'מוניטור 404', 'Sitemap'],
+    seoFields: [
+      { label: 'Meta title', key: 'metaTitle', value: 'מרכז היידר אלייב בבאקו – מידע, מחירים וטיפים | Baku40', counter: '54 / 60', ok: true, h: 48, help: 'ברירת מחדל נוצרת מהתבנית של סוג הישות. אפשר לדרוס.' },
+      { label: 'Meta description', key: 'metaDescription', value: 'מה שווה לראות במרכז היידר אלייב, כמה זמן להקדיש, איך מגיעים ואיך משלבים אותו ביום בבאקו.', counter: '96 / 155', ok: true, h: 76 },
+      { label: 'Canonical', key: 'canonicalUrl', value: 'https://baku40.co.il/attractions/heydar-aliyev-center/', h: 48, help: 'עמודי פילטר מקבלים canonical לעמוד האב, אלא אם נוצר עמוד נחיתה מכוון.' },
+      { label: 'OG title', key: 'ogTitle', value: 'מרכז היידר אלייב – מה שווה לדעת לפני הביקור', h: 48 },
+      { label: 'OG image', key: 'ogImage', value: 'heydar-center-plaza.png · 1200×630', h: 48 },
+      { label: 'מילת מפתח ראשית (עזר עריכתי)', key: 'primaryKeyword', value: 'מרכז היידר אלייב', h: 48, help: 'שדה עריכתי בלבד — לא נכנס לקוד העמוד.' }
+    ],
+    robots: [
+      { label: 'index', on: true }, { label: 'follow', on: true },
+      { label: 'noarchive', on: false }, { label: 'הצגה ב‑Sitemap', on: true }
+    ],
+    seoIssues: [
+      { label: 'עמודים ללא מטא תיאור', n: '4', dot: '#E8A93A' },
+      { label: 'כותרות כפולות', n: '1', dot: '#C2402F' },
+      { label: 'תמונות ללא ALT', n: '9', dot: '#E8A93A' },
+      { label: 'הפניות שרשרת', n: '0', dot: '#2D7D6B' },
+      { label: '404 פעילים', n: '18', dot: '#6E6B78' }
+    ],
+    schema: '{\n  "@type": "TouristAttraction",\n  "name": "מרכז היידר אלייב",\n  "address": "Heydar Aliyev Ave, Baku",\n  "geo": { "lat": 40.3959, "lng": 49.8676 },\n  "isAccessibleForFree": false\n}'
+  };
+
+  renderVals() {
+    const s = this.state, D = this.D;
+    const fields = (D.editorFields[s.tab] || []).map(f => ({
+      label: f.label, key: f.key, value: f.value, required: !!f.required, help: f.help || '',
+      border: f.warn ? '#E0A9A0' : '#D9E3F0', color: f.warn ? '#1A63B8' : '#2A2A30',
+      h: f.h || 48, pad: f.h && f.h > 60 ? '14px 16px' : '13px 15px'
+    }));
+    const shownGroups = s.scope === 'הכול' ? D.searchGroups : D.searchGroups.filter(g => g.scope === s.scope);
+    const shownCount = shownGroups.reduce((n, g) => n + g.items.length, 0);
+    return {
+      cmsNav: D.nav.map(n => ({
+        label: n.label, icon: n.icon, badge: n.badge || '',
+        onClick: () => this.setState({ nav: n.label }),
+        bg: s.nav === n.label ? 'rgba(22,101,193,.14)' : 'transparent',
+        line: s.nav === n.label ? '#1665C1' : 'transparent',
+        fg: s.nav === n.label ? '#FFFFFF' : '#D8DCF0'
+      })),
+      kpis: D.kpis, issues: D.issues, verification: D.verification,
+      recent: D.recent, collections: D.collections,
+      roleCols: D.roleCols,
+      permMatrix: D.permMatrix.map(r => ({
+        action: r.action,
+        cells: r.cells.map(v => v
+          ? { icon: 'check_circle', color: '#2D7D6B' }
+          : { icon: 'cancel', color: '#7C8698' })
+      })),
+      cmsUsers: D.cmsUsers.map(u => Object.assign({}, u, {
+        initial: u.name.charAt(0),
+        bg: u.role === 'Admin' ? '#262A5B' : (u.role === 'Editor' ? '#E4EFFB' : '#EDF2F9'),
+        fg: u.role === 'Admin' ? '#FFFFFF' : '#262A5B'
+      })),
+      auditLog: D.auditLog,
+      searchScopes: D.searchScopes.map(sc => ({
+        label: sc, onClick: () => this.setState({ scope: sc }),
+        bg: s.scope === sc ? '#262A5B' : '#FFFFFF',
+        fg: s.scope === sc ? '#FFFFFF' : '#262A5B',
+        border: s.scope === sc ? '#262A5B' : '#D9E3F0'
+      })),
+      searchGroups: shownGroups.map(g => ({
+        title: g.title,
+        items: g.items.map(it => Object.assign({}, it, { hasStatus: !!it.status }))
+      })),
+      searchCount: shownCount + ' תוצאות ב‑' + shownGroups.length + (shownGroups.length === 1 ? ' אוסף' : ' אוספים'),
+      editorTabs: D.editorTabs.map(t => ({
+        label: t.label, icon: t.icon, warn: !!t.warn,
+        onClick: () => this.setState({ tab: t.label }),
+        bg: s.tab === t.label ? '#FFFFFF' : 'transparent',
+        line: s.tab === t.label ? '#1665C1' : 'transparent',
+        fg: s.tab === t.label ? '#262A5B' : '#5C5A66'
+      })),
+      editorTitle: s.tab, fields: fields,
+      qa: D.qa.map(q => ({
+        label: q.label, blocking: !!q.blocking,
+        icon: q.ok ? 'check_circle' : (q.blocking ? 'error' : 'warning'),
+        color: q.ok ? '#2D7D6B' : (q.blocking ? '#C2402F' : '#E8A93A')
+      })),
+      relations: D.relations,
+      seoTabs: D.seoTabs.map(t => ({
+        label: t, onClick: () => this.setState({ seoTab: t }),
+        bg: s.seoTab === t ? '#262A5B' : '#FFFFFF', fg: s.seoTab === t ? '#FFFFFF' : '#262A5B',
+        border: s.seoTab === t ? '#262A5B' : '#D9E3F0'
+      })),
+      seoTitle: s.seoTab === 'עמוד בודד' ? 'מרכז היידר אלייב · הגדרות עמוד' : s.seoTab,
+      seoFields: D.seoFields.map(f => ({
+        label: f.label, key: f.key, value: f.value, counter: f.counter || '', help: f.help || '',
+        counterColor: f.ok ? '#2D7D6B' : '#1A63B8', border: '#D9E3F0', color: '#2A2A30',
+        h: f.h || 48
+      })),
+      robots: D.robots.map(r => ({
+        label: r.label, onClick: () => {},
+        bg: r.on ? '#E4EFFB' : '#FFFFFF', border: r.on ? '#1665C1' : '#D9E3F0',
+        ring: r.on ? '#1665C1' : '#D9E3F0', fill: r.on ? '#1665C1' : 'transparent'
+      })),
+      seoIssues: D.seoIssues,
+      serpTitle: 'מרכז היידר אלייב בבאקו – מידע, מחירים וטיפים | Baku40',
+      serpDesc: 'מה שווה לראות במרכז היידר אלייב, כמה זמן להקדיש, איך מגיעים ואיך משלבים אותו ביום בבאקו.',
+      schema: D.schema
+    };
+  }
+}
+</script>
+</body>
+</html>

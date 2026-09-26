@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200..400,0,-25&display=block" rel="stylesheet">
+<style>
+  html { background:#F6F7F9 !important; }
+  body { margin:0; background:#F6F7F9; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#1A63B8; text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:hover { color:#1665C1; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+
+<section dir="rtl" style="padding:56px 64px 96px; display:flex; flex-direction:column; gap:44px; font-family:'Assistant',sans-serif">
+  <div style="display:flex; flex-direction:column; gap:10px; max-width:900px">
+    <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#1A63B8">BAKU40 · נדל"ן</div>
+    <h1 style="font:800 40px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0">מאגר ידע ופרויקטים</h1>
+    <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0"><a href="Baku40%20Site.dc.html" style="font-weight:600">← מפת המסכים</a> · 5a עמוד האב, 5b עמוד פרויקט. הטון מידעי ולא מכירתי: טופס ליד מופיע רק אחרי מידע, וכל נתון כספי נושא מקור ותאריך בדיקה.</p>
+  </div>
+
+  <!-- ===== 5a HUB ===== -->
+  <div id="5a" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">5a</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">עמוד האב — /real-estate/baku/</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #E3EBF5; height:78px; display:flex; align-items:center; gap:28px; padding:0 40px">
+        <a href="Baku40%20Home.dc.html"><img src="assets/baku40-logo.png" alt="Baku40" style="height:32px; width:auto; align-self:center"></a>
+        <div style="display:flex; gap:22px; font:600 16px 'Assistant',sans-serif">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+            <a href="{{ n.href }}" style="color:#262A5B; text-decoration:none; border-bottom:2px solid {{ n.line }}; padding-bottom:4px">{{ n.label }}</a>
+          </sc-for>
+        </div>
+        <div style="flex:1"></div>
+        <div style="border:1px solid #D9E3F0; border-radius:9px; padding:10px 14px; font:400 16px 'Assistant',sans-serif; color:#6E6B78">חיפוש</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1.05fr 1fr; background:#FFFFFF; border-bottom:1px solid #E3EBF5">
+        <div style="padding:62px 40px 62px 52px; max-width:700px; margin-inline-start:auto">
+          <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.12em; color:#1A63B8; margin-bottom:16px">נדל"ן והשקעות · מידע, לא שיווק</div>
+          <h1 style="font:900 58px/1.06 'Heebo',sans-serif; color:#262A5B; margin:0 0 16px">השקעות נדל"ן בבאקו</h1>
+          <p style="font:400 19px/1.75 'Assistant',sans-serif; color:#2A2A30; margin:0 0 24px; max-width:560px">מה באמת צריך לדעת לפני שקונים נכס בבאקו: איך עובד התהליך לזרים, מה נדרש מבחינת מיסוי ורישום, אילו אזורים מתפתחים ומה ההבדל בין רכישה על הנייר לנכס מוכן. בלי הבטחות תשואה ובלי מספרים בלי מקור.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap">
+            <a href="#5b" style="background:#1665C1; color:#FFFFFF; font:700 17px 'Assistant',sans-serif; padding:15px 24px; border-radius:9px; min-height:48px; display:flex; align-items:center; text-decoration:none">פרויקטים במאגר</a>
+            <div style="border:1px solid #262A5B; color:#262A5B; font:600 17px 'Assistant',sans-serif; padding:15px 22px; border-radius:9px; min-height:48px; display:flex; align-items:center; cursor:pointer">מדריך תהליך רכישה</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; margin-top:22px; font:600 14px 'Assistant',sans-serif; color:#262A5B">
+            <span style="width:9px; height:9px; border-radius:50%; background:#2D7D6B"></span>
+            <span>כל הנתונים הכספיים באתר נושאים מקור ותאריך בדיקה</span>
+          </div>
+        </div>
+        <div style="position:relative; min-height:520px; overflow:hidden">
+          <div role="img" style="position:absolute; inset:0; background-image:url('assets/photos/seabreeze-masterplan.jpg'); background-size:cover; background-position:center"></div>
+          <div style="position:absolute; bottom:16px; inset-inline-start:16px; background:rgba(26,29,66,.88); color:#FFFFFF; border-radius:7px; padding:7px 13px; font:700 13px 'Heebo',sans-serif">הדמיית יזם · Sea Breeze</div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <h2 style="font:800 36px 'Heebo',sans-serif; color:#262A5B; margin:0 0 6px">מאיפה להתחיל</h2>
+        <p style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0 0 22px; max-width:760px">ארבע שאלות מסדרות את רוב ההחלטה. כל אחת היא עמוד ידע נפרד עם מקורות.</p>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px">
+          <sc-for list="{{ entryPoints }}" as="e" hint-placeholder-count="4">
+            <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; padding:24px; display:flex; flex-direction:column; gap:10px; cursor:pointer" style-hover="border-color:#1665C1">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:28px; color:#262A5B; opacity:.7">{{ e.icon }}</span>
+              <div style="font:700 21px/1.3 'Heebo',sans-serif; color:#262A5B">{{ e.title }}</div>
+              <div style="font:400 16px/1.65 'Assistant',sans-serif; color:#2A2A30">{{ e.text }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:20px">
+          <div>
+            <h2 style="font:800 36px 'Heebo',sans-serif; color:#262A5B; margin:0 0 6px">אזורים</h2>
+            <p style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0; max-width:700px">מה מאפיין כל אזור, ומה השלב שבו הוא נמצא מבחינת פיתוח ותיירות.</p>
+          </div>
+          <div style="display:flex; gap:8px">
+            <sc-for list="{{ areaFilters }}" as="f" hint-placeholder-count="3">
+              <div onClick="{{ f.onClick }}" style="cursor:pointer; border:1px solid {{ f.border }}; background:{{ f.bg }}; color:{{ f.fg }}; border-radius:8px; padding:10px 16px; font:600 15px 'Assistant',sans-serif">{{ f.label }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px">
+          <sc-for list="{{ areas }}" as="a" hint-placeholder-count="3">
+            <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden; cursor:pointer" style-hover="border-color:#1665C1">
+              <div style="position:relative; height:170px">
+                <div role="img" aria-label="{{ a.name }}" style="position:absolute; inset:0; background-color:#EFF4FA; background-image:var(--p); --p:{{ a.bg }}; background-size:cover; background-position:center"></div>
+                <sc-if value="{{ a.isRender }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute; top:12px; inset-inline-start:12px; background:rgba(26,29,66,.88); color:#FFFFFF; border-radius:7px; padding:6px 11px; font:700 12px 'Heebo',sans-serif">הדמיית יזם</div>
+                </sc-if>
+              </div>
+              <div style="padding:22px">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px">
+                  <div style="font:700 23px 'Heebo',sans-serif; color:#262A5B">{{ a.name }}</div>
+                  <span style="background:#E4EFFB; color:#262A5B; border-radius:6px; padding:4px 9px; font:700 12px 'Heebo',sans-serif">{{ a.status }}</span>
+                </div>
+                <div style="font:400 16px/1.65 'Assistant',sans-serif; color:#2A2A30; margin-bottom:14px">{{ a.text }}</div>
+                <div style="display:flex; flex-direction:column; gap:8px">
+                  <sc-for list="{{ a.rows }}" as="r" hint-placeholder-count="3">
+                    <div style="display:flex; align-items:baseline; gap:10px; border-top:1px solid #EDF2F9; padding-top:8px">
+                      <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78; width:120px">{{ r.k }}</div>
+                      <div style="font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ r.v }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <div style="background:#262A5B; border-radius:14px; padding:44px; display:grid; grid-template-columns:1fr 1.1fr; gap:44px">
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.12em; color:#1665C1; margin-bottom:12px">תהליך רכישה לזרים</div>
+            <h2 style="font:800 34px/1.25 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 14px">חמישה שלבים, בלי הפתעות באמצע</h2>
+            <p style="font:400 18px/1.75 'Assistant',sans-serif; color:#E4E6F1; margin:0 0 22px">הסדר עצמו כמעט תמיד זהה. מה שמשתנה הוא סוג הנכס, שלב הבנייה והדרישות של הרשויות — ולכן כל שלב מקושר למקור הרשמי שעליו הוא מבוסס.</p>
+            <div style="background:rgba(247,243,236,.1); border:1px solid rgba(247,243,236,.25); border-radius:10px; padding:18px 20px; font:400 16px/1.7 'Assistant',sans-serif; color:#FFFFFF">
+              אנחנו לא נותנים ייעוץ משפטי או מיסויי. המדריכים מסבירים את התהליך ומפנים לגורמים מוסמכים.
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px">
+            <sc-for list="{{ steps }}" as="st" hint-placeholder-count="5">
+              <div style="display:grid; grid-template-columns:46px 1fr; gap:16px; align-items:start; background:rgba(247,243,236,.06); border:1px solid rgba(247,243,236,.18); border-radius:10px; padding:16px 18px">
+                <div style="width:34px; height:34px; border-radius:50%; background:#1665C1; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font:800 15px 'Heebo',sans-serif">{{ st.n }}</div>
+                <div>
+                  <div style="font:700 19px 'Heebo',sans-serif; color:#FFFFFF">{{ st.title }}</div>
+                  <div style="font:400 16px/1.6 'Assistant',sans-serif; color:#BFC2D8">{{ st.text }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <h2 style="font:800 36px 'Heebo',sans-serif; color:#262A5B; margin:0 0 6px">מה שלא כתוב בברושור</h2>
+        <p style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0 0 22px; max-width:820px">חמישה דברים שחוזרים בשיחות עם מי שכבר קנה, ושכמעט לא מופיעים בחומרי השיווק. אלה לא סיבות לא לקנות — אלה הדברים שכדאי לברר לפני שחותמים.</p>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:16px">
+          <sc-for list="{{ risks }}" as="r" hint-placeholder-count="5">
+            <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; padding:24px 26px">
+              <div style="display:flex; gap:12px; align-items:flex-start">
+                <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:24px; color:#C2402F">{{ r.icon }}</span>
+                <div style="flex:1">
+                  <div style="font:700 20px/1.3 'Heebo',sans-serif; color:#262A5B; margin-bottom:6px">{{ r.title }}</div>
+                  <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30; margin-bottom:10px">{{ r.text }}</div>
+                  <div style="background:#EDF2F9; border-radius:8px; padding:11px 13px; font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30"><strong style="font-family:'Heebo',sans-serif; color:#262A5B">מה לשאול:</strong> {{ r.ask }}</div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <h2 style="font:800 36px 'Heebo',sans-serif; color:#262A5B; margin:0 0 6px">על הנייר או נכס מוכן</h2>
+        <p style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0 0 22px; max-width:820px">רוב מה שמשווק לזרים בבאקו הוא רכישה על הנייר. זו לא בהכרח בחירה גרועה, אבל הסיכון שונה לגמרי. ככה נראה ההבדל.</p>
+        <div style="border:1px solid #E3EBF5; border-radius:12px; overflow:hidden">
+          <div style="display:grid; grid-template-columns:200px 1fr 1fr; gap:20px; background:#EFF4FA; padding:15px 24px; font:700 15px 'Heebo',sans-serif; color:#262A5B">
+            <div></div><div>על הנייר</div><div>נכס מוכן</div>
+          </div>
+          <div style="display:grid; grid-template-columns:200px 1fr 1fr; gap:20px; padding:16px 24px; border-top:1px solid #E3EBF5; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+            <div style="font-weight:700; color:#262A5B">מחיר</div><div>לרוב נמוך יותר, עם פריסת תשלומים לפי שלבים</div><div>מחיר שוק מלא, בדרך כלל בתשלום אחד</div>
+          </div>
+          <div style="display:grid; grid-template-columns:200px 1fr 1fr; gap:20px; padding:16px 24px; border-top:1px solid #E3EBF5; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+            <div style="font-weight:700; color:#262A5B">מה אתם מחזיקים</div><div>זכות חוזית מול היזם עד המסירה והרישום</div><div>בעלות רשומה מיום העסקה</div>
+          </div>
+          <div style="display:grid; grid-template-columns:200px 1fr 1fr; gap:20px; padding:16px 24px; border-top:1px solid #E3EBF5; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+            <div style="font-weight:700; color:#262A5B">מה רואים לפני</div><div>הדמיות ותוכניות</div><div>את הדירה, הבניין והשכנים</div>
+          </div>
+          <div style="display:grid; grid-template-columns:200px 1fr 1fr; gap:20px; padding:16px 24px; border-top:1px solid #E3EBF5; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+            <div style="font-weight:700; color:#262A5B">הכנסה משכירות</div><div>רק אחרי המסירה, בתאריך לא ודאי</div><div>אפשר להשכיר מיד</div>
+          </div>
+          <div style="display:grid; grid-template-columns:200px 1fr 1fr; gap:20px; padding:16px 24px; border-top:1px solid #E3EBF5; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+            <div style="font-weight:700; color:#262A5B">הסיכון העיקרי</div><div>עיכוב במסירה או קשיים של היזם</div><div>תשלום יתר ומצב הנכס</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <div style="max-width:820px">
+          <div>
+            <h2 style="font:800 36px 'Heebo',sans-serif; color:#262A5B; margin:0 0 6px">מה עולה מעבר למחיר</h2>
+            <p style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0 0 18px">רשימה לבדיקה מול עורך דין ורואה חשבון מקומיים. אנחנו לא נוקבים בסכומים, כי הם משתנים לפי סוג הנכס והעסקה.</p>
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <div style="display:flex; gap:12px; align-items:flex-start; border-top:1px solid #E3EBF5; padding-top:12px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">check_box_outline_blank</span><div style="font:400 17px/1.6 'Assistant',sans-serif; color:#2A2A30"><strong style="color:#262A5B">נוטריון ורישום:</strong> אגרות על החוזה ועל רישום הבעלות</div></div>
+              <div style="display:flex; gap:12px; align-items:flex-start; border-top:1px solid #E3EBF5; padding-top:12px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">check_box_outline_blank</span><div style="font:400 17px/1.6 'Assistant',sans-serif; color:#2A2A30"><strong style="color:#262A5B">שמאות:</strong> דוח מחברה מורשית, נדרש גם להיתר שהייה</div></div>
+              <div style="display:flex; gap:12px; align-items:flex-start; border-top:1px solid #E3EBF5; padding-top:12px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">check_box_outline_blank</span><div style="font:400 17px/1.6 'Assistant',sans-serif; color:#2A2A30"><strong style="color:#262A5B">עורך דין מקומי:</strong> בדיקת בעלות, שעבודים והיתרים</div></div>
+              <div style="display:flex; gap:12px; align-items:flex-start; border-top:1px solid #E3EBF5; padding-top:12px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">check_box_outline_blank</span><div style="font:400 17px/1.6 'Assistant',sans-serif; color:#2A2A30"><strong style="color:#262A5B">העברות בנקאיות:</strong> עמלות, שער המרה ותיעוד מקור הכספים</div></div>
+              <div style="display:flex; gap:12px; align-items:flex-start; border-top:1px solid #E3EBF5; padding-top:12px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">check_box_outline_blank</span><div style="font:400 17px/1.6 'Assistant',sans-serif; color:#2A2A30"><strong style="color:#262A5B">שוטף:</strong> דמי ניהול, מס רכוש, ביטוח ותחזוקה</div></div>
+              <div style="display:flex; gap:12px; align-items:flex-start; border-top:1px solid #E3EBF5; padding-top:12px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">check_box_outline_blank</span><div style="font:400 17px/1.6 'Assistant',sans-serif; color:#2A2A30"><strong style="color:#262A5B">שכירות:</strong> עמלת חברת ניהול ומס על ההכנסה, בבאקו ובישראל</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:20px">
+          <h2 style="font:800 36px 'Heebo',sans-serif; color:#262A5B; margin:0">פרויקטים במאגר</h2>
+          <div style="font:400 15px 'Assistant',sans-serif; color:#6E6B78">מוצגים פרויקטים שיש עליהם מידע מאומת. אין דירוג מסחרי.</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px">
+          <sc-for list="{{ projects }}" as="p" hint-placeholder-count="3">
+            <a href="#5b" style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden; text-decoration:none; display:block" style-hover="border-color:#1665C1">
+              <div role="img" style="height:180px; background-color:#EFF4FA; background-image:var(--p); --p:{{ p.bg }}; background-size:cover; background-position:center"></div>
+              <div style="padding:22px">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px">
+                  <span style="background:{{ p.tagBg }}; color:{{ p.tagFg }}; border-radius:6px; padding:4px 9px; font:700 12px 'Heebo',sans-serif">{{ p.status }}</span>
+                  <span style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ p.area }}</span>
+                </div>
+                <div style="font:700 23px 'Heebo',sans-serif; color:#262A5B; margin-bottom:6px">{{ p.name }}</div>
+                <div style="font:400 16px/1.65 'Assistant',sans-serif; color:#2A2A30; margin-bottom:12px">{{ p.text }}</div>
+                <div style="border-top:1px solid #E3EBF5; padding-top:12px; font:400 13px/1.5 'Assistant',sans-serif; color:#6E6B78">{{ p.note }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:56px 40px 0">
+        <div style="display:grid; grid-template-columns:1fr 440px; gap:36px; align-items:start">
+          <div style="background:#FFFFFF; border:1px solid #E4E7EC; border-radius:14px; padding:38px 42px">
+            <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 16px">שאלות שחוזרות</h2>
+            <sc-for list="{{ faq }}" as="f" hint-placeholder-count="4">
+              <div onClick="{{ f.onClick }}" style="border-bottom:1px solid #E3EBF5; padding:16px 0; cursor:pointer">
+                <div style="display:flex; align-items:center; gap:14px">
+                  <div style="flex:1; font:700 19px 'Heebo',sans-serif; color:#262A5B">{{ f.q }}</div>
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:24px; color:#1665C1">{{ f.icon }}</span>
+                </div>
+                <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+                  <div style="font:400 17px/1.8 'Assistant',sans-serif; color:#2A2A30; margin-top:10px">{{ f.a }}</div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:14px; padding:30px">
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:10px">אחרי שקראתם</div>
+            <div style="font:700 26px/1.3 'Heebo',sans-serif; color:#262A5B; margin-bottom:10px">רוצים לקבל את חומרי הפרויקט?</div>
+            <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30; margin-bottom:18px">נשלח את מסמכי הפרויקט, תוכניות ותנאי תשלום כפי שהתקבלו מהיזם. אין התחייבות ואין שיחת מכירה אוטומטית.</div>
+            <div style="display:flex; flex-direction:column; gap:10px">
+              <div style="border:1px solid #D9E3F0; border-radius:9px; padding:14px 16px; font:400 16px 'Assistant',sans-serif; color:#6E6B78">שם מלא</div>
+              <div style="border:1px solid #D9E3F0; border-radius:9px; padding:14px 16px; font:400 16px 'Assistant',sans-serif; color:#6E6B78">טלפון</div>
+              <div style="border:1px solid #D9E3F0; border-radius:9px; padding:14px 16px; font:400 16px 'Assistant',sans-serif; color:#6E6B78">אימייל (אופציונלי)</div>
+              <div style="display:flex; align-items:flex-start; gap:10px; margin:4px 0">
+                <div style="width:20px; height:20px; border:1.5px solid #262A5B; border-radius:4px; flex:0 0 auto"></div>
+                <div style="font:400 14px/1.6 'Assistant',sans-serif; color:#2A2A30">אני מאשר קבלת חומרים ויצירת קשר בנוגע לפנייה. <a href="#5a">מדיניות הפרטיות</a></div>
+              </div>
+              <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:15px; text-align:center; font:700 17px 'Assistant',sans-serif; min-height:48px; cursor:pointer">שליחה</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:40px 40px 0">
+        <div style="background:#FFF6E6; border:1px solid #F0DCB0; border-radius:10px; padding:16px 20px; display:flex; gap:12px; align-items:flex-start">
+          <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#7A5A16">gavel</span>
+          <div style="flex:1; font:400 15px/1.7 'Assistant',sans-serif; color:#2A2A30"><strong style="font-family:'Heebo',sans-serif; color:#262A5B">גילוי נאות:</strong> זה לא ייעוץ השקעות, משפטי או מיסויי. כותב המדור עסק בעבר בנדל״ן באזרבייג׳ן, וייתכן שנקבל עמלה על פנייה ליזם. <a href="Baku40%20Flights%20and%20System%20Pages.dc.html#9e" style="font-weight:600">העמוד המשפטי המלא</a></div>
+        </div>
+      </div>
+
+      <div style="background:#1A1D42; margin-top:40px; padding:28px 40px; display:flex; align-items:center; gap:20px; font:400 14px 'Assistant',sans-serif; color:#BFC2D8">
+        <img src="assets/baku40-logo.png" alt="Baku40" style="height:24px; width:auto; align-self:center; filter:brightness(0) invert(1)">
+        <span>אודות</span><span>צור קשר</span><span>נגישות</span><span>פרטיות</span><span>גילוי נאות</span>
+        <span style="margin-inline-start:auto">© 2026 Baku40</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 5b PROJECT ===== -->
+  <div id="5b" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">5b</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">עמוד פרויקט — /real-estate/projects/sea-breeze/</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #E3EBF5; height:72px; display:flex; align-items:center; gap:24px; padding:0 40px">
+        <a href="Baku40%20Home.dc.html"><img src="assets/baku40-logo.png" alt="Baku40" style="height:30px; width:auto; align-self:center"></a>
+        <div style="display:flex; gap:22px; font:600 16px 'Assistant',sans-serif">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="7">
+            <a href="{{ n.href }}" style="color:#262A5B; text-decoration:none; border-bottom:2px solid {{ n.line }}; padding-bottom:4px">{{ n.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:2fr 1fr 1fr; gap:6px; padding:6px">
+        <div style="position:relative; height:420px; border-radius:12px; overflow:hidden">
+          <div role="img" aria-label="Sea Breeze — הדמיית תכנון האי" style="position:absolute; inset:0; background-image:url('assets/photos/seabreeze-island-aerial.jpg'); background-size:cover; background-position:center"></div>
+          <div style="position:absolute; top:14px; inset-inline-start:14px; background:rgba(26,29,66,.88); color:#FFFFFF; border-radius:7px; padding:7px 13px; font:700 13px 'Heebo',sans-serif">הדמיית יזם · לא תמונה של המקום</div>
+        </div>
+        <div style="display:grid; grid-template-rows:1fr 1fr; gap:6px">
+          <div role="img" aria-label="Sea Breeze — הדמיית המכלול בשקיעה" style="border-radius:12px; background-image:url('assets/photos/seabreeze-sunset.jpg'); background-size:cover; background-position:center"></div>
+          <div role="img" aria-label="Sea Breeze — הדמיית המלון על הרציף" style="border-radius:12px; background-image:url('assets/photos/seabreeze-hotel-pier.jpg'); background-size:cover; background-position:center"></div>
+        </div>
+        <div style="position:relative; border-radius:12px; overflow:hidden">
+          <div role="img" aria-label="Sea Breeze — הדמיית תוכנית האב" style="position:absolute; inset:0; background-image:url('assets/photos/seabreeze-masterplan.jpg'); background-size:cover; background-position:center"></div>
+          <div style="position:absolute; bottom:14px; inset-inline-start:14px; background:#FFFFFF; border-radius:8px; padding:10px 14px; font:600 14px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">כל החומרים (5)</div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:18px 40px 0">
+        <div style="background:#FFF6E6; border:1px solid #F0DCB0; border-radius:10px; padding:16px 20px; display:flex; gap:12px; align-items:flex-start">
+          <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:21px; color:#7A5A16">image</span>
+          <div style="flex:1; font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">כל התמונות בעמוד הזה הן <strong>הדמיות שיווק שהתקבלו מהיזם</strong>, ולא צילומים של מה שנבנה בפועל. הדמיה מראה כוונת תכנון — לא את הגמר, הגינון או הצפיפות הסופיים. אנחנו מציגים אותן כי הן החומר הקיים, ומסמנים זאת בכל תמונה.</div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:26px 40px 0">
+        <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78; margin-bottom:14px"><a href="#5a">נדל"ן</a> ← פרויקטים ← <span style="color:#262A5B; font-weight:600">סי בריזe</span></div>
+        <div style="display:grid; grid-template-columns:1fr 400px; gap:40px; align-items:start; padding-bottom:56px">
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:8px">
+              <h1 style="font:900 54px/1.08 'Heebo',sans-serif; color:#262A5B; margin:0">סי בריז באקו <span style="font-weight:500; color:#6E6B78">Sea Breeze</span></h1>
+              <span style="background:#E4EFFB; color:#262A5B; border-radius:7px; padding:6px 12px; font:700 13px 'Heebo',sans-serif">בבנייה · שלבים</span>
+            </div>
+            <div style="font:400 17px 'Assistant',sans-serif; color:#6E6B78; margin-bottom:24px">מכלול מגורים ותיירות על חוף הים הכספי, צפונית לבאקו · נדל״ן ודירות בסי בריז</div>
+
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px">
+              <sc-for list="{{ projFacts }}" as="f" hint-placeholder-count="4">
+                <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:10px; padding:18px">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px">
+                    <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:#262A5B; opacity:.55">{{ f.icon }}</span>
+                    <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ f.k }}</div>
+                  </div>
+                  <div style="font:700 19px 'Heebo',sans-serif; color:#262A5B">{{ f.v }}</div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="background:#FFFFFF; border:1px solid #E4E7EC; border-radius:14px; padding:38px 42px">
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">מה זה הפרויקט</h2>
+              <p style="font:400 18px/1.8 'Assistant',sans-serif; color:#2A2A30; margin:0 0 16px">Sea Breeze הוא אזור מפותח על קו החוף מצפון לבאקו, שמשלב מגורים, שירותי תיירות וחופים. הוא מתפקד כמעין שכונה עצמאית ולא כבניין בודד, ולכן ההחלטה כאן היא קודם כל על אזור — קרבה לים, שירותים באזור והמרחק מהעיר — ורק אחר כך על דירה מסוימת.</p>
+              <div style="background:#E4EFFB; border-inline-start:3px solid #1665C1; border-radius:4px; padding:20px 22px; margin:22px 0">
+                <div style="font:700 17px 'Heebo',sans-serif; color:#262A5B; margin-bottom:6px">מה חשוב לבדוק</div>
+                <div style="font:400 17px/1.75 'Assistant',sans-serif; color:#2A2A30">שלב הבנייה של הבניין הספציפי, מה כלול בדמי הניהול, ומה הנגישות לעיר בעונה שבה מתכננים לשהות. נתונים אלה משתנים בין שלבים.</div>
+              </div>
+
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:26px 0 14px">רקע וקנה מידה</h2>
+              <p style="font:400 18px/1.8 'Assistant',sans-serif; color:#2A2A30; margin:0 0 14px; text-wrap:pretty">הפרויקט הוא פרויקט הדגל של היזם אמין אגלרוב. לפי אתר הפרויקט הוא התחיל ב‑2006 כמלון, מסעדה וחוף, ומאז גדל לעיר נופש שלמה על חוף נרדרן. היום יש בו שכונות מגורים, וילות, מלונות, מועדוני חוף, מרכזי מסחר, בית ספר באנגלית ומרכז אמנות. כל שכונה נבנית בשלב נפרד ובסגנון אדריכלי משלה.</p>
+              <p style="font:400 18px/1.8 'Assistant',sans-serif; color:#2A2A30; margin:0 0 22px; text-wrap:pretty">מה שזה אומר לקונה: Sea Breeze הוא לא בניין אחד, אלא עשרות פרויקטים בשלבים שונים. חלקם מאוכלסים ופעילים כבר שנים, וחלקם עדיין אתרי בנייה. לכן כל שאלה על מסירה, דמי ניהול ושכירות צריכה להישאל על הבניין הספציפי ולא על המותג.</p>
+
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 6px">מה היזם אומר, ומה בדקנו</h2>
+              <p style="font:400 16px/1.7 'Assistant',sans-serif; color:#6E6B78; margin:0 0 14px">כל נתון עם המקור שלו. נתון שמופיע רק בחומרי שיווק מסומן ככזה.</p>
+              <div style="border:1px solid #E3EBF5; border-radius:12px; overflow:hidden; margin-bottom:12px">
+                <div style="display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:14px; background:#EFF4FA; padding:13px 18px; font:700 14px 'Heebo',sans-serif; color:#262A5B">
+                  <div>נושא</div><div>הנתון</div><div>סטטוס</div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:14px; padding:14px 18px; border-top:1px solid #E3EBF5; font:400 16px/1.55 'Assistant',sans-serif; color:#2A2A30; align-items:start">
+                  <div style="font-weight:600; color:#262A5B">שנת הקמה</div><div>2006, כמלון, מסעדה וחוף</div><div><span style="background:#E4EFFB; color:#262A5B; border-radius:6px; padding:3px 8px; font:700 12px 'Heebo',sans-serif">אתר היזם</span></div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:14px; padding:14px 18px; border-top:1px solid #E3EBF5; font:400 16px/1.55 'Assistant',sans-serif; color:#2A2A30; align-items:start">
+                  <div style="font-weight:600; color:#262A5B">שטח המכלול</div><div>היזם מדבר על 1,000 הקטר. דיווח בתקשורת מקומית ממאי 2026 מדבר על יותר מ‑500 הקטר.</div><div><span style="background:#FFF6E6; color:#7A5A16; border-radius:6px; padding:3px 8px; font:700 12px 'Heebo',sans-serif">מקורות סותרים</span></div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:14px; padding:14px 18px; border-top:1px solid #E3EBF5; font:400 16px/1.55 'Assistant',sans-serif; color:#2A2A30; align-items:start">
+                  <div style="font-weight:600; color:#262A5B">היקף בנוי</div><div>יותר מ‑3.5 מיליון מ״ר של מגורים ומסחר</div><div><span style="background:#E4EFFB; color:#262A5B; border-radius:6px; padding:3px 8px; font:700 12px 'Heebo',sans-serif">אתר היזם</span></div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:14px; padding:14px 18px; border-top:1px solid #E3EBF5; font:400 16px/1.55 'Assistant',sans-serif; color:#2A2A30; align-items:start">
+                  <div style="font-weight:600; color:#262A5B">גודל יחידות</div><div>מ‑40 ועד 1,500 מ״ר, מסטודיו ועד וילה</div><div><span style="background:#E4EFFB; color:#262A5B; border-radius:6px; padding:3px 8px; font:700 12px 'Heebo',sans-serif">אתר היזם</span></div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:14px; padding:14px 18px; border-top:1px solid #E3EBF5; font:400 16px/1.55 'Assistant',sans-serif; color:#2A2A30; align-items:start">
+                  <div style="font-weight:600; color:#262A5B">מרחק מהעיר</div><div>היזם: 22 דקות. אתרי הזמנות: כ‑25 ק״מ מהמרכז. מקורות מקומיים: 30–40 דקות.</div><div><span style="background:#E4EFE9; color:#1F5A4C; border-radius:6px; padding:3px 8px; font:700 12px 'Heebo',sans-serif">תלוי בתנועה</span></div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1.4fr 1fr; gap:14px; padding:14px 18px; border-top:1px solid #E3EBF5; font:400 16px/1.55 'Assistant',sans-serif; color:#2A2A30; align-items:start; background:#FDF3F1">
+                  <div style="font-weight:600; color:#262A5B">תשואה ועליית ערך</div><div>היזם מציג תשואת שכירות של 8%+ בשנה, החזר השקעה ב‑5–7 שנים ועליית מחיר של 15%–35% בשנה.</div><div><span style="background:#F6DDD8; color:#8E2E20; border-radius:6px; padding:3px 8px; font:700 12px 'Heebo',sans-serif">טענת שיווק · לא אומת</span></div>
+                </div>
+              </div>
+              <div style="font:400 15px/1.7 'Assistant',sans-serif; color:#2A2A30; margin-bottom:26px">נתוני תשואה הם תחזית של מי שמוכר. לא מצאנו מקור עצמאי שמאמת אותם. אם אתם שוקלים לקנות בגלל התשואה, בקשו דוח תפוסה בפועל של בניין מאוכלס, לא תחשיב.</div>
+
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">החיים שם בפועל</h2>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px">
+                <div style="border:1px solid #E3EBF5; border-radius:12px; padding:20px">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">wb_sunny</span><div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">עונתיות</div></div>
+                  <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">הקיץ הוא העונה הפעילה: חופים, מועדונים ואירועים. בחורף חלק מהעסקים עובדים בהיקף מצומצם, והמקום שקט בהרבה.</div>
+                </div>
+                <div style="border:1px solid #E3EBF5; border-radius:12px; padding:20px">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">construction</span><div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">בנייה פעילה</div></div>
+                  <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">אורחים מתארים ב‑2026 אתרי בנייה פעילים בתוך המכלול, בין המלונות למסעדות. כדאי לברר מה ייבנה ליד הבניין שלכם ומתי.</div>
+                </div>
+                <div style="border:1px solid #E3EBF5; border-radius:12px; padding:20px">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">directions_car</span><div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">תנועה בתוך המכלול</div></div>
+                  <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">המרחקים בתוך המכלול ארוכים. יש הסעות בעגלות גולף, אבל אורחים מדווחים על המתנה של רבע שעה ויותר. בפועל, רכב הוא צורך.</div>
+                </div>
+                <div style="border:1px solid #E3EBF5; border-radius:12px; padding:20px">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#1665C1">location_city</span><div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">הקשר לעיר</div></div>
+                  <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">אין קו מטרו למכלול. מי שעובד או מבלה בבאקו צריך רכב או מונית בכל יציאה. בסוף שבוע של קיץ הדרך מתארכת.</div>
+                </div>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:26px">
+                <div style="background:#E4EFE9; border-radius:12px; padding:18px 20px">
+                  <div style="font:700 17px 'Heebo',sans-serif; color:#1F5A4C; margin-bottom:8px">מתאים למי ש…</div>
+                  <div style="display:flex; flex-direction:column; gap:6px; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+                    <span>· מחפש דירת נופש לקיץ על הים</span>
+                    <span>· מעדיף מכלול סגור עם שירותים בתוכו</span>
+                    <span>· מתכנן לנהוג ולא תלוי בתחבורה ציבורית</span>
+                  </div>
+                </div>
+                <div style="background:#FDF3F1; border-radius:12px; padding:18px 20px">
+                  <div style="font:700 17px 'Heebo',sans-serif; color:#8E2E20; margin-bottom:8px">פחות מתאים למי ש…</div>
+                  <div style="display:flex; flex-direction:column; gap:6px; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+                    <span>· רוצה לגור בעיר ולצאת ברגל</span>
+                    <span>· מצפה לשכירות קבועה גם בחורף</span>
+                    <span>· קונה בעיקר בגלל תחזית תשואה</span>
+                  </div>
+                </div>
+              </div>
+
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">סוגי יחידות</h2>
+              <div style="border:1px solid #E3EBF5; border-radius:12px; overflow:hidden; margin-bottom:24px">
+                <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; background:#FFFFFF; padding:14px 18px; font:700 14px 'Heebo',sans-serif; color:#262A5B">
+                  <div>סוג</div><div>שטח</div><div>מרפסת</div><div>זמינות</div>
+                </div>
+                <sc-for list="{{ units }}" as="u" hint-placeholder-count="4">
+                  <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; padding:15px 18px; border-top:1px solid #E3EBF5; font:400 16px 'Assistant',sans-serif; color:#2A2A30">
+                    <div style="font-weight:600; color:#262A5B">{{ u.type }}</div><div>{{ u.size }}</div><div>{{ u.balcony }}</div><div>{{ u.avail }}</div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font:400 14px/1.6 'Assistant',sans-serif; color:#6E6B78; margin-bottom:26px">שטחים ומספרי יחידות לפי חומרי היזם. מחירים אינם מוצגים כאן — הם משתנים בין שלבים ונמסרים בחומרי הפרויקט עם תאריך.</div>
+
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">מתקנים באזור</h2>
+              <div style="display:flex; gap:9px; flex-wrap:wrap; margin-bottom:26px">
+                <sc-for list="{{ amenities }}" as="a" hint-placeholder-count="8">
+                  <div style="display:flex; align-items:center; gap:8px; border:1px solid #D9E3F0; border-radius:8px; padding:11px 15px; font:600 15px 'Assistant',sans-serif; color:#262A5B">
+                    <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px; opacity:.6">{{ a.icon }}</span>
+                    <span>{{ a.label }}</span>
+                  </div>
+                </sc-for>
+              </div>
+
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">תנאי תשלום</h2>
+              <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:12px">
+                <sc-for list="{{ payment }}" as="p" hint-placeholder-count="3">
+                  <div style="display:flex; align-items:center; gap:16px; border:1px solid #E3EBF5; border-radius:10px; padding:16px 18px">
+                    <div style="font:800 22px 'Heebo',sans-serif; color:#1665C1; width:68px">{{ p.pct }}</div>
+                    <div style="flex:1">
+                      <div style="font:700 17px 'Heebo',sans-serif; color:#262A5B">{{ p.title }}</div>
+                      <div style="font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30">{{ p.text }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="font:400 14px/1.6 'Assistant',sans-serif; color:#6E6B78; margin-bottom:26px">תנאי התשלום הם כפי שנמסרו על ידי היזם בתאריך הבדיקה, ואינם התחייבות. יש לאמת מול היזם לפני כל החלטה.</div>
+
+              <h2 style="font:800 32px 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">מסמכים ותוכניות</h2>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:26px">
+                <sc-for list="{{ docs }}" as="d" hint-placeholder-count="4">
+                  <div style="display:flex; align-items:center; gap:12px; border:1px solid #E3EBF5; border-radius:10px; padding:16px; cursor:pointer" style-hover="border-color:#1665C1">
+                    <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#262A5B; opacity:.55">{{ d.icon }}</span>
+                    <div style="flex:1">
+                      <div style="font:600 16px 'Assistant',sans-serif; color:#262A5B">{{ d.name }}</div>
+                      <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ d.meta }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="border-top:1px solid #E3EBF5; padding-top:22px">
+                <h2 style="font:800 30px 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">שאלות נפוצות</h2>
+                <sc-for list="{{ projFaq }}" as="f" hint-placeholder-count="3">
+                  <div onClick="{{ f.onClick }}" style="border-bottom:1px solid #E3EBF5; padding:16px 0; cursor:pointer">
+                    <div style="display:flex; align-items:center; gap:14px">
+                      <div style="flex:1; font:700 19px 'Heebo',sans-serif; color:#262A5B">{{ f.q }}</div>
+                      <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:24px; color:#1665C1">{{ f.icon }}</span>
+                    </div>
+                    <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+                      <div style="font:400 17px/1.8 'Assistant',sans-serif; color:#2A2A30; margin-top:10px">{{ f.a }}</div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+
+              <div style="margin-top:26px; background:#FFFFFF; border:1px solid #E4E7EC; border-radius:12px; padding:22px">
+                <div style="font:700 15px 'Heebo',sans-serif; color:#262A5B; margin-bottom:10px">מקורות ואימות</div>
+                <div style="display:flex; flex-direction:column; gap:7px; font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">
+                  <span>· חומרי שיווק ותוכניות של היזם — התקבלו ביולי 2026</span>
+                  <span>· <a href="https://seabreeze.az/en/">seabreeze.az</a> — שנת הקמה, היקף, גודלי יחידות וטענות תשואה</span>
+                  <span>· <a href="https://www.idman.biz/en/news/az-football/137555">Idman.biz, מאי 2026</a> — שטח המכלול לפי דיווח עיתונאי</span>
+                  <span>· Booking.com ו‑Tripadvisor — מרחקים וחוויות אורחים, 2026</span>
+                </div>
+                <div style="margin-top:12px; display:flex; align-items:center; gap:10px">
+                  <span style="width:9px; height:9px; border-radius:50%; background:#E8A93A"></span>
+                  <span style="font:600 15px 'Assistant',sans-serif; color:#262A5B">נבדק לאחרונה: 20 ביולי 2026 · מומלץ לרענן לפני פנייה</span>
+                </div>
+              </div>
+
+              <div style="margin-top:20px; font:400 13px/1.7 'Assistant',sans-serif; color:#6E6B78; border-top:1px solid #E3EBF5; padding-top:18px">
+                המידע בעמוד זה הוא מידע כללי שנאסף ממקורות היזם ואינו מהווה הצעה, ייעוץ השקעות, ייעוץ מיסויי או ייעוץ משפטי. רכישת נכס בחו"ל כוללת סיכונים, לרבות שינויי רגולציה, מטבע ושלבי בנייה. יש להיוועץ בגורמים מוסמכים לפני החלטה.
+              </div>
+            </div>
+          </div>
+
+          <div style="position:sticky; top:20px; display:flex; flex-direction:column; gap:16px">
+            <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden">
+              <div style="position:relative; height:230px; background:#F3F0E8">
+                <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 46px),repeating-linear-gradient(0deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 46px)"></div>
+                <div style="position:absolute; inset-inline-end:-10%; bottom:-26%; width:80%; height:70%; background:#C7DCE7; border-radius:52% 48% 46% 54%; border:1px solid #AFCADA"></div>
+                <div style="position:absolute; top:26%; inset-inline-start:52%; width:20px; height:20px; border-radius:50% 50% 50% 4px; transform:rotate(45deg); background:#1665C1; border:2.5px solid #FFFFFF"></div>
+                <div style="position:absolute; bottom:12px; inset-inline-start:12px; font:400 11px ui-monospace,monospace; color:#7D8496">צפונית לבאקו · קו החוף</div>
+              </div>
+              <div style="padding:20px">
+                <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">מרחקים</div>
+                <sc-for list="{{ distances }}" as="d" hint-placeholder-count="4">
+                  <div style="display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid #EDF2F9; padding:9px 0">
+                    <div style="font:400 15px 'Assistant',sans-serif; color:#6E6B78">{{ d.k }}</div>
+                    <div style="font:700 16px 'Heebo',sans-serif; color:#262A5B">{{ d.v }}</div>
+                  </div>
+                </sc-for>
+                <div style="display:flex; flex-direction:column; gap:10px; margin-top:16px">
+                  <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:15px; text-align:center; font:700 17px 'Assistant',sans-serif; min-height:48px; cursor:pointer">בקשת חומרי פרויקט</div>
+                  <div style="border:1px solid #262A5B; color:#262A5B; border-radius:9px; padding:13px; text-align:center; font:600 16px 'Assistant',sans-serif; cursor:pointer">שאלה על הפרויקט</div>
+                  <div style="font:400 13px/1.6 'Assistant',sans-serif; color:#6E6B78; text-align:center">הפנייה מועברת לאיש קשר מטעם היזם. אין עלות ואין התחייבות.</div>
+                </div>
+              </div>
+            </div>
+            <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; padding:22px">
+              <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:12px">הקשר לאזור</div>
+              <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30; margin-bottom:12px">האזור מתאים למי שמחפש קרבה לים ושקט, ופחות למי שרוצה להיות במרכז העירוני של באקו.</div>
+              <a href="#5a" style="font:600 16px 'Assistant',sans-serif; text-decoration:underline; text-underline-offset:3px">לעמוד האזור המלא</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600}}">
+class Component extends DCLogic {
+  state = { areaFilter: 'הכול', faqOpen: 'זר יכול לקנות נכס בבאקו?', projFaqOpen: null };
+
+  D = {
+    nav: [
+      { label: 'מדריך באקו', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9a' },
+      { label: 'אטרקציות', href: 'Baku40%20Listing%20and%20Details.dc.html#2a' },
+      { label: 'מלונות', href: 'Baku40%20Collection%20Listings.dc.html#8b' },
+      { label: 'אוכל', href: 'Baku40%20Collection%20Listings.dc.html#8a' },
+      { label: 'קניות', href: 'Baku40%20Collection%20Listings.dc.html#8d' },
+      { label: 'השקעות', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9b', active: true },
+      { label: 'קזינו', href: 'Baku40%20Royal%20Casino.dc.html' },
+      { label: 'מגזין', href: 'Baku40%20Editorial%20Templates.dc.html#3a' }
+    ],
+    entryPoints: [
+      { icon: 'gavel', title: 'מי יכול לקנות', text: 'מה מותר לזרים, אילו נכסים מוגבלים ומה נדרש ברישום.' },
+      { icon: 'account_balance', title: 'מיסוי ועלויות', text: 'אגרות, מיסים ועלויות נלוות — ומה צריך לבדוק מול יועץ.' },
+      { icon: 'construction', title: 'על הנייר או מוכן', text: 'מה ההבדל בסיכון, בתשלומים ובלוחות הזמנים.' },
+      { icon: 'key', title: 'שכירות ותפעול', text: 'מה קורה אחרי הרכישה: ניהול, שכירות ועלויות שוטפות.' }
+    ],
+    areas: [
+      { name: 'Sea Breeze', status: 'בפיתוח', text: 'מכלול חוף מצפון לבאקו עם שירותי תיירות, חופים ומגורים.', photo: 'assets/photos/seabreeze-bay-overview.jpg', isRender: true, filter: 'תיירות', rows: [{ k: 'מרחק מהמרכז', v: 'כ‑30 דקות נסיעה' }, { k: 'אופי', v: 'חוף ותיירות' }, { k: 'נתוני מחיר', v: 'בחומרי היזם · עם תאריך' }] },
+      { name: 'White City', status: 'התחדשות', text: 'אזור התחדשות עירונית מדרום‑מזרח למרכז, בבנייה מתמשכת.', photo: 'assets/photos/skyline-cloudy.png', filter: 'עירוני', rows: [{ k: 'מרחק מהמרכז', v: 'צמוד למרכז' }, { k: 'אופי', v: 'מגורים ומשרדים' }, { k: 'נתוני מחיר', v: 'משתנה לפי שלב' }] },
+      { name: 'מרכז העיר', status: 'בנוי', text: 'מבנים היסטוריים ומודרניים באזור נזאמי והטיילת.', photo: 'assets/photos/nizami-street.png', filter: 'עירוני', rows: [{ k: 'מרחק מהמרכז', v: 'בתוך המרכז' }, { k: 'אופי', v: 'מגורים ושכירות קצרה' }, { k: 'נתוני מחיר', v: 'לפי רחוב ומצב הנכס' }] }
+    ],
+    areaFilters: ['הכול', 'עירוני', 'תיירות'],
+    steps: [
+      { n: '1', title: 'בדיקת זכאות וסוג הנכס', text: 'מה אפשר לרכוש כזר, ומה נדרש כדי לרשום את העסקה.' },
+      { n: '2', title: 'בדיקת נאותות', text: 'בעלות, היתרים, שלב בנייה והתחייבויות היזם.' },
+      { n: '3', title: 'הסכם ותשלומים', text: 'מה נכנס לחוזה, איך מועברים כספים ומה לוח התשלומים.' },
+      { n: '4', title: 'רישום ומסים', text: 'רישום מול הרשויות, אגרות ומיסוי — מול יועץ מקומי.' },
+      { n: '5', title: 'אחרי הרכישה', text: 'ניהול, שכירות, עלויות שוטפות ותחזוקה.' }
+    ],
+    projects: [
+      { name: 'Sea Breeze', area: 'צפונית לבאקו', status: 'בבנייה', text: 'מכלול חוף עם מגורים, שירותי תיירות וחופים.', note: 'הדמיות יזם · נבדק יולי 2026', photo: 'assets/photos/seabreeze-sunset.jpg' },
+      { name: 'פרויקט White City', area: 'White City', status: 'בבנייה', text: 'מגורים באזור התחדשות סמוך למרכז העיר.', note: 'ממתין לאימות מסמכים', photo: 'assets/photos/skyline-cloudy.png' },
+      { name: 'פרויקט מרכז העיר', area: 'נזאמי', status: 'מוכן', text: 'בניין מגורים בנוי באזור מרכזי ומבוקש.', note: 'נתונים חלקיים · לא כולל מחיר', photo: 'assets/photos/nizami-street.png' }
+    ],
+    risks: [
+      { icon: 'currency_exchange', title: 'הכספים והמטבע', text: 'העסקה מתנהלת במאנאט או בדולר, וההכנסה העתידית משכירות היא במאנאט. העברות בינלאומיות של סכומים גדולים דורשות תיעוד מול הבנק, ולעיתים גם הסבר על מקור הכספים.', ask: 'באיזה מטבע נקוב החוזה, מי סופג שינוי בשער, ואיזה תיעוד הבנק ידרוש ממני להעברה?' },
+      { icon: 'schedule', title: 'לוחות זמנים בבנייה', text: 'עיכוב במסירה הוא הכלל ולא החריג בפרויקטים באזור. השאלה אינה אם יהיה עיכוב אלא מה קורה כשהוא מתרחש — ומה כתוב על כך בחוזה.', ask: 'מה הפיצוי החוזי על עיכוב במסירה, ומה היה לוח הזמנים המקורי של השלבים שנמסרו עד היום?' },
+      { icon: 'key', title: 'רישום הבעלות', text: 'רכישה על הנייר אינה רישום בעלות. הרישום הפורמלי מתבצע רק לאחר השלמת הבנייה וקבלת האישורים, ובפרק הזמן שביניהם הזכות שלכם היא חוזית בלבד.', ask: 'מה בדיוק אני מחזיק עד לרישום, ומה קורה לזכות הזו אם היזם נכנס לקשיים?' },
+      { icon: 'home_work', title: 'שכירות בפועל', text: 'תשואה מוצגת בחומרי שיווק לרוב כתחשיב ולא כנתון בפועל. נכס שמושכר לתיירים דורש ניהול מקומי, והתפוסה עונתית — יולי ואוגוסט אינם כמו ינואר.', ask: 'מה שיעור התפוסה בפועל בבניין קיים של אותו יזם, ומי מנהל את השכירות ובאיזו עלות?' },
+      { icon: 'receipt_long', title: 'העלויות שאחרי', text: 'לצד המחיר יש אגרות רישום, דמי ניהול שוטפים, תחזוקה ומיסוי על הכנסה משכירות. בפרויקטים עם בריכות, ספא וחוף — דמי הניהול אינם זניחים.', ask: 'מה דמי הניהול החודשיים למ״ר בבניין מאוכלס של היזם, ואיך הם התייקרו בשלוש השנים האחרונות?' }
+    ],
+    faq: [
+      { q: 'זר יכול לקנות נכס בבאקו?', a: 'ברוב המקרים כן לגבי דירות, עם מגבלות בנושא קרקע. הנהלים מתעדכנים, ולכן כל עמוד ידע מציין מקור ותאריך בדיקה ומפנה לגורם מוסמך.' },
+      { q: 'כמה זמן לוקח התהליך?', a: 'משתנה מאוד לפי סוג הנכס ושלב הבנייה. נכס מוכן עם מסמכים מסודרים הוא תהליך קצר בהרבה מרכישה על הנייר, שנמשכת עד המסירה והרישום. אנחנו לא נוקבים בטווח בלי מקור.' },
+      { q: 'כדאי לקנות בלי לבקר?', a: 'לא. מעבר לבדיקת הנכס עצמו, ביקור הוא הדרך היחידה להבין את הסביבה — מה יש במרחק הליכה, מה נבנה ממול, ואיך האזור נראה בערב ולא רק בברושור.' },
+      { q: 'למה אין מחירים ותשואות באתר?', a: 'כי מחיר ותשואה משתנים בין שלבים, בניינים ועונות. אנחנו מציגים נתון כזה רק כשיש לו מקור ותאריך — ואז ברור מה הבסיס שלו.' },
+      { q: 'איך זה מתחבר לאתר תיירות?', a: 'אותו מאגר ישויות. אזור נדל"ן מקושר לאזור התיירותי, לאטרקציות ולמלונות שבסביבה, כדי להבין מה באמת יש שם ביום־יום.' },
+      { q: 'אתם מקבלים עמלה?', a: 'ייתכן שכן בפנייה לפרויקט. זה לא משפיע על מה שנכלל במאגר או על סדר ההצגה, וכל מקום שבו יש אינטרס מסומן בגילוי נאות.' }
+    ],
+    projFacts: [
+      { icon: 'domain', k: 'סוג', v: 'מגורים ותיירות' },
+      { icon: 'engineering', k: 'שלב', v: 'בבנייה · שלבים' },
+      { icon: 'person', k: 'יזם', v: 'אמין אגלרוב' },
+      { icon: 'event', k: 'פעיל מאז', v: '2006 · לפי היזם' }
+    ],
+    units: [
+      { type: 'סטודיו', size: 'לפי תוכנית', balcony: 'חלק מהיחידות', avail: 'לפי שלב' },
+      { type: '1 חדר שינה', size: 'לפי תוכנית', balcony: 'כן', avail: 'זמין בשלבים' },
+      { type: '2 חדרי שינה', size: 'לפי תוכנית', balcony: 'כן', avail: 'זמין בשלבים' },
+      { type: 'פנטהאוז', size: 'לפי תוכנית', balcony: 'מרפסת גדולה', avail: 'מוגבל' }
+    ],
+    amenities: [
+      { icon: 'pool', label: 'בריכות' }, { icon: 'beach_access', label: 'חוף' },
+      { icon: 'fitness_center', label: 'חדר כושר' }, { icon: 'spa', label: 'ספא' },
+      { icon: 'local_parking', label: 'חניה' }, { icon: 'security', label: 'אבטחה' },
+      { icon: 'storefront', label: 'מרכז מסחרי' }, { icon: 'restaurant', label: 'מסעדות באזור' }
+    ],
+    payment: [
+      { pct: '20–30%', title: 'תשלום ראשון', text: 'בעת החתימה, לפי מה שנמסר בחומרי היזם.' },
+      { pct: 'יתרה', title: 'תשלומים לפי שלבי בנייה', text: 'פריסה שמשתנה בין בניינים ושלבים.' },
+      { pct: 'סיום', title: 'תשלום מסירה', text: 'במסירת היחידה, בכפוף לתנאי החוזה.' }
+    ],
+    docs: [
+      { icon: 'description', name: 'חוברת פרויקט', meta: 'PDF · יזם · יולי 2026' },
+      { icon: 'architecture', name: 'תוכניות דירה', meta: 'PDF · לפי סוג יחידה' },
+      { icon: 'map', name: 'תוכנית אזור', meta: 'PDF · פריסת המכלול' },
+      { icon: 'receipt_long', name: 'תנאי תשלום', meta: 'PDF · נדרש אימות מול היזם' }
+    ],
+    projFaq: [
+      { q: 'מה המרחק האמיתי מהעיר?', a: 'כ‑25 ק״מ מהמרכז. היזם מדבר על 22 דקות, מקורות מקומיים על 30–40 דקות. בקיץ ובסופי שבוע הנסיעה מתארכת.' },
+      { q: 'אפשר לגור שם כל השנה?', a: 'כן, חלק מהשכונות מאוכלסות כל השנה ויש בית ספר ומרכזי מסחר. אבל בחורף המקום שקט בהרבה וחלק מהעסקים עובדים בהיקף מצומצם.' },
+      { q: 'האם תשואה של 8% מובטחת?', a: 'לא. זה נתון מחומרי השיווק של היזם, ולא מצאנו מקור עצמאי שמאמת אותו. בקשו נתוני תפוסה בפועל של בניין מאוכלס.' },
+      { q: 'אפשר להשכיר את הדירה?', a: 'קיימת אפשרות לשכירות, לרוב דרך גוף ניהול באזור. התנאים והעלויות מופיעים בחומרי היזם ומשתנים בין שלבים.' },
+      { q: 'מה כולל דמי הניהול?', a: 'נדרש לאמת מול היזם לכל בניין בנפרד. אנחנו לא מפרסמים סכום ללא מקור ותאריך.' }
+    ],
+    distances: [
+      { k: 'למרכז באקו', v: '~25 ק״מ · 22–40 דק׳' },
+      { k: 'לשדה התעופה', v: '~24 ק״מ' },
+      { k: 'לחוף', v: 'בתוך המכלול' },
+      { k: 'למרכז מסחרי', v: 'באזור' }
+    ]
+  };
+
+  renderVals() {
+    const s = this.state, D = this.D;
+    const acc = (list, key) => list.map(f => ({
+      q: f.q, a: f.a, open: s[key] === f.q, icon: s[key] === f.q ? 'remove' : 'add',
+      onClick: () => this.setState({ [key]: s[key] === f.q ? null : f.q })
+    }));
+    const areas = (s.areaFilter === 'הכול' ? D.areas : D.areas.filter(a => a.filter === s.areaFilter))
+      .map(a => Object.assign({}, a, { bg: a.photo ? 'url("' + a.photo + '")' : '', isRender: !!a.isRender }));
+    return {
+      nav: D.nav.map(n => ({ label: n.label, href: n.href, line: n.active ? '#1665C1' : 'transparent' })),
+      entryPoints: D.entryPoints,
+      risks: D.risks,
+      areaFilters: D.areaFilters.map(f => ({
+        label: f, onClick: () => this.setState({ areaFilter: f }),
+        bg: s.areaFilter === f ? '#262A5B' : '#FFFFFF', fg: s.areaFilter === f ? '#FFFFFF' : '#262A5B',
+        border: s.areaFilter === f ? '#262A5B' : '#D9E3F0'
+      })),
+      areas: areas,
+      steps: D.steps,
+      projects: D.projects.map(p => Object.assign({}, p, {
+        bg: p.photo ? 'url("' + p.photo + '")' : '',
+        tagBg: p.status === 'מוכן' ? '#E4EFE9' : '#E4EFFB', tagFg: '#262A5B'
+      })),
+      faq: acc(D.faq, 'faqOpen'),
+      projFacts: D.projFacts, units: D.units, amenities: D.amenities,
+      payment: D.payment, docs: D.docs, projFaq: acc(D.projFaq, 'projFaqOpen'),
+      distances: D.distances
+    };
+  }
+}
+</script>
+</body>
+</html>

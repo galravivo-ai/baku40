@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200..400,0,-25&display=block" rel="stylesheet">
+<style>
+  html { background:#F6F7F9 !important; }
+  body { margin:0; background:#F6F7F9; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#1A63B8; text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:hover { color:#1665C1; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+
+<section dir="rtl" style="padding:56px 64px 96px; display:flex; flex-direction:column; gap:44px; font-family:'Assistant',sans-serif">
+  <div style="display:flex; flex-direction:column; gap:10px; max-width:900px">
+    <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#1A63B8">BAKU40 · מסכי מוצר</div>
+    <h1 style="font:800 40px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0">מפה, מתכנן, מועדפים, חיפוש ו‑404</h1>
+    <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0"><a href="Baku40%20Site.dc.html" style="font-weight:600">← מפת המסכים</a> · <a href="Baku40%20Home.dc.html" style="font-weight:600">דף הבית</a> · 4a מפה גלובלית, 4b קלט Trip Planner, 4c תוצאת המתכנן, 4d המקומות שלי, 4e תוצאות חיפוש (noindex), 4f עמוד 404. כל המסכים עובדים מאותו מאגר ישויות.</p>
+  </div>
+
+  <!-- ===== 4a MAP ===== -->
+  <div id="4a" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">4a</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">מפה — /map/</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">פילטרים, סנכרון רשימה–מפה, מועדפים בלבד, כרטיס תצוגה מקדימה</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #E3EBF5; height:72px; display:flex; align-items:center; gap:24px; padding:0 32px">
+        <a href="Baku40%20Home.dc.html"><img src="assets/baku40-logo.png" alt="Baku40" style="height:30px; width:auto; align-self:center"></a>
+        <div style="flex:1; max-width:420px; border:1px solid #D9E3F0; border-radius:9px; padding:11px 14px; display:flex; align-items:center; gap:10px">
+          <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:#262A5B; opacity:.55">search</span>
+          <input value="{{ mapQuery }}" onChange="{{ onMapQuery }}" placeholder="חיפוש מקום על המפה" style="flex:1; border:0; outline:0; font:400 16px 'Assistant',sans-serif; color:#262A5B; background:transparent">
+        </div>
+        <div style="flex:1"></div>
+        <div onClick="{{ toggleFavOnly }}" style="display:flex; align-items:center; gap:8px; border:1px solid {{ favBorder }}; background:{{ favBg }}; color:{{ favFg }}; border-radius:9px; padding:11px 15px; font:600 15px 'Assistant',sans-serif; cursor:pointer">
+          <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px">bookmark</span>
+          <span>המקומות שלי ({{ savedCount }})</span>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:320px 1fr 400px; grid-template-rows:760px; height:760px">
+        <div style="border-inline-end:1px solid #E3EBF5; background:#FFFFFF; padding:22px; overflow:auto; min-height:0">
+          <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:14px">סוג מקום</div>
+          <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:24px">
+            <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+              <div onClick="{{ c.onClick }}" style="display:flex; align-items:center; gap:10px; border:1px solid {{ c.border }}; background:{{ c.bg }}; border-radius:10px; padding:13px 14px; cursor:pointer">
+                <span style="width:10px; height:10px; border-radius:50%; background:{{ c.dot }}"></span>
+                <span style="flex:1; font:600 16px 'Assistant',sans-serif; color:{{ c.fg }}">{{ c.label }}</span>
+                <span style="font:600 14px 'Assistant',sans-serif; color:{{ c.fg }}; opacity:.7">{{ c.count }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:14px">אזור</div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px">
+            <sc-for list="{{ areas }}" as="a" hint-placeholder-count="5">
+              <div onClick="{{ a.onClick }}" style="cursor:pointer; border:1px solid {{ a.border }}; background:{{ a.bg }}; color:{{ a.fg }}; border-radius:8px; padding:9px 14px; font:600 15px 'Assistant',sans-serif">{{ a.label }}</div>
+            </sc-for>
+          </div>
+          <div style="background:#FFFFFF; border-radius:10px; padding:16px; font:400 15px/1.65 'Assistant',sans-serif; color:#2A2A30">
+            כל הקואורדינטות מגיעות מישויות ה‑CMS. אין רשימת פינים נפרדת, ולכן שינוי בעמוד המקום משנה גם את המפה.
+          </div>
+          <div style="margin-top:18px; display:flex; align-items:center; gap:8px; font:600 15px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer">
+            <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px">list</span>
+            <span>תצוגת רשימה נגישה (ללא מפה)</span>
+          </div>
+        </div>
+
+        <div style="position:relative; background:#F3F0E8; min-height:0; overflow:hidden">
+          <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 56px),repeating-linear-gradient(0deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 56px)"></div>
+          <div style="position:absolute; inset-inline-end:-12%; bottom:-30%; width:86%; height:80%; background:#C7DCE7; border-radius:52% 48% 46% 54%; border:1px solid #AFCADA"></div>
+          <div style="position:absolute; top:34%; inset-inline:0; height:3px; background:#E8E2D4"></div>
+          <div style="position:absolute; inset-inline-start:26%; top:0; bottom:0; width:3px; background:#E8E2D4"></div>
+          <div style="position:absolute; inset-inline-end:14%; bottom:16%; width:40%; height:3px; background:#E8E2D4; transform:rotate(-16deg)"></div>
+
+          <sc-for list="{{ pins }}" as="p" hint-placeholder-count="9">
+            <div onClick="{{ p.onClick }}" style="position:absolute; top:{{ p.y }}%; inset-inline-start:{{ p.x }}%; width:{{ p.size }}px; height:{{ p.size }}px; border-radius:50% 50% 50% 4px; transform:rotate(45deg); background:{{ p.color }}; border:2.5px solid #FFFFFF; box-shadow:0 4px 10px rgba(38,42,91,.35); cursor:pointer"></div>
+          </sc-for>
+          <div style="position:absolute; top:12%; inset-inline-start:72%; width:48px; height:48px; border-radius:50%; background:rgba(38,42,91,.92); color:#FFFFFF; display:flex; align-items:center; justify-content:center; font:800 16px 'Heebo',sans-serif; border:3px solid rgba(255,255,255,.7)">+18</div>
+
+          <div style="position:absolute; top:18px; inset-inline-start:18px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:9px; padding:10px 14px; font:600 15px 'Assistant',sans-serif; color:#262A5B; box-shadow:0 4px 12px rgba(38,42,91,.12)">{{ resultLine }}</div>
+          <div style="position:absolute; bottom:18px; inset-inline-start:18px; display:flex; flex-direction:column; gap:6px">
+            <div style="width:42px; height:42px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:9px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:#262A5B">add</span></div>
+            <div style="width:42px; height:42px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:9px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:#262A5B">remove</span></div>
+            <div style="width:42px; height:42px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:9px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:#262A5B">layers</span></div>
+          </div>
+          <div style="position:absolute; bottom:18px; inset-inline-end:18px; font:400 11px ui-monospace,monospace; color:#7D8496">map provider abstraction · mapbox / google</div>
+        </div>
+
+        <div style="border-inline-start:1px solid #E3EBF5; background:#FFFFFF; display:flex; flex-direction:column; min-height:0">
+          <div style="padding:20px 20px 14px; border-bottom:1px solid #E3EBF5">
+            <div style="position:relative; height:190px; border-radius:10px; overflow:hidden; background:repeating-linear-gradient(135deg,#DFE8F3,#DFE8F3 12px,#EFF4FA 12px,#EFF4FA 24px); margin-bottom:14px">
+              <sc-if value="{{ selHasPhoto }}" hint-placeholder-val="{{ false }}">
+                <div role="img" style="position:absolute; inset:0; width:100%; height:100%; background-image:var(--p); --p:{{ selBg }}; background-size:cover; background-position:center"></div>
+              </sc-if>
+            </div>
+            <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ selMeta }}</div>
+            <div style="font:700 26px/1.25 'Heebo',sans-serif; color:#262A5B; margin:4px 0 8px">{{ selName }}</div>
+            <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">{{ selNote }}</div>
+            <div style="display:flex; gap:10px; margin-top:14px">
+              <div onClick="{{ selSave }}" style="flex:1; border:1px solid #262A5B; background:{{ selSaveBg }}; color:{{ selSaveFg }}; border-radius:9px; padding:12px; text-align:center; font:700 15px 'Assistant',sans-serif; cursor:pointer">{{ selSaveLabel }}</div>
+              <div style="flex:1; background:#1665C1; color:#FFFFFF; border-radius:9px; padding:12px; text-align:center; font:700 15px 'Assistant',sans-serif; cursor:pointer">לעמוד המלא</div>
+            </div>
+          </div>
+          <div style="flex:1; min-height:0; overflow:auto; padding:14px 20px 20px">
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:10px">כל התוצאות על המפה</div>
+            <sc-for list="{{ listItems }}" as="i" hint-placeholder-count="6">
+              <div onClick="{{ i.onClick }}" style="display:flex; gap:12px; align-items:center; padding:11px; border-radius:10px; background:{{ i.bg }}; cursor:pointer; margin-bottom:4px">
+                <span style="width:10px; height:10px; border-radius:50%; background:{{ i.dot }}; flex:0 0 auto"></span>
+                <div style="flex:1">
+                  <div style="font:600 17px 'Assistant',sans-serif; color:#262A5B">{{ i.name }}</div>
+                  <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ i.meta }}</div>
+                </div>
+                <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:19px; color:#262A5B; opacity:.45">{{ i.icon }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4b PLANNER INPUT ===== -->
+  <div id="4b" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">4b</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">Trip Planner — קלט</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">תאריכים, הרכב, תחומי עניין, תקציב, קצב, אזור לינה, חובה לראות</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#262A5B; padding:40px 40px 34px">
+        <div style="max-width:1320px; margin:0 auto; display:flex; align-items:flex-end; justify-content:space-between; gap:30px">
+          <div>
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.12em; color:#1665C1; margin-bottom:12px">TRIP PLANNER</div>
+            <h1 style="font:900 52px/1.08 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 12px">נבנה לכם מסלול מהנתונים</h1>
+            <p style="font:400 19px/1.7 'Assistant',sans-serif; color:#E4E6F1; margin:0; max-width:620px">משך ביקור, שעות פתיחה, מרחקים וזמני מעבר שמורים בכל מקום באתר. המתכנן מחשב מהם — ולא ממציא.</p>
+          </div>
+          <div style="display:flex; gap:10px">
+            <sc-for list="{{ wizardSteps }}" as="w" hint-placeholder-count="3">
+              <div style="background:{{ w.bg }}; border:1px solid {{ w.border }}; border-radius:10px; padding:12px 18px; display:flex; align-items:center; gap:9px">
+                <span style="width:24px; height:24px; border-radius:50%; background:{{ w.numBg }}; color:{{ w.numFg }}; display:flex; align-items:center; justify-content:center; font:800 13px 'Heebo',sans-serif">{{ w.n }}</span>
+                <span style="font:600 15px 'Assistant',sans-serif; color:{{ w.fg }}">{{ w.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:34px 40px 56px; display:grid; grid-template-columns:1fr 400px; gap:32px; align-items:start">
+        <div style="background:#FFFFFF; border:1px solid #E4E7EC; border-radius:14px; padding:36px 40px; display:flex; flex-direction:column; gap:30px">
+          <div>
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:12px">מתי אתם בבאקו?</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px">
+              <div style="border:1px solid #D9E3F0; border-radius:10px; padding:14px 16px">
+                <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">הגעה</div>
+                <div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">14 באוקטובר 2026</div>
+              </div>
+              <div style="border:1px solid #D9E3F0; border-radius:10px; padding:14px 16px">
+                <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">יציאה</div>
+                <div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">17 באוקטובר 2026</div>
+              </div>
+              <div style="background:#E4EFFB; border-radius:10px; padding:14px 16px">
+                <div style="font:400 13px 'Assistant',sans-serif; color:#8A4A40">סה"כ</div>
+                <div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">{{ days }} ימים מלאים</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:12px">מי מטייל</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px">
+              <sc-for list="{{ whoOptions }}" as="w" hint-placeholder-count="4">
+                <div onClick="{{ w.onClick }}" style="cursor:pointer; display:flex; align-items:center; gap:9px; border:1px solid {{ w.border }}; background:{{ w.bg }}; color:{{ w.fg }}; border-radius:10px; padding:13px 18px; font:600 16px 'Assistant',sans-serif; min-height:48px">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px">{{ w.icon }}</span>
+                  <span>{{ w.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex; gap:12px">
+              <div style="border:1px solid #D9E3F0; border-radius:10px; padding:12px 16px; display:flex; align-items:center; gap:14px">
+                <span style="font:400 15px 'Assistant',sans-serif; color:#6E6B78">מבוגרים</span>
+                <div onClick="{{ adultsDown }}" style="width:34px; height:34px; border:1px solid #D9E3F0; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px; color:#262A5B">remove</span></div>
+                <span style="font:800 18px 'Heebo',sans-serif; color:#262A5B; min-width:20px; text-align:center">{{ adults }}</span>
+                <div onClick="{{ adultsUp }}" style="width:34px; height:34px; border:1px solid #D9E3F0; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px; color:#262A5B">add</span></div>
+              </div>
+              <div style="border:1px solid #D9E3F0; border-radius:10px; padding:12px 16px; display:flex; align-items:center; gap:14px">
+                <span style="font:400 15px 'Assistant',sans-serif; color:#6E6B78">ילדים</span>
+                <div onClick="{{ kidsDown }}" style="width:34px; height:34px; border:1px solid #D9E3F0; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px; color:#262A5B">remove</span></div>
+                <span style="font:800 18px 'Heebo',sans-serif; color:#262A5B; min-width:20px; text-align:center">{{ kids }}</span>
+                <div onClick="{{ kidsUp }}" style="width:34px; height:34px; border:1px solid #D9E3F0; border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px; color:#262A5B">add</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:12px">מה מעניין אותכם</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <sc-for list="{{ interestOptions }}" as="i" hint-placeholder-count="8">
+                <div onClick="{{ i.onClick }}" style="cursor:pointer; display:flex; align-items:center; gap:9px; border:1px solid {{ i.border }}; background:{{ i.bg }}; color:{{ i.fg }}; border-radius:999px; padding:12px 18px; font:600 16px 'Assistant',sans-serif; min-height:48px">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px">{{ i.icon }}</span>
+                  <span>{{ i.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px">
+            <div>
+              <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:12px">קצב</div>
+              <div style="display:flex; flex-direction:column; gap:8px">
+                <sc-for list="{{ paceOptions }}" as="p" hint-placeholder-count="3">
+                  <div onClick="{{ p.onClick }}" style="cursor:pointer; border:1px solid {{ p.border }}; background:{{ p.bg }}; border-radius:10px; padding:14px 16px; display:flex; align-items:center; gap:12px">
+                    <span style="width:18px; height:18px; border-radius:50%; border:2px solid {{ p.ring }}; background:{{ p.fill }}; flex:0 0 auto"></span>
+                    <div>
+                      <div style="font:600 17px 'Assistant',sans-serif; color:#262A5B">{{ p.label }}</div>
+                      <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78">{{ p.sub }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div>
+              <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:12px">תקציב ואזור לינה</div>
+              <div style="display:flex; gap:8px; margin-bottom:14px">
+                <sc-for list="{{ budgetOptions }}" as="b" hint-placeholder-count="3">
+                  <div onClick="{{ b.onClick }}" style="cursor:pointer; flex:1; text-align:center; border:1px solid {{ b.border }}; background:{{ b.bg }}; color:{{ b.fg }}; border-radius:10px; padding:14px 0; font:700 17px 'Heebo',sans-serif; min-height:48px">{{ b.label }}</div>
+                </sc-for>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:8px">
+                <sc-for list="{{ stayOptions }}" as="st" hint-placeholder-count="4">
+                  <div onClick="{{ st.onClick }}" style="cursor:pointer; border:1px solid {{ st.border }}; background:{{ st.bg }}; color:{{ st.fg }}; border-radius:10px; padding:13px 16px; font:600 16px 'Assistant',sans-serif">{{ st.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B; margin-bottom:6px">חייבים לראות</div>
+            <div style="font:400 15px 'Assistant',sans-serif; color:#6E6B78; margin-bottom:12px">המתכנן ישבץ אותם קודם, ויבנה את שאר היום סביבם.</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap">
+              <sc-for list="{{ mustSee }}" as="m" hint-placeholder-count="6">
+                <div onClick="{{ m.onClick }}" style="cursor:pointer; display:flex; align-items:center; gap:8px; border:1px solid {{ m.border }}; background:{{ m.bg }}; color:{{ m.fg }}; border-radius:8px; padding:11px 15px; font:600 15px 'Assistant',sans-serif">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px">{{ m.icon }}</span>
+                  <span>{{ m.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:sticky; top:20px; display:flex; flex-direction:column; gap:16px">
+          <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; padding:24px">
+            <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8; margin-bottom:14px">סיכום הבקשה</div>
+            <sc-for list="{{ summary }}" as="s" hint-placeholder-count="6">
+              <div style="display:flex; align-items:baseline; gap:12px; border-bottom:1px solid #EDF2F9; padding-bottom:10px; margin-bottom:10px">
+                <div style="font:400 15px 'Assistant',sans-serif; color:#6E6B78; width:96px; flex:0 0 auto">{{ s.k }}</div>
+                <div style="font:600 16px/1.5 'Assistant',sans-serif; color:#262A5B">{{ s.v }}</div>
+              </div>
+            </sc-for>
+            <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:15px; text-align:center; font:700 18px 'Assistant',sans-serif; min-height:48px; cursor:pointer; margin-top:6px">בנו לי מסלול</div>
+            <div style="font:400 13px/1.6 'Assistant',sans-serif; color:#6E6B78; margin-top:10px">התוצאה נשמרת אצלכם בדפדפן. עמודי תוצאה מוגדרים noindex.</div>
+          </div>
+          <div style="background:#E4EFFB; border-inline-start:3px solid #1665C1; border-radius:4px; padding:18px 20px; font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">
+            המתכנן לא ימציא שעות, מחירים או זמני נסיעה. אם נתון חסר בישות — הוא לא יופיע במסלול.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4c PLANNER RESULT ===== -->
+  <div id="4c" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">4c</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">Trip Planner — תוצאה</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">מסלול לפי ימים, חלופות, שמירה, שיתוף והדפסה</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #E3EBF5; height:72px; display:flex; align-items:center; gap:24px; padding:0 32px">
+        <a href="Baku40%20Home.dc.html"><img src="assets/baku40-logo.png" alt="Baku40" style="height:30px; width:auto; align-self:center"></a>
+        <div style="font:700 18px 'Heebo',sans-serif; color:#262A5B">המסלול שלכם</div>
+        <div style="flex:1"></div>
+        <div style="display:flex; gap:8px">
+          <div style="display:flex; align-items:center; gap:8px; border:1px solid #262A5B; border-radius:9px; padding:11px 15px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px">bookmark_border</span><span>שמירה</span></div>
+          <div style="display:flex; align-items:center; gap:8px; border:1px solid #262A5B; border-radius:9px; padding:11px 15px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px">chat</span><span>WhatsApp</span></div>
+          <div style="display:flex; align-items:center; gap:8px; border:1px solid #262A5B; border-radius:9px; padding:11px 15px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px">print</span><span>הדפסה</span></div>
+          <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:11px 18px; font:700 15px 'Assistant',sans-serif; cursor:pointer">פתחו במפה</div>
+        </div>
+      </div>
+
+      <div style="max-width:1320px; margin:0 auto; padding:30px 40px 56px">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:22px">
+          <div>
+            <h1 style="font:900 46px/1.1 'Heebo',sans-serif; color:#262A5B; margin:0 0 8px">{{ resultTitle }}</h1>
+            <div style="font:400 17px 'Assistant',sans-serif; color:#6E6B78">{{ resultSub }}</div>
+          </div>
+          <div style="display:flex; gap:10px">
+            <sc-for list="{{ resultDayTabs }}" as="d" hint-placeholder-count="3">
+              <div onClick="{{ d.onClick }}" style="cursor:pointer; background:{{ d.bg }}; color:{{ d.fg }}; border:1px solid {{ d.border }}; border-radius:9px; padding:12px 20px; font:700 16px 'Heebo',sans-serif">{{ d.label }}</div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:start">
+          <div style="background:#FFFFFF; border:1px solid #E4E7EC; border-radius:14px; padding:32px 36px">
+            <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:20px">
+              <h2 style="font:800 30px 'Heebo',sans-serif; color:#262A5B; margin:0">{{ dayTitle }}</h2>
+              <div style="font:600 15px 'Assistant',sans-serif; color:#262A5B">{{ dayWalk }}</div>
+            </div>
+            <sc-for list="{{ resultStops }}" as="s" hint-placeholder-count="4">
+              <div style="display:grid; grid-template-columns:70px 1fr; gap:16px">
+                <div style="display:flex; flex-direction:column; align-items:center; gap:6px">
+                  <div style="font:700 15px 'Heebo',sans-serif; color:#262A5B">{{ s.time }}</div>
+                  <div style="width:11px; height:11px; border-radius:50%; background:{{ s.dot }}"></div>
+                  <div style="flex:1; width:2px; background:#E3EBF5; min-height:{{ s.lineH }}px"></div>
+                </div>
+                <div style="padding-bottom:20px">
+                  <div style="display:flex; align-items:flex-start; gap:12px">
+                    <div style="flex:1">
+                      <div style="font:700 21px/1.3 'Heebo',sans-serif; color:#262A5B">{{ s.name }}</div>
+                      <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78; margin:2px 0 6px">{{ s.meta }}</div>
+                      <div style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30">{{ s.note }}</div>
+                    </div>
+                    <div style="display:flex; flex-direction:column; gap:7px; flex:0 0 auto">
+                      <div style="border:1px solid #D9E3F0; border-radius:8px; padding:8px 12px; font:600 14px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">חלופה</div>
+                      <div style="border:1px solid #D9E3F0; border-radius:8px; padding:8px 12px; font:600 14px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer">הסרה</div>
+                    </div>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:8px; margin-top:10px; font:600 14px 'Assistant',sans-serif; color:#6E6B78">
+                    <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:18px">{{ s.moveIcon }}</span>
+                    <span>{{ s.move }}</span>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+            <div style="border-top:1px solid #E3EBF5; padding-top:18px; display:flex; align-items:center; gap:10px">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:#262A5B; opacity:.55">add_circle</span>
+              <span style="font:600 16px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer">הוספת עצירה ליום הזה</span>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:16px">
+            <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden">
+              <div style="position:relative; height:360px; background:#F3F0E8">
+                <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 48px),repeating-linear-gradient(0deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 48px)"></div>
+                <div style="position:absolute; inset-inline-end:-16%; bottom:-32%; width:90%; height:78%; background:#C7DCE7; border-radius:52% 48% 46% 54%; border:1px solid #AFCADA"></div>
+                <sc-for list="{{ resultPins }}" as="p" hint-placeholder-count="4">
+                  <div style="position:absolute; top:{{ p.y }}%; inset-inline-start:{{ p.x }}%; width:28px; height:28px; border-radius:50%; background:#262A5B; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font:800 13px 'Heebo',sans-serif; border:2.5px solid #FFFFFF">{{ p.n }}</div>
+                </sc-for>
+              </div>
+              <div style="padding:16px; font:400 14px/1.6 'Assistant',sans-serif; color:#6E6B78">סדר העצירות מחושב לפי מרחקים וזמני מעבר בין הישויות.</div>
+            </div>
+            <div style="background:#262A5B; border-radius:12px; padding:24px">
+              <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1665C1; margin-bottom:12px">מה לא נכנס למסלול</div>
+              <sc-for list="{{ leftOut }}" as="l" hint-placeholder-count="3">
+                <div style="border-bottom:1px solid #2C3160; padding-bottom:10px; margin-bottom:10px">
+                  <div style="font:700 17px 'Heebo',sans-serif; color:#FFFFFF">{{ l.name }}</div>
+                  <div style="font:400 14px/1.5 'Assistant',sans-serif; color:#BFC2D8">{{ l.why }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4d FAVORITES ===== -->
+  <div id="4d" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">4d</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">המקומות שלי — /favorites/</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">LocalStorage בשלב הראשון, בלי הרשמה · noindex</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #E3EBF5; height:72px; display:flex; align-items:center; gap:24px; padding:0 32px">
+        <a href="Baku40%20Home.dc.html"><img src="assets/baku40-logo.png" alt="Baku40" style="height:30px; width:auto; align-self:center"></a>
+        <div style="display:flex; gap:22px; font:600 16px 'Assistant',sans-serif; flex-wrap:wrap"><a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">מדריך באקו</a><a href="Baku40%20Listing%20and%20Details.dc.html#2a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">אטרקציות</a><a href="Baku40%20Collection%20Listings.dc.html#8b" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">מלונות</a><a href="Baku40%20Collection%20Listings.dc.html#8a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">אוכל</a><a href="Baku40%20Collection%20Listings.dc.html#8d" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">קניות</a><a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9b" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">השקעות</a><a href="Baku40%20Royal%20Casino.dc.html" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">קזינו</a><a href="Baku40%20Editorial%20Templates.dc.html#3a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">מגזין</a></div>
+        <div style="flex:1"></div>
+        <div style="display:flex; align-items:center; gap:8px; font:700 16px 'Assistant',sans-serif; color:#262A5B"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px">bookmark</span><span>{{ savedCount }}</span></div>
+      </div>
+      <div style="max-width:1320px; margin:0 auto; padding:32px 40px 56px">
+        <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:24px">
+          <div>
+            <h1 style="font:900 48px/1.1 'Heebo',sans-serif; color:#262A5B; margin:0 0 8px">המקומות שלי</h1>
+            <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0; max-width:680px">כל מה ששמרתם, מקובץ לפי סוג. אפשר לשלוח את הרשימה למתכנן כדי לקבל חלוקה ליום‑יום, או לפתוח את כל השמורים על מפה אחת.</p>
+          </div>
+          <div style="display:flex; gap:10px">
+            <div style="background:#1665C1; color:#FFFFFF; border-radius:9px; padding:13px 20px; font:700 16px 'Assistant',sans-serif; cursor:pointer">שלחו למתכנן</div>
+            <div style="border:1px solid #262A5B; color:#262A5B; border-radius:9px; padding:13px 18px; font:600 16px 'Assistant',sans-serif; cursor:pointer">שיתוף</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:start">
+          <div style="display:flex; flex-direction:column; gap:22px">
+            <sc-for list="{{ favGroups }}" as="g" hint-placeholder-count="3">
+              <div>
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:22px; color:#262A5B; opacity:.6">{{ g.icon }}</span>
+                  <div style="font:700 24px 'Heebo',sans-serif; color:#262A5B">{{ g.head }}</div>
+                  <div style="font:400 15px 'Assistant',sans-serif; color:#6E6B78">{{ g.count }}</div>
+                </div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px">
+                  <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="2">
+                    <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden; display:grid; grid-template-columns:120px 1fr">
+                      <div style="position:relative; background:repeating-linear-gradient(135deg,#DFE8F3,#DFE8F3 10px,#EFF4FA 10px,#EFF4FA 20px); min-height:118px; overflow:hidden">
+                        <sc-if value="{{ i.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                          <div role="img" style="position:absolute; inset:0; width:100%; height:100%; background-image:var(--p); --p:{{ i.bg }}; background-size:cover; background-position:center"></div>
+                        </sc-if>
+                      </div>
+                      <div style="padding:14px 16px; display:flex; flex-direction:column">
+                        <div style="font:700 18px/1.3 'Heebo',sans-serif; color:#262A5B">{{ i.name }}</div>
+                        <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78; margin-top:3px">{{ i.meta }}</div>
+                        <div style="flex:1"></div>
+                        <div style="display:flex; align-items:center; gap:14px; margin-top:8px">
+                          <span style="font:600 14px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer">לעמוד</span>
+                          <span onClick="{{ i.onRemove }}" style="font:600 14px 'Assistant',sans-serif; color:#6E6B78; cursor:pointer">הסרה</span>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+            <sc-if value="{{ favEmpty }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#FFFFFF; border:1px dashed #D9E3F0; border-radius:14px; padding:48px; text-align:center">
+                <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:44px; color:#262A5B; opacity:.35">bookmark_border</span>
+                <div style="font:700 26px 'Heebo',sans-serif; color:#262A5B; margin:12px 0 8px">עוד לא שמרתם מקומות</div>
+                <div style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30; max-width:460px; margin:0 auto 18px">כל אטרקציה, מסעדה, מלון או מסלול באתר מקבל כפתור שמירה. השמורים נשמרים בדפדפן שלכם, בלי הרשמה.</div>
+                <div style="display:inline-flex; background:#1665C1; color:#FFFFFF; border-radius:9px; padding:13px 22px; font:700 16px 'Assistant',sans-serif; cursor:pointer">התחילו מהאטרקציות</div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="position:sticky; top:20px; display:flex; flex-direction:column; gap:16px">
+            <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden">
+              <div style="position:relative; height:340px; background:#F3F0E8">
+                <div style="position:absolute; inset:0; background:repeating-linear-gradient(90deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 48px),repeating-linear-gradient(0deg,rgba(38,42,91,.05),rgba(38,42,91,.05) 1px,transparent 1px,transparent 48px)"></div>
+                <div style="position:absolute; inset-inline-end:-16%; bottom:-32%; width:90%; height:78%; background:#C7DCE7; border-radius:52% 48% 46% 54%; border:1px solid #AFCADA"></div>
+                <sc-for list="{{ favPins }}" as="p" hint-placeholder-count="5">
+                  <div style="position:absolute; top:{{ p.y }}%; inset-inline-start:{{ p.x }}%; width:18px; height:18px; border-radius:50% 50% 50% 4px; transform:rotate(45deg); background:{{ p.color }}; border:2.5px solid #FFFFFF"></div>
+                </sc-for>
+              </div>
+              <div style="padding:16px; display:flex; gap:10px">
+                <div style="flex:1; border:1px solid #262A5B; color:#262A5B; border-radius:9px; padding:12px; text-align:center; font:600 15px 'Assistant',sans-serif; cursor:pointer">פתחו את השמורים במפה</div>
+              </div>
+            </div>
+            <div style="background:#E4EFFB; border-inline-start:3px solid #1665C1; border-radius:4px; padding:18px 20px; font:400 16px/1.7 'Assistant',sans-serif; color:#2A2A30">
+              בשלב הראשון השמירה מקומית לדפדפן. בהמשך יתווסף חשבון אופציונלי עם סנכרון בין מכשירים.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4e SEARCH RESULTS ===== -->
+  <div id="4e" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">4e</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">תוצאות חיפוש — /search/</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">מקובץ לפי סוג ישות · noindex</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #E3EBF5; padding:20px 32px; display:flex; align-items:center; gap:20px">
+        <a href="Baku40%20Home.dc.html"><img src="assets/baku40-logo.png" alt="Baku40" style="height:30px; width:auto; align-self:center"></a>
+        <div style="flex:1; max-width:680px; border:1.5px solid #262A5B; border-radius:10px; padding:13px 16px; display:flex; align-items:center; gap:12px">
+          <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:21px; color:#262A5B">search</span>
+          <input value="{{ query }}" onChange="{{ onQuery }}" placeholder="חיפוש באתר" style="flex:1; border:0; outline:0; font:400 19px 'Assistant',sans-serif; color:#262A5B; background:transparent">
+        </div>
+      </div>
+      <div style="max-width:1320px; margin:0 auto; padding:28px 40px 56px">
+        <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:20px">
+          <h1 style="font:800 34px 'Heebo',sans-serif; color:#262A5B; margin:0">{{ searchHeadline }}</h1>
+          <div style="font:400 16px 'Assistant',sans-serif; color:#6E6B78">{{ searchCount }}</div>
+        </div>
+        <div style="display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap">
+          <sc-for list="{{ searchTypes }}" as="t" hint-placeholder-count="6">
+            <div onClick="{{ t.onClick }}" style="cursor:pointer; border:1px solid {{ t.border }}; background:{{ t.bg }}; color:{{ t.fg }}; border-radius:999px; padding:10px 18px; font:600 15px 'Assistant',sans-serif">{{ t.label }}</div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex; flex-direction:column; gap:26px">
+            <sc-for list="{{ searchGroups }}" as="g" hint-placeholder-count="3">
+              <div>
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:21px; color:#262A5B; opacity:.55">{{ g.icon }}</span>
+                  <div style="font:700 22px 'Heebo',sans-serif; color:#262A5B">{{ g.head }}</div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:10px">
+                  <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="3">
+                    <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; padding:16px 18px; display:flex; gap:16px; align-items:center; cursor:pointer" style-hover="border-color:#1665C1">
+                      <div style="position:relative; width:84px; height:64px; border-radius:9px; overflow:hidden; background:repeating-linear-gradient(135deg,#DFE8F3,#DFE8F3 10px,#EFF4FA 10px,#EFF4FA 20px); flex:0 0 auto">
+                        <sc-if value="{{ i.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                          <div role="img" style="position:absolute; inset:0; width:100%; height:100%; background-image:var(--p); --p:{{ i.bg }}; background-size:cover; background-position:center"></div>
+                        </sc-if>
+                      </div>
+                      <div style="flex:1">
+                        <div style="font:700 20px 'Heebo',sans-serif; color:#262A5B">{{ i.name }}</div>
+                        <div style="font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30">{{ i.note }}</div>
+                      </div>
+                      <div style="font:400 14px 'Assistant',sans-serif; color:#6E6B78; white-space:nowrap">{{ i.meta }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+          <div style="background:#FFFFFF; border:1px dashed #D9E3F0; border-radius:14px; padding:48px; text-align:center">
+            <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:44px; color:#262A5B; opacity:.35">search_off</span>
+            <div style="font:700 26px 'Heebo',sans-serif; color:#262A5B; margin:12px 0 8px">לא מצאנו התאמה ל"{{ query }}"</div>
+            <div style="font:400 17px/1.7 'Assistant',sans-serif; color:#2A2A30; max-width:520px; margin:0 auto 18px">אפשר לנסות מילה אחת בלבד (למשל "כשר", "ילדים", "גובוסטן"), או להתחיל מאחת הקטגוריות.</div>
+            <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap">
+              <sc-for list="{{ popular }}" as="p" hint-placeholder-count="5">
+                <div onClick="{{ p.onClick }}" style="border:1px solid #D9E3F0; border-radius:8px; padding:11px 16px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">{{ p.label }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 4f 404 ===== -->
+  <div id="4f" style="display:flex; flex-direction:column; gap:16px">
+    <div style="display:flex; align-items:baseline; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:6px 12px">4f</span>
+      <span style="font:700 24px 'Heebo',sans-serif; color:#262A5B">404</span>
+      <span style="font:400 15px 'Assistant',sans-serif; color:#5C5A66">חיפוש, קטגוריות פופולריות והצעות — בלי מבוי סתום</span>
+    </div>
+    <div style="width:1440px; background:#FFFFFF; border:1px solid #D9E3F0; border-radius:14px; overflow:hidden">
+      <div style="background:#FFFFFF; border-bottom:1px solid #E3EBF5; height:72px; display:flex; align-items:center; gap:24px; padding:0 32px">
+        <a href="Baku40%20Home.dc.html"><img src="assets/baku40-logo.png" alt="Baku40" style="height:30px; width:auto; align-self:center"></a>
+        <div style="display:flex; gap:22px; font:600 16px 'Assistant',sans-serif; flex-wrap:wrap"><a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">מדריך באקו</a><a href="Baku40%20Listing%20and%20Details.dc.html#2a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">אטרקציות</a><a href="Baku40%20Collection%20Listings.dc.html#8b" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">מלונות</a><a href="Baku40%20Collection%20Listings.dc.html#8a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">אוכל</a><a href="Baku40%20Collection%20Listings.dc.html#8d" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">קניות</a><a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9b" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">השקעות</a><a href="Baku40%20Royal%20Casino.dc.html" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">קזינו</a><a href="Baku40%20Editorial%20Templates.dc.html#3a" style="color:#262A5B; text-decoration:none; border-bottom:2px solid transparent; padding-bottom:4px">מגזין</a></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr">
+        <div style="padding:64px 48px 64px 56px">
+          <div style="font:900 120px/1 'Heebo',sans-serif; color:#1665C1; margin-bottom:10px">404</div>
+          <h1 style="font:800 44px/1.15 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">העמוד הזה לא קיים</h1>
+          <p style="font:400 19px/1.75 'Assistant',sans-serif; color:#2A2A30; margin:0 0 26px; max-width:520px">יכול להיות שהכתובת השתנתה, או שהעמוד הוחלף בעמוד מעודכן. אפשר לחפש, או להתחיל מאחת הקטגוריות המרכזיות.</p>
+          <div style="background:#FFFFFF; border:1.5px solid #262A5B; border-radius:12px; padding:10px; display:flex; gap:10px; align-items:center; max-width:560px; margin-bottom:26px">
+            <div style="display:flex; align-items:center; gap:12px; flex:1; padding:0 12px">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:21px; color:#262A5B">search</span>
+              <span style="font:400 17px 'Assistant',sans-serif; color:#6E6B78">מה חיפשתם?</span>
+            </div>
+            <div style="background:#1665C1; color:#FFFFFF; font:700 16px 'Assistant',sans-serif; padding:13px 24px; border-radius:9px; min-height:48px; display:flex; align-items:center">חיפוש</div>
+          </div>
+          <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.1em; color:#1A63B8; margin-bottom:12px">קטגוריות מרכזיות</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:560px">
+            <sc-for list="{{ notFoundLinks }}" as="l" hint-placeholder-count="6">
+              <div style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:10px; padding:14px 16px; display:flex; align-items:center; gap:10px; cursor:pointer" style-hover="border-color:#1665C1">
+                <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:21px; color:#262A5B; opacity:.55">{{ l.icon }}</span>
+                <span style="font:600 16px 'Assistant',sans-serif; color:#262A5B">{{ l.label }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:26px; font:400 14px/1.6 'Assistant',sans-serif; color:#6E6B78; max-width:520px">כל 404 נרשם במערכת עם מספר הפניות וכתובת מפנה, כדי שנוכל ליצור הפניה 301 לעמוד הנכון.</div>
+        </div>
+        <div style="position:relative; min-height:620px; overflow:hidden">
+          <img src="assets/photos/skyline-dusk.png" alt="קו הרקיע של באקו" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1600}}">
+class Component extends DCLogic {
+  state = {
+    cats: { att: true, rest: true, hotel: true, night: false, shop: false },
+    area: 'הכול', sel: 'maiden', favOnly: false, mapQuery: '',
+    saved: { maiden: true, boulevard: true, heydar: true, fourseasons: true, dolma: true, itin3: true },
+    days: 3, who: 'משפחה', adults: 2, kids: 2, interests: ['היסטוריה', 'עם ילדים'],
+    pace: 'רגיל', budget: '₪₪', stay: 'נזאמי וכיכר המזרקות', must: ['העיר העתיקה', 'הטיילת'],
+    resultDay: 1, query: 'ילדים', searchType: 'הכול'
+  };
+
+  D = {
+    catDefs: [
+      { k: 'att', label: 'אטרקציות', c: '#1665C1', count: '68' },
+      { k: 'rest', label: 'מסעדות', c: '#262A5B', count: '42' },
+      { k: 'hotel', label: 'מלונות', c: '#1A63B8', count: '36' },
+      { k: 'night', label: 'חיי לילה', c: '#7A4BC4', count: '18' },
+      { k: 'shop', label: 'קניות', c: '#2D7D6B', count: '14' }
+    ],
+    areas: ['הכול', 'העיר העתיקה', 'נזאמי', 'הטיילת', 'סבאיל', 'נרימנוב'],
+    places: [
+      { id: 'old-city', cat: 'att', name: 'העיר העתיקה', area: 'העיר העתיקה', meta: 'אטרקציה · 2–3 שעות', note: 'הליבה ההיסטורית המוקפת חומה. הרחובות ללא תשלום, חלק מהאתרים בתשלום.', photo: 'assets/photos/maiden-tower.png', x: 30, y: 60 },
+      { id: 'maiden', cat: 'att', name: 'מגדל הבתולה', area: 'העיר העתיקה', meta: 'אטרקציה · 40 דקות', note: 'מגדל אבן עם תצפית על הגגות והמפרץ. מדרגות צרות, עלייה קצרה.', photo: 'assets/photos/maiden-tower.png', x: 34, y: 56 },
+      { id: 'heydar', cat: 'att', name: 'מרכז היידר אלייב', area: 'נרימנוב', meta: 'אטרקציה · 1.5–2 שעות', note: 'בניין בעיצוב זהא חדיד מחוץ למרכז ההיסטורי. עדיף חצי יום נפרד.', photo: 'assets/photos/heydar-center.png', x: 68, y: 26 },
+      { id: 'boulevard', cat: 'att', name: 'טיילת הים', area: 'הטיילת', meta: 'אטרקציה · 1–2 שעות', note: 'גנים, בתי קפה ומתקנים לילדים לאורך הים הכספי.', photo: 'assets/photos/boulevard-wheel.png', x: 44, y: 74 },
+      { id: 'flame', cat: 'att', name: 'מגדלי הלהבה', area: 'סבאיל', meta: 'אטרקציה · תצפית בערב', note: 'שווים בעיקר בחשכה, כשתאורת החזיתות פועלת.', photo: 'assets/photos/flame-towers-red.png', x: 40, y: 42 },
+      { id: 'fountain', cat: 'att', name: 'כיכר המזרקות', area: 'נזאמי', meta: 'אטרקציה · שעה', note: 'הכיכר המרכזית של באקו המודרנית, חיה בשעות הערב.', photo: 'assets/photos/nizami-street.png', x: 48, y: 52 },
+      { id: 'shirvanshah', cat: 'rest', name: 'Shirvanshah Museum Restaurant', area: 'נזאמי', meta: 'מסעדה · מטבח מקומי', note: 'ארוחה "מסודרת" אחת בטיול. כדאי להזמין מקום מראש.', photo: '', x: 52, y: 48 },
+      { id: 'dolma', cat: 'rest', name: 'Dolma', area: 'נזאמי', meta: 'מסעדה · טווח בינוני', note: 'טעימה ראשונה של דולמה ומרקים מקומיים במרכז העיר.', photo: '', x: 50, y: 58 },
+      { id: 'fourseasons', cat: 'hotel', name: 'Four Seasons Baku', area: 'העיר העתיקה', meta: 'מלון · 5 כוכבים', note: 'בקצה העיר העתיקה, מרחק הליכה לטיילת ולכיכר המזרקות.', photo: '', x: 37, y: 66 },
+      { id: 'fairmont', cat: 'hotel', name: 'Fairmont Baku', area: 'סבאיל', meta: 'מלון · 5 כוכבים', note: 'במגדלי הלהבה, נוף פתוח על העיר והמפרץ.', photo: 'assets/photos/flame-towers-day.png', x: 41, y: 40 }
+    ],
+    interests: [
+      { label: 'היסטוריה', icon: 'museum' }, { label: 'אוכל', icon: 'restaurant' },
+      { label: 'נופים', icon: 'landscape' }, { label: 'קניות', icon: 'shopping_bag' },
+      { label: 'חיי לילה', icon: 'nightlife' }, { label: 'עם ילדים', icon: 'child_care' },
+      { label: 'ספא', icon: 'spa' }, { label: 'צילום', icon: 'photo_camera' }
+    ],
+    who: [
+      { label: 'זוג', icon: 'favorite' }, { label: 'משפחה', icon: 'family_restroom' },
+      { label: 'חברים', icon: 'group' }, { label: 'לבד', icon: 'person' }
+    ],
+    pace: [
+      { label: 'רגוע', sub: '2–3 עצירות ביום' },
+      { label: 'רגיל', sub: '3–4 עצירות ביום' },
+      { label: 'אינטנסיבי', sub: '5 עצירות ומעלה' }
+    ],
+    stay: ['העיר העתיקה', 'נזאמי וכיכר המזרקות', 'הטיילת ופורט באקו', 'עוד לא החלטנו'],
+    must: [
+      { label: 'העיר העתיקה', icon: 'castle' }, { label: 'הטיילת', icon: 'beach_access' },
+      { label: 'היידר אלייב', icon: 'architecture' }, { label: 'גובוסטן', icon: 'terrain' },
+      { label: 'מגדלי הלהבה', icon: 'apartment' }, { label: 'שוק מקומי', icon: 'storefront' }
+    ],
+    resultDays: {
+      1: {
+        title: 'יום 1 · העיר העתיקה והטיילת', walk: 'הליכה 4.2 ק"מ · מעבר 55 דק׳',
+        stops: [
+          { time: '09:30', name: 'ארמון השירוואנשאהים', meta: 'העיר העתיקה · 1–1.5 שעות', note: 'פתיחת היום באתר המסודר ביותר באזור, לפני הקבוצות.', move: 'הליכה 6 דק׳', dot: '#1665C1' },
+          { time: '11:15', name: 'מגדל הבתולה', meta: 'העיר העתיקה · 40 דקות', note: 'תצפית קצרה. מדרגות צרות — לא מתאים לעגלה.', move: 'הליכה 10 דק׳', dot: '#1665C1' },
+          { time: '12:30', name: 'ארוחת צהריים בתוך החומות', meta: 'מסעדה מקומית · בינוני', note: 'מנות לשיתוף. עם ילדים — עדיף מקום עם חצר.', move: 'הליכה 12 דק׳', dot: '#262A5B' },
+          { time: '15:00', name: 'טיילת הים', meta: 'הטיילת · 1–2 שעות', note: 'גנים ומתקנים. סיום נוח לפני ארוחת ערב.', move: 'סיום יום', dot: '#1665C1' }
+        ]
+      },
+      2: {
+        title: 'יום 2 · באקו המודרנית', walk: 'הליכה 2.8 ק"מ · נסיעה 2 × 15 דק׳',
+        stops: [
+          { time: '10:00', name: 'כיכר המזרקות ורחוב נזאמי', meta: 'נזאמי · 1–2 שעות', note: 'בוקר נוח להליכה ולבתי קפה.', move: 'נסיעה 15 דק׳', dot: '#1665C1' },
+          { time: '12:30', name: 'מרכז היידר אלייב', meta: 'נרימנוב · 1.5–2 שעות', note: 'הדשא סביב הבניין נוח לילדים. אין הרבה צל.', move: 'נסיעה 15 דק׳', dot: '#1665C1' },
+          { time: '16:00', name: 'מוזיאון השטיחים', meta: 'הטיילת · שעה', note: 'מקורה — חלופה טובה לשעות החמות.', move: 'הליכה 8 דק׳', dot: '#1665C1' },
+          { time: '19:30', name: 'תצפית על מגדלי הלהבה', meta: 'סבאיל · 30–45 דקות', note: 'רק בחשכה, כשהתאורה פועלת.', move: 'סיום יום', dot: '#262A5B' }
+        ]
+      },
+      3: {
+        title: 'יום 3 · יום גמיש', walk: 'לפי בחירה · נסיעה אופציונלית',
+        stops: [
+          { time: '09:00', name: 'פורט באקו והטיילת המודרנית', meta: 'הטיילת · 2 שעות', note: 'קניות, בתי קפה ואוויר ים בקצב רגוע.', move: 'הליכה 10 דק׳', dot: '#1665C1' },
+          { time: '12:00', name: 'ארוחה במרכז', meta: 'מסעדה · לפי טווח מחירים', note: 'ארוחה מסכמת לפני היציאה.', move: 'הליכה 5 דק׳', dot: '#262A5B' },
+          { time: '14:30', name: 'זמן חופשי או קניות מזכרות', meta: 'מרכז · גמיש', note: 'מומלץ להשאיר חלון גמיש ליום האחרון.', move: 'סיום מסלול', dot: '#D9E3F0' }
+        ]
+      }
+    },
+    leftOut: [
+      { name: 'גובוסטן', why: 'דורש חצי יום ונסיעה של כשעה לכל כיוון — לא מסתדר עם קצב רגיל ושלושה ימים.' },
+      { name: 'שאהדאג', why: 'מחייב לינה מחוץ לבאקו.' },
+      { name: 'ברים וגגות', why: 'לא נבחר תחום עניין של חיי לילה, והרכב הנוסעים כולל ילדים.' }
+    ],
+    searchData: [
+      { type: 'מדריכים', icon: 'menu_book', items: [
+        { name: 'באקו עם ילדים: מה עובד ומה פחות', note: 'איך מחלקים יום עם ילדים בין הטיילת והמרכז, ומה מקורה.', meta: 'מדריך · עודכן השבוע', photo: 'assets/photos/boulevard-wheel.png', tags: ['ילדים', 'משפחה'] },
+        { name: 'כמה ימים צריך בבאקו', note: 'שלושה ימים מכסים את העיר; ארבעה מאפשרים יום מחוץ לעיר.', meta: 'מדריך', photo: '', tags: ['ילדים', 'מסלול'] }
+      ] },
+      { type: 'אטרקציות', icon: 'castle', items: [
+        { name: 'טיילת הים', note: 'גנים, מתקנים ומקום לרוץ — האטרקציה הנוחה ביותר עם ילדים.', meta: 'הטיילת · 1–2 שעות', photo: 'assets/photos/boulevard-wheel.png', tags: ['ילדים'] },
+        { name: 'מוזיאון השטיחים', note: 'מקורה וקצר, מתאים ליום עם רוח.', meta: 'הטיילת · שעה', photo: '', tags: ['ילדים'] }
+      ] },
+      { type: 'מלונות', icon: 'hotel', items: [
+        { name: 'JW Marriott Absheron', note: 'מרכזי, עם בריכה וחדרי משפחה.', meta: 'מרכז · 5 כוכבים', photo: '', tags: ['ילדים'] }
+      ] },
+      { type: 'מסלולים', icon: 'route', items: [
+        { name: 'מסלול משפחתי לשלושה ימים', note: 'קצב רגוע, חזרה למלון באמצע היום, שתי אטרקציות מקורות.', meta: '3 ימים · משפחות', photo: 'assets/photos/central-park.png', tags: ['ילדים', 'מסלול'] }
+      ] }
+    ],
+    notFound: [
+      { label: 'אטרקציות', icon: 'castle' }, { label: 'מסלולים', icon: 'route' },
+      { label: 'מלונות', icon: 'hotel' }, { label: 'מסעדות', icon: 'restaurant' },
+      { label: 'מידע למטייל', icon: 'info' }, { label: 'מפת באקו', icon: 'map' }
+    ]
+  };
+
+  tog(key, val) {
+    this.setState(s => {
+      const arr = s[key];
+      return { [key]: arr.indexOf(val) >= 0 ? arr.filter(x => x !== val) : arr.concat([val]) };
+    });
+  }
+
+  renderVals() {
+    const s = this.state, D = this.D;
+    const savedIds = Object.keys(s.saved).filter(k => s.saved[k]);
+    const colorOf = {}; D.catDefs.forEach(c => colorOf[c.k] = c.c);
+
+    let places = D.places.filter(p => s.cats[p.cat]);
+    if (s.area !== 'הכול') places = places.filter(p => p.area === s.area);
+    if (s.favOnly) places = places.filter(p => s.saved[p.id]);
+    if (s.mapQuery.trim()) places = places.filter(p => p.name.indexOf(s.mapQuery.trim()) >= 0);
+    const sel = places.find(p => p.id === s.sel) || places[0] || D.places[0];
+
+    const day = D.resultDays[s.resultDay];
+    const resultStops = day.stops.map((st, i) => ({
+      time: st.time, name: st.name, meta: st.meta, note: st.note, move: st.move, dot: st.dot,
+      moveIcon: st.move.indexOf('נסיעה') >= 0 ? 'local_taxi' : (st.move.indexOf('הליכה') >= 0 ? 'directions_walk' : 'flag'),
+      lineH: i === day.stops.length - 1 ? 0 : 36
+    }));
+
+    const q = s.query.trim();
+    let groups = D.searchData.map(g => ({
+      head: g.type, icon: g.icon,
+      items: g.items.filter(i => !q || i.name.indexOf(q) >= 0 || i.note.indexOf(q) >= 0 || (i.tags || []).indexOf(q) >= 0)
+        .map(i => ({ name: i.name, note: i.note, meta: i.meta, photo: i.photo || '', hasPhoto: !!i.photo, bg: i.photo ? 'url("' + i.photo + '")' : '' }))
+    })).filter(g => g.items.length);
+    if (s.searchType !== 'הכול') groups = groups.filter(g => g.head === s.searchType);
+    const total = groups.reduce((n, g) => n + g.items.length, 0);
+
+    const favItems = (cat) => D.places.filter(p => p.cat === cat && s.saved[p.id]).map(p => ({
+      name: p.name, meta: p.meta, photo: p.photo || '', hasPhoto: !!p.photo, bg: p.photo ? 'url("' + p.photo + '")' : '',
+      onRemove: () => this.setState(st => ({ saved: Object.assign({}, st.saved, { [p.id]: false }) }))
+    }));
+    const favGroups = [
+      { head: 'אטרקציות', icon: 'castle', items: favItems('att') },
+      { head: 'מסעדות', icon: 'restaurant', items: favItems('rest') },
+      { head: 'מלונות', icon: 'hotel', items: favItems('hotel') }
+    ].filter(g => g.items.length).map(g => Object.assign({}, g, { count: g.items.length + ' שמורים' }));
+
+    return {
+      savedCount: savedIds.length,
+      mapQuery: s.mapQuery, onMapQuery: (e) => this.setState({ mapQuery: e.target.value }),
+      cats: D.catDefs.map(c => ({
+        label: c.label, count: c.count, dot: c.c,
+        onClick: () => this.setState(st => ({ cats: Object.assign({}, st.cats, { [c.k]: !st.cats[c.k] }) })),
+        bg: s.cats[c.k] ? '#E4EFFB' : '#FFFFFF', border: s.cats[c.k] ? '#1665C1' : '#D9E3F0',
+        fg: '#262A5B'
+      })),
+      areas: D.areas.map(a => ({
+        label: a, onClick: () => this.setState({ area: a }),
+        bg: s.area === a ? '#262A5B' : '#FFFFFF', fg: s.area === a ? '#FFFFFF' : '#262A5B',
+        border: s.area === a ? '#262A5B' : '#D9E3F0'
+      })),
+      favOnly: s.favOnly, toggleFavOnly: () => this.setState({ favOnly: !s.favOnly }),
+      favBg: s.favOnly ? '#262A5B' : '#FFFFFF', favFg: s.favOnly ? '#FFFFFF' : '#262A5B',
+      favBorder: s.favOnly ? '#262A5B' : '#D9E3F0',
+      pins: places.map(p => ({
+        x: p.x, y: p.y, size: s.sel === p.id ? 24 : 16, color: colorOf[p.cat],
+        onClick: () => this.setState({ sel: p.id })
+      })),
+      resultLine: places.length + ' מקומות בתצוגה' + (s.favOnly ? ' · שמורים בלבד' : ''),
+      listItems: places.map(p => ({
+        name: p.name, meta: p.meta, dot: colorOf[p.cat],
+        bg: s.sel === p.id ? '#FFFFFF' : 'transparent',
+        icon: s.saved[p.id] ? 'bookmark' : 'chevron_left',
+        onClick: () => this.setState({ sel: p.id })
+      })),
+      selName: sel.name, selMeta: sel.meta, selNote: sel.note,
+      selPhoto: sel.photo || '', selHasPhoto: !!sel.photo, selBg: sel.photo ? 'url("' + sel.photo + '")' : '',
+      selSaveLabel: s.saved[sel.id] ? 'נשמר' : 'שמירה',
+      selSaveBg: s.saved[sel.id] ? '#262A5B' : '#FFFFFF',
+      selSaveFg: s.saved[sel.id] ? '#FFFFFF' : '#262A5B',
+      selSave: () => this.setState(st => ({ saved: Object.assign({}, st.saved, { [sel.id]: !st.saved[sel.id] }) })),
+
+      wizardSteps: [
+        { n: '1', label: 'תאריכים והרכב', done: true }, { n: '2', label: 'העדפות', done: true }, { n: '3', label: 'תוצאה', done: false }
+      ].map((w, i) => ({
+        n: w.n, label: w.label,
+        bg: i < 2 ? 'rgba(22,101,193,.16)' : 'transparent', border: i < 2 ? '#1665C1' : '#444A85',
+        numBg: i < 2 ? '#1665C1' : '#31366E', numFg: '#FFFFFF',
+        fg: '#FFFFFF'
+      })),
+      days: s.days, adults: s.adults, kids: s.kids,
+      adultsUp: () => this.setState({ adults: Math.min(9, s.adults + 1) }),
+      adultsDown: () => this.setState({ adults: Math.max(1, s.adults - 1) }),
+      kidsUp: () => this.setState({ kids: Math.min(9, s.kids + 1) }),
+      kidsDown: () => this.setState({ kids: Math.max(0, s.kids - 1) }),
+      whoOptions: D.who.map(w => ({
+        label: w.label, icon: w.icon, onClick: () => this.setState({ who: w.label }),
+        bg: s.who === w.label ? '#262A5B' : '#FFFFFF', fg: s.who === w.label ? '#FFFFFF' : '#262A5B',
+        border: s.who === w.label ? '#262A5B' : '#D9E3F0'
+      })),
+      interestOptions: D.interests.map(i => {
+        const on = s.interests.indexOf(i.label) >= 0;
+        return {
+          label: i.label, icon: i.icon, onClick: () => this.tog('interests', i.label),
+          bg: on ? '#E4EFFB' : '#FFFFFF', fg: '#262A5B', border: on ? '#1665C1' : '#D9E3F0'
+        };
+      }),
+      paceOptions: D.pace.map(p => ({
+        label: p.label, sub: p.sub, onClick: () => this.setState({ pace: p.label }),
+        bg: s.pace === p.label ? '#E4EFFB' : '#FFFFFF', border: s.pace === p.label ? '#1665C1' : '#D9E3F0',
+        ring: s.pace === p.label ? '#1665C1' : '#D9E3F0', fill: s.pace === p.label ? '#1665C1' : 'transparent'
+      })),
+      budgetOptions: ['₪', '₪₪', '₪₪₪'].map(b => ({
+        label: b, onClick: () => this.setState({ budget: b }),
+        bg: s.budget === b ? '#262A5B' : '#FFFFFF', fg: s.budget === b ? '#FFFFFF' : '#262A5B',
+        border: s.budget === b ? '#262A5B' : '#D9E3F0'
+      })),
+      stayOptions: D.stay.map(st => ({
+        label: st, onClick: () => this.setState({ stay: st }),
+        bg: s.stay === st ? '#E4EFFB' : '#FFFFFF', fg: '#262A5B', border: s.stay === st ? '#1665C1' : '#D9E3F0'
+      })),
+      mustSee: D.must.map(m => {
+        const on = s.must.indexOf(m.label) >= 0;
+        return {
+          label: m.label, icon: on ? 'check' : m.icon, onClick: () => this.tog('must', m.label),
+          bg: on ? '#262A5B' : '#FFFFFF', fg: on ? '#FFFFFF' : '#262A5B', border: on ? '#262A5B' : '#D9E3F0'
+        };
+      }),
+      summary: [
+        { k: 'תאריכים', v: '14–17 באוקטובר · ' + s.days + ' ימים' },
+        { k: 'נוסעים', v: s.who + ' · ' + s.adults + ' מבוגרים' + (s.kids ? ', ' + s.kids + ' ילדים' : '') },
+        { k: 'עניין', v: s.interests.length ? s.interests.join(', ') : 'לא נבחר' },
+        { k: 'קצב', v: s.pace },
+        { k: 'תקציב', v: s.budget },
+        { k: 'לינה', v: s.stay },
+        { k: 'חובה', v: s.must.length ? s.must.join(', ') : 'אין' }
+      ],
+
+      resultTitle: s.days + ' ימים בבאקו · ' + s.who,
+      resultSub: s.pace + ' · ' + (s.interests.join(', ') || 'ללא העדפה') + ' · לינה ב' + s.stay,
+      resultDayTabs: [1, 2, 3].map(n => ({
+        label: 'יום ' + n, onClick: () => this.setState({ resultDay: n }),
+        bg: s.resultDay === n ? '#262A5B' : '#FFFFFF', fg: s.resultDay === n ? '#FFFFFF' : '#262A5B',
+        border: s.resultDay === n ? '#262A5B' : '#D9E3F0'
+      })),
+      dayTitle: day.title, dayWalk: day.walk, resultStops: resultStops,
+      resultPins: resultStops.map((st, i) => ({ n: String(i + 1), x: [32, 42, 50, 62][i] || 50, y: [60, 48, 68, 36][i] || 50 })),
+      leftOut: D.leftOut,
+
+      favGroups: favGroups, favEmpty: favGroups.length === 0,
+      favPins: D.places.filter(p => s.saved[p.id]).map(p => ({ x: p.x, y: p.y, color: colorOf[p.cat] })),
+
+      query: s.query, onQuery: (e) => this.setState({ query: e.target.value }),
+      searchHeadline: q ? 'תוצאות עבור "' + q + '"' : 'חיפוש באתר',
+      searchCount: total + ' תוצאות · מקובץ לפי סוג ישות',
+      searchTypes: ['הכול', 'מדריכים', 'אטרקציות', 'מסעדות', 'מלונות', 'מסלולים'].map(t => ({
+        label: t, onClick: () => this.setState({ searchType: t }),
+        bg: s.searchType === t ? '#262A5B' : '#FFFFFF', fg: s.searchType === t ? '#FFFFFF' : '#262A5B',
+        border: s.searchType === t ? '#262A5B' : '#D9E3F0'
+      })),
+      searchGroups: groups, hasResults: total > 0, noResults: total === 0,
+      popular: ['ילדים', 'כשר', 'שלושה ימים', 'גובוסטן', 'מלונות'].map(p => ({
+        label: p, onClick: () => this.setState({ query: p, searchType: 'הכול' })
+      })),
+      notFoundLinks: D.notFound
+    };
+  }
+}
+</script>
+</body>
+</html>

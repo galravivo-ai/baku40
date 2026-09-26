@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200..400,0,-25&display=block" rel="stylesheet">
+<style>
+  html { background:#F6F7F9 !important; }
+  body { margin:0; background:#F6F7F9; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#1A63B8; text-decoration:none; }
+  a:hover { color:#1665C1; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+
+<div dir="rtl" style="min-height:100vh; background:#FFFFFF">
+  <div style="position:relative; overflow:hidden; background:#262A5B">
+    <div style="position:absolute; inset:0; opacity:.42; background-image:url('assets/photos/bay-night.png'); background-size:cover; background-position:50% 55%"></div>
+    <div style="position:relative; max-width:1180px; margin:0 auto; padding:44px 32px 52px">
+      <div style="display:flex; align-items:center; gap:20px; margin-bottom:38px">
+        <img src="assets/baku40-logo.png" alt="Baku40" style="height:34px; width:auto; align-self:center; filter:brightness(0) invert(1)">
+        <div style="font:600 15px 'Assistant',sans-serif; color:#BFC2D8">מפת המסכים · גרסת עיצוב</div>
+      </div>
+      <h1 style="font:900 clamp(40px,6vw,68px)/1.06 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 16px; max-width:760px">כל המסכים של Baku40 במקום אחד</h1>
+      <p style="font:400 19px/1.7 'Assistant',sans-serif; color:#E4E6F1; margin:0; max-width:680px">לחצו על כל מסך כדי לפתוח אותו. המסכים אינטראקטיביים — פילטרים, חיפוש, שמירת מקומות, מפה ומתכנן עובדים.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div style="background:rgba(247,243,236,.1); border:1px solid rgba(247,243,236,.28); border-radius:10px; padding:14px 18px">
+            <div style="font:800 24px 'Heebo',sans-serif; color:#FFFFFF">{{ s.n }}</div>
+            <div style="font:400 14px 'Assistant',sans-serif; color:#BFC2D8">{{ s.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1180px; margin:0 auto; padding:48px 32px 88px; display:flex; flex-direction:column; gap:44px">
+    <sc-for list="{{ groups }}" as="g" hint-placeholder-count="4">
+      <div>
+        <div style="display:flex; align-items:baseline; gap:14px; margin-bottom:6px">
+          <h2 style="font:800 30px 'Heebo',sans-serif; color:#262A5B; margin:0">{{ g.title }}</h2>
+          <a href="{{ g.href }}" style="font:600 15px 'Assistant',sans-serif; color:#1A63B8; text-decoration:underline; text-underline-offset:3px">פתחו את הקובץ</a>
+        </div>
+        <div style="font:400 16px/1.6 'Assistant',sans-serif; color:#5C5A66; margin-bottom:18px">{{ g.note }}</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:16px">
+          <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
+            <a href="{{ i.href }}" style="display:block; background:#FFFFFF; border:1px solid #E3EBF5; border-radius:14px; overflow:hidden; color:inherit" style-hover="border-color:#1665C1">
+              <div style="height:132px; background-color:#EFF4FA; background-image:var(--p); --p:{{ i.bg }}; background-size:cover; background-position:center"></div>
+              <div style="padding:18px">
+                <div style="display:flex; align-items:center; gap:9px; margin-bottom:6px">
+                  <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 200; font-size:20px; color:#262A5B; opacity:.55">{{ i.icon }}</span>
+                  <div style="font:700 20px/1.25 'Heebo',sans-serif; color:#262A5B">{{ i.name }}</div>
+                </div>
+                <div style="font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30; margin-bottom:10px">{{ i.desc }}</div>
+                <div style="font:400 12px ui-monospace,monospace; color:#8C8577">{{ i.url }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const F = {
+      home: 'Baku40%20Home.dc.html',
+      list: 'Baku40%20Listing%20and%20Details.dc.html',
+      edit: 'Baku40%20Editorial%20Templates.dc.html',
+      prod: 'Baku40%20Product%20Screens.dc.html',
+      opts: 'Baku40%20Home%20Options.dc.html',
+      re: 'Baku40%20Real%20Estate.dc.html',
+      cms: 'Baku40%20CMS.dc.html',
+      info: 'Baku40%20Travel%20Info.dc.html',
+      coll: 'Baku40%20Collection%20Listings.dc.html',
+      sys: 'Baku40%20Flights%20and%20System%20Pages.dc.html',
+      mob: 'Baku40%20Mobile%20Screens.dc.html',
+      ds: 'Baku40%20Design%20System.dc.html',
+      ext: 'Baku40%20External%20Data.dc.html',
+      sn: 'Baku40%20Shopping%20Nightlife.dc.html',
+      trust: 'Baku40%20Trust%20and%20Navigation.dc.html',
+      live: 'Baku40%20Attractions%20Live.dc.html',
+      enrich: 'Baku40%20Enrichment%20Review.dc.html',
+      mob: 'Baku40%20Mobile%20Screens.dc.html'
+    };
+    const bg = (p) => p ? 'url("' + p + '")' : '';
+    const groups = [
+      {
+        title: 'דף הבית', href: F.home, note: 'דסקטופ ומובייל, עם מגה־מניו, חיפוש, פילטרים, מפה ומתכנן פעילים.',
+        items: [
+          { name: 'דף הבית · דסקטופ', desc: 'הירו עם תמונה מלאה, כניסה מהירה, מפה, מסלולים, נדל"ן ומגזין.', url: '/', icon: 'home', href: F.home + '#1a', photo: 'assets/photos/flame-towers-red.png' },
+          { name: 'דף הבית · מובייל', desc: 'דרואר, חיפוש במסך מלא, מתכנן ומפה בגרסת 390.', url: '/ · mobile', icon: 'smartphone', href: F.home + '#1a', photo: 'assets/photos/flame-towers-day.png' },
+          { name: 'כיוון חלופי שנשמר', desc: 'Planning Console — הכיוון השני שהוצג בסבב הראשון.', url: 'archive', icon: 'history', href: F.opts, photo: 'assets/photos/skyline-dusk.png' }
+        ]
+      },
+      {
+        title: 'ליסטינג ופרטי ישות', href: F.list, note: 'אטרקציות, מסעדות ומלונות — מאותו מאגר.',
+        items: [
+          { name: 'ליסטינג אטרקציות', desc: 'פילטרים, מיון, ספירת תוצאות ומפה מפוצלת 60/40.', url: '/attractions/', icon: 'grid_view', href: F.list + '#2a', photo: 'assets/photos/maiden-tower.png' },
+          { name: 'ליסטינג מובייל + פילטרים', desc: 'רשימה, ודרואר פילטרים במסגרת טלפון.', url: '/attractions/ · mobile', icon: 'filter_list', href: F.list + '#2b', photo: 'assets/photos/boulevard-wheel.png' },
+          { name: 'עמוד אטרקציה', desc: 'Quick facts, TOC, "אפשר לוותר אם", מפה, מה קרוב, מקורות.', url: '/attractions/[slug]/', icon: 'castle', href: F.list + '#2c', photo: 'assets/photos/heydar-center-plaza.png' },
+          { name: 'אטרקציה · מובייל', desc: 'עובדות מהירות ראשונות וסרגל פעולות דביק.', url: '/attractions/[slug]/ · mobile', icon: 'smartphone', href: F.list + '#2d', photo: 'assets/photos/heydar-center.png' },
+          { name: 'עמוד מסעדה', desc: 'למה להגיע, מה להזמין, כשרות רק לאחר אימות.', url: '/restaurants/[slug]/', icon: 'restaurant', href: F.list + '#2e', photo: 'assets/photos/nizami-street.png' },
+          { name: 'עמוד מלון', desc: 'למי מתאים, מרחקים, יתרונות ושיקולים, גילוי נאות.', url: '/hotels/[slug]/', icon: 'hotel', href: F.list + '#2f', photo: 'assets/photos/flame-towers-night.png' }
+        ]
+      },
+      {
+        title: 'תוכן עריכתי', href: F.edit, note: 'מאמר, אזור, יעד ומסלול.',
+        items: [
+          { name: 'מאמר', desc: 'TOC דביק, אינפו בוקסים, כרטיסי ישות בתוך הטקסט, מקורות.', url: '/blog/[slug]/', icon: 'menu_book', href: F.edit + '#3a', photo: 'assets/photos/central-park.png' },
+          { name: 'עמוד אזור', desc: 'למי האזור מתאים, טאבים, מדדים, יתרונות ושיקולים.', url: '/baku/areas/[slug]/', icon: 'location_city', href: F.edit + '#3b', photo: 'assets/photos/maiden-tower.png' },
+          { name: 'עמוד יעד', desc: 'מרחק מבאקו, איך מגיעים, עונות מומלצות, FAQ.', url: '/destinations/[slug]/', icon: 'terrain', href: F.edit + '#3c', photo: 'assets/photos/skyline-cloudy.png' },
+          { name: 'עמוד מסלול', desc: 'טיימליין לפי שעות, זמני מעבר, מפת מסלול דביקה.', url: '/itineraries/3-days/', icon: 'route', href: F.edit + '#3d', photo: 'assets/photos/crystal-hall.png' }
+        ]
+      },
+      {
+        title: 'מסכי מוצר', href: F.prod, note: 'מפה, מתכנן, מועדפים, חיפוש ושגיאות.',
+        items: [
+          { name: 'מפה גלובלית', desc: 'פילטרי סוג ואזור, מועדפים בלבד, סנכרון רשימה–מפה.', url: '/map/', icon: 'map', href: F.prod + '#4a', photo: 'assets/photos/port-baku-mall.png' },
+          { name: 'Trip Planner · קלט', desc: 'תאריכים, הרכב, עניין, קצב, תקציב, "חייבים לראות".', url: '/trip-planner/', icon: 'edit_calendar', href: F.prod + '#4b', photo: 'assets/photos/heydar-mosque.png' },
+          { name: 'Trip Planner · תוצאה', desc: 'מסלול לפי ימים, חלופות, "מה לא נכנס ולמה".', url: '/trip-planner/result/', icon: 'checklist', href: F.prod + '#4c', photo: 'assets/photos/bay-night.png' },
+          { name: 'המקומות שלי', desc: 'שמורים מקובצים, מפת שמורים, שליחה למתכנן.', url: '/favorites/', icon: 'bookmark', href: F.prod + '#4d', photo: 'assets/photos/flame-towers-neon.png' },
+          { name: 'תוצאות חיפוש', desc: 'מקובץ לפי סוג ישות, כולל מצב ללא תוצאות.', url: '/search/', icon: 'search', href: F.prod + '#4e', photo: 'assets/photos/nizami-street.png' },
+          { name: 'עמוד 404', desc: 'חיפוש, קטגוריות מרכזיות, בלי מבוי סתום.', url: '404', icon: 'error', href: F.prod + '#4f', photo: 'assets/photos/skyline-dusk.png' }
+        ]
+      }
+      ,{
+        title: 'ליסטינגים נוספים', href: F.coll, note: 'מסעדות, מלונות, מסלולים, קניות וחיי לילה, טיולי יום ועמוד נחיתה.',
+        items: [
+          { name: 'ליסטינג מסעדות', desc: 'מטבח, אזור, טווח מחיר וכשרות מאומתת.', url: '/restaurants/', icon: 'restaurant', href: F.coll + '#8a', photo: 'assets/photos/nizami-street.png' },
+          { name: 'ליסטינג מלונות', desc: 'אזור, דירוג, קהל ומתקנים שמשנים החלטה.', url: '/hotels/', icon: 'hotel', href: F.coll + '#8b', photo: 'assets/photos/flame-towers-day.png' },
+          { name: 'ליסטינג מסלולים', desc: 'לפי מספר ימים, קהל וקצב.', url: '/itineraries/', icon: 'route', href: F.coll + '#8c', photo: 'assets/photos/maiden-tower.png' },
+          { name: 'קניות וחיי לילה', desc: 'קניונים, שווקים, ברים וגגות.', url: '/shopping/ · /nightlife/', icon: 'storefront', href: F.coll + '#8d', photo: 'assets/photos/port-baku-mall.png' },
+          { name: 'טיולי יום', desc: 'זמן נסיעה, משך ולמי מתאים.', url: '/day-trips/', icon: 'directions_bus', href: F.coll + '#8e', photo: 'assets/photos/skyline-cloudy.png' },
+          { name: 'עמוד נחיתה של קטגוריה', desc: 'אוכל כשר — הירו תמונתי ותוכן ייחודי.', url: '/restaurants/kosher/', icon: 'verified', href: F.coll + '#8f', photo: 'assets/photos/nizami-street.png' }
+        ]
+      },
+      {
+        title: 'טיסות ועמודי מערכת', href: F.sys, note: 'טיסות, שדה תעופה, אודות, קשר, משפטי ותודה.',
+        items: [
+          { name: 'טיסות מישראל', desc: 'מסלולי הגעה, מה לבדוק, בלי מחירים לא מאומתים.', url: '/flights/israel-to-baku/', icon: 'flight', href: F.sys + '#9a', photo: 'assets/photos/skyline-dusk.png' },
+          { name: 'שדה התעופה ומהשדה לעיר', desc: 'שלוש אפשרויות מעבר בהשוואה + מפה.', url: '/airport/heydar-aliyev-airport/', icon: 'flight_land', href: F.sys + '#9b', photo: 'assets/photos/crystal-hall.png' },
+          { name: 'אודות', desc: 'עקרונות עריכה, שקיפות ומדדי מאגר.', url: '/about/', icon: 'info', href: F.sys + '#9c', photo: 'assets/photos/bay-night.png' },
+          { name: 'צור קשר', desc: 'טופס עם מצב שגיאה ומצב שליחה.', url: '/contact/', icon: 'mail', href: F.sys + '#9d', photo: 'assets/photos/central-park.png' },
+          { name: 'עמוד משפטי', desc: 'גילוי נאות, פרטיות, תקנון ונגישות.', url: '/affiliate-disclosure/', icon: 'gavel', href: F.sys + '#9e', photo: 'assets/photos/heydar-mosque.png' },
+          { name: 'תודה + ניוזלטר', desc: 'מצב הצלחה אחרי טופס והרשמה לעדכונים.', url: 'noindex', icon: 'check_circle', href: F.sys + '#9f', photo: 'assets/photos/flame-towers-neon.png' }
+        ]
+      },
+      {
+        title: 'מובייל 390', href: F.mob, note: 'גרסאות מובייל לתבניות שנשארו, כולן במסגרת 390×844.',
+        items: [
+          { name: 'מסלול · מובייל', desc: 'טאבי ימים, טיימליין וסרגל פעולות דביק.', url: '/itineraries/3-days/', icon: 'route', href: F.mob + '#10a', photo: 'assets/photos/maiden-tower.png' },
+          { name: 'מאמר · מובייל', desc: 'מחוון קריאה, TOC וכרטיס ישות משובץ.', url: '/blog/[slug]/', icon: 'menu_book', href: F.mob + '#10b', photo: 'assets/photos/boulevard-wheel.png' },
+          { name: 'אזור · מובייל', desc: 'הירו תמונתי, מדדים וטאבים.', url: '/baku/areas/[slug]/', icon: 'location_city', href: F.mob + '#10c', photo: 'assets/photos/maiden-tower.png' },
+          { name: 'יעד · מובייל', desc: 'עובדות מרחק וסרגל חודשים.', url: '/destinations/[slug]/', icon: 'terrain', href: F.mob + '#10d', photo: 'assets/photos/skyline-cloudy.png' },
+          { name: 'מפה · מובייל', desc: 'מסך מלא עם bottom sheet ופילטרים.', url: '/map/', icon: 'map', href: F.mob + '#10e', photo: 'assets/photos/port-baku-mall.png' },
+          { name: 'Trip Planner · מובייל', desc: 'אשף שלבים עם מחוון התקדמות.', url: '/trip-planner/', icon: 'edit_calendar', href: F.mob + '#10f', photo: 'assets/photos/heydar-center.png' },
+          { name: 'המקומות שלי · מובייל', desc: 'מפת שמורים, קיבוץ והסרה.', url: '/favorites/', icon: 'bookmark', href: F.mob + '#10g', photo: 'assets/photos/flame-towers-red.png' },
+          { name: 'נדל"ן · מובייל', desc: 'עובדות, תנאי תשלום ודיסקליימר.', url: '/real-estate/projects/[slug]/', icon: 'domain', href: F.mob + '#10h', photo: 'assets/photos/bay-night.png' }
+        ]
+      },
+      {
+        title: 'מסכי מובייל נוספים', href: F.mob, note: 'מסלול, מאמר, אזור, מפה, מתכנן, מועדפים ופרויקט נדל״ן — נבנו מחדש למובייל, לא דסקטופ מכווץ.',
+        items: [
+          { name: 'מסלול', desc: 'טאבי ימים דביקים, טיימליין, חלופות.', url: '/itineraries/[slug]/', icon: 'route', href: F.mob + '#14a', photo: 'assets/photos/nizami-street.png' },
+          { name: 'מאמר', desc: 'תוכן עניינים, בלוקים, שורת קרדיט.', url: '/blog/[slug]/', icon: 'article', href: F.mob + '#14b', photo: 'assets/photos/boulevard-wheel.png' },
+          { name: 'אזור', desc: 'הירו, למי מתאים, מדדים, מפת אזור.', url: '/baku/areas/[slug]/', icon: 'location_city', href: F.mob + '#14c', photo: 'assets/photos/nizami-street.png' },
+          { name: 'מפה — מסך מלא', desc: 'פילטרים, אשכולות, כרטיס תחתון.', url: '/map/', icon: 'map', href: F.mob + '#14d', photo: 'assets/photos/maiden-tower.png' },
+          { name: 'Trip Planner', desc: 'ארבעה שלבים, פס התקדמות.', url: '/trip-planner/', icon: 'edit_calendar', href: F.mob + '#14e', photo: 'assets/photos/heydar-center.png' },
+          { name: 'המקומות שלי', desc: 'מקובץ לפי סוג, מפת שמורים.', url: '/favorites/', icon: 'bookmarks', href: F.mob + '#14f', photo: 'assets/photos/maiden-tower.png' },
+          { name: 'פרויקט נדל״ן', desc: 'גלריה, נתוני מפתח, סימון לאימות.', url: '/real-estate/projects/[slug]/', icon: 'apartment', href: F.mob + '#14g', photo: 'assets/photos/flame-towers-day.png' }
+        ]
+      },
+      {
+        title: 'קניות, חיי לילה וקרדיטים', href: F.sn, note: 'התבניות שהשלימו את המאגר: ישות קניות, ישות חיי לילה, עמוד נחיתה של קטגוריה ועמוד קרדיטים לתמונות.',
+        items: [
+          { name: 'עמוד קניות', desc: 'Tax Free, מותגים, מה קרוב, "אפשר לוותר אם".', url: '/shopping/[slug]/', icon: 'storefront', href: F.sn + '#13a', photo: 'assets/photos/port-baku-mall.png' },
+          { name: 'עמוד חיי לילה', desc: 'קוד לבוש, גיל, הזמנה ומתי להגיע.', url: '/nightlife/[slug]/', icon: 'local_bar', href: F.sn + '#13b', photo: 'assets/photos/flame-towers-red.png' },
+          { name: 'עמוד נחיתה של קטגוריה', desc: 'התבנית לגגות, 5 כוכבים, למשפחות.', url: '/nightlife/rooftops/', icon: 'category', href: F.sn + '#13c', photo: 'assets/photos/boulevard-wheel.png' },
+          { name: 'קרדיטים לתמונות', desc: 'רישיון, צלם וקישור מקור לכל תמונה.', url: '/image-credits/', icon: 'copyright', href: F.sn + '#13d', photo: 'assets/photos/maiden-tower.png' }
+        ]
+      },
+      {
+        title: 'מקורות חיצוניים ו‑API', href: F.ext, note: 'התוכן העריכתי שלנו, ה‑API מעשיר שדות תפעוליים — עם provenance, אישור עורך וייחוס.',
+        items: [
+          { name: 'פאנל מקורות חיצוניים', desc: 'חיבורי Google/OSM/Booking/רשמי, השוואת שדות ובעלות.', url: 'cms · entity', icon: 'hub', href: F.ext + '#12a', photo: 'assets/photos/heydar-center.png' },
+          { name: 'מסך ייבוא מועמדים', desc: 'Overpass, זיהוי כפילויות וייבוא כטיוטה בלבד.', url: '/admin/import', icon: 'download', href: F.ext + '#12b', photo: 'assets/photos/skyline-cloudy.png' },
+          { name: 'ניטור ספקים', desc: 'בקשות, שגיאות, מכסות, jobs ודורש טיפול.', url: 'cms · monitoring', icon: 'monitoring', href: F.ext + '#12c', photo: 'assets/photos/crystal-hall.png' },
+          { name: 'זמינות ומחיר חי', desc: 'שלושה מצבים בעמוד מלון, כולל כשל ספק.', url: '/hotels/[slug]/', icon: 'price_check', href: F.ext + '#12d', photo: 'assets/photos/flame-towers-day.png' },
+          { name: 'ייחוס תמונות ומפה', desc: 'הירו בבעלותנו, גלריה חיה עם ייחוס, קרדיט מפה.', url: 'compliance', icon: 'copyright', href: F.ext + '#12e', photo: 'assets/photos/heydar-center-plaza.png' }
+        ]
+      },
+      {
+        title: 'מערכת עיצוב', href: F.ds, note: 'טוקנים וספריית קומפוננטות עם כל המצבים.',
+        items: [
+          { name: 'צבע וטיפוגרפיה', desc: 'פלטה, סקאלת טיפוגרפיה וניגודיות.', url: 'tokens', icon: 'palette', href: F.ds + '#11a', photo: '' },
+          { name: 'מרווחים ורדיוסים', desc: 'סקאלת 4px, רדיוסים, יחסי תמונות, breakpoints.', url: 'tokens', icon: 'straighten', href: F.ds + '#11b', photo: '' },
+          { name: 'כפתורים ושדות', desc: 'Default / hover / focus / disabled / loading.', url: 'components', icon: 'smart_button', href: F.ds + '#11c', photo: '' },
+          { name: 'כרטיסים ותגים', desc: 'וריאנטים, אינפו בוקסים, סימוני אימות.', url: 'components', icon: 'style', href: F.ds + '#11d', photo: '' },
+          { name: 'מצבי מערכת', desc: 'Skeleton, empty, error, loading ו‑toast.', url: 'components', icon: 'pending', href: F.ds + '#11e', photo: '' }
+        ]
+      },
+      {
+        title: 'מידע למטייל', href: F.info, note: 'כל נושא שמשתנה בזמן — עמוד נפרד עם מקור ותאריך בדיקה.',
+        items: [
+          { name: 'מידע למטייל · עמוד האב', desc: 'ויזה, כספים, SIM, תחבורה, מזג אוויר וטיסות + צ׳ק־ליסט.', url: '/travel-info/', icon: 'info', href: F.info + '#7a', photo: 'assets/photos/heydar-mosque.png' },
+          { name: 'עמוד מידע בודד · ויזה', desc: 'תשובה קצרה, מה לבדוק, FAQ, מקור רשמי ותאריך בדיקה.', url: '/travel-info/visa/', icon: 'badge', href: F.info + '#7b', photo: 'assets/photos/nizami-street.png' },
+          { name: 'כספים ומטבע', desc: 'AZN, כרטיסים, מזומן, כספומטים וטיפים.', url: '/travel-info/currency/', icon: 'payments', href: F.info + '#7d', photo: 'assets/photos/port-baku-mall.png' },
+          { name: 'SIM ואינטרנט', desc: 'מפעילים, רכישה בשדה, eSIM וכיסוי.', url: '/travel-info/sim/', icon: 'sim_card', href: F.info + '#7e', photo: 'assets/photos/crystal-hall.png' },
+          { name: 'תחבורה בעיר', desc: 'מטרו, BakiKart, Bolt והליכה.', url: '/travel-info/transportation/', icon: 'directions_subway', href: F.info + '#7f', photo: 'assets/photos/nizami-street.png' },
+          { name: 'בטיחות ובריאות', desc: 'התנהלות בעיר, בריאות ומה ממתין לאימות.', url: '/travel-info/safety/', icon: 'shield', href: F.info + '#7g', photo: 'assets/photos/central-park.png' },
+          { name: 'טיסות ושדה תעופה · תקציר', desc: 'תקציר עם הפניה לעמודים המלאים.', url: '/travel-info/flights/', icon: 'flight', href: F.info + '#7h', photo: 'assets/photos/skyline-dusk.png' },
+          { name: 'מזג אוויר לחודש', desc: 'ממוצעים, מה ללבוש, יתרונות ושיקולים — עמוד לכל חודש.', url: '/weather/[month]/', icon: 'partly_cloudy_day', href: F.info + '#7c', photo: 'assets/photos/skyline-dusk.png' }
+        ]
+      },
+      {
+        title: 'נדל"ן', href: F.re, note: 'טון מידעי, טופס ליד רק אחרי מידע, כל נתון כספי עם מקור ותאריך.',
+        items: [
+          { name: 'נדל"ן · עמוד האב', desc: 'נקודות פתיחה, אזורים, תהליך רכישה בחמישה שלבים, פרויקטים.', url: '/real-estate/baku/', icon: 'apartment', href: F.re + '#5a', photo: 'assets/photos/port-baku-mall.png' },
+          { name: 'נדל"ן · עמוד פרויקט', desc: 'עובדות, סוגי יחידות, תנאי תשלום, מסמכים, מקורות ודיסקליימר.', url: '/real-estate/projects/[slug]/', icon: 'domain', href: F.re + '#5b', photo: 'assets/photos/bay-night.png' }
+        ]
+      },
+      {
+        title: 'אמון וניווט', href: F.trust, note: 'שלוש התבניות שמחזיקות את שכבת האמון והקישוריות הפנימית.',
+        items: [
+          { name: 'עמוד כותב', desc: 'ניסיון, מה נבדק בשטח ומה מרחוק, פרסומים וגילוי נאות.', url: '/authors/[slug]/', icon: 'person', href: F.trust + '#15a', photo: 'assets/photos/nizami-street.png' },
+          { name: 'רכזת נושא', desc: 'מאמרים, ישויות ומסלולים סביב נושא אחד — כולל "מה לא מתאים".', url: '/topics/[slug]/', icon: 'hub', href: F.trust + '#15b', photo: 'assets/photos/boulevard-wheel.png' },
+          { name: 'מפת אתר למשתמש', desc: 'יעד הקישור מהפוטר ומעמוד 404, מסודר לפי אוסף.', url: '/sitemap/', icon: 'account_tree', href: F.trust + '#15c', photo: 'assets/photos/skyline-cloudy.png' }
+        ]
+      },
+      {
+        title: 'שכבת נתונים חיה', href: F.live, note: 'המסכים שנבנים ישירות מקובץ הישויות — תצוגה לאתר וקונסולת אישור לעורך.',
+        items: [
+          { name: 'אטרקציות לייב', desc: 'נטען מקובץ הישויות; שדה בלי מקור פשוט לא מוצג.', url: '/attractions/', icon: 'dataset', href: F.live, photo: 'assets/photos/maiden-tower.png' },
+          { name: 'קונסולת העשרה', desc: 'שדה, מקור, רמת ודאות וסימון קונפליקט — לפני כתיבה לרשומה.', url: 'cms · enrichment', icon: 'rule', href: F.enrich, photo: 'assets/photos/heydar-center.png' }
+        ]
+      },
+      {
+        title: 'מערכת ניהול התוכן', href: F.cms, note: 'ממשק עבודה לעורכים — פרסום, אימות ו‑SEO נייטיב.',
+        items: [
+          { name: 'CMS · דשבורד', desc: 'מדדי פרסום, מה דורש טיפול, מצב אימות וכמות תוכן לפי אוסף.', url: 'cms · dashboard', icon: 'dashboard', href: F.cms + '#6a', photo: 'assets/photos/skyline-cloudy.png' },
+          { name: 'CMS · עורך ישות', desc: 'שדות אטרקציה, קשרים, מקורות, ובדיקות שחוסמות פרסום.', url: 'cms · editor', icon: 'edit_note', href: F.cms + '#6b', photo: 'assets/photos/heydar-center.png' },
+          { name: 'CMS · פאנל SEO', desc: 'מטא, canonical, robots, תצוגת SERP, סכמה ובעיות אינדוקס.', url: 'cms · seo', icon: 'travel_explore', href: F.cms + '#6c', photo: 'assets/photos/crystal-hall.png' },
+          { name: 'CMS · הרשאות', desc: 'מטריצת Writer/Editor/Admin, משתמשים, ומה קורה כשאין הרשאת פרסום.', url: 'cms · roles', icon: 'lock', href: F.cms + '#6d', photo: 'assets/photos/nizami-street.png' },
+          { name: 'CMS · חיפוש גלובלי', desc: '⌘K על כל האוספים — כולל שדות תקועים ומקורות מקושרים.', url: 'cms · search', icon: 'search', href: F.cms + '#6e', photo: 'assets/photos/bay-night.png' }
+        ]
+      }
+    ].map(g => Object.assign({}, g, {
+      items: g.items.map(i => Object.assign({}, i, { bg: bg(i.photo) }))
+    }));
+
+    return {
+      stats: [
+        { n: '79', label: 'מסכים מעוצבים' },
+        { n: '18', label: 'קבצי עיצוב' },
+        { n: '25', label: 'תבניות עמוד' },
+        { n: 'RTL', label: 'עברית מקורית' }
+      ],
+      groups: groups,
+      todo: [
+        { name: 'תמונות אמיתיות', desc: 'גובוסטן, אבשרון, גבאלה, שאהדאג, מסעדות, מלונות ונדל"ן — כרגע placeholder מסומן.', icon: 'photo_camera' },
+        { name: 'אימות נתונים', desc: 'כל מה שמסומן "ממתין לאימות" — אגרות, שעות, מחירים ומספרי חירום.', icon: 'fact_check' },
+        { name: 'CMS · הרשאות', desc: 'Writer מול Editor, ומה קורה כשאין הרשאת פרסום.', icon: 'lock' },
+        { name: 'CMS · חיפוש גלובלי', desc: 'חיפוש על פני כל האוספים מתוך המערכת.', icon: 'search' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
