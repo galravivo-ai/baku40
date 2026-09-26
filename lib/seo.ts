@@ -1,7 +1,7 @@
 import "server-only";
 import type { Metadata } from "next";
 import { absoluteUrl, getAllCollections, getPhoto, getSite, type PhotoInfo } from "./content";
-import type { Collection } from "./schema";
+import type { Collection, Item } from "./schema";
 
 /** Vercel preview deployments are never indexed (SEO spec §1). */
 export function isProductionIndexable() {
@@ -145,3 +145,20 @@ export function collectionJsonLd(c: Collection, crumbs: Crumb[]) {
   }
   return { "@context": "https://schema.org", "@graph": graph };
 }
+
+/** Words of unique text a record's own page shows (SEO spec §8: <150 ⇒ noindex). */
+export function itemWordCount(item: Item): number {
+  const parts = [
+    item.text,
+    ...(item.pitch ?? []),
+    item.bottomLine ?? "",
+    ...(item.pros ?? []),
+    ...(item.cons ?? []),
+    item.roomsIntro ?? "",
+    ...(item.rooms ?? []).map((r) => `${r.name} ${r.text}`),
+    ...(item.checklist ?? []),
+  ];
+  return parts.join(" ").split(/\s+/).filter(Boolean).length;
+}
+
+export const MIN_INDEXABLE_WORDS = 150;

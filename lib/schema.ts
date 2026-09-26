@@ -93,6 +93,18 @@ export const itemSchema = z
     score: z.number().optional(),
     reviews: z.number().int().optional(),
     stars: z.number().int().nullable().optional(),
+    // Optional long-form fields for a record's own page (design 2f). Sections
+    // without data are not rendered.
+    pitch: z.array(text).optional(),
+    bottomLine: text.optional(),
+    distances: z.array(z.object({ value: text, label: text })).optional(),
+    facilities: z.array(text).optional(),
+    pros: z.array(text).optional(),
+    cons: z.array(text).optional(),
+    roomsIntro: text.optional(),
+    rooms: z.array(z.object({ name: text, text: text, size: text.optional() })).optional(),
+    checklist: z.array(text).optional(),
+    officialUrl: z.url().optional(),
     bookingUrl: z
       .string()
       .startsWith("https://www.booking.com/", "bookingUrl חייב להתחיל ב-https://www.booking.com/")
@@ -139,9 +151,38 @@ export const collectionSchema = z.object({
   items: z.array(itemSchema),
 });
 
+const paragraphsBlock = z.object({ title: text, paragraphs: z.array(text) });
+
+// Area pages (design 3b). Everything beyond slug/name/url is optional; the
+// hotels, restaurants and shops of an area come from the collections by areaSlug.
 export const areasSchema = z.object({
   note: text.optional(),
-  items: z.array(z.object({ slug: text.min(1), name: text.min(1), url: text.min(1) })),
+  items: z.array(
+    z.object({
+      slug: text.min(1),
+      name: text.min(1),
+      url: text.min(1),
+      subtitle: text.optional(),
+      heroPhoto: text.optional(),
+      heroPhotoAlt: text.optional(),
+      fits: paragraphsBlock.optional(),
+      bestFor: z.array(z.object({ icon: text, label: text })).optional(),
+      howTo: paragraphsBlock.extend({ tip: z.object({ title: text, text: text }).optional() }).optional(),
+      whatsHere: z
+        .array(
+          z.object({
+            tab: text,
+            items: z.array(z.object({ name: text, meta: text, photo: text, photoAlt: text })),
+          }),
+        )
+        .optional(),
+      pros: z.array(text).optional(),
+      cons: z.array(text).optional(),
+      gettingThere: z.object({ title: text, text: text }).optional(),
+      levels: z.array(z.object({ label: text, pct: z.number().min(0).max(100) })).optional(),
+      itineraries: z.array(z.object({ title: text, meta: text })).optional(),
+    }),
+  ),
 });
 
 export const redirectsSchema = z.object({

@@ -11,14 +11,15 @@ import {
   type CollectionKey,
 } from "@/lib/content";
 import type { Item } from "@/lib/schema";
-import { collectionJsonLd, parseCrumbs, type Crumb } from "@/lib/seo";
+import { collectionJsonLd, parseCrumbs } from "@/lib/seo";
+import { Breadcrumbs } from "../Breadcrumbs";
 import { JsonLd } from "../JsonLd";
 import { ListingClient } from "./ListingClient";
 import type { CardData } from "./types";
 
-// Records get their own page in stage 3 (hotels first). Until a detail route
-// exists, cards are not linked, so the site never links to a 404.
-const COLLECTIONS_WITH_DETAIL_PAGES = new Set<CollectionKey>();
+// Collections whose records have their own page. Cards of other collections
+// are not linked, so the site never links to a 404.
+const COLLECTIONS_WITH_DETAIL_PAGES = new Set<CollectionKey>(["hotels"]);
 
 function toCard(key: CollectionKey, item: Item): CardData {
   const site = getSite();
@@ -59,26 +60,6 @@ function toCard(key: CollectionKey, item: Item): CardData {
       .join(" ")
       .toLowerCase(),
   };
-}
-
-function Breadcrumbs({ crumbs }: { crumbs: Crumb[] }) {
-  return (
-    <nav aria-label="פירורי לחם" className="crumbs">
-      <ol>
-        {crumbs.map((c, i) => (
-          <li key={c.label}>
-            {i === crumbs.length - 1 ? (
-              <span aria-current="page">{c.label}</span>
-            ) : c.href ? (
-              <Link href={c.href}>{c.label}</Link>
-            ) : (
-              <span>{c.label}</span>
-            )}
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
 }
 
 export function CollectionPage({ collectionKey }: { collectionKey: CollectionKey }) {
