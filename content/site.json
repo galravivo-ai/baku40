@@ -168,6 +168,10 @@
     {
       "label": "גילוי נאות — קישורי שותפים",
       "href": "/affiliate-disclosure/"
+    },
+    {
+      "label": "מפת האתר",
+      "href": "/sitemap/"
     }
   ],
   "copyright": "© 2026 Baku40",
@@ -228,6 +232,10 @@
         {
           "label": "מזג אוויר",
           "href": "/travel-info/"
+        },
+        {
+          "label": "באקו עם ילדים",
+          "href": "/topics/baku-with-kids/"
         }
       ]
     },

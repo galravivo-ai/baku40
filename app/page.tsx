@@ -5,7 +5,7 @@ import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
 import { bookingHref } from "@/lib/booking";
-import { absoluteUrl, getHome, getItem, getSite } from "@/lib/content";
+import { absoluteUrl, getAttractionsPage, getHome, getItem, getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { getBakuTemperature } from "@/lib/weather";
 
@@ -45,6 +45,7 @@ function SectionHead({ title, text, link }: { title: string; text?: string; link
 export default async function Home() {
   const site = getSite();
   const home = getHome();
+  const attractionHref = new Map(getAttractionsPage().items.map((a) => [a.id, a.href]));
   const temperature = await getBakuTemperature();
   const utility = home.hero.utility
     .map((u) => (u.live === "weather" ? { ...u, value: temperature ?? "" } : u))
@@ -169,7 +170,7 @@ export default async function Home() {
               note: a.note,
               dur: a.dur,
               tags: a.tags,
-              href: "/attractions/",
+              href: attractionHref.get(a.id) ?? "/attractions/",
               photo: <Photo photo={a.photo} alt={a.photoAlt} sizes="(max-width: 700px) 85vw, 420px" icon="castle" />,
             }))}
           />

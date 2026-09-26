@@ -3,7 +3,7 @@ backend:
   name: github
   repo: galravivo-ai/baku40
   branch: main
-  auth_endpoint: api/decap/auth/
+  auth_endpoint: api/decap/auth
   commit_messages:
     update: 'עדכון תוכן: {{collection}} / {{slug}}'
     create: 'תוכן חדש: {{collection}} / {{slug}}'
@@ -928,6 +928,15 @@ collections:
         label: מזהה
         widget: string
         required: true
+      - name: slug
+        label: כתובת (slug)
+        widget: string
+        required: true
+      - name: href
+        label: קישור לעמוד
+        widget: string
+        required: true
+        hint: /attractions/{slug}/ או עמוד אחר
       - name: name
         label: שם
         widget: string

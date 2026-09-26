@@ -1522,3 +1522,13 @@ a.card__cta:hover { text-decoration: underline; }
   .ed-stats { grid-template-columns: 1fr 1fr; }
   .ed-stats strong { font-size: 22px; }
 }
+
+/* ---------- sitemap page (15c) ---------- */
+.sitemap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.sitemap-group { border: 1px solid var(--line); border-radius: var(--r-12); padding: 18px 20px; }
+.sitemap-group h2 { font: 800 19px var(--font-head); color: var(--navy); margin: 0 0 10px; }
+.sitemap-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.sitemap-group a { display: flex; align-items: center; min-height: 36px; font: 600 15px var(--font-body); color: var(--brand); text-decoration: none; border-top: 1px solid var(--line-soft); }
+.sitemap-group li:first-child a { border-top: 0; }
+.sitemap-group a:hover { text-decoration: underline; }
+@media (max-width: 700px) { .sitemap-group a { min-height: 44px; } }

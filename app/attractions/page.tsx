@@ -28,7 +28,7 @@ export default function AttractionsPage() {
     icon: "schedule",
     cta: "",
     badge: a.badge,
-    href: a.areaSlug ? `/areas/${a.areaSlug}/` : undefined,
+    href: a.href,
     photo: getPhoto(a.photo, "", a.photoAlt),
     verify: "",
     verifyKind: "none",

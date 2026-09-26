@@ -26,7 +26,7 @@ export function buildSearchIndex(): IndexEntry[] {
       group: attractions.h1,
       name: a.name,
       meta: `${a.area} · ${a.dur}`,
-      href: `${attractions.url}?q=${encodeURIComponent(a.name)}`,
+      href: a.href,
       text: [a.name, a.area, a.note, ...a.tags].join(" "),
     });
   }

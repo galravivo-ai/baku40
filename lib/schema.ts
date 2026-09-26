@@ -340,6 +340,9 @@ export const attractionsPageSchema = z.object({
   items: z.array(
     z.object({
       id: text,
+      slug: text.min(1),
+      // Own page: /attractions/{slug}/, or another page (e.g. a destination).
+      href: text.regex(/^\/.*\/$/),
       photo: text,
       photoAlt: text,
       name: text.min(1),
