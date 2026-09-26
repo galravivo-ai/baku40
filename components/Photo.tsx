@@ -36,7 +36,7 @@ export function Photo({
   return (
     <>
       <Image className={className} src={info.src} alt={info.alt} fill sizes={sizes} priority={priority} />
-      {showTags && info.isRendering && <span className="photo-tag photo-tag--corner">הדמיה</span>}
+      {showTags && info.isRendering && <span className="photo-tag photo-tag--corner">הדמיה, לא צילום</span>}
       {showTags && info.credit && <span className="photo-tag photo-tag--corner">צילום: {info.credit}</span>}
     </>
   );

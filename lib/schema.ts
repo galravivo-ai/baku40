@@ -371,3 +371,79 @@ export const attractionsCatalogSchema = z
     }
     return { meta: raw.meta, groups };
   });
+
+// content/pages/editorial/*.json — pages whose text was copied from the
+// design files (guide, investments, real estate, casino, travel info, system
+// pages, articles). Each file becomes a page at its `url`.
+const block = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("h2"), text }),
+  z.object({ type: z.literal("h3"), text }),
+  z.object({ type: z.literal("p"), text }),
+  z.object({ type: z.literal("note"), text }),
+  z.object({ type: z.literal("kicker"), text }),
+  z.object({ type: z.literal("callout"), title: text, text }),
+  z.object({ type: z.literal("list"), items: z.array(text) }),
+  z.object({ type: z.literal("link"), label: text, href: text }),
+  z.object({ type: z.literal("image"), photo: text, alt: text }),
+  z.object({ type: z.literal("stats"), items: z.array(z.object({ value: text, label: text })) }),
+  z.object({ type: z.literal("facts"), items: z.array(z.object({ k: text, v: text })) }),
+  z.object({
+    type: z.literal("cards"),
+    items: z.array(z.object({ title: text, text, href: text.optional(), note: text.optional() })),
+  }),
+  z.object({
+    type: z.literal("photoCards"),
+    items: z.array(
+      z.object({
+        photo: text,
+        alt: text,
+        title: text,
+        badge: text.optional(),
+        tag: text.optional(),
+        text: text.optional(),
+        facts: z.array(z.object({ k: text, v: text })).optional(),
+        note: text.optional(),
+        href: text.optional(),
+      }),
+    ),
+  }),
+  z.object({ type: z.literal("steps"), items: z.array(z.object({ title: text, text })) }),
+  // Counts computed from the content files (never typed by hand).
+  z.object({ type: z.literal("liveStats") }),
+  z.object({
+    type: z.literal("stops"),
+    items: z.array(
+      z.object({
+        time: text,
+        name: text,
+        meta: text,
+        text,
+        tip: text.optional(),
+        move: text.optional(),
+        photo: text.optional(),
+        alt: text.optional(),
+        optional: z.boolean().optional(),
+      }),
+    ),
+  }),
+  z.object({ type: z.literal("faq"), items: z.array(z.object({ q: text, a: text })) }),
+  z.object({ type: z.literal("sources"), items: z.array(z.object({ label: text, href: text.optional() })) }),
+  z.object({ type: z.literal("table"), head: z.array(text), rows: z.array(z.array(text)) }),
+]);
+export type Block = z.infer<typeof block>;
+
+export const editorialPageSchema = z.object({
+  url: text.regex(/^\/.*\/$/, "url חייב להתחיל ולהסתיים ב-/"),
+  seo: z.object({
+    metaTitle: text.nullable().optional(),
+    metaDescription: text.nullable().optional(),
+    robots: text.default("index,follow"),
+  }),
+  h1: text.min(1),
+  intro: text,
+  meta: z.array(text),
+  images: z.array(z.object({ photo: text, alt: text })),
+  imageNote: text.optional(),
+  blocks: z.array(block),
+});
+export type EditorialPage = z.infer<typeof editorialPageSchema>;

@@ -1,5 +1,5 @@
 import "server-only";
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { z } from "zod";
 import { isBookingPhoto, isPublishable, isRendering } from "./image-policy.mjs";
@@ -8,12 +8,14 @@ import {
   attractionsPageSchema,
   areasSchema,
   collectionSchema,
+  editorialPageSchema,
   homeSchema,
   imageSourcesSchema,
   redirectsSchema,
   siteSchema,
   type Area,
   type Collection,
+  type EditorialPage,
   type Home,
   type ImageSources,
   type Item,
@@ -74,6 +76,26 @@ export function getAttractionsPage() {
 
 export function getAttractionsCatalog() {
   return cached("attractions-catalog", () => load("attractions.json", attractionsCatalogSchema));
+}
+
+export function getEditorialPages(): EditorialPage[] {
+  return cached("editorial", () => {
+    const dir = join(CONTENT_DIR, "pages", "editorial");
+    const pages = readdirSync(dir)
+      .filter((f) => f.endsWith(".json"))
+      .sort()
+      .map((f) => load(`pages/editorial/${f}`, editorialPageSchema));
+    const seen = new Set<string>();
+    for (const p of pages) {
+      if (seen.has(p.url)) throw new Error(`content/pages/editorial: url כפול "${p.url}"`);
+      seen.add(p.url);
+    }
+    return pages;
+  });
+}
+
+export function getEditorialPage(url: string): EditorialPage | undefined {
+  return getEditorialPages().find((p) => p.url === url);
 }
 
 export function getItem(key: CollectionKey, slug: string): Item | undefined {

@@ -166,18 +166,6 @@
       "href": "/contact/"
     },
     {
-      "label": "נגישות",
-      "href": "/accessibility/"
-    },
-    {
-      "label": "פרטיות",
-      "href": "/privacy/"
-    },
-    {
-      "label": "תקנון",
-      "href": "/terms/"
-    },
-    {
       "label": "גילוי נאות — קישורי שותפים",
       "href": "/affiliate-disclosure/"
     }
@@ -207,10 +195,6 @@
         {
           "label": "נקודות תצפית",
           "href": "/attractions/"
-        },
-        {
-          "label": "מפה",
-          "href": "/map/"
         }
       ]
     },
