@@ -3,8 +3,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Blocks } from "@/components/editorial/Blocks";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
-import { absoluteUrl, getEditorialPage, getEditorialPages } from "@/lib/content";
-import { editorialCrumbs, editorialMetadata } from "@/lib/editorial";
+import { absoluteUrl, getEditorialPage, getEditorialPages, getSite } from "@/lib/content";
+import { editorialCrumbs, editorialMetadata, pageDates } from "@/lib/editorial";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
 // Every file in content/pages/editorial/ becomes a page at its `url`.
@@ -36,7 +36,30 @@ export default async function EditorialRoute({ params }: Props) {
   const isArticle = page.url.startsWith("/magazine/");
 
   const graph: Record<string, unknown>[] = [breadcrumbJsonLd(crumbs)];
-  if (isArticle) graph.push({ "@type": "Article", headline: page.h1, url: absoluteUrl(page.url), inLanguage: "he" });
+  const site = getSite();
+  const dates = pageDates(page);
+  const publisher = { "@type": "Organization", name: site.name, url: absoluteUrl("/") };
+  if (isArticle) {
+    graph.push({
+      "@type": "Article",
+      headline: page.h1,
+      url: absoluteUrl(page.url),
+      inLanguage: "he",
+      author: publisher,
+      publisher,
+      ...(dates.published ? { datePublished: dates.published } : {}),
+      ...(dates.modified ? { dateModified: dates.modified } : {}),
+    });
+  }
+  if (page.url.startsWith("/itineraries/")) {
+    graph.push({
+      "@type": "TouristTrip",
+      name: page.h1,
+      description: page.intro,
+      url: absoluteUrl(page.url),
+      touristType: page.meta.slice(1, 2),
+    });
+  }
   if (faq.length) {
     graph.push({
       "@type": "FAQPage",

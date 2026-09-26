@@ -195,6 +195,14 @@
         {
           "label": "נקודות תצפית",
           "href": "/attractions/"
+        },
+        {
+          "label": "קניות",
+          "href": "/shopping/"
+        },
+        {
+          "label": "טיולי יום",
+          "href": "/day-trips/"
         }
       ]
     },
@@ -229,6 +237,10 @@
         {
           "label": "מסעדות",
           "href": "/restaurants/"
+        },
+        {
+          "label": "אוכל כשר",
+          "href": "/restaurants/kosher/"
         },
         {
           "label": "מטבח מקומי",

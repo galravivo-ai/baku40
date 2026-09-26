@@ -1,6 +1,6 @@
 import "server-only";
 import type { Metadata } from "next";
-import { absoluteUrl, getAllCollections, getPhoto, getSite, type PhotoInfo } from "./content";
+import { absoluteUrl, getAllCollections, getLicensedPhoto, getSite, type PhotoInfo } from "./content";
 import type { Area, Collection, Item } from "./schema";
 
 /** Vercel preview deployments are never indexed (SEO spec §1). */
@@ -34,6 +34,10 @@ export function pageMetadata(p: PageSeo): Metadata {
   const title = p.title ? { absolute: p.title } : p.fallbackTitle;
   const description = p.description || shorten(p.fallbackDescription, 155);
   const ogTitle = p.title ?? site.titleTemplate.replace("%s", p.fallbackTitle);
+  // No licensed image ⇒ generated title card (app/og/route.tsx).
+  const ogImage = p.ogImage
+    ? { url: absoluteUrl(p.ogImage.src), alt: p.ogImageAlt ?? p.ogImage.alt }
+    : { url: absoluteUrl(`/og/?t=${encodeURIComponent(ogTitle)}`), width: 1200, height: 630, alt: ogTitle };
   return {
     title,
     description,
@@ -46,12 +50,13 @@ export function pageMetadata(p: PageSeo): Metadata {
       url,
       title: ogTitle,
       description,
-      images: p.ogImage ? [{ url: absoluteUrl(p.ogImage.src), alt: p.ogImageAlt ?? p.ogImage.alt }] : undefined,
+      images: [ogImage],
     },
     twitter: {
       card: site.twitterCard as "summary_large_image",
       title: ogTitle,
       description,
+      images: [ogImage.url],
     },
   };
 }
@@ -64,7 +69,7 @@ export function collectionMetadata(c: Collection): Metadata {
     description: c.seo.metaDescription,
     fallbackDescription: c.intro,
     robots: c.seo.robots,
-    ogImage: c.seo.ogImage ? getPhoto(c.seo.ogImage, "", c.seo.ogImageAlt) : null,
+    ogImage: c.seo.ogImage ? getLicensedPhoto(c.seo.ogImage, "", c.seo.ogImageAlt) : null,
     ogImageAlt: c.seo.ogImageAlt,
   });
 }

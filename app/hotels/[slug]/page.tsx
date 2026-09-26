@@ -13,6 +13,7 @@ import {
   areaFor,
   getCollection,
   getItem,
+  getLicensedPhoto,
   getPhoto,
   getSite,
   verifyKind,
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }: Props) {
     fallbackDescription: item.text,
     // SEO spec §8: pages with under 150 words of unique text stay noindex.
     robots: item.seo.noindex || thin ? "noindex,follow" : "index,follow",
-    ogImage: getPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense),
+    ogImage: getLicensedPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense),
   });
 }
 
@@ -66,6 +67,7 @@ export default async function HotelPage({ params }: Props) {
   const stars = item.stars ? "★".repeat(item.stars) : "";
   const booking = bookingHref(item);
   const photo = getPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense);
+  const licensed = getLicensedPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense);
 
   const nearbyHotels = hotels.items
     .filter((h) => h.slug !== item.slug && h.url && h.areaSlug && h.areaSlug === item.areaSlug)
@@ -81,7 +83,7 @@ export default async function HotelPage({ params }: Props) {
     description: item.seo.metaDescription ?? shorten(item.text, 155),
     address: { "@type": "PostalAddress", addressLocality: "Baku", addressCountry: "AZ" },
     // Only licensed images go into structured data (SEO spec §3–4).
-    ...(photo && !photo.credit ? { image: absoluteUrl(photo.src) } : {}),
+    ...(licensed ? { image: absoluteUrl(licensed.src) } : {}),
     ...(item.stars ? { starRating: { "@type": "Rating", ratingValue: item.stars } } : {}),
   };
 

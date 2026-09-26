@@ -47,3 +47,17 @@ export function editorialMetadata(page: EditorialPage): Metadata {
     robots: thin ? "noindex,follow" : robots,
   });
 }
+
+/** "4.9.2026" → "2026-09-04" */
+export function isoDate(d: string): string | undefined {
+  const m = d.match(/(\d{1,2})\.(\d{1,2})\.(\d{4})/);
+  return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : undefined;
+}
+
+/** Published / modified dates from the page meta line ("פורסם 4.9.2026 · עודכן 12.9.2026"). */
+export function pageDates(page: EditorialPage): { published?: string; modified?: string } {
+  const meta = page.meta.join(" · ");
+  const published = meta.match(/פורסם\s+([\d.]+)/)?.[1];
+  const modified = meta.match(/(?:עודכן|נבדק)[^\d]*([\d]{1,2}\.[\d]{1,2}\.[\d]{4})/)?.[1];
+  return { published: published && isoDate(published), modified: modified && isoDate(modified) };
+}

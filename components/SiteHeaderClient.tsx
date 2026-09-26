@@ -72,11 +72,12 @@ export function SiteHeaderClient({
           <Icon name="menu" />
         </button>
         <Link href="/" className="site-header__logo" aria-label={`${siteName}, דף הבית`}>
-          <img
+          <Image
             src={overlay ? "/assets/baku40-logo.png" : "/assets/baku40-logo-skyblue.png"}
             alt={siteName}
             width={113}
             height={32}
+            priority
           />
         </Link>
         <nav aria-label="ניווט ראשי" className="site-nav">
@@ -158,7 +159,7 @@ export function SiteHeaderClient({
           <div className="drawer-backdrop" onClick={() => setDrawer(false)} />
           <div className="drawer" role="dialog" aria-modal="true" aria-label="תפריט">
             <div className="drawer__top">
-              <img src="/assets/baku40-logo-skyblue.png" alt={siteName} width={85} height={24} />
+              <Image src="/assets/baku40-logo-skyblue.png" alt={siteName} width={85} height={24} />
               <button type="button" className="drawer__close" aria-label="סגירה" onClick={() => setDrawer(false)}>
                 <Icon name="close" />
               </button>

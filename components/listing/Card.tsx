@@ -6,7 +6,7 @@ import { Icon } from "../Icon";
 import type { CardData } from "./types";
 import { VerifyBadge } from "./VerifyBadge";
 
-export function Card({ card }: { card: CardData }) {
+export function Card({ card, priority = false }: { card: CardData; priority?: boolean }) {
   const { has, toggle } = useSaved();
   const saved = has(card.id);
   return (
@@ -19,6 +19,7 @@ export function Card({ card }: { card: CardData }) {
               src={card.photo.src}
               alt={card.photo.alt}
               fill
+              priority={priority}
               sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 430px"
             />
             {card.photo.isRendering && <span className="photo-tag">הדמיה</span>}

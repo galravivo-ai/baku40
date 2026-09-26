@@ -134,8 +134,8 @@ export function ListingClient({ cards, groups, searchPlaceholder, sort, countTex
 
       {visible.length > 0 ? (
         <div className="card-grid">
-          {visible.map((card) => (
-            <Card key={card.id} card={card} />
+          {visible.map((card, i) => (
+            <Card key={card.id} card={card} priority={i < 3} />
           ))}
         </div>
       ) : (

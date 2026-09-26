@@ -149,9 +149,15 @@ export function getAllCollections(): Collection[] {
 export function assertUniqueSeo() {
   cached("seo-check", () => {
     const titles = new Map<string, string>();
+    // Length guidance (SEO spec §1): reported in the build log, not fatal.
+    const long: string[] = [];
+    const checkLength = (value: string | null | undefined, max: number, where: string, kind: string) => {
+      if (value && value.length > max) long.push(`${kind} ${value.length}/${max} תווים: ${where}`);
+    };
     const descs = new Map<string, string>();
     const add = (map: Map<string, string>, value: string | null | undefined, where: string, kind: string) => {
       if (!value) return;
+      checkLength(value, kind === "metaTitle" ? 65 : 160, where, kind);
       const prev = map.get(value);
       if (prev) throw new Error(`${kind} כפול: "${value}" מופיע גם ב-${prev} וגם ב-${where}`);
       map.set(value, where);
@@ -171,6 +177,7 @@ export function assertUniqueSeo() {
         add(descs, item.seo.metaDescription, item.url, "metaDescription");
       }
     }
+    if (long.length) console.warn(`SEO: ${long.length} ערכים ארוכים מהמומלץ:\n  ${long.join("\n  ")}`);
     return true;
   });
 }
@@ -190,6 +197,16 @@ export function getPhoto(photo: string, photoNote: string, alt: string, license?
     isRendering: license === "הדמיה" || isRendering(photo, sources),
     credit: isBookingPhoto(photo) ? "Booking.com" : undefined,
   };
+}
+
+/**
+ * Strict variant for search engines and sharing (SEO spec §4): only photos
+ * with a documented license or marked licensed/rendering in the admin — the
+ * owner's "show anyway" switches do not apply to the sitemap, OG or JSON-LD.
+ */
+export function getLicensedPhoto(photo: string, photoNote: string, alt: string, license?: string): PhotoInfo {
+  if (!isPublishable(photo, photoNote, getImageSources(), { license })) return null;
+  return getPhoto(photo, photoNote, alt, license);
 }
 
 export type VerifyKind = "ok" | "partial" | "edit" | "pending" | "none";
