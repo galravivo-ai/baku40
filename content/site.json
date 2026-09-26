@@ -174,7 +174,11 @@
       "href": "/privacy/"
     },
     {
-      "label": "גילוי נאות",
+      "label": "תקנון",
+      "href": "/terms/"
+    },
+    {
+      "label": "גילוי נאות — קישורי שותפים",
       "href": "/affiliate-disclosure/"
     }
   ],
@@ -182,5 +186,129 @@
   "affiliateDisclosure": "כפתור \"בדקו זמינות\" עשוי להוביל לאתר הזמנות שממנו אנחנו מקבלים עמלה. הדירוג והתיאור באתר אינם מושפעים מכך, ומחירים אינם מוצגים כאן אלא באתר ההזמנות.",
   "affiliateDisclosureShort": "קישור שותפים: אם תזמינו דרכו, אנחנו עשויים לקבל עמלה, בלי עלות נוספת עבורכם.",
   "showBookingPhotos": true,
-  "showUndocumentedPhotos": true
+  "showUndocumentedPhotos": true,
+  "footerTagline": "מדריך באקו ואזרבייג'ן בעברית. מידע מאומת, מסלולים מסודרים וכלי תכנון — לא אוסף כתבות.",
+  "footerColumns": [
+    {
+      "head": "לגלות את באקו",
+      "items": [
+        {
+          "label": "אטרקציות",
+          "href": "/attractions/"
+        },
+        {
+          "label": "העיר העתיקה",
+          "href": "/areas/old-city/"
+        },
+        {
+          "label": "אזורי העיר",
+          "href": "/areas/old-city/"
+        },
+        {
+          "label": "נקודות תצפית",
+          "href": "/attractions/"
+        },
+        {
+          "label": "מפה",
+          "href": "/map/"
+        }
+      ]
+    },
+    {
+      "head": "לתכנן",
+      "items": [
+        {
+          "label": "פעם ראשונה",
+          "href": "/travel-info/"
+        },
+        {
+          "label": "מסלולים",
+          "href": "/itineraries/"
+        },
+        {
+          "label": "Trip Planner",
+          "href": "/#planner"
+        },
+        {
+          "label": "הטיול שלי",
+          "href": "/favorites/"
+        },
+        {
+          "label": "מזג אוויר",
+          "href": "/travel-info/"
+        }
+      ]
+    },
+    {
+      "head": "אוכל ולינה",
+      "items": [
+        {
+          "label": "מסעדות",
+          "href": "/restaurants/"
+        },
+        {
+          "label": "מטבח מקומי",
+          "href": "/restaurants/"
+        },
+        {
+          "label": "מלונות",
+          "href": "/hotels/"
+        },
+        {
+          "label": "לפי אזור",
+          "href": "/hotels/"
+        },
+        {
+          "label": "למשפחות",
+          "href": "/hotels/?f=משפחות"
+        }
+      ]
+    },
+    {
+      "head": "מעבר לבאקו",
+      "items": [
+        {
+          "label": "גובוסטן",
+          "href": "/day-trips/"
+        },
+        {
+          "label": "אבשרון",
+          "href": "/day-trips/"
+        },
+        {
+          "label": "גבאלה",
+          "href": "/day-trips/"
+        },
+        {
+          "label": "שאהדאג",
+          "href": "/day-trips/"
+        },
+        {
+          "label": "קובה",
+          "href": "/day-trips/"
+        }
+      ]
+    },
+    {
+      "head": "נדל\"ן",
+      "items": [
+        {
+          "label": "מאגר ידע",
+          "href": "/real-estate/baku/"
+        },
+        {
+          "label": "אזורים",
+          "href": "/real-estate/baku/"
+        },
+        {
+          "label": "פרויקטים",
+          "href": "/real-estate/baku/"
+        },
+        {
+          "label": "תהליך רכישה",
+          "href": "/real-estate/baku/"
+        }
+      ]
+    }
+  ]
 }

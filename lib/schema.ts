@@ -49,6 +49,8 @@ export const siteSchema = z.object({
   ),
   nav: z.array(navItemSchema).min(1),
   footer: z.array(navLinkSchema),
+  footerTagline: text,
+  footerColumns: z.array(z.object({ head: text, items: z.array(navLinkSchema) })),
   copyright: text,
   affiliateDisclosure: text.min(1),
   affiliateDisclosureShort: text.min(1),
@@ -186,3 +188,97 @@ export type Item = z.infer<typeof itemSchema>;
 export type Collection = z.infer<typeof collectionSchema>;
 export type Area = z.infer<typeof areasSchema>["items"][number];
 export type ImageSources = z.infer<typeof imageSourcesSchema>;
+
+// content/pages/home.json (design: Baku40 Home.dc.html)
+const photoFields = { photo: text, photoAlt: text };
+const linkSchema = z.object({ label: text, href: text });
+
+export const homeSchema = z.object({
+  hero: z.object({
+    ...photoFields,
+    kicker: text,
+    h1: text.min(1),
+    intro: text,
+    searchPlaceholder: text,
+    ctaLabel: text,
+    ctaHref: text,
+    choices: z.array(z.object({ title: text, href: text })),
+    utility: z.array(z.object({ label: text, value: text, live: z.literal("weather").optional() })),
+  }),
+  quick: z.array(z.object({ title: text, icon: text, href: text, sub: text })),
+  firstTime: z.object({
+    ...photoFields,
+    kicker: text,
+    title: text,
+    text: text,
+    items: z.array(z.object({ num: text, title: text, icon: text, sub: text, href: text })),
+  }),
+  attractions: z.object({
+    title: text,
+    text: text,
+    linkLabel: text,
+    filters: z.array(text).min(1),
+    items: z.array(
+      z.object({ id: text, ...photoFields, name: text, area: text, dur: text, tags: z.array(text), note: text }),
+    ),
+  }),
+  planner: z.object({
+    kicker: text,
+    title: text,
+    text: text,
+    daysLabel: text,
+    whoLabel: text,
+    interestsLabel: text,
+    who: z.array(text).min(1),
+    interests: z.array(text),
+    previewLabel: text,
+    days: z.array(text).min(1),
+    kidsDay2: text,
+    ctaLabel: text,
+    ctaHref: text,
+    footnote: text,
+  }),
+  itineraries: z.object({
+    title: text,
+    href: text,
+    items: z.array(z.object({ days: text, title: text, text: text, meta: text })),
+  }),
+  hotels: z.object({
+    title: text,
+    text: text,
+    linkLabel: text,
+    items: z.array(
+      z.object({ slug: text, stars: text, area: text, ...photoFields, text: text, tags: z.array(text), walk: text }),
+    ),
+  }),
+  food: z.object({
+    title: text,
+    text: text,
+    items: z.array(z.object({ slug: text, icon: text, ...photoFields, meta: text, note: text })),
+    linksTitle: text,
+    links: z.array(linkSchema),
+  }),
+  practical: z.object({
+    title: text,
+    checked: text,
+    linkLabel: text,
+    href: text,
+    items: z.array(z.object({ title: text, icon: text, text: text })),
+  }),
+  realEstate: z.object({
+    kicker: text,
+    title: text,
+    text: text,
+    links: z.array(text),
+    linksHref: text,
+    projects: z.array(
+      z.object({ name: text, text: text, meta: text, photo: text, badge: text, href: text }),
+    ),
+  }),
+  magazine: z.object({
+    title: text,
+    href: text,
+    items: z.array(z.object({ cat: text, photo: text, title: text, text: text })),
+  }),
+});
+export type Home = z.infer<typeof homeSchema>;

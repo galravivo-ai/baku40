@@ -6,11 +6,13 @@ import { isBookingPhoto, isPublishable, isRendering } from "./image-policy.mjs";
 import {
   areasSchema,
   collectionSchema,
+  homeSchema,
   imageSourcesSchema,
   redirectsSchema,
   siteSchema,
   type Area,
   type Collection,
+  type Home,
   type ImageSources,
   type Item,
   type Site,
@@ -58,6 +60,14 @@ export type CollectionKey = keyof typeof COLLECTION_FILES;
 
 export function getSite(): Site {
   return cached("site", () => load("site.json", siteSchema));
+}
+
+export function getHome(): Home {
+  return cached("home", () => load("pages/home.json", homeSchema));
+}
+
+export function getItem(key: CollectionKey, slug: string): Item | undefined {
+  return getCollection(key).items.find((i) => i.slug === slug);
 }
 
 export function getAreas(): Area[] {

@@ -1,4 +1,4 @@
-import { getPhoto, getSite } from "@/lib/content";
+import { getHome, getPhoto, getSite } from "@/lib/content";
 import { SiteHeaderClient, type HeaderNavItem } from "./SiteHeaderClient";
 
 export function SiteHeader() {
@@ -16,5 +16,8 @@ export function SiteHeader() {
         }
       : undefined,
   }));
-  return <SiteHeaderClient nav={nav} siteName={site.name} />;
+  const hero = getHome().hero;
+  return (
+    <SiteHeaderClient nav={nav} siteName={site.name} cta={{ label: hero.ctaLabel, href: hero.ctaHref }} />
+  );
 }

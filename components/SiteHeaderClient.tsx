@@ -20,7 +20,15 @@ function isActive(item: HeaderNavItem, pathname: string) {
   return hrefs.some((h) => h !== "/" && pathname.startsWith(h));
 }
 
-export function SiteHeaderClient({ nav, siteName }: { nav: HeaderNavItem[]; siteName: string }) {
+export function SiteHeaderClient({
+  nav,
+  siteName,
+  cta,
+}: {
+  nav: HeaderNavItem[];
+  siteName: string;
+  cta: { label: string; href: string };
+}) {
   const pathname = usePathname() ?? "/";
   const { list } = useSaved();
   const [mega, setMega] = useState<string | null>(null);
@@ -45,9 +53,14 @@ export function SiteHeaderClient({ nav, siteName }: { nav: HeaderNavItem[]; site
   }, [mega, drawer]);
 
   const activeMega = nav.find((n) => n.label === mega && n.links);
+  // Home page: transparent header laid over the hero photo (design 1a).
+  const overlay = pathname === "/";
 
   return (
-    <header className="site-header" onMouseLeave={() => setMega(null)}>
+    <header
+      className={overlay ? "site-header site-header--overlay" : "site-header"}
+      onMouseLeave={() => setMega(null)}
+    >
       <div className="site-header__bar">
         <button
           type="button"
@@ -59,7 +72,12 @@ export function SiteHeaderClient({ nav, siteName }: { nav: HeaderNavItem[]; site
           <Icon name="menu" />
         </button>
         <Link href="/" className="site-header__logo" aria-label={`${siteName}, דף הבית`}>
-          <img src="/assets/baku40-logo-skyblue.png" alt={siteName} width={113} height={32} />
+          <img
+            src={overlay ? "/assets/baku40-logo.png" : "/assets/baku40-logo-skyblue.png"}
+            alt={siteName}
+            width={113}
+            height={32}
+          />
         </Link>
         <nav aria-label="ניווט ראשי" className="site-nav">
           {nav.map((n) => (
@@ -98,6 +116,11 @@ export function SiteHeaderClient({ nav, siteName }: { nav: HeaderNavItem[]; site
             {list.length}
           </span>
         </Link>
+        {overlay && (
+          <a href={cta.href} className="site-header__cta">
+            {cta.label}
+          </a>
+        )}
       </div>
 
       {activeMega?.links && (
