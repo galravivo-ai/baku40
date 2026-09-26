@@ -1353,3 +1353,25 @@ a.card__cta:hover { text-decoration: underline; }
 @media (max-width: 900px) {
   .attr-head { grid-template-columns: 1fr; gap: 0; margin-bottom: 16px; }
 }
+
+/* ---------- search / favorites ---------- */
+.narrow-page { max-width: 900px; padding-bottom: 20px; }
+.search-field--big { margin-bottom: 18px; min-height: 56px; }
+.search-field--big input { font-size: 18px; }
+.search-results { display: flex; flex-direction: column; gap: 24px; margin-top: 16px; }
+.search-results ul, .fav-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.search-results a, .fav-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-10);
+  text-decoration: none;
+}
+.search-results a:hover, .fav-list a:hover { border-color: var(--active); }
+.search-results strong, .fav-list strong { font: 700 18px var(--font-head); color: var(--navy); }
+.search-results span, .fav-list a > span:last-child { font: 400 14px var(--font-body); color: var(--text-muted); }
+.fav-list li { display: flex; align-items: center; gap: 12px; }
+.fav-list li a { flex: 1; }
+.fav-list .kicker { margin: 0; font-size: 12px; }

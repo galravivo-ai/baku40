@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
 import { AreaTabs, type AreaTab } from "@/components/area/AreaTabs";
 import { absoluteUrl, getAreas, getCollection } from "@/lib/content";
-import { breadcrumbJsonLd, pageMetadata, type Crumb } from "@/lib/seo";
+import { areaWordCount, breadcrumbJsonLd, MIN_INDEXABLE_WORDS, pageMetadata, type Crumb } from "@/lib/seo";
 
 // Area page — design/Baku40 Editorial Templates.dc.html (3b). Long-form text
 // comes from content/areas.json; the lists come from the collections.
@@ -25,18 +25,6 @@ function load(slug: string) {
   return area;
 }
 
-function wordCount(area: ReturnType<typeof load>) {
-  const text = [
-    ...(area.fits?.paragraphs ?? []),
-    ...(area.howTo?.paragraphs ?? []),
-    area.howTo?.tip?.text ?? "",
-    ...(area.pros ?? []),
-    ...(area.cons ?? []),
-    area.gettingThere?.text ?? "",
-  ].join(" ");
-  return text.split(/\s+/).filter(Boolean).length;
-}
-
 export async function generateMetadata({ params }: Props) {
   const area = load((await params).slug);
   return pageMetadata({
@@ -44,7 +32,7 @@ export async function generateMetadata({ params }: Props) {
     fallbackTitle: `${area.name}: איפה לישון, לאכול ומה לראות`,
     fallbackDescription: area.subtitle ?? area.fits?.paragraphs[0] ?? `${area.name} בבאקו: מלונות, מסעדות וקניות באזור.`,
     // SEO spec §8: under 150 words of unique text ⇒ noindex until completed.
-    robots: wordCount(area) < 150 ? "noindex,follow" : "index,follow",
+    robots: areaWordCount(area) < MIN_INDEXABLE_WORDS ? "noindex,follow" : "index,follow",
   });
 }
 

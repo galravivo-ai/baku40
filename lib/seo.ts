@@ -1,7 +1,7 @@
 import "server-only";
 import type { Metadata } from "next";
 import { absoluteUrl, getAllCollections, getPhoto, getSite, type PhotoInfo } from "./content";
-import type { Collection, Item } from "./schema";
+import type { Area, Collection, Item } from "./schema";
 
 /** Vercel preview deployments are never indexed (SEO spec §1). */
 export function isProductionIndexable() {
@@ -162,3 +162,15 @@ export function itemWordCount(item: Item): number {
 }
 
 export const MIN_INDEXABLE_WORDS = 150;
+
+export function areaWordCount(area: Area): number {
+  const text = [
+    ...(area.fits?.paragraphs ?? []),
+    ...(area.howTo?.paragraphs ?? []),
+    area.howTo?.tip?.text ?? "",
+    ...(area.pros ?? []),
+    ...(area.cons ?? []),
+    area.gettingThere?.text ?? "",
+  ].join(" ");
+  return text.split(/\s+/).filter(Boolean).length;
+}
