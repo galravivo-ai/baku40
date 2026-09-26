@@ -26,7 +26,7 @@
   <div style="display:flex; flex-direction:column; gap:10px; max-width:900px">
     <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#1A63B8">BAKU40 · דף הבית · Editorial Index</div>
     <h1 style="font:800 40px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0">דף הבית — הכיוון הנבחר</h1>
-    <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0"><a href="Baku40%20Site.dc.html" style="font-weight:600">← חזרה למפת המסכים</a> · דסקטופ 1440 ומובייל 390. פעילים: מגה־מניו, חיפוש מקובץ לפי סוג ישות, פילטרים, שמירת מקומות, מפה ו‑Trip Planner. הכיוון השני נשמר בקובץ Baku40 Home Options.</p>
+    <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0"><a href="Baku40%20Site.dc.html" style="font-weight:600">← חזרה למפת המסכים</a> · דסקטופ 1440 ומובייל 390. פעילים: מגה־מניו, חיפוש מקובץ לפי סוג ישות, פילטרים, שמירת מקומות, מפה ומסלולים מוכנים. הכיוון השני נשמר בקובץ Baku40 Home Options.</p>
   </div>
 
   <div style="display:flex; flex-wrap:wrap; gap:80px; align-items:flex-start">
@@ -60,11 +60,7 @@
                   <div style="width:14px; height:14px; border:2px solid #FFFFFF; border-radius:50%"></div>
                   <span>חיפוש</span>
                 </div>
-                <a href="Baku40%20Product%20Screens.dc.html#4d" style="display:flex; align-items:center; gap:8px; font:700 16px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none; cursor:pointer">
-                  <span>הטיול שלי</span>
-                  <span style="background:#1665C1; color:#FFFFFF; border-radius:999px; min-width:24px; height:24px; display:flex; align-items:center; justify-content:center; font:800 13px 'Heebo',sans-serif">{{ savedCount }}</span>
-                </a>
-                <a href="Baku40%20Product%20Screens.dc.html#4b" style="background:#1665C1; color:#FFFFFF; font:700 16px 'Assistant',sans-serif; padding:13px 20px; border-radius:9px; cursor:pointer; min-height:48px; display:flex; align-items:center; text-decoration:none">{{ ctaLabel }}</a>
+                <a href="Baku40%20Collection%20Listings.dc.html#8c" style="background:#1665C1; color:#FFFFFF; font:700 16px 'Assistant',sans-serif; padding:13px 20px; border-radius:9px; cursor:pointer; min-height:48px; display:flex; align-items:center; text-decoration:none">{{ ctaLabel }}</a>
               </div>
 
               <sc-if value="{{ megaA }}" hint-placeholder-val="{{ false }}">
@@ -95,7 +91,7 @@
             <div style="position:relative; z-index:10; max-width:1360px; margin:0 auto; padding:74px 40px 0">
               <div style="max-width:780px">
                 <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#8FBEF2; margin-bottom:18px">באקו · אזרבייג'ן · מדריך בעברית</div>
-                <h1 style="font:900 84px/1.02 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 20px">כל מה שצריך לדעת<br>על באקו</h1>
+                <h1 style="font:900 84px/1.02 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 20px">באקו,<br>בלי ניחושים</h1>
                 <p style="font:400 22px/1.65 'Assistant',sans-serif; color:#FFFFFF; margin:0 0 32px; max-width:620px">אטרקציות, מלונות, אוכל ומסלולים לפי אזור ולפי מספר הימים שיש לכם — במקום אחד.</p>
                 <div onClick="{{ openSearch }}" style="background:#FFFFFF; border:1px solid #E4E7EC; border-radius:12px; padding:10px; display:flex; gap:10px; align-items:center; max-width:680px; box-shadow:0 24px 48px -24px rgba(26,29,66,.5); cursor:pointer">
                   <div style="display:flex; align-items:center; gap:12px; flex:1; padding:0 12px">
@@ -202,53 +198,90 @@
 
           <!-- planner teaser -->
           <div style="max-width:1320px; margin:0 auto; padding:72px 40px 0">
-            <div style="background:#262A5B; border-radius:14px; padding:44px; display:grid; grid-template-columns:1fr 420px; gap:44px">
-              <div>
-                <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.1em; color:#1665C1; margin-bottom:12px">TRIP PLANNER</div>
-                <h2 style="font:800 38px/1.2 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 12px">כמה ימים יש לכם, ומי איתכם?</h2>
-                <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#FFFFFF; margin:0 0 28px; max-width:520px">שלושה קליקים ומקבלים חלוקה ליום־יום לפי גיאוגרפיה וזמני מעבר, לא רשימת אטרקציות.</p>
-                <div style="display:flex; flex-direction:column; gap:20px">
-                  <div>
-                    <div style="font:600 14px 'Assistant',sans-serif; color:#BFC2D8; margin-bottom:8px">מספר ימים</div>
-                    <div style="display:flex; gap:8px">
-                      <sc-for list="{{ dayOptions }}" as="d" hint-placeholder-count="5">
-                        <div onClick="{{ d.onClick }}" style="cursor:pointer; width:52px; height:48px; border-radius:9px; display:flex; align-items:center; justify-content:center; font:800 18px 'Heebo',sans-serif; background:{{ d.bg }}; color:{{ d.fg }}; border:1px solid {{ d.border }}">{{ d.label }}</div>
-                      </sc-for>
-                    </div>
-                  </div>
-                  <div>
-                    <div style="font:600 14px 'Assistant',sans-serif; color:#BFC2D8; margin-bottom:8px">מי מטייל</div>
-                    <div style="display:flex; gap:8px; flex-wrap:wrap">
-                      <sc-for list="{{ whoOptions }}" as="w" hint-placeholder-count="4">
-                        <div onClick="{{ w.onClick }}" style="cursor:pointer; padding:12px 18px; border-radius:9px; font:600 16px 'Assistant',sans-serif; background:{{ w.bg }}; color:{{ w.fg }}; border:1px solid {{ w.border }}">{{ w.label }}</div>
-                      </sc-for>
-                    </div>
-                  </div>
-                  <div>
-                    <div style="font:600 14px 'Assistant',sans-serif; color:#BFC2D8; margin-bottom:8px">מה מעניין (אפשר כמה)</div>
-                    <div style="display:flex; gap:8px; flex-wrap:wrap">
-                      <sc-for list="{{ interestOptions }}" as="i" hint-placeholder-count="6">
-                        <div onClick="{{ i.onClick }}" style="cursor:pointer; padding:10px 16px; border-radius:8px; font:600 15px 'Assistant',sans-serif; background:{{ i.bg }}; color:{{ i.fg }}; border:1px solid {{ i.border }}">{{ i.label }}</div>
-                      </sc-for>
-                    </div>
+            <div style="background:#262A5B; border-radius:14px; padding:44px; display:flex; flex-direction:column; gap:28px">
+              <div style="display:flex; align-items:flex-end; gap:32px; flex-wrap:wrap">
+                <div style="flex:1; min-width:320px">
+                  <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.1em; color:#8FBEF2; margin-bottom:12px">מסלולים מוכנים</div>
+                  <h2 style="font:800 38px/1.2 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 10px">כמה ימים יש לכם בבאקו?</h2>
+                  <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#FFFFFF; margin:0; max-width:560px">בחרו מספר ימים וקבלו את המסלולים שכתבנו בדיוק לזה, עם סדר עצירות וקצב שבדקנו בעצמנו.</p>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:8px">
+                  <div style="font:600 14px 'Assistant',sans-serif; color:#BFC2D8">מספר ימים</div>
+                  <div style="display:flex; gap:8px">
+                    <sc-for list="{{ dayOptions }}" as="d" hint-placeholder-count="6">
+                      <div onClick="{{ d.onClick }}" role="button" aria-pressed="{{ d.pressed }}" style="cursor:pointer; width:56px; height:52px; border-radius:10px; display:flex; align-items:center; justify-content:center; font:800 19px 'Heebo',sans-serif; background:{{ d.bg }}; color:{{ d.fg }}; border:1px solid {{ d.border }}">{{ d.label }}</div>
+                    </sc-for>
                   </div>
                 </div>
               </div>
-              <div style="background:#FFFFFF; border:1px solid #E4E7EC; border-radius:12px; padding:28px; display:flex; flex-direction:column; gap:14px">
-                <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#1A63B8">תצוגה מקדימה</div>
-                <div style="font:700 24px/1.3 'Heebo',sans-serif; color:#262A5B">{{ plannerTitle }}</div>
-                <sc-for list="{{ plannerDays }}" as="p" hint-placeholder-count="3">
-                  <div style="border-top:1px solid #E3EBF5; padding-top:12px">
-                    <div style="font:700 15px 'Heebo',sans-serif; color:#1665C1; margin-bottom:4px">{{ p.day }}</div>
-                    <div style="font:400 16px/1.6 'Assistant',sans-serif; color:#2A2A30">{{ p.text }}</div>
+              <div style="display:flex; align-items:center; gap:14px; border-top:1px solid #31366E; padding-top:20px">
+                <div style="font:700 18px 'Heebo',sans-serif; color:#FFFFFF">{{ itinTitle }}</div>
+                <a href="Baku40%20Collection%20Listings.dc.html#8c" style="margin-inline-start:auto; font:600 15px 'Assistant',sans-serif; color:#8FBEF2">לכל 9 המסלולים</a>
+              </div>
+              <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:16px">
+                <sc-for list="{{ itinCards }}" as="c" hint-placeholder-count="4">
+                <a href="{{ c.href }}" style="background:#FFFFFF; border-radius:12px; overflow:hidden; display:flex; flex-direction:column; text-decoration:none" style-hover="box-shadow:0 10px 28px rgba(0,0,0,.25)">
+                  <div style="position:relative; height:160px; background:repeating-linear-gradient(135deg,#DFE8F3,#DFE8F3 12px,#EFF4FA 12px,#EFF4FA 24px); display:flex; align-items:flex-end; padding:10px">
+                    <div role="img" aria-label="{{ c.photoAlt }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ c.bg }}; background-size:cover; background-position:center"></div>
+                    <sc-if value="{{ c.photoNote }}" hint-placeholder-val="{{ false }}"><span style="position:relative; font:400 11px ui-monospace,monospace; color:#FFFFFF; background:rgba(26,29,66,.78); border-radius:6px; padding:4px 8px">{{ c.photoNote }}</span></sc-if>
+                    <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute; top:10px; inset-inline-start:10px; background:#1665C1; color:#FFFFFF; border-radius:6px; padding:5px 9px; font:700 12px 'Heebo',sans-serif">{{ c.badge }}</div></sc-if>
                   </div>
+                  <div style="padding:16px 18px 16px; display:flex; flex-direction:column; gap:7px; flex:1">
+                    <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ c.meta }}</div>
+                    <div style="font:700 20px/1.3 'Heebo',sans-serif; color:#262A5B">{{ c.name }}</div>
+                    <div style="font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30">{{ c.text }}</div>
+                    <div style="flex:1"></div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid #E3EBF5; padding-top:10px; margin-top:4px">
+                      <span style="font:600 12px 'Assistant',sans-serif; color:#1A63B8; background:#E4EFFB; border-radius:6px; padding:4px 8px">מסלול עריכתי</span>
+                      <span style="font:700 14px 'Assistant',sans-serif; color:#1A63B8">למסלול ←</span>
+                    </div>
+                  </div>
+                </a>
                 </sc-for>
-                <div style="flex:1"></div>
-                <a href="Baku40%20Product%20Screens.dc.html#4c" style="background:#1665C1; color:#FFFFFF; font:700 17px 'Assistant',sans-serif; padding:14px; border-radius:9px; text-align:center; cursor:pointer; min-height:48px; text-decoration:none; display:block">בנו את המסלול המלא</a>
-                <div style="font:400 13px/1.5 'Assistant',sans-serif; color:#6E6B78">המסלול נבנה מזמני ביקור ומרחקים אמיתיים שמוגדרים בכל מקום במערכת.</div>
               </div>
             </div>
           </div>
+
+          <!-- real estate -->
+          <sc-if value="{{ showRealEstate }}" hint-placeholder-val="{{ true }}">
+            <div style="max-width:1320px; margin:0 auto; padding:72px 40px 0">
+              <div style="background:#1A1D42; border-radius:18px; padding:48px; display:flex; flex-direction:column; gap:32px">
+                <div style="display:flex; align-items:flex-end; gap:40px; flex-wrap:wrap">
+                  <div style="flex:1; min-width:360px">
+                    <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#8FBEF2; margin-bottom:12px">נדל״ן והשקעות</div>
+                    <h2 style="font:900 46px/1.1 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 14px">באקו גם מעבר לחופשה</h2>
+                    <p style="font:400 19px/1.7 'Assistant',sans-serif; color:#E4E6F1; margin:0; max-width:620px; text-wrap:pretty">שוק הנדל״ן בבאקו, מהצד של מי שקונה מחו״ל: אזורים, תהליך רכישה לזרים, מיסוי ופרויקטים. כל מחיר ותשואה מוצגים עם מקור ותאריך בדיקה.</p>
+                  </div>
+                  <a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9b" style="display:flex; align-items:center; gap:10px; background:#FFFFFF; color:#262A5B; border-radius:10px; padding:0 22px; height:52px; font:700 17px 'Assistant',sans-serif; text-decoration:none" style-hover="background:#E4EFFB">
+                    <span>למדריך ההשקעות</span><span style="font-family:'Material Symbols Rounded'; font-size:20px">arrow_back</span>
+                  </a>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(420px,1fr)); gap:20px">
+                  <sc-for list="{{ reProjects }}" as="p" hint-placeholder-count="2">
+                    <a href="{{ p.href }}" style="position:relative; height:340px; border-radius:14px; overflow:hidden; display:block; text-decoration:none; background:#262A5B" style-hover="box-shadow:0 0 0 2px #8FBEF2">
+                      <div role="img" aria-label="{{ p.name }} — {{ p.badge }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ p.bg }}; background-size:cover; background-position:center"></div>
+                      <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(26,29,66,0) 30%,rgba(26,29,66,.92) 100%)"></div>
+                      <div style="position:absolute; top:16px; inset-inline-start:16px; background:rgba(26,29,66,.85); color:#FFFFFF; border-radius:6px; padding:6px 10px; font:700 12px 'Heebo',sans-serif">{{ p.badge }}</div>
+                      <div style="position:absolute; bottom:0; inset-inline:0; padding:24px; display:flex; flex-direction:column; gap:8px">
+                        <div style="font:800 28px/1.15 'Heebo',sans-serif; color:#FFFFFF">{{ p.name }}</div>
+                        <div style="font:400 16px/1.55 'Assistant',sans-serif; color:#FFFFFF; max-width:520px">{{ p.text }}</div>
+                        <div style="display:flex; align-items:center; gap:10px; margin-top:4px">
+                          <span style="font:400 13px 'Assistant',sans-serif; color:#BFC2D8">{{ p.meta }}</span>
+                          <span style="margin-inline-start:auto; font:700 15px 'Assistant',sans-serif; color:#8FBEF2">לפרויקט ←</span>
+                        </div>
+                      </div>
+                    </a>
+                  </sc-for>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; border-top:1px solid #2C3160; padding-top:24px">
+                  <span style="font:600 14px 'Assistant',sans-serif; color:#BFC2D8; margin-inline-end:6px">נושאים במדריך:</span>
+                  <sc-for list="{{ reLinks }}" as="l" hint-placeholder-count="6">
+                    <a href="Baku40%20Real%20Estate.dc.html#5a" style="border:1px solid #3A407A; border-radius:999px; padding:9px 16px; font:600 15px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none" style-hover="border-color:#8FBEF2; background:#262A5B">{{ l }}</a>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </sc-if>
 
           <!-- map -->
           <div style="max-width:1320px; margin:0 auto; padding:72px 40px 0">
@@ -314,20 +347,6 @@
             </div>
           </div>
 
-          <!-- itineraries -->
-          <div style="max-width:1320px; margin:32px auto 0; padding:56px 44px; background:#E4EFFB; border-radius:18px">
-            <h2 style="font:800 40px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0 0 20px">מסלולים מוכנים</h2>
-            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px">
-              <sc-for list="{{ itineraries }}" as="i" hint-placeholder-count="4">
-                <a href="Baku40%20Editorial%20Templates.dc.html#3d" style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; padding:24px; display:flex; flex-direction:column; gap:12px; cursor:pointer; text-decoration:none" style-hover="border-color:#1665C1">
-                  <div style="font:900 44px/1 'Heebo',sans-serif; color:#1665C1">{{ i.days }}</div>
-                  <div style="font:700 21px/1.3 'Heebo',sans-serif; color:#262A5B">{{ i.title }}</div>
-                  <div style="font:400 16px/1.65 'Assistant',sans-serif; color:#2A2A30">{{ i.text }}</div>
-                  <div style="border-top:1px solid #E3EBF5; padding-top:12px; font:400 14px/1.6 'Assistant',sans-serif; color:#6E6B78">{{ i.meta }}</div>
-                </a>
-              </sc-for>
-            </div>
-          </div>
 
           <!-- recommended hotels -->
           <div style="max-width:1320px; margin:0 auto; padding:72px 40px 0">
@@ -408,19 +427,19 @@
 
           <!-- practical -->
           <div style="max-width:1320px; margin:0 auto; padding:72px 40px 0">
-            <div style="background:#E4EFFB; border-radius:14px; padding:40px">
+            <div style="background:#262A5B; border-radius:14px; padding:40px">
               <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px">
-                <h2 style="font:800 36px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0">מידע שימושי לפני הטיסה</h2>
+                <h2 style="font:800 36px/1.2 'Heebo',sans-serif; color:#FFFFFF; margin:0">מידע שימושי לפני הטיסה</h2>
                 <div style="display:flex; align-items:center; gap:16px">
-                  <span style="font:400 14px 'Assistant',sans-serif; color:#262A5B">נבדק לאחרונה: ספטמבר 2026</span>
-                  <a href="Baku40%20Travel%20Info.dc.html#7a" style="font:700 15px 'Assistant',sans-serif; color:#1A63B8; text-decoration:underline; text-underline-offset:3px">לכל המידע למטייל</a>
+                  <span style="font:400 14px 'Assistant',sans-serif; color:#BFC2D8">נבדק לאחרונה: ספטמבר 2026</span>
+                  <a href="Baku40%20Travel%20Info.dc.html#7a" style="font:700 15px 'Assistant',sans-serif; color:#8FBEF2; text-decoration:underline; text-underline-offset:3px">לכל המידע למטייל</a>
                 </div>
               </div>
               <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:14px">
                 <sc-for list="{{ practical }}" as="p" hint-placeholder-count="6">
-                  <a href="Baku40%20Travel%20Info.dc.html#7b" style="background:#FFFFFF; border-radius:10px; padding:20px; display:flex; flex-direction:column; gap:6px; cursor:pointer; text-decoration:none" style-hover="box-shadow:0 10px 24px -14px rgba(38,42,91,.35)">
+                  <a href="Baku40%20Travel%20Info.dc.html#7b" style="background:#FFFFFF; border-radius:10px; padding:20px; display:flex; flex-direction:column; gap:6px; cursor:pointer; text-decoration:none" style-hover="box-shadow:0 0 0 2px #8FBEF2">
                     <div style="display:flex; align-items:center; gap:10px">
-                      <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 24; line-height:1; font-size:22px; color:#262A5B; opacity:.6">{{ p.icon }}</span>
+                      <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'FILL' 0,'wght' 200,'GRAD' -25,'opsz' 24; line-height:1; font-size:22px; color:#1665C1">{{ p.icon }}</span>
                       <div style="font:700 19px 'Heebo',sans-serif; color:#262A5B">{{ p.title }}</div>
                     </div>
                     <div style="font:400 16px/1.65 'Assistant',sans-serif; color:#2A2A30">{{ p.text }}</div>
@@ -430,38 +449,6 @@
             </div>
           </div>
 
-          <!-- real estate -->
-          <sc-if value="{{ showRealEstate }}" hint-placeholder-val="{{ true }}">
-            <div style="max-width:1320px; margin:0 auto; padding:72px 40px 0">
-              <div style="border:1px solid #262A5B; border-radius:14px; padding:40px; display:grid; grid-template-columns:1fr 1fr; gap:40px; background:#FFFFFF">
-                <div>
-                  <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.1em; color:#1A63B8; margin-bottom:12px">נדל"ן והשקעות</div>
-                  <h2 style="font:800 38px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0 0 14px">באקו גם מעבר לחופשה</h2>
-                  <p style="font:400 18px/1.8 'Assistant',sans-serif; color:#2A2A30; margin:0 0 22px">מאגר ידע על שוק הנדל"ן בבאקו: אזורים, תהליך רכישה לזרים, מיסוי, שכירות ופרויקטים. מחירים ותשואות מוצגים רק עם מקור ותאריך בדיקה.</p>
-                  <div style="display:flex; gap:12px; flex-wrap:wrap">
-                    <sc-for list="{{ reLinks }}" as="l" hint-placeholder-count="4">
-                      <a href="Baku40%20Real%20Estate.dc.html#5a" style="border:1px solid #D9E3F0; border-radius:8px; padding:10px 15px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer; text-decoration:none" style-hover="border-color:#1665C1">{{ l }}</a>
-                    </sc-for>
-                  </div>
-                </div>
-                <div style="display:flex; flex-direction:column; gap:12px">
-                  <sc-for list="{{ reProjects }}" as="p" hint-placeholder-count="2">
-                    <a href="{{ p.href }}" style="display:grid; grid-template-columns:120px 1fr; gap:16px; border:1px solid #E3EBF5; border-radius:12px; padding:14px; cursor:pointer; text-decoration:none" style-hover="border-color:#1665C1">
-                      <div style="position:relative; height:96px; border-radius:8px; overflow:hidden">
-                        <div role="img" aria-label="{{ p.name }} — {{ p.badge }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ p.bg }}; background-color:#EFF4FA; background-size:cover; background-position:center"></div>
-                        <div style="position:absolute; bottom:0; inset-inline-start:0; inset-inline-end:0; background:rgba(26,29,66,.85); color:#FFFFFF; padding:4px 7px; font:700 10px 'Heebo',sans-serif; text-align:center">{{ p.badge }}</div>
-                      </div>
-                      <div style="display:flex; flex-direction:column; gap:5px">
-                        <div style="font:700 19px 'Heebo',sans-serif; color:#262A5B">{{ p.name }}</div>
-                        <div style="font:400 15px/1.55 'Assistant',sans-serif; color:#2A2A30">{{ p.text }}</div>
-                        <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ p.meta }}</div>
-                      </div>
-                    </a>
-                  </sc-for>
-                </div>
-              </div>
-            </div>
-          </sc-if>
 
           <!-- magazine + newsletter -->
           <div style="max-width:1320px; margin:32px auto 0; padding:56px 44px; background:#E4EFFB; border-radius:18px">
@@ -498,7 +485,7 @@
                 </sc-for>
               </div>
               <div style="margin-top:40px; border-top:1px solid #2C3160; padding-top:18px; display:flex; gap:20px; flex-wrap:wrap; font:400 14px 'Assistant',sans-serif; color:#BFC2D8">
-                <span>אודות</span><span>צור קשר</span><span>נגישות</span><span>פרטיות</span><span>תקנון</span><span>גילוי נאות — קישורי שותפים</span>
+                <a href="Baku40%20Editorial%20Templates.dc.html#3a" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">מגזין</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#9c" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">אודות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#9d" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">צור קשר</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#accessibility" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">הצהרת נגישות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#privacy" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">מדיניות פרטיות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#terms" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">תנאי שימוש</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#disclosure" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">גילוי נאות</a>
                 <span style="margin-inline-start:auto">© 2026 Baku40</span>
               </div>
             </div>
@@ -555,11 +542,11 @@
             <img src="assets/photos/flame-towers-day.png" alt="מגדלי הלהבה מעל מרכז באקו" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 45%; display:block">
             <div style="position:absolute; inset:0; background:linear-gradient(to bottom, rgba(26,29,66,0) 10%, rgba(26,29,66,.78) 45%, rgba(26,29,66,.96) 100%)"></div>
             <div style="position:absolute; inset-inline:0; bottom:0; padding:0 20px 24px; display:flex; flex-direction:column; gap:12px">
-              <h1 style="font:800 36px/1.12 'Heebo',sans-serif; color:#FFFFFF; margin:0; text-wrap:balance">כל מה שצריך לדעת על באקו</h1>
+              <h1 style="font:800 36px/1.12 'Heebo',sans-serif; color:#FFFFFF; margin:0; text-wrap:balance">באקו, בלי ניחושים</h1>
               <p style="font:400 17px/1.6 'Assistant',sans-serif; color:#FFFFFF; margin:0 0 6px">אטרקציות, מלונות, אוכל ומסלולים לפי אזור ולפי מספר הימים שלכם.</p>
               <div onClick="{{ openSearchMobile }}" style="background:#FFFFFF; border-radius:10px; padding:14px; min-height:48px; font:400 16px 'Assistant',sans-serif; color:#6E6B78; cursor:pointer">חיפוש מקום או שאלה</div>
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
-                <div style="background:#1665C1; color:#FFFFFF; font:700 16px 'Assistant',sans-serif; padding:14px 8px; border-radius:9px; text-align:center; min-height:48px; cursor:pointer">{{ ctaLabel }}</div>
+                <a href="Baku40%20Collection%20Listings.dc.html#8c" style="background:#1665C1; color:#FFFFFF; font:700 16px 'Assistant',sans-serif; padding:14px 8px; border-radius:9px; text-align:center; min-height:48px; cursor:pointer; text-decoration:none; display:flex; align-items:center; justify-content:center">{{ ctaLabel }}</a>
                 <div style="border:1px solid #FFFFFF; color:#FFFFFF; font:600 16px 'Assistant',sans-serif; padding:14px 8px; border-radius:9px; text-align:center; min-height:48px; cursor:pointer">גלו את באקו</div>
               </div>
             </div>
@@ -604,24 +591,97 @@
           </div>
 
           <div style="padding:32px 16px 0">
-            <div style="background:#262A5B; border-radius:14px; padding:24px">
-              <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.1em; color:#1665C1; margin-bottom:10px">TRIP PLANNER</div>
-              <h2 style="font:800 28px/1.2 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 14px">כמה ימים יש לכם?</h2>
-              <div style="display:flex; gap:8px; margin-bottom:16px">
-                <sc-for list="{{ dayOptions }}" as="d" hint-placeholder-count="5">
-                  <div onClick="{{ d.onClick }}" style="cursor:pointer; flex:1; height:48px; border-radius:9px; display:flex; align-items:center; justify-content:center; font:800 17px 'Heebo',sans-serif; background:{{ d.bg }}; color:{{ d.fg }}; border:1px solid {{ d.border }}">{{ d.label }}</div>
+            <div style="background:#262A5B; border-radius:14px; padding:22px 18px; display:flex; flex-direction:column; gap:14px">
+              <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.1em; color:#8FBEF2">מסלולים מוכנים</div>
+              <h2 style="font:800 28px/1.2 'Heebo',sans-serif; color:#FFFFFF; margin:0">כמה ימים יש לכם?</h2>
+              <div style="display:flex; gap:6px">
+                <sc-for list="{{ dayOptions }}" as="d" hint-placeholder-count="6">
+                  <div onClick="{{ d.onClick }}" role="button" aria-pressed="{{ d.pressed }}" style="cursor:pointer; flex:1; height:48px; border-radius:9px; display:flex; align-items:center; justify-content:center; font:800 17px 'Heebo',sans-serif; background:{{ d.bg }}; color:{{ d.fg }}; border:1px solid {{ d.border }}">{{ d.label }}</div>
                 </sc-for>
               </div>
-              <div style="background:#FFFFFF; border-radius:10px; padding:18px; display:flex; flex-direction:column; gap:10px">
-                <div style="font:700 19px 'Heebo',sans-serif; color:#262A5B">{{ plannerTitle }}</div>
-                <sc-for list="{{ plannerDays }}" as="p" hint-placeholder-count="3">
-                  <div style="border-top:1px solid #E3EBF5; padding-top:9px">
-                    <div style="font:700 14px 'Heebo',sans-serif; color:#1665C1">{{ p.day }}</div>
-                    <div style="font:400 15px/1.55 'Assistant',sans-serif; color:#2A2A30">{{ p.text }}</div>
+              <div style="font:600 14px 'Assistant',sans-serif; color:#BFC2D8">{{ itinTitle }} · החליקו לכל המסלולים</div>
+              <div style="display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch; margin-inline:-18px; padding-inline:18px; padding-bottom:4px">
+                <sc-for list="{{ itinAll }}" as="c" hint-placeholder-count="3">
+                <div style="flex:0 0 262px; scroll-snap-align:start; display:flex">
+                <a href="{{ c.href }}" style="background:#FFFFFF; border-radius:12px; overflow:hidden; display:flex; flex-direction:column; text-decoration:none" style-hover="box-shadow:0 10px 28px rgba(0,0,0,.25)">
+                  <div style="position:relative; height:130px; background:repeating-linear-gradient(135deg,#DFE8F3,#DFE8F3 12px,#EFF4FA 12px,#EFF4FA 24px); display:flex; align-items:flex-end; padding:10px">
+                    <div role="img" aria-label="{{ c.photoAlt }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ c.bg }}; background-size:cover; background-position:center"></div>
+                    <sc-if value="{{ c.photoNote }}" hint-placeholder-val="{{ false }}"><span style="position:relative; font:400 11px ui-monospace,monospace; color:#FFFFFF; background:rgba(26,29,66,.78); border-radius:6px; padding:4px 8px">{{ c.photoNote }}</span></sc-if>
+                    <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ false }}"><div style="position:absolute; top:10px; inset-inline-start:10px; background:#1665C1; color:#FFFFFF; border-radius:6px; padding:5px 9px; font:700 12px 'Heebo',sans-serif">{{ c.badge }}</div></sc-if>
                   </div>
+                  <div style="padding:14px 16px; display:flex; flex-direction:column; gap:7px; flex:1">
+                    <div style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ c.meta }}</div>
+                    <div style="font:700 18px/1.3 'Heebo',sans-serif; color:#262A5B">{{ c.name }}</div>
+                    <div style="font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30">{{ c.text }}</div>
+                    <div style="flex:1"></div>
+                    <div style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid #E3EBF5; padding-top:10px; margin-top:4px">
+                      <span style="font:600 12px 'Assistant',sans-serif; color:#1A63B8; background:#E4EFFB; border-radius:6px; padding:4px 8px">מסלול עריכתי</span>
+                      <span style="font:700 14px 'Assistant',sans-serif; color:#1A63B8">למסלול ←</span>
+                    </div>
+                  </div>
+                </a>
+                </div>
                 </sc-for>
-                <div style="background:#1665C1; color:#FFFFFF; font:700 16px 'Assistant',sans-serif; padding:14px; border-radius:9px; text-align:center; min-height:48px">למסלול המלא</div>
               </div>
+              <a href="Baku40%20Collection%20Listings.dc.html#8c" style="min-height:48px; display:flex; align-items:center; justify-content:center; border:1px solid #8FBEF2; border-radius:9px; font:700 15px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none">לכל 9 המסלולים</a>
+            </div>
+          </div>
+
+          <sc-if value="{{ showRealEstate }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:32px 16px 0">
+              <div style="background:#1A1D42; border-radius:14px; padding:24px 18px; display:flex; flex-direction:column; gap:16px">
+                <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.12em; color:#8FBEF2">נדל״ן והשקעות</div>
+                <h2 style="font:900 30px/1.12 'Heebo',sans-serif; color:#FFFFFF; margin:0">באקו גם מעבר לחופשה</h2>
+                <p style="font:400 16px/1.65 'Assistant',sans-serif; color:#E4E6F1; margin:0">שוק הנדל״ן בבאקו, מהצד של מי שקונה מחו״ל. כל מחיר ותשואה עם מקור ותאריך בדיקה.</p>
+                <div style="display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch; margin-inline:-18px; padding-inline:18px">
+                  <sc-for list="{{ reProjects }}" as="p" hint-placeholder-count="2">
+                    <a href="{{ p.href }}" style="flex:0 0 280px; scroll-snap-align:start; position:relative; height:300px; border-radius:12px; overflow:hidden; display:block; text-decoration:none; background:#262A5B">
+                      <div role="img" aria-label="{{ p.name }} — {{ p.badge }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ p.bg }}; background-size:cover; background-position:center"></div>
+                      <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(26,29,66,0) 25%,rgba(26,29,66,.94) 100%)"></div>
+                      <div style="position:absolute; top:12px; inset-inline-start:12px; background:rgba(26,29,66,.85); color:#FFFFFF; border-radius:6px; padding:5px 9px; font:700 11px 'Heebo',sans-serif">{{ p.badge }}</div>
+                      <div style="position:absolute; bottom:0; inset-inline:0; padding:18px; display:flex; flex-direction:column; gap:6px">
+                        <div style="font:800 22px/1.15 'Heebo',sans-serif; color:#FFFFFF">{{ p.name }}</div>
+                        <div style="font:400 14px/1.5 'Assistant',sans-serif; color:#FFFFFF">{{ p.text }}</div>
+                        <span style="font:700 14px 'Assistant',sans-serif; color:#8FBEF2; margin-top:2px">לפרויקט ←</span>
+                      </div>
+                    </a>
+                  </sc-for>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap">
+                  <sc-for list="{{ reLinks }}" as="l" hint-placeholder-count="6">
+                    <a href="Baku40%20Real%20Estate.dc.html#5a" style="border:1px solid #3A407A; border-radius:999px; padding:0 14px; height:40px; display:flex; align-items:center; font:600 14px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none">{{ l }}</a>
+                  </sc-for>
+                </div>
+                <a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9b" style="min-height:50px; display:flex; align-items:center; justify-content:center; gap:8px; background:#FFFFFF; color:#262A5B; border-radius:10px; font:700 16px 'Assistant',sans-serif; text-decoration:none"><span>למדריך ההשקעות</span><span style="font-family:'Material Symbols Rounded'; font-size:20px">arrow_back</span></a>
+              </div>
+            </div>
+          </sc-if>
+
+          <div style="padding:32px 16px 0">
+            <div style="display:flex; align-items:baseline; margin-bottom:6px">
+              <h2 style="font:800 28px 'Heebo',sans-serif; color:#262A5B; margin:0">מלונות מומלצים</h2>
+              <a href="Baku40%20Collection%20Listings.dc.html#8b" style="margin-inline-start:auto; font:600 15px 'Assistant',sans-serif">כל המלונות</a>
+            </div>
+            <p style="font:400 15px/1.6 'Assistant',sans-serif; color:#6E6B78; margin:0 0 14px">למי כל מלון מתאים ומה היתרון של המיקום.</p>
+            <div style="display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch; margin-inline:-16px; padding-inline:16px; padding-bottom:4px">
+              <sc-for list="{{ hotels }}" as="h" hint-placeholder-count="3">
+                <a href="Baku40%20Listing%20and%20Details.dc.html#2f" style="flex:0 0 272px; scroll-snap-align:start; background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden; text-decoration:none; display:flex; flex-direction:column">
+                  <div style="position:relative; height:160px; overflow:hidden; background:repeating-linear-gradient(135deg,#DFE8F3,#DFE8F3 12px,#EFF4FA 12px,#EFF4FA 24px); display:flex; align-items:flex-end; padding:10px">
+                    <div role="img" aria-label="{{ h.name }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ h.bg }}; background-size:cover; background-position:center"></div>
+                    <span style="position:relative; font:400 11px ui-monospace,monospace; color:#8C8577">{{ h.photoNote }}</span>
+                  </div>
+                  <div style="padding:16px; display:flex; flex-direction:column; gap:7px; flex:1">
+                    <div style="display:flex; align-items:center; gap:8px">
+                      <span style="font:700 13px 'Heebo',sans-serif; color:#1665C1">{{ h.stars }}</span>
+                      <span style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ h.area }}</span>
+                    </div>
+                    <div style="font:700 19px/1.25 'Heebo',sans-serif; color:#262A5B">{{ h.name }}</div>
+                    <div style="font:400 14px/1.55 'Assistant',sans-serif; color:#2A2A30">{{ h.text }}</div>
+                    <div style="flex:1"></div>
+                    <span style="font:700 14px 'Assistant',sans-serif; color:#1A63B8; border-top:1px solid #E3EBF5; padding-top:10px">לפרטי המלון ←</span>
+                  </div>
+                </a>
+              </sc-for>
             </div>
           </div>
 
@@ -674,12 +734,25 @@
           <div style="background:#1A1D42; margin-top:32px; padding:32px 16px 24px; display:flex; flex-direction:column; gap:18px">
             <img src="assets/baku40-logo.png" alt="Baku40" style="height:26px; width:auto; align-self:flex-start; filter:brightness(0) invert(1)">
             <div style="font:400 15px/1.7 'Assistant',sans-serif; color:#FFFFFF">מדריך באקו ואזרבייג'ן בעברית. מידע מאומת וכלי תכנון.</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
-              <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="5">
-                <div style="font:600 15px 'Assistant',sans-serif; color:#8FBEF2; border-top:1px solid #2C3160; padding-top:10px">{{ c.head }}</div>
+            <div style="display:flex; flex-direction:column">
+              <sc-for list="{{ footerColsM }}" as="c" hint-placeholder-count="5">
+                <div style="border-top:1px solid #2C3160">
+                  <div onClick="{{ c.toggle }}" role="button" aria-expanded="{{ c.expanded }}" style="min-height:50px; display:flex; align-items:center; cursor:pointer; font:700 16px 'Heebo',sans-serif; color:#FFFFFF">
+                    <span>{{ c.head }}</span>
+                    <span style="margin-inline-start:auto; font-family:'Material Symbols Rounded'; font-size:22px; color:#8FBEF2">{{ c.icon }}</span>
+                  </div>
+                  <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex; flex-direction:column; padding-bottom:10px">
+                      <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+                        <a href="{{ l.href }}" style="min-height:44px; display:flex; align-items:center; font:400 15px 'Assistant',sans-serif; color:#E4E6F1; text-decoration:none">{{ l.label }}</a>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
               </sc-for>
             </div>
-            <div style="font:400 13px 'Assistant',sans-serif; color:#BFC2D8">© 2026 Baku40 · נגישות · פרטיות · גילוי נאות</div>
+            <div style="border-top:1px solid #2C3160; padding-top:6px; display:grid; grid-template-columns:1fr 1fr; column-gap:16px"><a href="Baku40%20Editorial%20Templates.dc.html#3a" style="min-height:44px; display:flex; align-items:center; color:#BFC2D8; text-decoration:none; font:400 14px 'Assistant',sans-serif">מגזין</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#9c" style="min-height:44px; display:flex; align-items:center; color:#BFC2D8; text-decoration:none; font:400 14px 'Assistant',sans-serif">אודות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#9d" style="min-height:44px; display:flex; align-items:center; color:#BFC2D8; text-decoration:none; font:400 14px 'Assistant',sans-serif">צור קשר</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#accessibility" style="min-height:44px; display:flex; align-items:center; color:#BFC2D8; text-decoration:none; font:400 14px 'Assistant',sans-serif">הצהרת נגישות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#privacy" style="min-height:44px; display:flex; align-items:center; color:#BFC2D8; text-decoration:none; font:400 14px 'Assistant',sans-serif">מדיניות פרטיות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#terms" style="min-height:44px; display:flex; align-items:center; color:#BFC2D8; text-decoration:none; font:400 14px 'Assistant',sans-serif">תנאי שימוש</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#disclosure" style="min-height:44px; display:flex; align-items:center; color:#BFC2D8; text-decoration:none; font:400 14px 'Assistant',sans-serif">גילוי נאות</a></div>
+            <div style="font:400 13px 'Assistant',sans-serif; color:#8C8FB0">© 2026 Baku40</div>
           </div>
 
           <!-- mobile drawer -->
@@ -712,8 +785,7 @@
                   </sc-for>
                 </div>
                 <div style="padding:16px; border-top:1px solid #E3EBF5; display:flex; gap:10px">
-                  <div style="flex:1; background:#E4EFFB; border-radius:9px; padding:14px; text-align:center; font:700 16px 'Assistant',sans-serif; color:#262A5B">הטיול שלי ({{ savedCount }})</div>
-                  <div style="flex:1; background:#1665C1; border-radius:9px; padding:14px; text-align:center; font:700 16px 'Assistant',sans-serif; color:#262A5B">תכננו טיול</div>
+                  <a href="Baku40%20Collection%20Listings.dc.html#8c" style="flex:1; background:#1665C1; border-radius:9px; padding:14px; text-align:center; font:700 16px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none">מסלולים מוכנים</a>
                 </div>
               </div>
             </div>
@@ -751,7 +823,7 @@
   </div>
 </section>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;תכננו טיול&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;תוכן&quot;},&quot;showWeatherBadge&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;מודולים&quot;},&quot;showRealEstate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;מודולים&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;מסלולים מוכנים&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;תוכן&quot;},&quot;showWeatherBadge&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;מודולים&quot;},&quot;showRealEstate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;מודולים&quot;}}">
 class Component extends DCLogic {
   state = {
     mega: null, megaDir: null, search: null, q: '', drawer: null,
@@ -781,7 +853,8 @@ class Component extends DCLogic {
         { label: 'פרויקטים', sub: 'Sea Breeze ופרויקטים נוספים', href: 'Baku40%20Real%20Estate.dc.html#5a' }
       ], feature: { title: 'לפני שקונים בבאקו', text: 'מה צריך לבדוק בתהליך רכישה לזרים, ואיזה נתונים חייבים מקור.' } },
       { label: 'קזינו', key: 'casino', href: 'Baku40%20Royal%20Casino.dc.html' },
-      { label: 'מגזין', key: 'mag', href: 'Baku40%20Editorial%20Templates.dc.html#3a' }
+      { label: 'טיסות', key: 'flights', href: 'Baku40%20Flights%20and%20System%20Pages.dc.html#9a' },
+      { label: 'מזג אוויר', key: 'wx', href: 'Baku40%20Travel%20Info.dc.html#7c' }
     ],
     quick: [
       { title: 'אטרקציות', icon: 'castle', href: 'Baku40%20Listing%20and%20Details.dc.html#2a', sub: '68 מקומות עם שעות ומחירים' },
@@ -861,11 +934,11 @@ class Component extends DCLogic {
       { name: 'Royal Casino · באקו', text: 'מתחם קזינו ובידור בפיתוח בחוף נרדרן, סמוך ל‑Sea Breeze. עוד לא פתוח — מה ידוע, מה חוקי ומה עדיין לא מאומת.', meta: 'בפיתוח · נבדק ספטמבר 2026', photo: 'assets/photos/royal-casino-render.jpg', badge: 'הדמיית יזם', href: 'Baku40%20Royal%20Casino.dc.html' }
     ],
     footer: [
-      { head: 'לגלות את באקו', items: ['אטרקציות', 'העיר העתיקה', 'אזורי העיר', 'נקודות תצפית', 'מפה'] },
-      { head: 'לתכנן', items: ['פעם ראשונה', 'מסלולים', 'Trip Planner', 'הטיול שלי', 'מזג אוויר'] },
+      { head: 'לגלות את באקו', items: ['אטרקציות', 'העיר העתיקה', 'אזורי העיר', 'נקודות תצפית', 'מפה', 'מגזין'] },
+      { head: 'לתכנן', items: ['פעם ראשונה', 'מסלולים מוכנים', 'מזג אוויר', 'טיסות'] },
       { head: 'אוכל ולינה', items: ['מסעדות', 'מטבח מקומי', 'מלונות', 'לפי אזור', 'למשפחות'] },
       { head: 'מעבר לבאקו', items: ['גובוסטן', 'אבשרון', 'גבאלה', 'שאהדאג', 'קובה'] },
-      { head: 'נדל"ן', items: ['מאגר ידע', 'אזורים', 'פרויקטים', 'תהליך רכישה'] }
+      { head: 'השקעות', items: ['השקעות בבאקו', 'השקעות באזרבייג׳ן', 'סי בריז · Sea Breeze', 'Royal Casino'] }
     ],
     utility: [
       { label: 'טיסה מתל אביב', value: '~3 שעות' },
@@ -907,28 +980,26 @@ class Component extends DCLogic {
     this.setState(s => ({ saved: Object.assign({}, s.saved, { [id]: !s.saved[id] }) }));
   }
 
-  planner() {
-    const s = this.state;
-    const core = [
-      'העיר העתיקה, ארמון השירוואנשאהים ומגדל הבתולה ברגל, וסיום בטיילת לפני ארוחת ערב.',
-      'מרכז העיר: כיכר המזרקות ורחוב נזאמי, ואחר הצהריים מרכז היידר אלייב.',
-      'יום מחוץ לעיר — גובוסטן והרי הבוץ, או חצי האי אבשרון אם רוצים נסיעה קצרה יותר.',
-      'הטיילת, מוזיאון השטיחים ושופינג בפורט באקו; בערב תצפית על מגדלי הלהבה.',
-      'גבאלה או שאהדאג עם לינה, או יום נוסף גמיש בעיר לפי מזג האוויר.'
-    ];
-    const kids = 'מתאים לילדים: הטיילת עם המתקנים והגנים, ומוזיאון השטיחים כאפשרות מקורה.';
-    const out = [];
-    for (let i = 0; i < s.days; i++) {
-      let text = core[i] || 'יום גמיש: השלמות בעיר, אזור שלא הספקתם או חזרה למקום שאהבתם.';
-      if (s.who === 'משפחה' && i === 1) text = kids;
-      out.push({
-        n: String(i + 1), day: 'יום ' + (i + 1), text: text,
-        walk: i === 2 && s.days > 2 ? 'נסיעה: 60–90 דק׳ לכל כיוון' : 'הליכה: רוב היום',
-        meal: i === 0 ? 'ארוחת ערב: העיר העתיקה או נזאמי' : 'ארוחת צהריים באזור'
-      });
-    }
-    return out;
-  }
+  FOOT_HREF = {
+    'אטרקציות': 'Baku40%20Listing%20and%20Details.dc.html#2a', 'העיר העתיקה': 'Baku40%20Editorial%20Templates.dc.html#3b', 'אזורי העיר': 'Baku40%20Editorial%20Templates.dc.html#3b', 'נקודות תצפית': 'Baku40%20Listing%20and%20Details.dc.html#2a', 'מפה': 'Baku40%20Product%20Screens.dc.html#4a', 'מגזין': 'Baku40%20Editorial%20Templates.dc.html#3a',
+    'פעם ראשונה': 'Baku40%20SEO%20Pillar%20Pages.dc.html#9a', 'מסלולים מוכנים': 'Baku40%20Collection%20Listings.dc.html#8c', 'טיסות': 'Baku40%20Flights%20and%20System%20Pages.dc.html#9a', 'מזג אוויר': 'Baku40%20Travel%20Info.dc.html#7a',
+    'מסעדות': 'Baku40%20Collection%20Listings.dc.html#8a', 'מטבח מקומי': 'Baku40%20Collection%20Listings.dc.html#8a', 'מלונות': 'Baku40%20Collection%20Listings.dc.html#8b', 'לפי אזור': 'Baku40%20Collection%20Listings.dc.html#8b', 'למשפחות': 'Baku40%20Collection%20Listings.dc.html#8c',
+    'השקעות בבאקו': 'Baku40%20SEO%20Pillar%20Pages.dc.html#9b', 'השקעות באזרבייג׳ן': 'Baku40%20SEO%20Pillar%20Pages.dc.html#9c', 'סי בריז · Sea Breeze': 'Baku40%20Real%20Estate.dc.html#5b', 'Royal Casino': 'Baku40%20Royal%20Casino.dc.html',
+    'גובוסטן': 'Baku40%20Collection%20Listings.dc.html#8e', 'אבשרון': 'Baku40%20Collection%20Listings.dc.html#8e', 'גבאלה': 'Baku40%20Collection%20Listings.dc.html#8e', 'שאהדאג': 'Baku40%20Collection%20Listings.dc.html#8e', 'קובה': 'Baku40%20Collection%20Listings.dc.html#8e'
+  };
+
+  ITIN = [
+    { days: 1, name: 'יום אחד בבאקו', meta: '1 יום · עצירת ביניים', text: 'מה אפשר להספיק בין טיסות, בלי לרוץ בין אזורים.', photo: 'assets/photos/crystal-hall.png' },
+    { days: 2, name: 'סוף שבוע בבאקו', meta: '2 ימים · זוגות · קצב רגוע', text: 'העיר העתיקה, הטיילת ומרכז העיר, בלי יציאה מהעיר.', photo: 'assets/photos/nizami-street.png' },
+    { days: 3, name: 'שלושה ימים קלאסיים', meta: '3 ימים · פעם ראשונה · רגיל', text: 'הליבה ההיסטורית, באקו המודרנית ויום גמיש בסוף.', photo: 'assets/photos/maiden-tower.png', badge: 'מומלץ' },
+    { days: 3, name: 'מסלול משפחתי', meta: '3 ימים · משפחות · רגוע', text: 'חזרה למלון באמצע היום, שתי אטרקציות מקורות וטיילת בערב.', photo: 'assets/photos/central-park.png' },
+    { days: 3, name: 'באקו בתקציב', meta: '3 ימים · תקציב · קצב רגיל', text: 'אטרקציות חינמיות, מטרו ואוכל מקומי. מסלול שנבנה סביב מה לא לשלם עליו.', photoNote: 'photo · itinerary · נדרשת תמונה' },
+    { days: 3, name: 'באקו בחורף', meta: '3 ימים · זוגות · רגוע', text: 'מסלול שמניח רוח וגשם: אטרקציות מקורות, חלופה לכל יום ופחות טיילת.', photoNote: 'photo · itinerary · נדרשת תמונה' },
+    { days: 4, name: 'ארבעה ימים עם יום מחוץ לעיר', meta: '4 ימים · זוגות ומשפחות', text: 'שלושה ימים בעיר ויום לגובוסטן או לחצי האי אבשרון.', photo: 'assets/photos/skyline-cloudy.png' },
+    { days: 5, name: 'חמישה ימים כולל הרים', meta: '5 ימים · חברים · אינטנסיבי', text: 'באקו, יום בגבאלה או שאהדאג ולינה מחוץ לעיר.', photoNote: 'photo · mountains · נדרשת תמונה' },
+    { days: 7, name: 'שבוע באזרבייג׳ן', meta: '7 ימים · אינטנסיבי · כולל צפון', text: 'באקו, גבאלה ושקי, עם שתי לינות מחוץ לעיר. למי שרוצה לראות מדינה ולא עיר.', photoNote: 'photo · itinerary · נדרשת תמונה' }
+  ];
+
 
   componentDidMount() {
     this.loadWx();
@@ -973,8 +1044,8 @@ class Component extends DCLogic {
       tabLine: s.filter === f ? '#1665C1' : 'transparent'
     }));
 
-    const dayOptions = [1, 2, 3, 4, 5].map(d => ({
-      label: String(d), onClick: () => this.set('days', d),
+    const dayOptions = [1, 2, 3, 4, 5, 7].map(d => ({
+      label: String(d), onClick: () => this.set('days', d), pressed: String(s.days === d),
       bg: s.days === d ? '#1665C1' : '#31366E', fg: '#FFFFFF',
       border: s.days === d ? '#1665C1' : '#444A85',
       bgLight: s.days === d ? '#262A5B' : '#FFFFFF', fgLight: s.days === d ? '#FFFFFF' : '#262A5B',
@@ -1034,11 +1105,10 @@ class Component extends DCLogic {
       onClick: () => this.set('openPractical', s.openPractical === p.title ? null : p.title)
     }));
 
-    const days = this.planner();
 
     return {
       savedCount: savedCount,
-      ctaLabel: this.props.ctaLabel || 'תכננו טיול',
+      ctaLabel: this.props.ctaLabel || 'מסלולים מוכנים',
       showWeather: this.props.showWeatherBadge !== false,
       showRealEstate: this.props.showRealEstate !== false,
       navA: navItem('a'), navB: navItem('b'),
@@ -1060,8 +1130,9 @@ class Component extends DCLogic {
       attractions: attractions, chips: chips,
       filterCount: s.filter === 'הכול' ? 'כל האטרקציות במאגר, עם משך ביקור ואזור. כל מקום מסומן גם לפי מה שאפשר לוותר עליו.' : filtered.length + ' מקומות מסומנים "' + s.filter + '" — מסונן מאותו מאגר, לא מרשימה נפרדת.',
       dayOptions: dayOptions, whoOptions: whoOptions, interestOptions: interestOptions,
-      plannerTitle: s.days + ' ימים · ' + s.who + (s.interests.length ? ' · ' + s.interests.join(', ') : ''),
-      plannerDays: days,
+      itinCards: this.ITIN.filter(x => x.days === s.days).map(x => ({ name: x.name, meta: x.meta, text: x.text, badge: x.badge || '', photoNote: x.photoNote || '', photoAlt: x.photo ? x.name : '', bg: x.photo ? 'url(' + x.photo + ')' : 'none', href: 'Baku40%20Collection%20Listings.dc.html#8c' })),
+      itinAll: this.ITIN.slice().sort((a, b) => (b.days === s.days) - (a.days === s.days)).map(x => ({ name: x.name, meta: x.meta, text: x.text, badge: x.days === s.days ? (x.badge || (x.days === 1 ? 'מתאים ליום אחד' : 'מתאים ל־' + x.days + ' ימים')) : '', photoNote: x.photoNote || '', photoAlt: x.photo ? x.name : '', bg: x.photo ? 'url(' + x.photo + ')' : 'none', href: 'Baku40%20Collection%20Listings.dc.html#8c' })),
+      itinTitle: (() => { const n = this.ITIN.filter(x => x.days === s.days).length; const d = s.days === 1 ? 'ליום אחד' : 'ל־' + s.days + ' ימים'; return n === 1 ? 'מסלול אחד ' + d : n + ' מסלולים ' + d; })(),
       mapCats: mapCats, mapPins: mapPins,
       pinName: pin.name, pinNote: pin.note || pin.meta,
       pinPhoto: pin.photo || '', pinHasPhoto: !!pin.photo, pinPhotoBg: pin.photo ? 'url("' + pin.photo + '")' : '',
@@ -1075,7 +1146,8 @@ class Component extends DCLogic {
       reLinks: D.reLinks,
       reProjects: D.reProjects.map(p => Object.assign({}, p, { bg: p.photo ? 'url("' + p.photo + '")' : '' })),
       magazine: D.magazine.map(m => Object.assign({}, m, { bg: m.photo ? 'url("' + m.photo + '")' : '' })),
-      footerCols: D.footer, utility: D.utility.map(u => u.label === 'עכשיו בבאקו' ? Object.assign({}, u, { value: s.wxNow || '—' }) : u), heroChoices: D.heroChoices
+      footerCols: D.footer,
+      footerColsM: D.footer.map(c => { const open = s.footOpen === c.head; return { head: c.head, open: open, expanded: String(open), icon: open ? 'remove' : 'add', toggle: () => this.setState(st => ({ footOpen: st.footOpen === c.head ? null : c.head })), links: c.items.map(x => ({ label: x, href: this.FOOT_HREF[x] || 'Baku40%20Site.dc.html' })) }; }), utility: D.utility.map(u => u.label === 'עכשיו בבאקו' ? Object.assign({}, u, { value: s.wxNow || '—' }) : u), heroChoices: D.heroChoices
     };
   }
 }

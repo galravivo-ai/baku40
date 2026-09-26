@@ -29,7 +29,7 @@
         <div style="font:600 15px 'Assistant',sans-serif; color:#BFC2D8">מפת המסכים · גרסת עיצוב</div>
       </div>
       <h1 style="font:900 clamp(40px,6vw,68px)/1.06 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 16px; max-width:760px">כל המסכים של Baku40 במקום אחד</h1>
-      <p style="font:400 19px/1.7 'Assistant',sans-serif; color:#E4E6F1; margin:0; max-width:680px">לחצו על כל מסך כדי לפתוח אותו. המסכים אינטראקטיביים — פילטרים, חיפוש, שמירת מקומות, מפה ומתכנן עובדים.</p>
+      <p style="font:400 19px/1.7 'Assistant',sans-serif; color:#E4E6F1; margin:0; max-width:680px">לחצו על כל מסך כדי לפתוח אותו. המסכים אינטראקטיביים — פילטרים, חיפוש, שמירת מקומות ומפה עובדים.</p>
       <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px">
         <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
           <div style="background:rgba(247,243,236,.1); border:1px solid rgba(247,243,236,.28); border-radius:10px; padding:14px 18px">
@@ -96,10 +96,10 @@ class Component extends DCLogic {
     const bg = (p) => p ? 'url("' + p + '")' : '';
     const groups = [
       {
-        title: 'דף הבית', href: F.home, note: 'דסקטופ ומובייל, עם מגה־מניו, חיפוש, פילטרים, מפה ומתכנן פעילים.',
+        title: 'דף הבית', href: F.home, note: 'דסקטופ ומובייל, עם מגה־מניו, חיפוש, פילטרים, מפה ומסלולים מוכנים פעילים.',
         items: [
           { name: 'דף הבית · דסקטופ', desc: 'הירו עם תמונה מלאה, כניסה מהירה, מפה, מסלולים, נדל"ן ומגזין.', url: '/', icon: 'home', href: F.home + '#1a', photo: 'assets/photos/flame-towers-red.png' },
-          { name: 'דף הבית · מובייל', desc: 'דרואר, חיפוש במסך מלא, מתכנן ומפה בגרסת 390.', url: '/ · mobile', icon: 'smartphone', href: F.home + '#1a', photo: 'assets/photos/flame-towers-day.png' },
+          { name: 'דף הבית · מובייל', desc: 'דרואר, חיפוש במסך מלא, מסלולים ומפה בגרסת 390.', url: '/ · mobile', icon: 'smartphone', href: F.home + '#1a', photo: 'assets/photos/flame-towers-day.png' },
           { name: 'כיוון חלופי שנשמר', desc: 'Planning Console — הכיוון השני שהוצג בסבב הראשון.', url: 'archive', icon: 'history', href: F.opts, photo: 'assets/photos/skyline-dusk.png' }
         ]
       },
@@ -124,12 +124,9 @@ class Component extends DCLogic {
         ]
       },
       {
-        title: 'מסכי מוצר', href: F.prod, note: 'מפה, מתכנן, מועדפים, חיפוש ושגיאות.',
+        title: 'מסכי מוצר', href: F.prod, note: 'מפה, חיפוש ושגיאות.',
         items: [
           { name: 'מפה גלובלית', desc: 'פילטרי סוג ואזור, מועדפים בלבד, סנכרון רשימה–מפה.', url: '/map/', icon: 'map', href: F.prod + '#4a', photo: 'assets/photos/port-baku-mall.png' },
-          { name: 'Trip Planner · קלט', desc: 'תאריכים, הרכב, עניין, קצב, תקציב, "חייבים לראות".', url: '/trip-planner/', icon: 'edit_calendar', href: F.prod + '#4b', photo: 'assets/photos/heydar-mosque.png' },
-          { name: 'Trip Planner · תוצאה', desc: 'מסלול לפי ימים, חלופות, "מה לא נכנס ולמה".', url: '/trip-planner/result/', icon: 'checklist', href: F.prod + '#4c', photo: 'assets/photos/bay-night.png' },
-          { name: 'המקומות שלי', desc: 'שמורים מקובצים, מפת שמורים, שליחה למתכנן.', url: '/favorites/', icon: 'bookmark', href: F.prod + '#4d', photo: 'assets/photos/flame-towers-neon.png' },
           { name: 'תוצאות חיפוש', desc: 'מקובץ לפי סוג ישות, כולל מצב ללא תוצאות.', url: '/search/', icon: 'search', href: F.prod + '#4e', photo: 'assets/photos/nizami-street.png' },
           { name: 'עמוד 404', desc: 'חיפוש, קטגוריות מרכזיות, בלי מבוי סתום.', url: '404', icon: 'error', href: F.prod + '#4f', photo: 'assets/photos/skyline-dusk.png' }
         ]
@@ -164,20 +161,16 @@ class Component extends DCLogic {
           { name: 'אזור · מובייל', desc: 'הירו תמונתי, מדדים וטאבים.', url: '/baku/areas/[slug]/', icon: 'location_city', href: F.mob + '#10c', photo: 'assets/photos/maiden-tower.png' },
           { name: 'יעד · מובייל', desc: 'עובדות מרחק וסרגל חודשים.', url: '/destinations/[slug]/', icon: 'terrain', href: F.mob + '#10d', photo: 'assets/photos/skyline-cloudy.png' },
           { name: 'מפה · מובייל', desc: 'מסך מלא עם bottom sheet ופילטרים.', url: '/map/', icon: 'map', href: F.mob + '#10e', photo: 'assets/photos/port-baku-mall.png' },
-          { name: 'Trip Planner · מובייל', desc: 'אשף שלבים עם מחוון התקדמות.', url: '/trip-planner/', icon: 'edit_calendar', href: F.mob + '#10f', photo: 'assets/photos/heydar-center.png' },
-          { name: 'המקומות שלי · מובייל', desc: 'מפת שמורים, קיבוץ והסרה.', url: '/favorites/', icon: 'bookmark', href: F.mob + '#10g', photo: 'assets/photos/flame-towers-red.png' },
           { name: 'נדל"ן · מובייל', desc: 'עובדות, תנאי תשלום ודיסקליימר.', url: '/real-estate/projects/[slug]/', icon: 'domain', href: F.mob + '#10h', photo: 'assets/photos/bay-night.png' }
         ]
       },
       {
-        title: 'מסכי מובייל נוספים', href: F.mob, note: 'מסלול, מאמר, אזור, מפה, מתכנן, מועדפים ופרויקט נדל״ן — נבנו מחדש למובייל, לא דסקטופ מכווץ.',
+        title: 'מסכי מובייל נוספים', href: F.mob, note: 'מסלול, מאמר, אזור, מפה ופרויקט נדל״ן — נבנו מחדש למובייל, לא דסקטופ מכווץ.',
         items: [
           { name: 'מסלול', desc: 'טאבי ימים דביקים, טיימליין, חלופות.', url: '/itineraries/[slug]/', icon: 'route', href: F.mob + '#14a', photo: 'assets/photos/nizami-street.png' },
           { name: 'מאמר', desc: 'תוכן עניינים, בלוקים, שורת קרדיט.', url: '/blog/[slug]/', icon: 'article', href: F.mob + '#14b', photo: 'assets/photos/boulevard-wheel.png' },
           { name: 'אזור', desc: 'הירו, למי מתאים, מדדים, מפת אזור.', url: '/baku/areas/[slug]/', icon: 'location_city', href: F.mob + '#14c', photo: 'assets/photos/nizami-street.png' },
           { name: 'מפה — מסך מלא', desc: 'פילטרים, אשכולות, כרטיס תחתון.', url: '/map/', icon: 'map', href: F.mob + '#14d', photo: 'assets/photos/maiden-tower.png' },
-          { name: 'Trip Planner', desc: 'ארבעה שלבים, פס התקדמות.', url: '/trip-planner/', icon: 'edit_calendar', href: F.mob + '#14e', photo: 'assets/photos/heydar-center.png' },
-          { name: 'המקומות שלי', desc: 'מקובץ לפי סוג, מפת שמורים.', url: '/favorites/', icon: 'bookmarks', href: F.mob + '#14f', photo: 'assets/photos/maiden-tower.png' },
           { name: 'פרויקט נדל״ן', desc: 'גלריה, נתוני מפתח, סימון לאימות.', url: '/real-estate/projects/[slug]/', icon: 'apartment', href: F.mob + '#14g', photo: 'assets/photos/flame-towers-day.png' }
         ]
       },

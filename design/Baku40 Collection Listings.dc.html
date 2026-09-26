@@ -46,10 +46,6 @@
           </div>
           <div style="flex:1"></div>
           <div style="border:1px solid #D9E3F0; border-radius:9px; padding:10px 14px; min-width:170px; font:400 16px 'Assistant',sans-serif; color:#6E6B78">חיפוש</div>
-          <div style="display:flex; align-items:center; gap:8px; font:700 16px 'Assistant',sans-serif; color:#262A5B">
-            <span>הטיול שלי</span>
-            <span style="background:#1665C1; color:#FFFFFF; border-radius:999px; min-width:24px; height:24px; display:flex; align-items:center; justify-content:center; font:800 13px 'Heebo',sans-serif">{{ savedCount }}</span>
-          </div>
         </div>
 
         <sc-if value="{{ s.isLanding }}" hint-placeholder-val="{{ false }}">
@@ -82,18 +78,6 @@
               <div style="border:1px solid #D9E3F0; border-radius:9px; padding:12px 14px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">מיון: {{ s.sort }}</div>
               <div style="border:1px solid #262A5B; border-radius:9px; padding:12px 16px; font:600 15px 'Assistant',sans-serif; color:#262A5B; cursor:pointer">הצגת מפה</div>
             </div>
-            <div style="display:flex; gap:24px; flex-wrap:wrap; border-top:1px solid #EDF2F9; padding-top:14px">
-              <sc-for list="{{ s.filterGroups }}" as="g" hint-placeholder-count="3">
-                <div style="display:flex; flex-direction:column; gap:8px">
-                  <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.08em; color:#6E6B78">{{ g.head }}</div>
-                  <div style="display:flex; gap:7px; flex-wrap:wrap">
-                    <sc-for list="{{ g.items }}" as="f" hint-placeholder-count="4">
-                      <div onClick="{{ f.onClick }}" style="cursor:pointer; font:600 15px 'Assistant',sans-serif; padding:9px 14px; border-radius:8px; border:1px solid {{ f.border }}; background:{{ f.bg }}; color:{{ f.fg }}">{{ f.label }}</div>
-                    </sc-for>
-                  </div>
-                </div>
-              </sc-for>
-            </div>
             <div style="display:flex; align-items:center; gap:14px; border-top:1px solid #EDF2F9; padding-top:14px">
               <div style="font:700 17px 'Heebo',sans-serif; color:#262A5B">{{ s.count }}</div>
               <div style="flex:1"></div>
@@ -101,7 +85,25 @@
             </div>
           </div>
 
-          <div style="display:grid; grid-template-columns:{{ s.cols }}; gap:18px">
+          <div style="display:grid; grid-template-columns:270px minmax(0,1fr); gap:24px; align-items:start">
+          <aside style="position:sticky; top:20px; background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; padding:20px; display:flex; flex-direction:column; gap:18px">
+            <div style="display:flex; align-items:center; gap:8px; font:800 18px 'Heebo',sans-serif; color:#262A5B">
+              <span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 300; font-size:20px; color:#1665C1">tune</span>
+              <span>סינון</span>
+            </div>
+            <sc-for list="{{ s.filterGroups }}" as="g" hint-placeholder-count="3">
+              <div style="display:flex; flex-direction:column; gap:10px; border-top:1px solid #EDF2F9; padding-top:16px">
+                <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.08em; color:#6E6B78">{{ g.head }}</div>
+                <div style="display:flex; gap:7px; flex-wrap:wrap">
+                  <sc-for list="{{ g.items }}" as="f" hint-placeholder-count="4">
+                    <div onClick="{{ f.onClick }}" style="cursor:pointer; font:600 14px 'Assistant',sans-serif; padding:8px 12px; border-radius:8px; border:1px solid {{ f.border }}; background:{{ f.bg }}; color:{{ f.fg }}">{{ f.label }}</div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </aside>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:18px">
             <sc-for list="{{ s.cards }}" as="c" hint-placeholder-count="6">
               <a href="{{ c.href }}" style="background:#FFFFFF; border:1px solid #E3EBF5; border-radius:12px; overflow:hidden; display:flex; flex-direction:column; text-decoration:none" style-hover="border-color:#1665C1">
                 <div style="position:relative; height:180px; overflow:hidden; background:repeating-linear-gradient(135deg,#DFE8F3,#DFE8F3 12px,#EFF4FA 12px,#EFF4FA 24px); display:flex; align-items:flex-end; padding:12px">
@@ -135,6 +137,7 @@
               </a>
             </sc-for>
           </div>
+          </div>
         </div>
 
         <div style="max-width:1320px; margin:0 auto; padding:40px 40px 0">
@@ -159,7 +162,7 @@
 
         <div style="background:#1A1D42; padding:26px 40px; display:flex; align-items:center; gap:20px; font:400 14px 'Assistant',sans-serif; color:#BFC2D8">
           <img src="assets/baku40-logo.png" alt="Baku40" style="height:24px; width:auto; align-self:center; filter:brightness(0) invert(1)">
-          <span>אודות</span><span>צור קשר</span><span>נגישות</span><span>פרטיות</span><span>גילוי נאות</span>
+          <a href="Baku40%20Editorial%20Templates.dc.html#3a" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">מגזין</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#9c" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">אודות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#9d" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">צור קשר</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#accessibility" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">הצהרת נגישות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#privacy" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">מדיניות פרטיות</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#terms" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">תנאי שימוש</a><a href="Baku40%20Flights%20and%20System%20Pages.dc.html#disclosure" style="color:#BFC2D8; text-decoration:none" style-hover="text-decoration:underline">גילוי נאות</a>
           <span style="margin-inline-start:auto">© 2026 Baku40</span>
         </div>
       </div>
@@ -191,7 +194,8 @@ class Component extends DCLogic {
       { label: 'קניות', href: 'Baku40%20Collection%20Listings.dc.html#8d' },
       { label: 'השקעות', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9b' },
       { label: 'קזינו', href: 'Baku40%20Royal%20Casino.dc.html' },
-      { label: 'מגזין', href: 'Baku40%20Editorial%20Templates.dc.html#3a' }
+      { label: 'טיסות', href: 'Baku40%20Flights%20and%20System%20Pages.dc.html#9a' },
+      { label: 'מזג אוויר', href: 'Baku40%20Travel%20Info.dc.html#7c' }
     ].map(n => ({ label: n.label, href: n.href, line: n.label === active ? '#1665C1' : 'transparent' }));
   }
 
