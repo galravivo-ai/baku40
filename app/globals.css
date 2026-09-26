@@ -1427,7 +1427,8 @@ a.card__cta:hover { text-decoration: underline; }
 .mag-card--soon { opacity: 0.75; }
 @media (max-width: 1020px) {
   .ed-layout { grid-template-columns: 1fr; }
-  .ed-toc { position: static; order: -1; }
+  /* On narrow screens the table of contents would push the title down. */
+  .ed-toc { display: none; }
 }
 @media (max-width: 700px) {
   .ed-gallery { grid-template-columns: 1fr; height: 240px; padding: 0; }
@@ -1478,4 +1479,46 @@ a.card__cta:hover { text-decoration: underline; }
   .ed-stop { padding-inline-start: 0; }
   .ed-stop::before { display: none; }
   .ed-stop__time { position: static; display: block; margin-bottom: 6px; }
+}
+
+/* ---------- stage 7: touch targets (>= 44px on phones) ---------- */
+.area-item { position: relative; }
+.area-item__body strong a::after { content: ""; position: absolute; inset: 0; }
+.save-pill { min-height: 40px; }
+.faq summary { padding: 8px 0; min-height: 44px; display: flex; align-items: center; }
+.faq summary::before { content: "+"; font: 700 18px var(--font-head); color: var(--active); margin-inline-end: 10px; }
+.faq details[open] summary::before { content: "−"; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary { list-style: none; }
+@media (max-width: 1020px) {
+  .site-header__logo, .site-header__trip, .site-header__menu-btn, .site-header__search-btn {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+}
+@media (max-width: 700px) {
+  .section-link { display: inline-block; padding: 12px 0; }
+  .home-search input { min-height: 44px; }
+  .site-footer__brand > a, .site-footer__bottom a, .site-footer__col a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .site-footer__col ul { gap: 0; }
+  .empty-state a { display: inline-block; padding: 10px 4px; }
+  .photo-tag, .re-project__badge, .detail-thumb figcaption { font-size: 12px; }
+}
+.catalog__group summary { min-height: 44px; }
+
+@media (max-width: 700px) {
+  .ed-facts { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ed-facts div { padding: 10px 12px; }
+  .ed-facts dd { font-size: 16px; }
+  .ed-stats { grid-template-columns: 1fr 1fr; }
+  .ed-stats strong { font-size: 22px; }
 }
