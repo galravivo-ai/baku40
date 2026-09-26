@@ -37,7 +37,7 @@ export default function SitemapPage() {
     },
     { title: "מדריכים ומידע למטייל", links: by(["/baku/", "/travel-info/", "/weather/", "/flights/", "/airport/", "/itineraries/", "/destinations/"]) },
     { title: "אטרקציות", links: attractions.items.map((a) => ({ label: a.name, href: a.href })) },
-    { title: "אזורי העיר", links: getAreas().map((a) => ({ label: a.name, href: a.url })) },
+    { title: "אזורי העיר", links: [{ label: "כל האזורים", href: "/areas/" }, ...getAreas().map((a) => ({ label: a.name, href: a.url }))] },
     {
       title: "מלונות",
       links: getCollection("hotels").items.filter((h) => h.url).map((h) => ({ label: h.name, href: h.url! })),

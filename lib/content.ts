@@ -102,6 +102,10 @@ export function getItem(key: CollectionKey, slug: string): Item | undefined {
   return getCollection(key).items.find((i) => i.slug === slug);
 }
 
+export function getAreasHub() {
+  return cached("areas-hub", () => load("areas.json", areasSchema).hub);
+}
+
 export function getAreas(): Area[] {
   return cached("areas", () => load("areas.json", areasSchema).items);
 }

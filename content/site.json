@@ -66,7 +66,7 @@
         {
           "label": "אזורי העיר",
           "sub": "איפה לישון ואיך להתמצא",
-          "href": "/areas/old-city/"
+          "href": "/areas/"
         },
         {
           "label": "מידע למטייל",
@@ -162,6 +162,10 @@
       "href": "/about/"
     },
     {
+      "label": "המערכת",
+      "href": "/authors/baku40/"
+    },
+    {
       "label": "צור קשר",
       "href": "/contact/"
     },
@@ -194,7 +198,7 @@
         },
         {
           "label": "אזורי העיר",
-          "href": "/areas/old-city/"
+          "href": "/areas/"
         },
         {
           "label": "נקודות תצפית",

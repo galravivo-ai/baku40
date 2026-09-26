@@ -40,7 +40,7 @@ export default async function AreaPage({ params }: Props) {
   const area = load((await params).slug);
   const crumbs: Crumb[] = [
     { label: "דף הבית", href: "/" },
-    { label: "אזורי העיר" },
+    { label: "אזורי העיר", href: "/areas/" },
     { label: area.name, href: area.url },
   ];
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Blocks } from "@/components/editorial/Blocks";
 import { JsonLd } from "@/components/JsonLd";
@@ -19,13 +20,14 @@ export function EditorialView({ page }: { page: EditorialPage }) {
   const site = getSite();
   const dates = pageDates(page);
   const publisher = { "@type": "Organization", name: site.name, url: absoluteUrl("/") };
+  const author = { "@type": "Organization", name: "מערכת Baku40", url: absoluteUrl("/authors/baku40/") };
   if (isArticle) {
     graph.push({
       "@type": "Article",
       headline: page.h1,
       url: absoluteUrl(page.url),
       inLanguage: "he",
-      author: publisher,
+      author,
       publisher,
       ...(dates.published ? { datePublished: dates.published } : {}),
       ...(dates.modified ? { dateModified: dates.modified } : {}),
@@ -77,7 +79,16 @@ export function EditorialView({ page }: { page: EditorialPage }) {
           <Breadcrumbs crumbs={crumbs} />
           <h1 className="ed-h1">{page.h1}</h1>
           {page.intro && <p className="ed-intro">{page.intro}</p>}
-          {page.meta.length > 0 && <p className="ed-meta">{page.meta.join(" · ")}</p>}
+          {page.meta.length > 0 && (
+            <p className="ed-meta">
+              {page.meta.map((m, i) => (
+                <span key={m}>
+                  {i > 0 && " · "}
+                  {m.startsWith("מאת ") ? <Link href="/authors/baku40/">{m}</Link> : m}
+                </span>
+              ))}
+            </p>
+          )}
           <Blocks blocks={page.blocks} />
         </article>
         {headings.length > 2 && (

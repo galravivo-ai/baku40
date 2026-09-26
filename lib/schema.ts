@@ -159,6 +159,8 @@ const paragraphsBlock = z.object({ title: text, paragraphs: z.array(text) });
 // hotels, restaurants and shops of an area come from the collections by areaSlug.
 export const areasSchema = z.object({
   note: text.optional(),
+  // The /areas/ hub page.
+  hub: z.object({ h1: text.min(1), intro: text, metaTitle: text, metaDescription: text }),
   items: z.array(
     z.object({
       slug: text.min(1),

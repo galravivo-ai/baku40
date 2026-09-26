@@ -36,6 +36,8 @@ export const SITEMAPS = {
           .flatMap((p) => (p ? [p.src] : [])),
       },
       { path: "/magazine/" },
+      { path: "/areas/" },
+      { path: "/sitemap/" },
     ];
     for (const page of getEditorialPages()) {
       if (!indexable(editorialMetadata(page).robots)) continue;

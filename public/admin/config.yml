@@ -1066,6 +1066,34 @@ collections:
       label: note
       widget: hidden
       required: false
+    - name: hub
+      label: עמוד "אזורי העיר" (/areas/)
+      widget: object
+      required: false
+      fields:
+      - name: h1
+        label: כותרת
+        widget: string
+        required: true
+      - name: intro
+        label: פתיח
+        widget: text
+        required: false
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: false
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור לגוגל
+        widget: text
+        required: false
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      collapsed: true
     - name: items
       label: אזורים
       widget: list
