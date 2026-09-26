@@ -1,0 +1,184 @@
+{
+  "name": "Baku40",
+  "locale": "he_IL",
+  "lang": "he",
+  "dir": "rtl",
+  "baseUrl": "https://baku40.co.il",
+  "titleTemplate": "%s | Baku40",
+  "defaultTitle": "Baku40: המדריך העברי לבאקו",
+  "defaultDescription": "המדריך העברי לבאקו: מה עושים, איפה ישנים, איפה אוכלים (כולל כשר) ומסלולים מוכנים. כל רשומה עם תאריך ומקור בדיקה.",
+  "defaultOgImage": "",
+  "twitterCard": "summary_large_image",
+  "organization": {
+    "@type": "Organization",
+    "name": "Baku40",
+    "url": "https://baku40.co.il",
+    "logo": "https://baku40.co.il/assets/baku40-logo.png",
+    "sameAs": []
+  },
+  "staticPages": [
+    {
+      "url": "/",
+      "metaTitle": "Baku40: המדריך העברי לבאקו",
+      "metaDescription": "כל מה שצריך לטיול לבאקו בעברית: אטרקציות, מלונות, אוכל כשר, מסלולים ומידע מעשי, עם מקור ותאריך בדיקה לכל פרט.",
+      "schema": [
+        "WebSite",
+        "Organization"
+      ]
+    },
+    {
+      "url": "/travel-info/",
+      "metaTitle": "מידע למטייל לבאקו: ויזה, כסף, תחבורה ומזג אוויר",
+      "metaDescription": "מה צריך לדעת לפני טיסה לבאקו: ויזה אלקטרונית, מטבע, תחבורה מהשדה, מזג אוויר לפי חודש וטיפים מעשיים.",
+      "schema": [
+        "WebPage",
+        "BreadcrumbList"
+      ]
+    },
+    {
+      "url": "/about/",
+      "metaTitle": "אודות Baku40",
+      "metaDescription": "מי אנחנו, איך אנחנו בודקים מידע ואיך האתר ממומן.",
+      "schema": [
+        "AboutPage"
+      ]
+    },
+    {
+      "url": "/credits/",
+      "metaTitle": "קרדיטים לתמונות",
+      "metaDescription": "מקור ורישיון לכל תמונה באתר.",
+      "schema": [
+        "WebPage"
+      ],
+      "robots": "noindex,follow"
+    }
+  ],
+  "nav": [
+    {
+      "label": "מדריך באקו",
+      "href": "/baku/",
+      "links": [
+        {
+          "label": "מדריך באקו המלא",
+          "sub": "למה באקו, מתי לנסוע, כמה ימים",
+          "href": "/baku/"
+        },
+        {
+          "label": "אזורי העיר",
+          "sub": "איפה לישון ואיך להתמצא",
+          "href": "/areas/old-city/"
+        },
+        {
+          "label": "מידע למטייל",
+          "sub": "ויזה, כסף, תחבורה וטיסות",
+          "href": "/travel-info/"
+        }
+      ],
+      "feature": {
+        "title": "כמה ימים באמת צריך בבאקו?",
+        "text": "שלושה ימים מכסים את העיר בנוחות. ארבעה מאפשרים יום מחוץ לעיר בלי לרוץ.",
+        "photo": "assets/photos/skyline-dusk.png",
+        "href": "/baku/"
+      }
+    },
+    {
+      "label": "אטרקציות",
+      "href": "/attractions/",
+      "links": [
+        {
+          "label": "כל האטרקציות",
+          "sub": "סינון לפי סוג, אזור, מחיר וקהל",
+          "href": "/attractions/"
+        },
+        {
+          "label": "מסלולים לפי ימים",
+          "sub": "מיום אחד ועד שבוע",
+          "href": "/itineraries/"
+        },
+        {
+          "label": "טיולי יום",
+          "sub": "גובוסטן, אבשרון, גבאלה, שאהדאג",
+          "href": "/day-trips/"
+        }
+      ],
+      "feature": {
+        "title": "מה שווה לדלג עליו",
+        "text": "לא כל מוזיאון בעיר העתיקה מצדיק כניסה. ריכזנו מה נשאר בחוץ כשיש יום אחד.",
+        "photo": "assets/photos/skyline-dusk.png",
+        "href": "/attractions/"
+      }
+    },
+    {
+      "label": "מלונות",
+      "href": "/hotels/"
+    },
+    {
+      "label": "אוכל",
+      "href": "/restaurants/"
+    },
+    {
+      "label": "קניות",
+      "href": "/shopping/"
+    },
+    {
+      "label": "השקעות",
+      "href": "/invest/baku/",
+      "links": [
+        {
+          "label": "השקעות בבאקו",
+          "sub": "נדל״ן לזרים, היתר שהייה, תהליך",
+          "href": "/invest/baku/"
+        },
+        {
+          "label": "השקעות באזרבייג׳ן",
+          "sub": "ענפים, תמריצים והגנה משפטית",
+          "href": "/invest/azerbaijan/"
+        },
+        {
+          "label": "פרויקטים",
+          "sub": "Sea Breeze ופרויקטים נוספים",
+          "href": "/real-estate/baku/"
+        }
+      ],
+      "feature": {
+        "title": "לפני שקונים בבאקו",
+        "text": "מה צריך לבדוק בתהליך רכישה לזרים, ואיזה נתונים חייבים מקור.",
+        "photo": "assets/photos/skyline-dusk.png",
+        "href": "/invest/baku/"
+      }
+    },
+    {
+      "label": "קזינו",
+      "href": "/casino/"
+    },
+    {
+      "label": "מגזין",
+      "href": "/magazine/"
+    }
+  ],
+  "footer": [
+    {
+      "label": "אודות",
+      "href": "/about/"
+    },
+    {
+      "label": "צור קשר",
+      "href": "/contact/"
+    },
+    {
+      "label": "נגישות",
+      "href": "/accessibility/"
+    },
+    {
+      "label": "פרטיות",
+      "href": "/privacy/"
+    },
+    {
+      "label": "גילוי נאות",
+      "href": "/affiliate-disclosure/"
+    }
+  ],
+  "copyright": "© 2026 Baku40",
+  "affiliateDisclosure": "כפתור \"בדקו זמינות\" עשוי להוביל לאתר הזמנות שממנו אנחנו מקבלים עמלה. הדירוג והתיאור באתר אינם מושפעים מכך, ומחירים אינם מוצגים כאן אלא באתר ההזמנות.",
+  "affiliateDisclosureShort": "קישור שותפים: אם תזמינו דרכו, אנחנו עשויים לקבל עמלה, בלי עלות נוספת עבורכם."
+}
