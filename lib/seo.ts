@@ -27,8 +27,16 @@ type PageSeo = {
   ogImageAlt?: string;
 };
 
-export function pageMetadata(p: PageSeo): Metadata {
+export function pageMetadata(input: PageSeo): Metadata {
   const site = getSite();
+  // site.json staticPages holds the SEO title/description of pages that have no
+  // fields of their own (areas, attraction cards, magazine, search…).
+  const override = site.staticPages.find((s) => s.url === input.path);
+  const p = {
+    ...input,
+    title: input.title || override?.metaTitle,
+    description: input.description || override?.metaDescription,
+  };
   const url = absoluteUrl(p.path);
   // metaTitle is stored complete (with the brand); otherwise h1 goes through the template.
   const title = p.title ? { absolute: p.title } : p.fallbackTitle;

@@ -46,7 +46,7 @@ export const siteSchema = z.object({
       url: text,
       metaTitle: text,
       metaDescription: text,
-      schema: z.array(text),
+      schema: z.array(text).default([]),
       robots: text.optional(),
     }),
   ),
