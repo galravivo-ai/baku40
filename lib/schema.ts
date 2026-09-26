@@ -5,6 +5,9 @@ import { z } from "zod";
 
 const text = z.string();
 const nullableText = z.string().nullable().optional();
+// The admin (Decap CMS) saves cleared fields as "". Treat those as "not set".
+const emptyToUndefined = (v: unknown) => (v === "" || v === null ? undefined : v);
+const optionalNumber = z.preprocess(emptyToUndefined, z.coerce.number().optional());
 
 export const navLinkSchema = z.object({
   label: text.min(1),
@@ -81,7 +84,7 @@ export const itemSchema = z
     photo: text,
     photoAlt: text,
     photoNote: text,
-    photoLicense: z.enum(["מורשה", "תצוגה פנימית", "הדמיה"]).optional(),
+    photoLicense: z.preprocess(emptyToUndefined, z.enum(["מורשה", "תצוגה פנימית", "הדמיה"]).optional()),
     verify: text,
     verifiedAt: nullableText,
     source: nullableText,
@@ -90,9 +93,9 @@ export const itemSchema = z
     district: nullableText,
     pinned: z.boolean().optional(),
     // hotels only
-    score: z.number().optional(),
-    reviews: z.number().int().optional(),
-    stars: z.number().int().nullable().optional(),
+    score: optionalNumber,
+    reviews: optionalNumber,
+    stars: optionalNumber,
     // Optional long-form fields for a record's own page (design 2f). Sections
     // without data are not rendered.
     pitch: z.array(text).optional(),
@@ -104,12 +107,11 @@ export const itemSchema = z
     roomsIntro: text.optional(),
     rooms: z.array(z.object({ name: text, text: text, size: text.optional() })).optional(),
     checklist: z.array(text).optional(),
-    officialUrl: z.url().optional(),
-    bookingUrl: z
-      .string()
-      .startsWith("https://www.booking.com/", "bookingUrl חייב להתחיל ב-https://www.booking.com/")
-      .nullable()
-      .optional(),
+    officialUrl: z.preprocess(emptyToUndefined, z.url().optional()),
+    bookingUrl: z.preprocess(
+      emptyToUndefined,
+      z.string().startsWith("https://www.booking.com/", "bookingUrl חייב להתחיל ב-https://www.booking.com/").optional(),
+    ),
     seo: itemSeoSchema,
   })
   .superRefine((item, ctx) => {
@@ -433,6 +435,7 @@ const block = z.discriminatedUnion("type", [
 export type Block = z.infer<typeof block>;
 
 export const editorialPageSchema = z.object({
+  slug: text.optional(),
   url: text.regex(/^\/.*\/$/, "url חייב להתחיל ולהסתיים ב-/"),
   seo: z.object({
     metaTitle: text.nullable().optional(),

@@ -51,7 +51,7 @@ function toCard(key: CollectionKey, item: Item): CardData {
           disclosureHref: "/affiliate-disclosure/",
         }
       : undefined,
-    photo: getPhoto(item.photo, item.photoNote, item.photoAlt),
+    photo: getPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense),
     verify: item.verify,
     verifyKind: verifyKind(item.verify),
     facets,

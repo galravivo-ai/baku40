@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="he">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>ניהול תוכן · Baku40</title>
+    <script>window.CMS_MANUAL_INIT = true;</script>
+    <script src="https://unpkg.com/decap-cms@3.16.3/dist/decap-cms.js"></script>
+    <style>
+      /* Hebrew content: right-to-left inside the editing fields */
+      input, textarea, [data-slate-editor] { direction: rtl; text-align: right; }
+    </style>
+  </head>
+  <body>
+    <script>
+      // config.yml holds the collections; the sign-in endpoint follows the
+      // domain the admin is opened on (vercel.app today, baku40.co.il later).
+      CMS.init({ config: { backend: { name: "github", repo: "galravivo-ai/baku40", branch: "main", base_url: window.location.origin, auth_endpoint: "api/decap/auth/" } } });
+    </script>
+  </body>
+</html>

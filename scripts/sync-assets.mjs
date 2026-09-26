@@ -26,6 +26,11 @@ for (const logo of ["baku40-logo.png", "baku40-logo-skyblue.png"]) {
   cpSync(join(src, logo), join(dest, logo));
 }
 
+// Admin uploads are copied as-is; each page decides whether to show one from
+// the record's photoLicense.
+const uploads = join(src, "photos", "uploads");
+if (existsSync(uploads)) cpSync(uploads, join(dest, "photos", "uploads"), { recursive: true });
+
 const copied = [];
 for (const rel of ["photos", "photos/hotels"]) {
   const dir = join(src, rel);

@@ -1,0 +1,3496 @@
+# Admin (Decap CMS) — generated; every form edits the files in content/.
+backend:
+  name: github
+  repo: galravivo-ai/baku40
+  branch: main
+  auth_endpoint: api/decap/auth/
+  commit_messages:
+    update: 'עדכון תוכן: {{collection}} / {{slug}}'
+    create: 'תוכן חדש: {{collection}} / {{slug}}'
+    delete: 'מחיקה: {{collection}} / {{slug}}'
+    uploadMedia: העלאת תמונה {{path}}
+    deleteMedia: מחיקת תמונה {{path}}
+locale: he
+site_url: https://baku40.vercel.app
+media_folder: design/assets/photos/uploads
+public_folder: assets/photos/uploads
+collections:
+- name: settings
+  label: הגדרות
+  files:
+  - name: site
+    label: הגדרות אתר
+    file: content/site.json
+    fields:
+    - name: name
+      label: שם האתר
+      widget: string
+      required: true
+    - name: baseUrl
+      label: כתובת האתר
+      widget: string
+      required: true
+      hint: https://baku40.co.il
+    - name: titleTemplate
+      label: תבנית כותרת
+      widget: string
+      required: true
+      hint: '%s מוחלף בשם העמוד'
+    - name: defaultTitle
+      label: כותרת ברירת מחדל
+      widget: string
+      required: true
+    - name: defaultDescription
+      label: תיאור ברירת מחדל
+      widget: text
+      required: true
+    - name: defaultOgImage
+      label: תמונת שיתוף ברירת מחדל
+      widget: image
+      required: false
+      choose_url: true
+    - name: locale
+      label: locale
+      widget: hidden
+      required: false
+    - name: lang
+      label: lang
+      widget: hidden
+      required: false
+    - name: dir
+      label: dir
+      widget: hidden
+      required: false
+    - name: twitterCard
+      label: twitterCard
+      widget: hidden
+      required: false
+    - name: organization
+      label: organization
+      widget: hidden
+      required: false
+    - name: showBookingPhotos
+      label: להציג תמונות Booking (ללא רישיון)
+      widget: boolean
+      required: false
+      default: false
+    - name: showUndocumentedPhotos
+      label: להציג תמונות עיר בלי מקור מתועד
+      widget: boolean
+      required: false
+      default: false
+    - name: affiliateDisclosure
+      label: גילוי נאות (מלא)
+      widget: text
+      required: true
+    - name: affiliateDisclosureShort
+      label: גילוי נאות (קצר, ליד כל כפתור)
+      widget: string
+      required: true
+    - name: nav
+      label: תפריט ראשי
+      widget: list
+      required: false
+      summary: '{{fields.label}}'
+      fields:
+      - name: label
+        label: תווית
+        widget: string
+        required: false
+      - name: href
+        label: קישור
+        widget: string
+        required: false
+      - name: links
+        label: מגה־תפריט
+        widget: list
+        required: false
+        fields:
+        - name: label
+          label: תווית
+          widget: string
+          required: false
+        - name: sub
+          label: תת־כותרת
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+      - name: feature
+        label: פריט מומלץ במגה־תפריט
+        widget: object
+        required: false
+        fields:
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+        collapsed: true
+    - name: footerTagline
+      label: משפט בפוטר
+      widget: text
+      required: false
+    - name: footerColumns
+      label: עמודות פוטר
+      widget: list
+      required: false
+      summary: '{{fields.head}}'
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: קישורים
+        widget: list
+        required: false
+        fields:
+        - name: label
+          label: תווית
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+    - name: footer
+      label: קישורי שורה תחתונה
+      widget: list
+      required: false
+      fields:
+      - name: label
+        label: תווית
+        widget: string
+        required: false
+      - name: href
+        label: קישור
+        widget: string
+        required: false
+    - name: copyright
+      label: זכויות יוצרים
+      widget: string
+      required: false
+    - name: staticPages
+      label: SEO לעמודים קבועים
+      widget: list
+      required: false
+      summary: '{{fields.url}}'
+      fields:
+      - name: url
+        label: כתובת
+        widget: string
+        required: false
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: false
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור
+        widget: text
+        required: false
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      - name: schema
+        label: schema
+        widget: hidden
+        required: false
+      - name: robots
+        label: robots
+        widget: select
+        required: false
+        options:
+        - index,follow
+        - noindex,follow
+  - name: redirects
+    label: הפניות (301)
+    file: content/redirects.json
+    fields:
+    - name: items
+      label: הפניות
+      widget: list
+      required: false
+      summary: '{{fields.from}} → {{fields.to}}'
+      fields:
+      - name: from
+        label: מ־
+        widget: string
+        required: true
+        hint: /hotels/old-slug/
+      - name: to
+        label: אל
+        widget: string
+        required: true
+- name: pages
+  label: עמודים
+  files:
+  - name: home
+    label: דף הבית
+    file: content/pages/home.json
+    fields:
+    - name: seo
+      label: seo
+      widget: hidden
+      required: false
+    - name: hero
+      label: הירו
+      widget: object
+      required: false
+      fields:
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה
+        widget: string
+        required: false
+      - name: kicker
+        label: תווית
+        widget: string
+        required: false
+      - name: h1
+        label: כותרת
+        widget: text
+        required: true
+        hint: שורה חדשה = שבירת שורה
+      - name: intro
+        label: פתיח
+        widget: text
+        required: false
+      - name: searchPlaceholder
+        label: שדה חיפוש
+        widget: string
+        required: false
+      - name: ctaLabel
+        label: כפתור
+        widget: string
+        required: false
+      - name: ctaHref
+        label: קישור כפתור
+        widget: string
+        required: false
+      - name: choices
+        label: בחירות מהירות
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: title
+          label: טקסט
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+      - name: utility
+        label: שורת נתונים
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: label
+          label: תווית
+          widget: string
+          required: false
+        - name: value
+          label: ערך
+          widget: string
+          required: false
+        - name: live
+          label: live
+          widget: hidden
+          required: false
+      collapsed: true
+    - name: quick
+      label: כניסה מהירה
+      widget: list
+      required: false
+      collapsed: true
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: icon
+        label: אייקון
+        widget: string
+        required: false
+      - name: href
+        label: קישור
+        widget: string
+        required: false
+      - name: sub
+        label: תת־כותרת
+        widget: string
+        required: false
+    - name: firstTime
+      label: פעם ראשונה
+      widget: object
+      required: false
+      fields:
+      - name: kicker
+        label: תווית
+        widget: string
+        required: false
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור
+        widget: string
+        required: false
+      - name: items
+        label: פריטים
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: num
+          label: מספר
+          widget: string
+          required: false
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: icon
+          label: אייקון
+          widget: string
+          required: false
+        - name: sub
+          label: תת־כותרת
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+      collapsed: true
+    - name: attractions
+      label: מה שווה לראות
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: linkLabel
+        label: קישור
+        widget: string
+        required: false
+      - name: filters
+        label: פילטרים
+        widget: list
+        required: false
+        field:
+          name: f
+          label: פילטר
+          widget: string
+          required: false
+      - name: items
+        label: אטרקציות
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: id
+          label: מזהה
+          widget: string
+          required: false
+        - name: name
+          label: שם
+          widget: string
+          required: false
+        - name: area
+          label: אזור
+          widget: string
+          required: false
+        - name: dur
+          label: משך
+          widget: string
+          required: false
+        - name: tags
+          label: תגיות
+          widget: list
+          required: false
+          field:
+            name: t
+            label: תגית
+            widget: string
+            required: false
+        - name: note
+          label: תיאור
+          widget: text
+          required: false
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: photoAlt
+          label: תיאור תמונה
+          widget: string
+          required: false
+      collapsed: true
+    - name: planner
+      label: מתכנן טיול
+      widget: object
+      required: false
+      fields:
+      - name: kicker
+        label: תווית
+        widget: string
+        required: false
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: daysLabel
+        label: תווית ימים
+        widget: string
+        required: false
+      - name: whoLabel
+        label: תווית מי
+        widget: string
+        required: false
+      - name: interestsLabel
+        label: תווית תחומים
+        widget: string
+        required: false
+      - name: who
+        label: מי מטייל
+        widget: list
+        required: false
+        field:
+          name: w
+          label: אפשרות
+          widget: string
+          required: false
+      - name: interests
+        label: תחומי עניין
+        widget: list
+        required: false
+        field:
+          name: i
+          label: תחום
+          widget: string
+          required: false
+      - name: previewLabel
+        label: תווית תצוגה
+        widget: string
+        required: false
+      - name: days
+        label: ימים (לפי סדר)
+        widget: list
+        required: false
+        field:
+          name: d
+          label: יום
+          widget: text
+          required: false
+      - name: kidsDay2
+        label: יום 2 למשפחות
+        widget: text
+        required: false
+      - name: ctaLabel
+        label: כפתור
+        widget: string
+        required: false
+      - name: ctaHref
+        label: קישור
+        widget: string
+        required: false
+      - name: footnote
+        label: הערה
+        widget: text
+        required: false
+      collapsed: true
+    - name: itineraries
+      label: מסלולים מוכנים
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: href
+        label: קישור
+        widget: string
+        required: false
+      - name: items
+        label: מסלולים
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: days
+          label: ימים
+          widget: string
+          required: false
+        - name: title
+          label: שם
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        - name: meta
+          label: מטא
+          widget: string
+          required: false
+      collapsed: true
+    - name: hotels
+      label: מלונות מומלצים
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: linkLabel
+        label: קישור
+        widget: string
+        required: false
+      - name: items
+        label: מלונות
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: slug
+          label: slug של המלון (מ־hotels)
+          widget: string
+          required: false
+        - name: stars
+          label: כוכבים
+          widget: string
+          required: false
+        - name: area
+          label: אזור
+          widget: string
+          required: false
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: photoAlt
+          label: תיאור
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        - name: tags
+          label: תגיות
+          widget: list
+          required: false
+          field:
+            name: t
+            label: תגית
+            widget: string
+            required: false
+        - name: walk
+          label: מרחק הליכה
+          widget: string
+          required: false
+      collapsed: true
+    - name: food
+      label: אוכל
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: items
+        label: מסעדות
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: slug
+          label: slug של המסעדה
+          widget: string
+          required: false
+        - name: icon
+          label: אייקון
+          widget: string
+          required: false
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: photoAlt
+          label: תיאור
+          widget: string
+          required: false
+        - name: meta
+          label: מטא
+          widget: string
+          required: false
+        - name: note
+          label: טקסט
+          widget: text
+          required: false
+      - name: linksTitle
+        label: כותרת קישורים
+        widget: string
+        required: false
+      - name: links
+        label: קישורים
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: label
+          label: תווית
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+      collapsed: true
+    - name: practical
+      label: מידע שימושי
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: checked
+        label: נבדק
+        widget: string
+        required: false
+      - name: linkLabel
+        label: קישור
+        widget: string
+        required: false
+      - name: href
+        label: כתובת
+        widget: string
+        required: false
+      - name: items
+        label: פריטים
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: icon
+          label: אייקון
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+      collapsed: true
+    - name: realEstate
+      label: נדל״ן
+      widget: object
+      required: false
+      fields:
+      - name: kicker
+        label: תווית
+        widget: string
+        required: false
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: links
+        label: קישורים
+        widget: list
+        required: false
+        field:
+          name: l
+          label: קישור
+          widget: string
+          required: false
+      - name: linksHref
+        label: כתובת הקישורים
+        widget: string
+        required: false
+      - name: projects
+        label: פרויקטים
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: name
+          label: שם
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        - name: meta
+          label: מטא
+          widget: string
+          required: false
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: badge
+          label: תווית
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+      collapsed: true
+    - name: magazine
+      label: מגזין
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: href
+        label: קישור
+        widget: string
+        required: false
+      - name: items
+        label: כתבות
+        widget: list
+        required: false
+        collapsed: true
+        fields:
+        - name: cat
+          label: קטגוריה
+          widget: string
+          required: false
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+      collapsed: true
+  - name: attractions_page
+    label: עמוד אטרקציות
+    file: content/pages/attractions.json
+    fields:
+    - name: url
+      label: כתובת
+      widget: string
+      required: false
+    - name: crumbs
+      label: פירורי לחם
+      widget: string
+      required: false
+    - name: h1
+      label: כותרת
+      widget: string
+      required: true
+    - name: intro
+      label: פתיח
+      widget: text
+      required: false
+    - name: featured
+      label: מדריך מומלץ
+      widget: object
+      required: false
+      fields:
+      - name: kicker
+        label: תווית
+        widget: string
+        required: false
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: href
+        label: קישור
+        widget: string
+        required: false
+      collapsed: true
+    - name: searchPlaceholder
+      label: שדה חיפוש
+      widget: string
+      required: false
+    - name: sort
+      label: מיון
+      widget: string
+      required: false
+    - name: count
+      label: ספירה
+      widget: string
+      required: false
+    - name: filterGroups
+      label: פילטרים
+      widget: list
+      required: false
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: צ׳יפים
+        widget: list
+        required: false
+        field:
+          name: i
+          label: צ׳יפ
+          widget: string
+          required: false
+    - name: items
+      label: אטרקציות
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: id
+        label: מזהה
+        widget: string
+        required: true
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: area
+        label: אזור
+        widget: string
+        required: false
+      - name: areaSlug
+        label: עמוד אזור
+        widget: select
+        required: false
+        options:
+        - label: העיר העתיקה (איצ׳רי שהר)
+          value: old-city
+        - label: סבאיל
+          value: sabail
+        - label: נסימי ורחוב נזאמי
+          value: nasimi
+        - label: מרכז העיר
+          value: city-center
+        - label: הטיילת
+          value: boulevard
+        - label: יאסאמאל
+          value: yasamal
+        - label: באקו הלבנה
+          value: white-city
+        - label: חופי הצפון
+          value: north-beaches
+      - name: dur
+        label: משך ביקור
+        widget: string
+        required: false
+      - name: tags
+        label: תגיות
+        widget: list
+        required: false
+        field:
+          name: t
+          label: תגית
+          widget: string
+          required: false
+      - name: badge
+        label: תג
+        widget: string
+        required: false
+      - name: note
+        label: תיאור
+        widget: text
+        required: true
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה
+        widget: string
+        required: false
+    - name: editorialHeading
+      label: כותרת עריכתית
+      widget: string
+      required: false
+    - name: editorialParagraphs
+      label: פסקאות
+      widget: list
+      required: false
+      field:
+        name: p
+        label: פסקה
+        widget: text
+        required: false
+    - name: box
+      label: תיבת מידע
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: faqTitle
+      label: כותרת שאלות
+      widget: string
+      required: false
+    - name: faq
+      label: שאלות נפוצות
+      widget: list
+      required: false
+      summary: '{{fields.q}}'
+      fields:
+      - name: q
+        label: שאלה
+        widget: string
+        required: false
+      - name: a
+        label: תשובה
+        widget: text
+        required: false
+    - name: catalog
+      label: המאגר המלא
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+      - name: groups
+        label: groups
+        widget: hidden
+        required: false
+      collapsed: true
+  - name: areas
+    label: אזורים
+    file: content/areas.json
+    fields:
+    - name: note
+      label: note
+      widget: hidden
+      required: false
+    - name: items
+      label: אזורים
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: slug
+        label: slug
+        widget: string
+        required: true
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: url
+        label: כתובת
+        widget: string
+        required: true
+        hint: /areas/{slug}/
+      - name: subtitle
+        label: שורת משנה
+        widget: string
+        required: false
+      - name: heroPhoto
+        label: תמונת הירו
+        widget: image
+        required: false
+        choose_url: true
+      - name: heroPhotoAlt
+        label: תיאור התמונה
+        widget: string
+        required: false
+      - name: fits
+        label: למי האזור מתאים
+        widget: object
+        required: false
+        fields:
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: paragraphs
+          label: פסקאות
+          widget: list
+          required: false
+          field:
+            name: p
+            label: פסקה
+            widget: text
+            required: false
+        collapsed: true
+      - name: bestFor
+        label: מתאים ל
+        widget: list
+        required: false
+        fields:
+        - name: icon
+          label: אייקון
+          widget: string
+          required: false
+        - name: label
+          label: תווית
+          widget: string
+          required: false
+      - name: howTo
+        label: איך מסתובבים
+        widget: object
+        required: false
+        fields:
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: paragraphs
+          label: פסקאות
+          widget: list
+          required: false
+          field:
+            name: p
+            label: פסקה
+            widget: text
+            required: false
+        - name: tip
+          label: טיפ
+          widget: object
+          required: false
+          fields:
+          - name: title
+            label: כותרת
+            widget: string
+            required: false
+          - name: text
+            label: טקסט
+            widget: text
+            required: false
+        collapsed: true
+      - name: whatsHere
+        label: מה יש באזור (עריכתי)
+        widget: list
+        required: false
+        fields:
+        - name: tab
+          label: לשונית
+          widget: string
+          required: false
+        - name: items
+          label: פריטים
+          widget: list
+          required: false
+          fields:
+          - name: name
+            label: שם
+            widget: string
+            required: false
+          - name: meta
+            label: מטא
+            widget: string
+            required: false
+          - name: photo
+            label: תמונה
+            widget: image
+            required: false
+            choose_url: true
+          - name: photoAlt
+            label: תיאור
+            widget: string
+            required: false
+      - name: pros
+        label: יתרונות
+        widget: list
+        required: false
+        field:
+          name: p
+          label: יתרון
+          widget: string
+          required: false
+      - name: cons
+        label: שיקולים
+        widget: list
+        required: false
+        field:
+          name: c
+          label: שיקול
+          widget: string
+          required: false
+      - name: gettingThere
+        label: איך מגיעים
+        widget: object
+        required: false
+        fields:
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        collapsed: true
+      - name: levels
+        label: מדדי אזור
+        widget: list
+        required: false
+        fields:
+        - name: label
+          label: מדד
+          widget: string
+          required: false
+        - name: pct
+          label: אחוז (0–100)
+          widget: number
+          required: false
+          value_type: int
+          min: 0
+          max: 100
+      - name: itineraries
+        label: מסלולים שעוברים כאן
+        widget: list
+        required: false
+        fields:
+        - name: title
+          label: שם
+          widget: string
+          required: false
+        - name: meta
+          label: מטא
+          widget: string
+          required: false
+- name: collections
+  label: אוספים
+  files:
+  - name: hotels
+    label: מלונות
+    file: content/hotels.json
+    fields:
+    - name: id
+      label: id
+      widget: hidden
+      required: false
+    - name: screen
+      label: screen
+      widget: hidden
+      required: false
+    - name: sortBy
+      label: sortBy
+      widget: hidden
+      required: false
+    - name: layout
+      label: layout
+      widget: hidden
+      required: false
+    - name: url
+      label: כתובת האוסף
+      widget: string
+      required: true
+    - name: heroPhoto
+      label: תמונת הירו
+      widget: image
+      required: false
+      choose_url: true
+    - name: heroPhotoAlt
+      label: תיאור תמונת הירו
+      widget: string
+      required: false
+    - name: h1
+      label: כותרת (H1)
+      widget: string
+      required: true
+    - name: crumbs
+      label: פירורי לחם
+      widget: string
+      required: false
+      hint: מופרד ב־ ←
+    - name: intro
+      label: פתיח
+      widget: text
+      required: false
+    - name: searchPlaceholder
+      label: טקסט בשדה החיפוש
+      widget: string
+      required: false
+    - name: sort
+      label: מיון (תווית)
+      widget: string
+      required: false
+    - name: count
+      label: שורת ספירה
+      widget: string
+      required: false
+      hint: המספרים מחושבים אוטומטית מהרשומות
+    - name: filterGroups
+      label: קבוצות פילטרים
+      widget: list
+      required: false
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: צ׳יפים
+        widget: list
+        required: false
+        field:
+          name: i
+          label: צ׳יפ
+          widget: string
+          required: false
+    - name: box
+      label: תיבת מידע
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: seo
+      label: SEO של האוסף
+      widget: object
+      required: false
+      fields:
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: true
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור לגוגל
+        widget: text
+        required: true
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      - name: canonical
+        label: Canonical
+        widget: string
+        required: true
+      - name: ogImage
+        label: תמונת שיתוף
+        widget: image
+        required: false
+        choose_url: true
+      - name: ogImageAlt
+        label: תיאור תמונת שיתוף
+        widget: string
+        required: false
+      - name: robots
+        label: robots
+        widget: select
+        required: false
+        options:
+        - index,follow
+        - noindex,follow
+        default: index,follow
+      - name: schema
+        label: schema
+        widget: hidden
+        required: false
+      - name: editorialHeading
+        label: כותרת הבלוק העריכתי
+        widget: string
+        required: false
+      - name: editorialBody
+        label: הבלוק העריכתי
+        widget: text
+        required: false
+      collapsed: true
+    - name: items
+      label: רשומות
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: slug
+        label: כתובת (slug)
+        widget: string
+        required: true
+        hint: 'אותיות לטיניות קטנות ומקפים. שינוי slug של עמוד קיים: להוסיף הפניה בלשונית "הפניות".'
+      - name: url
+        label: כתובת עמוד
+        widget: string
+        required: false
+        hint: רק לרשומה עם עמוד משלה, למשל /hotels/the-merchant-baku/
+      - name: meta
+        label: שורת מטא
+        widget: string
+        required: false
+        hint: מופרד ב־ · — הפילטרים מתאימים לפי השורה הזו
+      - name: text
+        label: תיאור
+        widget: text
+        required: true
+        hint: חובה. מלון בלי תיאור לא נשמר.
+      - name: foot
+        label: שורה תחתונה בכרטיס
+        widget: string
+        required: false
+      - name: icon
+        label: אייקון (Material Symbols)
+        widget: string
+        required: false
+        hint: למשל hotel, restaurant, waves
+      - name: cta
+        label: טקסט כפתור
+        widget: string
+        required: false
+      - name: badge
+        label: תג
+        widget: string
+        required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה (alt)
+        widget: string
+        required: false
+        hint: 'חובה כשיש תמונה: מה רואים ואיפה'
+      - name: photoLicense
+        label: רישיון תמונה
+        widget: select
+        required: false
+        options:
+        - מורשה
+        - תצוגה פנימית
+        - הדמיה
+        hint: רק "מורשה" או "הדמיה" מוצגות באתר
+      - name: photoNote
+        label: הערת תמונה (פנימית)
+        widget: string
+        required: false
+      - name: verify
+        label: שורת אימות
+        widget: string
+        required: false
+        hint: מתחילה ב"נבדק" (ירוק), "אומת חלקית" (סגול), "ממתין" (כתום)
+      - name: verifiedAt
+        label: תאריך בדיקה
+        widget: string
+        required: false
+      - name: source
+        label: מקור (URL)
+        widget: string
+        required: false
+      - name: area
+        label: שם האזור
+        widget: string
+        required: false
+      - name: areaSlug
+        label: אזור (לקישור לעמוד האזור)
+        widget: select
+        required: false
+        options:
+        - label: העיר העתיקה (איצ׳רי שהר)
+          value: old-city
+        - label: סבאיל
+          value: sabail
+        - label: נסימי ורחוב נזאמי
+          value: nasimi
+        - label: מרכז העיר
+          value: city-center
+        - label: הטיילת
+          value: boulevard
+        - label: יאסאמאל
+          value: yasamal
+        - label: באקו הלבנה
+          value: white-city
+        - label: חופי הצפון
+          value: north-beaches
+      - name: stars
+        label: כוכבים
+        widget: number
+        required: false
+        value_type: int
+      - name: score
+        label: ציון Booking
+        widget: number
+        required: false
+        value_type: float
+      - name: reviews
+        label: מספר חוות דעת
+        widget: number
+        required: false
+        value_type: int
+      - name: bookingUrl
+        label: קישור Booking
+        widget: string
+        required: false
+        pattern:
+        - ^(https://www\.booking\.com/.*)?$
+        - חייב להתחיל ב-https://www.booking.com/
+      - name: district
+        label: רובע
+        widget: string
+        required: false
+      - name: pinned
+        label: להצמיד לראש הרשימה
+        widget: boolean
+        required: false
+        default: false
+      - name: pitch
+        label: למי המלון מתאים — פסקאות נוספות
+        widget: list
+        required: false
+        field:
+          name: p
+          label: פסקה
+          widget: text
+          required: false
+      - name: bottomLine
+        label: בשורה התחתונה
+        widget: text
+        required: false
+      - name: distances
+        label: יתרון המיקום
+        widget: list
+        required: false
+        fields:
+        - name: value
+          label: ערך
+          widget: string
+          required: false
+        - name: label
+          label: אל
+          widget: string
+          required: false
+      - name: facilities
+        label: מתקנים
+        widget: list
+        required: false
+        field:
+          name: f
+          label: מתקן
+          widget: string
+          required: false
+      - name: pros
+        label: יתרונות
+        widget: list
+        required: false
+        field:
+          name: p
+          label: יתרון
+          widget: string
+          required: false
+      - name: cons
+        label: שיקולים
+        widget: list
+        required: false
+        field:
+          name: c
+          label: שיקול
+          widget: string
+          required: false
+      - name: roomsIntro
+        label: החדרים — פתיח
+        widget: text
+        required: false
+      - name: rooms
+        label: חדרים
+        widget: list
+        required: false
+        fields:
+        - name: name
+          label: סוג
+          widget: string
+          required: false
+        - name: text
+          label: תיאור
+          widget: text
+          required: false
+        - name: size
+          label: גודל
+          widget: string
+          required: false
+      - name: checklist
+        label: מה לבדוק לפני שמזמינים
+        widget: list
+        required: false
+        field:
+          name: c
+          label: שורה
+          widget: string
+          required: false
+      - name: officialUrl
+        label: אתר רשמי
+        widget: string
+        required: false
+      - name: seo
+        label: SEO
+        widget: object
+        required: false
+        fields:
+        - name: metaTitle
+          label: כותרת לגוגל (metaTitle)
+          widget: string
+          required: false
+          hint: עד 65 תווים. חייבת להיות ייחודית באתר.
+          pattern:
+          - ^.{0,65}$
+          - עד 65 תווים (כותרת בגוגל)
+        - name: metaDescription
+          label: תיאור לגוגל (metaDescription)
+          widget: text
+          required: false
+          hint: 120–155 תווים. ייחודי.
+          pattern:
+          - ^.{0,155}$
+          - עד 155 תווים (תיאור בגוגל)
+        - name: schemaType
+          label: סוג Schema
+          widget: string
+          required: false
+        - name: noindex
+          label: לא לאנדקס (noindex)
+          widget: boolean
+          required: false
+          default: false
+        collapsed: true
+  - name: restaurants
+    label: מסעדות
+    file: content/restaurants.json
+    fields:
+    - name: id
+      label: id
+      widget: hidden
+      required: false
+    - name: screen
+      label: screen
+      widget: hidden
+      required: false
+    - name: sortBy
+      label: sortBy
+      widget: hidden
+      required: false
+    - name: layout
+      label: layout
+      widget: hidden
+      required: false
+    - name: url
+      label: כתובת האוסף
+      widget: string
+      required: true
+    - name: heroPhoto
+      label: תמונת הירו
+      widget: image
+      required: false
+      choose_url: true
+    - name: heroPhotoAlt
+      label: תיאור תמונת הירו
+      widget: string
+      required: false
+    - name: h1
+      label: כותרת (H1)
+      widget: string
+      required: true
+    - name: crumbs
+      label: פירורי לחם
+      widget: string
+      required: false
+      hint: מופרד ב־ ←
+    - name: intro
+      label: פתיח
+      widget: text
+      required: false
+    - name: searchPlaceholder
+      label: טקסט בשדה החיפוש
+      widget: string
+      required: false
+    - name: sort
+      label: מיון (תווית)
+      widget: string
+      required: false
+    - name: count
+      label: שורת ספירה
+      widget: string
+      required: false
+      hint: המספרים מחושבים אוטומטית מהרשומות
+    - name: filterGroups
+      label: קבוצות פילטרים
+      widget: list
+      required: false
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: צ׳יפים
+        widget: list
+        required: false
+        field:
+          name: i
+          label: צ׳יפ
+          widget: string
+          required: false
+    - name: box
+      label: תיבת מידע
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: seo
+      label: SEO של האוסף
+      widget: object
+      required: false
+      fields:
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: true
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור לגוגל
+        widget: text
+        required: true
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      - name: canonical
+        label: Canonical
+        widget: string
+        required: true
+      - name: ogImage
+        label: תמונת שיתוף
+        widget: image
+        required: false
+        choose_url: true
+      - name: ogImageAlt
+        label: תיאור תמונת שיתוף
+        widget: string
+        required: false
+      - name: robots
+        label: robots
+        widget: select
+        required: false
+        options:
+        - index,follow
+        - noindex,follow
+        default: index,follow
+      - name: schema
+        label: schema
+        widget: hidden
+        required: false
+      - name: editorialHeading
+        label: כותרת הבלוק העריכתי
+        widget: string
+        required: false
+      - name: editorialBody
+        label: הבלוק העריכתי
+        widget: text
+        required: false
+      collapsed: true
+    - name: items
+      label: רשומות
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: slug
+        label: כתובת (slug)
+        widget: string
+        required: true
+        hint: 'אותיות לטיניות קטנות ומקפים. שינוי slug של עמוד קיים: להוסיף הפניה בלשונית "הפניות".'
+      - name: url
+        label: כתובת עמוד
+        widget: string
+        required: false
+        hint: רק לרשומה עם עמוד משלה, למשל /hotels/the-merchant-baku/
+      - name: meta
+        label: שורת מטא
+        widget: string
+        required: false
+        hint: מופרד ב־ · — הפילטרים מתאימים לפי השורה הזו
+      - name: text
+        label: תיאור
+        widget: text
+        required: true
+        hint: חובה. מלון בלי תיאור לא נשמר.
+      - name: foot
+        label: שורה תחתונה בכרטיס
+        widget: string
+        required: false
+      - name: icon
+        label: אייקון (Material Symbols)
+        widget: string
+        required: false
+        hint: למשל hotel, restaurant, waves
+      - name: cta
+        label: טקסט כפתור
+        widget: string
+        required: false
+      - name: badge
+        label: תג
+        widget: string
+        required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה (alt)
+        widget: string
+        required: false
+        hint: 'חובה כשיש תמונה: מה רואים ואיפה'
+      - name: photoLicense
+        label: רישיון תמונה
+        widget: select
+        required: false
+        options:
+        - מורשה
+        - תצוגה פנימית
+        - הדמיה
+        hint: רק "מורשה" או "הדמיה" מוצגות באתר
+      - name: photoNote
+        label: הערת תמונה (פנימית)
+        widget: string
+        required: false
+      - name: verify
+        label: שורת אימות
+        widget: string
+        required: false
+        hint: מתחילה ב"נבדק" (ירוק), "אומת חלקית" (סגול), "ממתין" (כתום)
+      - name: verifiedAt
+        label: תאריך בדיקה
+        widget: string
+        required: false
+      - name: source
+        label: מקור (URL)
+        widget: string
+        required: false
+      - name: area
+        label: שם האזור
+        widget: string
+        required: false
+      - name: areaSlug
+        label: אזור (לקישור לעמוד האזור)
+        widget: select
+        required: false
+        options:
+        - label: העיר העתיקה (איצ׳רי שהר)
+          value: old-city
+        - label: סבאיל
+          value: sabail
+        - label: נסימי ורחוב נזאמי
+          value: nasimi
+        - label: מרכז העיר
+          value: city-center
+        - label: הטיילת
+          value: boulevard
+        - label: יאסאמאל
+          value: yasamal
+        - label: באקו הלבנה
+          value: white-city
+        - label: חופי הצפון
+          value: north-beaches
+      - name: seo
+        label: SEO
+        widget: object
+        required: false
+        fields:
+        - name: metaTitle
+          label: כותרת לגוגל (metaTitle)
+          widget: string
+          required: false
+          hint: עד 65 תווים. חייבת להיות ייחודית באתר.
+          pattern:
+          - ^.{0,65}$
+          - עד 65 תווים (כותרת בגוגל)
+        - name: metaDescription
+          label: תיאור לגוגל (metaDescription)
+          widget: text
+          required: false
+          hint: 120–155 תווים. ייחודי.
+          pattern:
+          - ^.{0,155}$
+          - עד 155 תווים (תיאור בגוגל)
+        - name: schemaType
+          label: סוג Schema
+          widget: string
+          required: false
+        - name: noindex
+          label: לא לאנדקס (noindex)
+          widget: boolean
+          required: false
+          default: false
+        collapsed: true
+  - name: kosher
+    label: כשר
+    file: content/kosher.json
+    fields:
+    - name: id
+      label: id
+      widget: hidden
+      required: false
+    - name: screen
+      label: screen
+      widget: hidden
+      required: false
+    - name: sortBy
+      label: sortBy
+      widget: hidden
+      required: false
+    - name: layout
+      label: layout
+      widget: hidden
+      required: false
+    - name: url
+      label: כתובת האוסף
+      widget: string
+      required: true
+    - name: heroPhoto
+      label: תמונת הירו
+      widget: image
+      required: false
+      choose_url: true
+    - name: heroPhotoAlt
+      label: תיאור תמונת הירו
+      widget: string
+      required: false
+    - name: h1
+      label: כותרת (H1)
+      widget: string
+      required: true
+    - name: crumbs
+      label: פירורי לחם
+      widget: string
+      required: false
+      hint: מופרד ב־ ←
+    - name: intro
+      label: פתיח
+      widget: text
+      required: false
+    - name: searchPlaceholder
+      label: טקסט בשדה החיפוש
+      widget: string
+      required: false
+    - name: sort
+      label: מיון (תווית)
+      widget: string
+      required: false
+    - name: count
+      label: שורת ספירה
+      widget: string
+      required: false
+      hint: המספרים מחושבים אוטומטית מהרשומות
+    - name: filterGroups
+      label: קבוצות פילטרים
+      widget: list
+      required: false
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: צ׳יפים
+        widget: list
+        required: false
+        field:
+          name: i
+          label: צ׳יפ
+          widget: string
+          required: false
+    - name: box
+      label: תיבת מידע
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: seo
+      label: SEO של האוסף
+      widget: object
+      required: false
+      fields:
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: true
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור לגוגל
+        widget: text
+        required: true
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      - name: canonical
+        label: Canonical
+        widget: string
+        required: true
+      - name: ogImage
+        label: תמונת שיתוף
+        widget: image
+        required: false
+        choose_url: true
+      - name: ogImageAlt
+        label: תיאור תמונת שיתוף
+        widget: string
+        required: false
+      - name: robots
+        label: robots
+        widget: select
+        required: false
+        options:
+        - index,follow
+        - noindex,follow
+        default: index,follow
+      - name: schema
+        label: schema
+        widget: hidden
+        required: false
+      - name: editorialHeading
+        label: כותרת הבלוק העריכתי
+        widget: string
+        required: false
+      - name: editorialBody
+        label: הבלוק העריכתי
+        widget: text
+        required: false
+      collapsed: true
+    - name: items
+      label: רשומות
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: slug
+        label: כתובת (slug)
+        widget: string
+        required: true
+        hint: 'אותיות לטיניות קטנות ומקפים. שינוי slug של עמוד קיים: להוסיף הפניה בלשונית "הפניות".'
+      - name: url
+        label: כתובת עמוד
+        widget: string
+        required: false
+        hint: רק לרשומה עם עמוד משלה, למשל /hotels/the-merchant-baku/
+      - name: meta
+        label: שורת מטא
+        widget: string
+        required: false
+        hint: מופרד ב־ · — הפילטרים מתאימים לפי השורה הזו
+      - name: text
+        label: תיאור
+        widget: text
+        required: true
+        hint: חובה. מלון בלי תיאור לא נשמר.
+      - name: foot
+        label: שורה תחתונה בכרטיס
+        widget: string
+        required: false
+      - name: icon
+        label: אייקון (Material Symbols)
+        widget: string
+        required: false
+        hint: למשל hotel, restaurant, waves
+      - name: cta
+        label: טקסט כפתור
+        widget: string
+        required: false
+      - name: badge
+        label: תג
+        widget: string
+        required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה (alt)
+        widget: string
+        required: false
+        hint: 'חובה כשיש תמונה: מה רואים ואיפה'
+      - name: photoLicense
+        label: רישיון תמונה
+        widget: select
+        required: false
+        options:
+        - מורשה
+        - תצוגה פנימית
+        - הדמיה
+        hint: רק "מורשה" או "הדמיה" מוצגות באתר
+      - name: photoNote
+        label: הערת תמונה (פנימית)
+        widget: string
+        required: false
+      - name: verify
+        label: שורת אימות
+        widget: string
+        required: false
+        hint: מתחילה ב"נבדק" (ירוק), "אומת חלקית" (סגול), "ממתין" (כתום)
+      - name: verifiedAt
+        label: תאריך בדיקה
+        widget: string
+        required: false
+      - name: source
+        label: מקור (URL)
+        widget: string
+        required: false
+      - name: area
+        label: שם האזור
+        widget: string
+        required: false
+      - name: areaSlug
+        label: אזור (לקישור לעמוד האזור)
+        widget: select
+        required: false
+        options:
+        - label: העיר העתיקה (איצ׳רי שהר)
+          value: old-city
+        - label: סבאיל
+          value: sabail
+        - label: נסימי ורחוב נזאמי
+          value: nasimi
+        - label: מרכז העיר
+          value: city-center
+        - label: הטיילת
+          value: boulevard
+        - label: יאסאמאל
+          value: yasamal
+        - label: באקו הלבנה
+          value: white-city
+        - label: חופי הצפון
+          value: north-beaches
+      - name: seo
+        label: SEO
+        widget: object
+        required: false
+        fields:
+        - name: metaTitle
+          label: כותרת לגוגל (metaTitle)
+          widget: string
+          required: false
+          hint: עד 65 תווים. חייבת להיות ייחודית באתר.
+          pattern:
+          - ^.{0,65}$
+          - עד 65 תווים (כותרת בגוגל)
+        - name: metaDescription
+          label: תיאור לגוגל (metaDescription)
+          widget: text
+          required: false
+          hint: 120–155 תווים. ייחודי.
+          pattern:
+          - ^.{0,155}$
+          - עד 155 תווים (תיאור בגוגל)
+        - name: schemaType
+          label: סוג Schema
+          widget: string
+          required: false
+        - name: noindex
+          label: לא לאנדקס (noindex)
+          widget: boolean
+          required: false
+          default: false
+        collapsed: true
+  - name: itineraries
+    label: מסלולים
+    file: content/itineraries.json
+    fields:
+    - name: id
+      label: id
+      widget: hidden
+      required: false
+    - name: screen
+      label: screen
+      widget: hidden
+      required: false
+    - name: sortBy
+      label: sortBy
+      widget: hidden
+      required: false
+    - name: layout
+      label: layout
+      widget: hidden
+      required: false
+    - name: url
+      label: כתובת האוסף
+      widget: string
+      required: true
+    - name: heroPhoto
+      label: תמונת הירו
+      widget: image
+      required: false
+      choose_url: true
+    - name: heroPhotoAlt
+      label: תיאור תמונת הירו
+      widget: string
+      required: false
+    - name: h1
+      label: כותרת (H1)
+      widget: string
+      required: true
+    - name: crumbs
+      label: פירורי לחם
+      widget: string
+      required: false
+      hint: מופרד ב־ ←
+    - name: intro
+      label: פתיח
+      widget: text
+      required: false
+    - name: searchPlaceholder
+      label: טקסט בשדה החיפוש
+      widget: string
+      required: false
+    - name: sort
+      label: מיון (תווית)
+      widget: string
+      required: false
+    - name: count
+      label: שורת ספירה
+      widget: string
+      required: false
+      hint: המספרים מחושבים אוטומטית מהרשומות
+    - name: filterGroups
+      label: קבוצות פילטרים
+      widget: list
+      required: false
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: צ׳יפים
+        widget: list
+        required: false
+        field:
+          name: i
+          label: צ׳יפ
+          widget: string
+          required: false
+    - name: box
+      label: תיבת מידע
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: seo
+      label: SEO של האוסף
+      widget: object
+      required: false
+      fields:
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: true
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור לגוגל
+        widget: text
+        required: true
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      - name: canonical
+        label: Canonical
+        widget: string
+        required: true
+      - name: ogImage
+        label: תמונת שיתוף
+        widget: image
+        required: false
+        choose_url: true
+      - name: ogImageAlt
+        label: תיאור תמונת שיתוף
+        widget: string
+        required: false
+      - name: robots
+        label: robots
+        widget: select
+        required: false
+        options:
+        - index,follow
+        - noindex,follow
+        default: index,follow
+      - name: schema
+        label: schema
+        widget: hidden
+        required: false
+      - name: editorialHeading
+        label: כותרת הבלוק העריכתי
+        widget: string
+        required: false
+      - name: editorialBody
+        label: הבלוק העריכתי
+        widget: text
+        required: false
+      collapsed: true
+    - name: items
+      label: רשומות
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: slug
+        label: כתובת (slug)
+        widget: string
+        required: true
+        hint: 'אותיות לטיניות קטנות ומקפים. שינוי slug של עמוד קיים: להוסיף הפניה בלשונית "הפניות".'
+      - name: url
+        label: כתובת עמוד
+        widget: string
+        required: false
+        hint: רק לרשומה עם עמוד משלה, למשל /hotels/the-merchant-baku/
+      - name: meta
+        label: שורת מטא
+        widget: string
+        required: false
+        hint: מופרד ב־ · — הפילטרים מתאימים לפי השורה הזו
+      - name: text
+        label: תיאור
+        widget: text
+        required: true
+        hint: חובה. מלון בלי תיאור לא נשמר.
+      - name: foot
+        label: שורה תחתונה בכרטיס
+        widget: string
+        required: false
+      - name: icon
+        label: אייקון (Material Symbols)
+        widget: string
+        required: false
+        hint: למשל hotel, restaurant, waves
+      - name: cta
+        label: טקסט כפתור
+        widget: string
+        required: false
+      - name: badge
+        label: תג
+        widget: string
+        required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה (alt)
+        widget: string
+        required: false
+        hint: 'חובה כשיש תמונה: מה רואים ואיפה'
+      - name: photoLicense
+        label: רישיון תמונה
+        widget: select
+        required: false
+        options:
+        - מורשה
+        - תצוגה פנימית
+        - הדמיה
+        hint: רק "מורשה" או "הדמיה" מוצגות באתר
+      - name: photoNote
+        label: הערת תמונה (פנימית)
+        widget: string
+        required: false
+      - name: verify
+        label: שורת אימות
+        widget: string
+        required: false
+        hint: מתחילה ב"נבדק" (ירוק), "אומת חלקית" (סגול), "ממתין" (כתום)
+      - name: verifiedAt
+        label: תאריך בדיקה
+        widget: string
+        required: false
+      - name: source
+        label: מקור (URL)
+        widget: string
+        required: false
+      - name: area
+        label: שם האזור
+        widget: string
+        required: false
+      - name: areaSlug
+        label: אזור (לקישור לעמוד האזור)
+        widget: select
+        required: false
+        options:
+        - label: העיר העתיקה (איצ׳רי שהר)
+          value: old-city
+        - label: סבאיל
+          value: sabail
+        - label: נסימי ורחוב נזאמי
+          value: nasimi
+        - label: מרכז העיר
+          value: city-center
+        - label: הטיילת
+          value: boulevard
+        - label: יאסאמאל
+          value: yasamal
+        - label: באקו הלבנה
+          value: white-city
+        - label: חופי הצפון
+          value: north-beaches
+      - name: seo
+        label: SEO
+        widget: object
+        required: false
+        fields:
+        - name: metaTitle
+          label: כותרת לגוגל (metaTitle)
+          widget: string
+          required: false
+          hint: עד 65 תווים. חייבת להיות ייחודית באתר.
+          pattern:
+          - ^.{0,65}$
+          - עד 65 תווים (כותרת בגוגל)
+        - name: metaDescription
+          label: תיאור לגוגל (metaDescription)
+          widget: text
+          required: false
+          hint: 120–155 תווים. ייחודי.
+          pattern:
+          - ^.{0,155}$
+          - עד 155 תווים (תיאור בגוגל)
+        - name: schemaType
+          label: סוג Schema
+          widget: string
+          required: false
+        - name: noindex
+          label: לא לאנדקס (noindex)
+          widget: boolean
+          required: false
+          default: false
+        collapsed: true
+  - name: shopping
+    label: קניות
+    file: content/shopping.json
+    fields:
+    - name: id
+      label: id
+      widget: hidden
+      required: false
+    - name: screen
+      label: screen
+      widget: hidden
+      required: false
+    - name: sortBy
+      label: sortBy
+      widget: hidden
+      required: false
+    - name: layout
+      label: layout
+      widget: hidden
+      required: false
+    - name: url
+      label: כתובת האוסף
+      widget: string
+      required: true
+    - name: heroPhoto
+      label: תמונת הירו
+      widget: image
+      required: false
+      choose_url: true
+    - name: heroPhotoAlt
+      label: תיאור תמונת הירו
+      widget: string
+      required: false
+    - name: h1
+      label: כותרת (H1)
+      widget: string
+      required: true
+    - name: crumbs
+      label: פירורי לחם
+      widget: string
+      required: false
+      hint: מופרד ב־ ←
+    - name: intro
+      label: פתיח
+      widget: text
+      required: false
+    - name: searchPlaceholder
+      label: טקסט בשדה החיפוש
+      widget: string
+      required: false
+    - name: sort
+      label: מיון (תווית)
+      widget: string
+      required: false
+    - name: count
+      label: שורת ספירה
+      widget: string
+      required: false
+      hint: המספרים מחושבים אוטומטית מהרשומות
+    - name: filterGroups
+      label: קבוצות פילטרים
+      widget: list
+      required: false
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: צ׳יפים
+        widget: list
+        required: false
+        field:
+          name: i
+          label: צ׳יפ
+          widget: string
+          required: false
+    - name: box
+      label: תיבת מידע
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: seo
+      label: SEO של האוסף
+      widget: object
+      required: false
+      fields:
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: true
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור לגוגל
+        widget: text
+        required: true
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      - name: canonical
+        label: Canonical
+        widget: string
+        required: true
+      - name: ogImage
+        label: תמונת שיתוף
+        widget: image
+        required: false
+        choose_url: true
+      - name: ogImageAlt
+        label: תיאור תמונת שיתוף
+        widget: string
+        required: false
+      - name: robots
+        label: robots
+        widget: select
+        required: false
+        options:
+        - index,follow
+        - noindex,follow
+        default: index,follow
+      - name: schema
+        label: schema
+        widget: hidden
+        required: false
+      - name: editorialHeading
+        label: כותרת הבלוק העריכתי
+        widget: string
+        required: false
+      - name: editorialBody
+        label: הבלוק העריכתי
+        widget: text
+        required: false
+      collapsed: true
+    - name: items
+      label: רשומות
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: slug
+        label: כתובת (slug)
+        widget: string
+        required: true
+        hint: 'אותיות לטיניות קטנות ומקפים. שינוי slug של עמוד קיים: להוסיף הפניה בלשונית "הפניות".'
+      - name: url
+        label: כתובת עמוד
+        widget: string
+        required: false
+        hint: רק לרשומה עם עמוד משלה, למשל /hotels/the-merchant-baku/
+      - name: meta
+        label: שורת מטא
+        widget: string
+        required: false
+        hint: מופרד ב־ · — הפילטרים מתאימים לפי השורה הזו
+      - name: text
+        label: תיאור
+        widget: text
+        required: true
+        hint: חובה. מלון בלי תיאור לא נשמר.
+      - name: foot
+        label: שורה תחתונה בכרטיס
+        widget: string
+        required: false
+      - name: icon
+        label: אייקון (Material Symbols)
+        widget: string
+        required: false
+        hint: למשל hotel, restaurant, waves
+      - name: cta
+        label: טקסט כפתור
+        widget: string
+        required: false
+      - name: badge
+        label: תג
+        widget: string
+        required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה (alt)
+        widget: string
+        required: false
+        hint: 'חובה כשיש תמונה: מה רואים ואיפה'
+      - name: photoLicense
+        label: רישיון תמונה
+        widget: select
+        required: false
+        options:
+        - מורשה
+        - תצוגה פנימית
+        - הדמיה
+        hint: רק "מורשה" או "הדמיה" מוצגות באתר
+      - name: photoNote
+        label: הערת תמונה (פנימית)
+        widget: string
+        required: false
+      - name: verify
+        label: שורת אימות
+        widget: string
+        required: false
+        hint: מתחילה ב"נבדק" (ירוק), "אומת חלקית" (סגול), "ממתין" (כתום)
+      - name: verifiedAt
+        label: תאריך בדיקה
+        widget: string
+        required: false
+      - name: source
+        label: מקור (URL)
+        widget: string
+        required: false
+      - name: area
+        label: שם האזור
+        widget: string
+        required: false
+      - name: areaSlug
+        label: אזור (לקישור לעמוד האזור)
+        widget: select
+        required: false
+        options:
+        - label: העיר העתיקה (איצ׳רי שהר)
+          value: old-city
+        - label: סבאיל
+          value: sabail
+        - label: נסימי ורחוב נזאמי
+          value: nasimi
+        - label: מרכז העיר
+          value: city-center
+        - label: הטיילת
+          value: boulevard
+        - label: יאסאמאל
+          value: yasamal
+        - label: באקו הלבנה
+          value: white-city
+        - label: חופי הצפון
+          value: north-beaches
+      - name: seo
+        label: SEO
+        widget: object
+        required: false
+        fields:
+        - name: metaTitle
+          label: כותרת לגוגל (metaTitle)
+          widget: string
+          required: false
+          hint: עד 65 תווים. חייבת להיות ייחודית באתר.
+          pattern:
+          - ^.{0,65}$
+          - עד 65 תווים (כותרת בגוגל)
+        - name: metaDescription
+          label: תיאור לגוגל (metaDescription)
+          widget: text
+          required: false
+          hint: 120–155 תווים. ייחודי.
+          pattern:
+          - ^.{0,155}$
+          - עד 155 תווים (תיאור בגוגל)
+        - name: schemaType
+          label: סוג Schema
+          widget: string
+          required: false
+        - name: noindex
+          label: לא לאנדקס (noindex)
+          widget: boolean
+          required: false
+          default: false
+        collapsed: true
+  - name: day_trips
+    label: טיולי יום
+    file: content/day-trips.json
+    fields:
+    - name: id
+      label: id
+      widget: hidden
+      required: false
+    - name: screen
+      label: screen
+      widget: hidden
+      required: false
+    - name: sortBy
+      label: sortBy
+      widget: hidden
+      required: false
+    - name: layout
+      label: layout
+      widget: hidden
+      required: false
+    - name: url
+      label: כתובת האוסף
+      widget: string
+      required: true
+    - name: heroPhoto
+      label: תמונת הירו
+      widget: image
+      required: false
+      choose_url: true
+    - name: heroPhotoAlt
+      label: תיאור תמונת הירו
+      widget: string
+      required: false
+    - name: h1
+      label: כותרת (H1)
+      widget: string
+      required: true
+    - name: crumbs
+      label: פירורי לחם
+      widget: string
+      required: false
+      hint: מופרד ב־ ←
+    - name: intro
+      label: פתיח
+      widget: text
+      required: false
+    - name: searchPlaceholder
+      label: טקסט בשדה החיפוש
+      widget: string
+      required: false
+    - name: sort
+      label: מיון (תווית)
+      widget: string
+      required: false
+    - name: count
+      label: שורת ספירה
+      widget: string
+      required: false
+      hint: המספרים מחושבים אוטומטית מהרשומות
+    - name: filterGroups
+      label: קבוצות פילטרים
+      widget: list
+      required: false
+      fields:
+      - name: head
+        label: כותרת
+        widget: string
+        required: false
+      - name: items
+        label: צ׳יפים
+        widget: list
+        required: false
+        field:
+          name: i
+          label: צ׳יפ
+          widget: string
+          required: false
+    - name: box
+      label: תיבת מידע
+      widget: object
+      required: false
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: seo
+      label: SEO של האוסף
+      widget: object
+      required: false
+      fields:
+      - name: metaTitle
+        label: כותרת לגוגל
+        widget: string
+        required: true
+        pattern:
+        - ^.{0,65}$
+        - עד 65 תווים (כותרת בגוגל)
+      - name: metaDescription
+        label: תיאור לגוגל
+        widget: text
+        required: true
+        pattern:
+        - ^.{0,155}$
+        - עד 155 תווים (תיאור בגוגל)
+      - name: canonical
+        label: Canonical
+        widget: string
+        required: true
+      - name: ogImage
+        label: תמונת שיתוף
+        widget: image
+        required: false
+        choose_url: true
+      - name: ogImageAlt
+        label: תיאור תמונת שיתוף
+        widget: string
+        required: false
+      - name: robots
+        label: robots
+        widget: select
+        required: false
+        options:
+        - index,follow
+        - noindex,follow
+        default: index,follow
+      - name: schema
+        label: schema
+        widget: hidden
+        required: false
+      - name: editorialHeading
+        label: כותרת הבלוק העריכתי
+        widget: string
+        required: false
+      - name: editorialBody
+        label: הבלוק העריכתי
+        widget: text
+        required: false
+      collapsed: true
+    - name: items
+      label: רשומות
+      widget: list
+      required: false
+      summary: '{{fields.name}}'
+      collapsed: true
+      fields:
+      - name: name
+        label: שם
+        widget: string
+        required: true
+      - name: slug
+        label: כתובת (slug)
+        widget: string
+        required: true
+        hint: 'אותיות לטיניות קטנות ומקפים. שינוי slug של עמוד קיים: להוסיף הפניה בלשונית "הפניות".'
+      - name: url
+        label: כתובת עמוד
+        widget: string
+        required: false
+        hint: רק לרשומה עם עמוד משלה, למשל /hotels/the-merchant-baku/
+      - name: meta
+        label: שורת מטא
+        widget: string
+        required: false
+        hint: מופרד ב־ · — הפילטרים מתאימים לפי השורה הזו
+      - name: text
+        label: תיאור
+        widget: text
+        required: true
+        hint: חובה. מלון בלי תיאור לא נשמר.
+      - name: foot
+        label: שורה תחתונה בכרטיס
+        widget: string
+        required: false
+      - name: icon
+        label: אייקון (Material Symbols)
+        widget: string
+        required: false
+        hint: למשל hotel, restaurant, waves
+      - name: cta
+        label: טקסט כפתור
+        widget: string
+        required: false
+      - name: badge
+        label: תג
+        widget: string
+        required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: photoAlt
+        label: תיאור תמונה (alt)
+        widget: string
+        required: false
+        hint: 'חובה כשיש תמונה: מה רואים ואיפה'
+      - name: photoLicense
+        label: רישיון תמונה
+        widget: select
+        required: false
+        options:
+        - מורשה
+        - תצוגה פנימית
+        - הדמיה
+        hint: רק "מורשה" או "הדמיה" מוצגות באתר
+      - name: photoNote
+        label: הערת תמונה (פנימית)
+        widget: string
+        required: false
+      - name: verify
+        label: שורת אימות
+        widget: string
+        required: false
+        hint: מתחילה ב"נבדק" (ירוק), "אומת חלקית" (סגול), "ממתין" (כתום)
+      - name: verifiedAt
+        label: תאריך בדיקה
+        widget: string
+        required: false
+      - name: source
+        label: מקור (URL)
+        widget: string
+        required: false
+      - name: area
+        label: שם האזור
+        widget: string
+        required: false
+      - name: areaSlug
+        label: אזור (לקישור לעמוד האזור)
+        widget: select
+        required: false
+        options:
+        - label: העיר העתיקה (איצ׳רי שהר)
+          value: old-city
+        - label: סבאיל
+          value: sabail
+        - label: נסימי ורחוב נזאמי
+          value: nasimi
+        - label: מרכז העיר
+          value: city-center
+        - label: הטיילת
+          value: boulevard
+        - label: יאסאמאל
+          value: yasamal
+        - label: באקו הלבנה
+          value: white-city
+        - label: חופי הצפון
+          value: north-beaches
+      - name: seo
+        label: SEO
+        widget: object
+        required: false
+        fields:
+        - name: metaTitle
+          label: כותרת לגוגל (metaTitle)
+          widget: string
+          required: false
+          hint: עד 65 תווים. חייבת להיות ייחודית באתר.
+          pattern:
+          - ^.{0,65}$
+          - עד 65 תווים (כותרת בגוגל)
+        - name: metaDescription
+          label: תיאור לגוגל (metaDescription)
+          widget: text
+          required: false
+          hint: 120–155 תווים. ייחודי.
+          pattern:
+          - ^.{0,155}$
+          - עד 155 תווים (תיאור בגוגל)
+        - name: schemaType
+          label: סוג Schema
+          widget: string
+          required: false
+        - name: noindex
+          label: לא לאנדקס (noindex)
+          widget: boolean
+          required: false
+          default: false
+        collapsed: true
+- name: editorial
+  label: עמודי תוכן
+  folder: content/pages/editorial
+  extension: json
+  format: json
+  create: true
+  delete: true
+  slug: '{{fields.slug}}'
+  identifier_field: h1
+  summary: '{{h1}} — {{url}}'
+  fields:
+  - name: slug
+    label: שם קובץ (לטינית)
+    widget: string
+    required: true
+  - name: url
+    label: כתובת העמוד
+    widget: string
+    required: true
+    hint: למשל /magazine/new-article/ — מתחיל ומסתיים ב-/
+    pattern:
+    - ^/.*/$
+    - מתחיל ומסתיים ב-/
+  - name: seo
+    label: SEO
+    widget: object
+    required: false
+    fields:
+    - name: metaTitle
+      label: כותרת לגוגל
+      widget: string
+      required: false
+      pattern:
+      - ^.{0,65}$
+      - עד 65 תווים (כותרת בגוגל)
+    - name: metaDescription
+      label: תיאור לגוגל
+      widget: text
+      required: false
+      pattern:
+      - ^.{0,155}$
+      - עד 155 תווים (תיאור בגוגל)
+    - name: robots
+      label: robots
+      widget: select
+      required: false
+      options:
+      - index,follow
+      - noindex,follow
+      default: index,follow
+    collapsed: true
+  - name: h1
+    label: כותרת (H1)
+    widget: string
+    required: true
+  - name: intro
+    label: פתיח
+    widget: text
+    required: false
+  - name: meta
+    label: שורת מטא
+    widget: list
+    required: false
+    field:
+      name: m
+      label: פריט
+      widget: string
+      required: false
+  - name: images
+    label: גלריה עליונה
+    widget: list
+    required: false
+    fields:
+    - name: photo
+      label: תמונה
+      widget: image
+      required: false
+      choose_url: true
+    - name: alt
+      label: תיאור
+      widget: string
+      required: false
+  - name: imageNote
+    label: הערה מתחת לגלריה
+    widget: text
+    required: false
+  - name: blocks
+    label: תוכן העמוד
+    widget: list
+    required: false
+    typeKey: type
+    types:
+    - name: h2
+      label: כותרת
+      widget: object
+      fields:
+      - name: text
+        label: טקסט
+        widget: string
+        required: false
+    - name: h3
+      label: כותרת משנה
+      widget: object
+      fields:
+      - name: text
+        label: טקסט
+        widget: string
+        required: false
+    - name: p
+      label: פסקה
+      widget: object
+      fields:
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: note
+      label: הערה קטנה
+      widget: object
+      fields:
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: kicker
+      label: תווית
+      widget: object
+      fields:
+      - name: text
+        label: טקסט
+        widget: string
+        required: false
+    - name: callout
+      label: תיבה מודגשת
+      widget: object
+      fields:
+      - name: title
+        label: כותרת
+        widget: string
+        required: false
+      - name: text
+        label: טקסט
+        widget: text
+        required: false
+    - name: list
+      label: רשימה
+      widget: object
+      fields:
+      - name: items
+        label: שורות
+        widget: list
+        required: false
+        field:
+          name: i
+          label: שורה
+          widget: text
+          required: false
+    - name: link
+      label: קישור
+      widget: object
+      fields:
+      - name: label
+        label: טקסט
+        widget: string
+        required: false
+      - name: href
+        label: כתובת
+        widget: string
+        required: false
+    - name: image
+      label: תמונה
+      widget: object
+      fields:
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
+      - name: alt
+        label: תיאור
+        widget: string
+        required: false
+    - name: stats
+      label: מספרים בולטים
+      widget: object
+      fields:
+      - name: items
+        label: נתונים
+        widget: list
+        required: false
+        fields:
+        - name: value
+          label: ערך
+          widget: string
+          required: false
+        - name: label
+          label: תווית
+          widget: string
+          required: false
+    - name: facts
+      label: עובדות
+      widget: object
+      fields:
+      - name: items
+        label: עובדות
+        widget: list
+        required: false
+        fields:
+        - name: k
+          label: שם
+          widget: string
+          required: false
+        - name: v
+          label: ערך
+          widget: string
+          required: false
+    - name: cards
+      label: כרטיסים
+      widget: object
+      fields:
+      - name: items
+        label: כרטיסים
+        widget: list
+        required: false
+        fields:
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+        - name: note
+          label: הערה
+          widget: string
+          required: false
+    - name: photoCards
+      label: כרטיסים עם תמונה
+      widget: object
+      fields:
+      - name: items
+        label: כרטיסים
+        widget: list
+        required: false
+        fields:
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: alt
+          label: תיאור
+          widget: string
+          required: false
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: badge
+          label: תווית
+          widget: string
+          required: false
+        - name: tag
+          label: תג
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        - name: facts
+          label: עובדות
+          widget: list
+          required: false
+          fields:
+          - name: k
+            label: שם
+            widget: string
+            required: false
+          - name: v
+            label: ערך
+            widget: string
+            required: false
+        - name: note
+          label: הערה
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+    - name: steps
+      label: שלבים
+      widget: object
+      fields:
+      - name: items
+        label: שלבים
+        widget: list
+        required: false
+        fields:
+        - name: title
+          label: כותרת
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+    - name: stops
+      label: עצירות במסלול
+      widget: object
+      fields:
+      - name: items
+        label: עצירות
+        widget: list
+        required: false
+        fields:
+        - name: time
+          label: שעה
+          widget: string
+          required: false
+        - name: name
+          label: שם
+          widget: string
+          required: false
+        - name: meta
+          label: מטא
+          widget: string
+          required: false
+        - name: text
+          label: טקסט
+          widget: text
+          required: false
+        - name: tip
+          label: טיפ
+          widget: text
+          required: false
+        - name: move
+          label: מעבר
+          widget: string
+          required: false
+        - name: photo
+          label: תמונה
+          widget: image
+          required: false
+          choose_url: true
+        - name: alt
+          label: תיאור
+          widget: string
+          required: false
+        - name: optional
+          label: אופציונלי
+          widget: boolean
+          required: false
+          default: false
+    - name: faq
+      label: שאלות נפוצות
+      widget: object
+      fields:
+      - name: items
+        label: שאלות
+        widget: list
+        required: false
+        fields:
+        - name: q
+          label: שאלה
+          widget: string
+          required: false
+        - name: a
+          label: תשובה
+          widget: text
+          required: false
+    - name: sources
+      label: מקורות
+      widget: object
+      fields:
+      - name: items
+        label: מקורות
+        widget: list
+        required: false
+        fields:
+        - name: label
+          label: שם
+          widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+    - name: table
+      label: טבלה
+      widget: object
+      fields:
+      - name: head
+        label: כותרות עמודות
+        widget: list
+        required: false
+        field:
+          name: h
+          label: כותרת
+          widget: string
+          required: false
+      - name: rows
+        label: שורות
+        widget: list
+        required: false
+        field:
+          name: cells
+          label: תאים
+          widget: list
+          required: false
+          field:
+            name: c
+            label: תא
+            widget: string
+            required: false
+    - name: liveStats
+      label: מספרים מהמאגר (אוטומטי)
+      widget: object
+      fields:
+      - name: note
+        label: note
+        widget: hidden
+        required: false

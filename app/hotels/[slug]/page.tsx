@@ -53,7 +53,7 @@ export async function generateMetadata({ params }: Props) {
     fallbackDescription: item.text,
     // SEO spec §8: pages with under 150 words of unique text stay noindex.
     robots: item.seo.noindex || thin ? "noindex,follow" : "index,follow",
-    ogImage: getPhoto(item.photo, item.photoNote, item.photoAlt),
+    ogImage: getPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense),
   });
 }
 
@@ -65,7 +65,7 @@ export default async function HotelPage({ params }: Props) {
   const crumbs = parseCrumbs(`${hotels.crumbs} ← ${item.name}`, item.url!);
   const stars = item.stars ? "★".repeat(item.stars) : "";
   const booking = bookingHref(item);
-  const photo = getPhoto(item.photo, item.photoNote, item.photoAlt);
+  const photo = getPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense);
 
   const nearbyHotels = hotels.items
     .filter((h) => h.slug !== item.slug && h.url && h.areaSlug && h.areaSlug === item.areaSlug)

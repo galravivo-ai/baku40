@@ -7,7 +7,7 @@ export function isPublishable(
   photo: string,
   photoNote: string,
   sources: Sources,
-  options?: { showBookingPhotos?: boolean; showUndocumentedPhotos?: boolean },
+  options?: { showBookingPhotos?: boolean; showUndocumentedPhotos?: boolean; license?: string },
 ): boolean;
 export function isBookingPhoto(photo: string): boolean;
 export function isRendering(photo: string, sources: Pick<Sources, "files">): boolean;

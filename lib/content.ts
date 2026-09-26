@@ -178,16 +178,16 @@ export function assertUniqueSeo() {
 export type PhotoInfo = { src: string; alt: string; isRendering: boolean; credit?: string } | null;
 
 /** Returns the photo only when it may be shown publicly; otherwise null (placeholder). */
-export function getPhoto(photo: string, photoNote: string, alt: string): PhotoInfo {
+export function getPhoto(photo: string, photoNote: string, alt: string, license?: string): PhotoInfo {
   const sources = getImageSources();
   const { showBookingPhotos, showUndocumentedPhotos } = getSite();
-  const options = { showBookingPhotos, showUndocumentedPhotos };
+  const options = { showBookingPhotos, showUndocumentedPhotos, license };
   if (!isPublishable(photo, photoNote, sources, options)) return null;
   const src = /^https?:\/\//.test(photo) ? photo : `/${photo.replace(/^\//, "")}`;
   return {
     src,
     alt,
-    isRendering: isRendering(photo, sources),
+    isRendering: license === "הדמיה" || isRendering(photo, sources),
     credit: isBookingPhoto(photo) ? "Booking.com" : undefined,
   };
 }
