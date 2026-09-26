@@ -2,7 +2,7 @@ import "server-only";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { z } from "zod";
-import { isPublishable, isRendering } from "./image-policy.mjs";
+import { isBookingPhoto, isPublishable, isRendering } from "./image-policy.mjs";
 import {
   areasSchema,
   collectionSchema,
@@ -133,14 +133,20 @@ export function assertUniqueSeo() {
   });
 }
 
-export type PhotoInfo = { src: string; alt: string; isRendering: boolean } | null;
+export type PhotoInfo = { src: string; alt: string; isRendering: boolean; credit?: string } | null;
 
-/** Returns the photo only when its license allows public use; otherwise null (placeholder). */
+/** Returns the photo only when it may be shown publicly; otherwise null (placeholder). */
 export function getPhoto(photo: string, photoNote: string, alt: string): PhotoInfo {
   const sources = getImageSources();
-  if (!isPublishable(photo, photoNote, sources)) return null;
+  const options = { showBookingPhotos: getSite().showBookingPhotos };
+  if (!isPublishable(photo, photoNote, sources, options)) return null;
   const src = /^https?:\/\//.test(photo) ? photo : `/${photo.replace(/^\//, "")}`;
-  return { src, alt, isRendering: isRendering(photo, sources) };
+  return {
+    src,
+    alt,
+    isRendering: isRendering(photo, sources),
+    credit: isBookingPhoto(photo) ? "Booking.com" : undefined,
+  };
 }
 
 export type VerifyKind = "ok" | "partial" | "edit" | "pending" | "none";

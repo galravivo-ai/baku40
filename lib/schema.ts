@@ -52,6 +52,8 @@ export const siteSchema = z.object({
   copyright: text,
   affiliateDisclosure: text.min(1),
   affiliateDisclosureShort: text.min(1),
+  // Owner's choice: show Booking.com hotel photos although they are not licensed.
+  showBookingPhotos: z.boolean().default(false),
 });
 
 export const itemSeoSchema = z.object({

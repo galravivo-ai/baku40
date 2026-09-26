@@ -79,6 +79,9 @@ button { font: inherit; }
   letter-spacing: normal;
   text-transform: none;
   display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
   white-space: nowrap;
   direction: ltr;
   font-variation-settings: "FILL" 0, "wght" 200, "GRAD" -25, "opsz" 24;

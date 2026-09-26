@@ -15,6 +15,7 @@ export function Card({ card }: { card: CardData }) {
           <>
             <img className="card__img" src={card.photo.src} alt={card.photo.alt} loading="lazy" />
             {card.photo.isRendering && <span className="photo-tag">הדמיה</span>}
+            {card.photo.credit && <span className="photo-tag">צילום: {card.photo.credit}</span>}
           </>
         ) : (
           <div className="card__placeholder-icon" aria-hidden="true">
