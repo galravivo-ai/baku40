@@ -54,6 +54,8 @@ export const siteSchema = z.object({
   affiliateDisclosureShort: text.min(1),
   // Owner's choice: show Booking.com hotel photos although they are not licensed.
   showBookingPhotos: z.boolean().default(false),
+  // Owner's choice: show design photos whose source/license is "לא תועד".
+  showUndocumentedPhotos: z.boolean().default(false),
 });
 
 export const itemSeoSchema = z.object({

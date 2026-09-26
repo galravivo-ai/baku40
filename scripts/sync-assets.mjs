@@ -14,7 +14,10 @@ const raw = JSON.parse(readFileSync(join(root, "content", "image-sources.json"),
 const files = Object.fromEntries(Object.entries(raw).filter(([k]) => /\.(png|jpe?g|webp|avif)$/i.test(k)));
 const sources = { files, remote: raw.images ?? [] };
 const site = JSON.parse(readFileSync(join(root, "content", "site.json"), "utf8"));
-const options = { showBookingPhotos: site.showBookingPhotos === true };
+const options = {
+  showBookingPhotos: site.showBookingPhotos === true,
+  showUndocumentedPhotos: site.showUndocumentedPhotos === true,
+};
 
 rmSync(dest, { recursive: true, force: true });
 mkdirSync(join(dest, "photos"), { recursive: true });

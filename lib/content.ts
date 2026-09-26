@@ -138,7 +138,8 @@ export type PhotoInfo = { src: string; alt: string; isRendering: boolean; credit
 /** Returns the photo only when it may be shown publicly; otherwise null (placeholder). */
 export function getPhoto(photo: string, photoNote: string, alt: string): PhotoInfo {
   const sources = getImageSources();
-  const options = { showBookingPhotos: getSite().showBookingPhotos };
+  const { showBookingPhotos, showUndocumentedPhotos } = getSite();
+  const options = { showBookingPhotos, showUndocumentedPhotos };
   if (!isPublishable(photo, photoNote, sources, options)) return null;
   const src = /^https?:\/\//.test(photo) ? photo : `/${photo.replace(/^\//, "")}`;
   return {

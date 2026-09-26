@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -116,7 +117,7 @@ export function SiteHeaderClient({ nav, siteName }: { nav: HeaderNavItem[]; site
             {activeMega.feature && (
               <Link href={activeMega.feature.href} className="mega__feature">
                 {activeMega.feature.photo ? (
-                  <img className="mega__feature-img" src={activeMega.feature.photo.src} alt="" />
+                  <Image className="mega__feature-img" src={activeMega.feature.photo.src} alt="" width={304} height={130} />
                 ) : (
                   <div className="mega__feature-img card__media" aria-hidden="true" />
                 )}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { bookingHref } from "@/lib/booking";
 import {
@@ -93,7 +94,7 @@ export function CollectionPage({ collectionKey }: { collectionKey: CollectionKey
 
       {c.layout === "landing" && (
         <div className="hero">
-          {hero && <img className="hero__img" src={hero.src} alt={hero.alt} fetchPriority="high" />}
+          {hero && <Image className="hero__img" src={hero.src} alt={hero.alt} fill priority sizes="100vw" />}
           <div className="hero__shade" />
           <div className="hero__body">
             <Breadcrumbs crumbs={crumbs} />

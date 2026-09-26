@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useSaved } from "@/lib/saved";
 import { Icon } from "../Icon";
 import type { CardData } from "./types";
@@ -13,7 +14,13 @@ export function Card({ card }: { card: CardData }) {
       <div className="card__media">
         {card.photo ? (
           <>
-            <img className="card__img" src={card.photo.src} alt={card.photo.alt} loading="lazy" />
+            <Image
+              className="card__img"
+              src={card.photo.src}
+              alt={card.photo.alt}
+              fill
+              sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 430px"
+            />
             {card.photo.isRendering && <span className="photo-tag">הדמיה</span>}
             {card.photo.credit && <span className="photo-tag">צילום: {card.photo.credit}</span>}
           </>
