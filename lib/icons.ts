@@ -6,6 +6,10 @@ const CODE_ICONS = [
   "bookmark", "bookmark_border", "castle", "check_circle", "chevron_left", "close", "contrast",
   "directions_walk", "edit_note", "error", "help", "hotel", "image", "location_city", "menu",
   "restaurant", "route", "schedule", "search", "tune",
+  // footer accordion, home, cookie banner and accessibility menu
+  "accessibility_new", "add", "arrow_back", "arrow_selector_tool", "cookie", "filter_b_and_w",
+  "format_line_spacing", "format_size", "link", "motion_photos_paused", "remove", "restart_alt",
+  "text_fields", "title",
 ];
 
 /**

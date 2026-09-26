@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FooterColumns } from "@/components/FooterColumns";
+import { CookieSettingsLink } from "@/components/consent/CookieSettingsLink";
 import { getSite } from "@/lib/content";
 
 export function SiteFooter() {
@@ -13,18 +15,7 @@ export function SiteFooter() {
           </Link>
           <p>{site.footerTagline}</p>
         </div>
-        {site.footerColumns.map((col) => (
-          <nav key={col.head} className="site-footer__col" aria-label={col.head}>
-            <h2>{col.head}</h2>
-            <ul>
-              {col.items.map((l) => (
-                <li key={l.label}>
-                  <Link href={l.href}>{l.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        ))}
+        <FooterColumns columns={site.footerColumns} />
       </div>
       <div className="site-footer__bottom">
         {site.footer.map((l) => (
@@ -32,6 +23,7 @@ export function SiteFooter() {
             {l.label}
           </Link>
         ))}
+        <CookieSettingsLink />
         <span className="site-footer__copy">{site.copyright}</span>
       </div>
     </footer>

@@ -117,11 +117,6 @@ export function ListingClient({ cards, groups, searchPlaceholder, sort, countTex
           </label>
           <div className="sort-label">מיון: {sort}</div>
         </div>
-        {groups.length > 0 && (
-          <div className="filter-groups">
-            <Chips groups={groups} selected={selected} onToggle={toggle} />
-          </div>
-        )}
         <div className="toolbar__count" aria-live="polite">
           <strong>{filtering ? `${visible.length} מתוך ${cards.length}` : countText}</strong>
           {filtering && (
@@ -132,18 +127,31 @@ export function ListingClient({ cards, groups, searchPlaceholder, sort, countTex
         </div>
       </div>
 
-      {visible.length > 0 ? (
-        <div className="card-grid">
-          {visible.map((card, i) => (
-            <Card key={card.id} card={card} priority={i < 3} />
-          ))}
+      <div className={groups.length > 0 ? "listing-body" : undefined}>
+        {groups.length > 0 && (
+          <aside className="filter-aside" aria-label="סינון">
+            <div className="filter-aside__head">
+              <Icon name="tune" />
+              סינון
+            </div>
+            <Chips groups={groups} selected={selected} onToggle={toggle} />
+          </aside>
+        )}
+        <div className="listing-results">
+          {visible.length > 0 ? (
+            <div className="card-grid">
+              {visible.map((card, i) => (
+                <Card key={card.id} card={card} priority={i < 3} />
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <strong>אין תוצאות לסינון הזה</strong>
+              נסו להסיר חלק מהמסננים או לחפש מילה אחרת.
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="empty-state">
-          <strong>אין תוצאות לסינון הזה</strong>
-          נסו להסיר חלק מהמסננים או לחפש מילה אחרת.
-        </div>
-      )}
+      </div>
 
       {groups.length > 0 && (
         <div className="mobile-bar">

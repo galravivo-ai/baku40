@@ -469,7 +469,7 @@ collections:
           required: false
       collapsed: true
     - name: planner
-      label: מתכנן טיול
+      label: מסלולים מוכנים לפי ימים
       widget: object
       required: false
       fields:
@@ -489,97 +489,32 @@ collections:
         label: תווית ימים
         widget: string
         required: false
-      - name: whoLabel
-        label: תווית מי
-        widget: string
-        required: false
-      - name: interestsLabel
-        label: תווית תחומים
-        widget: string
-        required: false
-      - name: who
-        label: מי מטייל
-        widget: list
-        required: false
-        field:
-          name: w
-          label: אפשרות
-          widget: string
-          required: false
-      - name: interests
-        label: תחומי עניין
-        widget: list
-        required: false
-        field:
-          name: i
-          label: תחום
-          widget: string
-          required: false
-      - name: previewLabel
-        label: תווית תצוגה
-        widget: string
-        required: false
       - name: days
-        label: ימים (לפי סדר)
+        label: אפשרויות ימים
         widget: list
         required: false
         field:
           name: d
-          label: יום
-          widget: text
-          required: false
-      - name: kidsDay2
-        label: יום 2 למשפחות
-        widget: text
-        required: false
-      - name: ctaLabel
-        label: כפתור
-        widget: string
-        required: false
-      - name: ctaHref
-        label: קישור
-        widget: string
-        required: false
-      - name: footnote
-        label: הערה
-        widget: text
-        required: false
-      collapsed: true
-    - name: itineraries
-      label: מסלולים מוכנים
-      widget: object
-      required: false
-      fields:
-      - name: title
-        label: כותרת
-        widget: string
+          label: ימים
+          widget: number
+          value_type: int
+      - name: defaultDays
+        label: ברירת מחדל
+        widget: number
+        value_type: int
         required: false
       - name: href
-        label: קישור
+        label: קישור לכל המסלולים
         widget: string
         required: false
-      - name: items
-        label: מסלולים
-        widget: list
+      - name: allLabel
+        label: טקסט הקישור ({n} = מספר המסלולים)
+        widget: string
         required: false
-        collapsed: true
-        fields:
-        - name: days
-          label: ימים
-          widget: string
-          required: false
-        - name: title
-          label: שם
-          widget: string
-          required: false
-        - name: text
-          label: טקסט
-          widget: text
-          required: false
-        - name: meta
-          label: מטא
-          widget: string
-          required: false
+      - name: cardCta
+        label: טקסט בכרטיס
+        widget: string
+        required: false
       collapsed: true
     - name: hotels
       label: מלונות מומלצים
@@ -774,6 +709,18 @@ collections:
           required: false
       - name: linksHref
         label: כתובת הקישורים
+        widget: string
+        required: false
+      - name: linksTitle
+        label: כותרת הנושאים
+        widget: string
+        required: false
+      - name: guideLabel
+        label: כפתור למדריך
+        widget: string
+        required: false
+      - name: guideHref
+        label: קישור למדריך
         widget: string
         required: false
       - name: projects
@@ -3188,6 +3135,25 @@ collections:
     label: הערה מתחת לגלריה
     widget: text
     required: false
+  - name: sideNav
+    label: תפריט צד (במקום "בעמוד הזה")
+    widget: object
+    required: false
+    collapsed: true
+    fields:
+    - name: title
+      label: כותרת
+      widget: string
+    - name: links
+      label: קישורים
+      widget: list
+      fields:
+      - name: label
+        label: טקסט
+        widget: string
+      - name: href
+        label: קישור
+        widget: string
   - name: blocks
     label: תוכן העמוד
     widget: list

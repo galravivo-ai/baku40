@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Assistant, Heebo } from "next/font/google";
+import { A11yWidget } from "@/components/A11yWidget";
+import { CookieBanner } from "@/components/consent/CookieBanner";
+import { Trackers } from "@/components/consent/Trackers";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { A11Y_BOOT } from "@/lib/a11y";
 import { assertUniqueSeo, getSite } from "@/lib/content";
 import { usedIcons } from "@/lib/icons";
 import "./globals.css";
@@ -37,8 +41,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   // Fails the build on duplicate titles/descriptions (SEO spec §1, §10).
   assertUniqueSeo();
   return (
-    <html lang={site.lang} dir={site.dir} className={`${heebo.variable} ${assistant.variable}`}>
+    <html suppressHydrationWarning lang={site.lang} dir={site.dir} className={`${heebo.variable} ${assistant.variable}`}>
       <head>
+        {/* Accessibility-menu choices, applied before the first paint (design 9h). */}
+        <script dangerouslySetInnerHTML={{ __html: A11Y_BOOT }} />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* Icon font: only the icons in use, loaded without blocking the first render. */}
         <link rel="preload" as="style" href={iconsHref} />
@@ -62,6 +68,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main id="main">{children}</main>
         <SiteFooter />
+        <A11yWidget />
+        <CookieBanner />
+        <Trackers />
       </body>
     </html>
   );

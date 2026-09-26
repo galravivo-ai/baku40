@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { AttractionsStrip } from "@/components/home/AttractionsStrip";
-import { Planner } from "@/components/home/Planner";
+import { ReadyItineraries } from "@/components/home/ReadyItineraries";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
 import { bookingHref } from "@/lib/booking";
-import { absoluteUrl, getAttractionsPage, getHome, getItem, getSite } from "@/lib/content";
+import { absoluteUrl, getAttractionsPage, getCollection, getHome, getItem, getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { getBakuTemperature } from "@/lib/weather";
 
@@ -177,25 +177,66 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* planner */}
+      {/* ready itineraries by days */}
       <section className="container home-section">
-        <Planner p={home.planner} />
+        <ReadyItineraries
+          p={home.planner}
+          cards={getCollection("itineraries").items.map((i) => ({
+            slug: i.slug,
+            days: Number(/^(\d+)/.exec(i.meta)?.[1] ?? 0),
+            name: i.name,
+            meta: i.meta,
+            text: i.text,
+            badge: i.badge || undefined,
+            href: i.url ?? home.planner.href,
+            photo: <Photo photo={i.photo} alt={i.photoAlt} note={i.photoNote} sizes="(max-width: 700px) 262px, 320px" icon="route" />,
+          }))}
+        />
       </section>
 
-      {/* itineraries */}
+      {/* real estate */}
       <section className="container home-section">
-        <div className="tinted-panel">
-          <SectionHead title={home.itineraries.title} />
-          <div className="grid-4">
-            {home.itineraries.items.map((i) => (
-              <Link key={i.title} href={home.itineraries.href} className="itin-card">
-                <span className="itin-card__days">{i.days}</span>
-                <span className="itin-card__title">{i.title}</span>
-                <span className="itin-card__text">{i.text}</span>
-                <span className="itin-card__meta">{i.meta}</span>
+        <div className="re2">
+          <div className="re2__top">
+            <div className="re2__intro">
+              <div className="kicker kicker--on-dark">{home.realEstate.kicker}</div>
+              <h2 className="re2__title">{home.realEstate.title}</h2>
+              <p className="re2__text">{home.realEstate.text}</p>
+            </div>
+            <Link href={home.realEstate.guideHref} className="re2__guide">
+              <span>{home.realEstate.guideLabel}</span>
+              <Icon name="arrow_back" />
+            </Link>
+          </div>
+          <div className="re2__projects">
+            {home.realEstate.projects.map((p) => (
+              <Link key={p.name} href={p.href} className="re2__project">
+                <Photo photo={p.photo} alt={`${p.name}, ${p.badge}`} sizes="(max-width: 700px) 280px, 620px" showTags={false} />
+                <span className="re2__shade" />
+                <span className="re2__badge">{p.badge}</span>
+                <span className="re2__body">
+                  <strong>{p.name}</strong>
+                  <span>{p.text}</span>
+                  <span className="re2__foot">
+                    <span className="re2__meta">{p.meta}</span>
+                    <span className="re2__cta">לפרויקט ←</span>
+                  </span>
+                </span>
               </Link>
             ))}
           </div>
+          <div className="re2__links">
+            <span>{home.realEstate.linksTitle}</span>
+            {home.realEstate.links.map((l) => (
+              <Link key={l} href={home.realEstate.linksHref}>
+                {l}
+              </Link>
+            ))}
+          </div>
+          <Link href={home.realEstate.guideHref} className="re2__guide re2__guide--mobile">
+            <span>{home.realEstate.guideLabel}</span>
+            <Icon name="arrow_back" />
+          </Link>
         </div>
       </section>
 
@@ -206,7 +247,7 @@ export default async function Home() {
           text={home.hotels.text}
           link={{ label: home.hotels.linkLabel, href: "/hotels/" }}
         />
-        <div className="grid-3">
+        <div className="grid-3 home-hotels">
           {home.hotels.items.map((h) => {
             const item = getItem("hotels", h.slug);
             if (!item) return null;
@@ -311,39 +352,6 @@ export default async function Home() {
                   {p.title}
                 </span>
                 <span>{p.text}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* real estate */}
-      <section className="container home-section">
-        <div className="re-panel">
-          <div>
-            <div className="kicker">{home.realEstate.kicker}</div>
-            <h2 className="section-title section-title--md">{home.realEstate.title}</h2>
-            <p className="section-text section-text--lg">{home.realEstate.text}</p>
-            <div className="chip-row">
-              {home.realEstate.links.map((l) => (
-                <Link key={l} href={home.realEstate.linksHref} className="link-chip">
-                  {l}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div className="re-projects">
-            {home.realEstate.projects.map((p) => (
-              <Link key={p.name} href={p.href} className="re-project">
-                <div className="re-project__media">
-                  <Photo photo={p.photo} alt={`${p.name}, ${p.badge}`} sizes="120px" showTags={false} />
-                  <span className="re-project__badge">{p.badge}</span>
-                </div>
-                <div className="re-project__body">
-                  <strong>{p.name}</strong>
-                  <span>{p.text}</span>
-                  <span className="card__meta">{p.meta}</span>
-                </div>
               </Link>
             ))}
           </div>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { PhotoInfo } from "@/lib/content";
-import { useSaved } from "@/lib/saved";
 import { Icon } from "./Icon";
 
 export type HeaderNavItem = {
@@ -30,7 +29,6 @@ export function SiteHeaderClient({
   cta: { label: string; href: string };
 }) {
   const pathname = usePathname() ?? "/";
-  const { list } = useSaved();
   const [mega, setMega] = useState<string | null>(null);
   const [drawer, setDrawer] = useState(false);
   const [openItem, setOpenItem] = useState<string | null>(null);
@@ -110,12 +108,6 @@ export function SiteHeaderClient({
         </form>
         <Link href="/search/" className="site-header__search-btn" aria-label="חיפוש">
           <Icon name="search" />
-        </Link>
-        <Link href="/favorites/" className="site-header__trip">
-          <span className="site-header__trip-label">הטיול שלי</span>
-          <span className="count-pill" aria-label={`${list.length} מקומות שמורים`}>
-            {list.length}
-          </span>
         </Link>
         {overlay && (
           <a href={cta.href} className="site-header__cta">

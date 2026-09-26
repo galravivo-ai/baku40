@@ -267,26 +267,17 @@ export const homeSchema = z.object({
       z.object({ id: text, ...photoFields, name: text, area: text, dur: text, tags: z.array(text), note: text }),
     ),
   }),
+  // Ready itineraries by number of days (design 1a). Cards come from content/itineraries.json.
   planner: z.object({
     kicker: text,
     title: text,
     text: text,
     daysLabel: text,
-    whoLabel: text,
-    interestsLabel: text,
-    who: z.array(text).min(1),
-    interests: z.array(text),
-    previewLabel: text,
-    days: z.array(text).min(1),
-    kidsDay2: text,
-    ctaLabel: text,
-    ctaHref: text,
-    footnote: text,
-  }),
-  itineraries: z.object({
-    title: text,
+    days: z.array(z.number().int().positive()).min(1),
+    defaultDays: z.number().int().positive(),
     href: text,
-    items: z.array(z.object({ days: text, title: text, text: text, meta: text })),
+    allLabel: text,
+    cardCta: text,
   }),
   hotels: z.object({
     title: text,
@@ -316,6 +307,9 @@ export const homeSchema = z.object({
     text: text,
     links: z.array(text),
     linksHref: text,
+    linksTitle: text,
+    guideLabel: text,
+    guideHref: text,
     projects: z.array(
       z.object({ name: text, text: text, meta: text, photo: text, badge: text, href: text }),
     ),
@@ -452,6 +446,8 @@ export const editorialPageSchema = z.object({
   meta: z.array(text),
   images: z.array(z.object({ photo: text, alt: text })),
   imageNote: text.optional(),
+  // Replaces the "בעמוד הזה" list, e.g. the legal pages' shared menu (design 9e).
+  sideNav: z.object({ title: text, links: z.array(z.object({ label: text, href: text })) }).optional(),
   blocks: z.array(block),
 });
 export type EditorialPage = z.infer<typeof editorialPageSchema>;

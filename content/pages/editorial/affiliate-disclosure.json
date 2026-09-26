@@ -12,6 +12,27 @@
     "עודכן לאחרונה: ספטמבר 2026"
   ],
   "images": [],
+  "sideNav": {
+    "title": "עמודים משפטיים",
+    "links": [
+      {
+        "label": "מדיניות פרטיות",
+        "href": "/privacy/"
+      },
+      {
+        "label": "תנאי שימוש",
+        "href": "/terms/"
+      },
+      {
+        "label": "הצהרת נגישות",
+        "href": "/accessibility/"
+      },
+      {
+        "label": "גילוי נאות — קישורי שותפים",
+        "href": "/affiliate-disclosure/"
+      }
+    ]
+  },
   "blocks": [
     {
       "type": "h2",

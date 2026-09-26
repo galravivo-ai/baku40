@@ -91,7 +91,16 @@ export function EditorialView({ page }: { page: EditorialPage }) {
           )}
           <Blocks blocks={page.blocks} />
         </article>
-        {headings.length > 2 && (
+        {page.sideNav ? (
+          <nav className="ed-toc" aria-label={page.sideNav.title}>
+            <div className="kicker">{page.sideNav.title}</div>
+            {page.sideNav.links.map((l) => (
+              <Link key={l.href} href={l.href} aria-current={l.href === page.url ? "page" : undefined}>
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+        ) : headings.length > 2 && (
           <nav className="ed-toc" aria-label="בעמוד הזה">
             <div className="kicker">בעמוד הזה</div>
             {headings.map((h, i) => (

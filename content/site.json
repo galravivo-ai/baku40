@@ -152,26 +152,46 @@
       "href": "/casino/"
     },
     {
-      "label": "מגזין",
-      "href": "/magazine/"
+      "label": "טיסות",
+      "href": "/flights/israel-to-baku/"
+    },
+    {
+      "label": "מזג אוויר",
+      "href": "/weather/september/"
     }
   ],
   "footer": [
     {
-      "label": "אודות",
-      "href": "/about/"
+      "label": "מגזין",
+      "href": "/magazine/"
     },
     {
-      "label": "המערכת",
-      "href": "/authors/baku40/"
+      "label": "אודות",
+      "href": "/about/"
     },
     {
       "label": "צור קשר",
       "href": "/contact/"
     },
     {
-      "label": "גילוי נאות — קישורי שותפים",
+      "label": "הצהרת נגישות",
+      "href": "/accessibility/"
+    },
+    {
+      "label": "מדיניות פרטיות",
+      "href": "/privacy/"
+    },
+    {
+      "label": "תנאי שימוש",
+      "href": "/terms/"
+    },
+    {
+      "label": "גילוי נאות",
       "href": "/affiliate-disclosure/"
+    },
+    {
+      "label": "המערכת",
+      "href": "/authors/baku40/"
     },
     {
       "label": "מפת האתר",
@@ -211,6 +231,10 @@
         {
           "label": "טיולי יום",
           "href": "/day-trips/"
+        },
+        {
+          "label": "מגזין",
+          "href": "/magazine/"
         }
       ]
     },
@@ -222,20 +246,16 @@
           "href": "/travel-info/"
         },
         {
-          "label": "מסלולים",
+          "label": "מסלולים מוכנים",
           "href": "/itineraries/"
         },
         {
-          "label": "Trip Planner",
-          "href": "/#planner"
-        },
-        {
-          "label": "הטיול שלי",
-          "href": "/favorites/"
-        },
-        {
           "label": "מזג אוויר",
-          "href": "/travel-info/"
+          "href": "/weather/september/"
+        },
+        {
+          "label": "טיסות",
+          "href": "/flights/israel-to-baku/"
         },
         {
           "label": "באקו עם ילדים",
@@ -277,7 +297,7 @@
       "items": [
         {
           "label": "גובוסטן",
-          "href": "/day-trips/"
+          "href": "/destinations/gobustan/"
         },
         {
           "label": "אבשרון",
@@ -298,23 +318,23 @@
       ]
     },
     {
-      "head": "נדל\"ן",
+      "head": "השקעות",
       "items": [
         {
-          "label": "מאגר ידע",
-          "href": "/real-estate/baku/"
+          "label": "השקעות בבאקו",
+          "href": "/invest/baku/"
         },
         {
-          "label": "אזורים",
-          "href": "/real-estate/baku/"
+          "label": "השקעות באזרבייג׳ן",
+          "href": "/invest/azerbaijan/"
         },
         {
-          "label": "פרויקטים",
-          "href": "/real-estate/baku/"
+          "label": "סי בריז · Sea Breeze",
+          "href": "/real-estate/projects/sea-breeze/"
         },
         {
-          "label": "תהליך רכישה",
-          "href": "/real-estate/baku/"
+          "label": "Royal Casino",
+          "href": "/casino/"
         }
       ]
     }
