@@ -218,6 +218,25 @@ export default async function HotelPage({ params }: Props) {
               </>
             ) : null}
 
+            {item.sources?.length ? (
+              <div className="ed-sources">
+                <div className="kicker">מקורות</div>
+                <ul>
+                  {item.sources.map((s) => (
+                    <li key={s.label}>
+                      {s.href ? (
+                        <a href={s.href} target="_blank" rel="noopener">
+                          {s.label}
+                        </a>
+                      ) : (
+                        s.label
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
             <p className="disclosure-box">
               <b>גילוי נאות:</b> {site.affiliateDisclosure}
             </p>

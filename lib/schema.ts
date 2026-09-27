@@ -107,6 +107,8 @@ export const itemSchema = z
     roomsIntro: text.optional(),
     rooms: z.array(z.object({ name: text, text: text, size: text.optional() })).optional(),
     checklist: z.array(text).optional(),
+    // Where the facts on the record's page come from.
+    sources: z.array(z.object({ label: text, href: text.optional() })).optional(),
     officialUrl: z.preprocess(emptyToUndefined, z.url().optional()),
     bookingUrl: z.preprocess(
       emptyToUndefined,
@@ -183,6 +185,7 @@ export const areasSchema = z.object({
       pros: z.array(text).optional(),
       cons: z.array(text).optional(),
       gettingThere: z.object({ title: text, text: text }).optional(),
+      sources: z.array(z.object({ label: text, href: text.optional() })).optional(),
       levels: z.array(z.object({ label: text, pct: z.number().min(0).max(100) })).optional(),
       itineraries: z.array(z.object({ title: text, meta: text })).optional(),
     }),

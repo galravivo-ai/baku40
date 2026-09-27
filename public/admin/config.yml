@@ -1201,6 +1201,18 @@ collections:
           widget: text
           required: false
         collapsed: true
+      - name: sources
+        label: מקורות
+        widget: list
+        required: false
+        fields:
+        - name: label
+          label: שם המקור
+          widget: string
+        - name: href
+          label: קישור
+          widget: string
+          required: false
       - name: levels
         label: מדדי אזור
         widget: list
@@ -1597,6 +1609,18 @@ collections:
         field:
           name: c
           label: שורה
+          widget: string
+          required: false
+      - name: sources
+        label: מקורות
+        widget: list
+        required: false
+        fields:
+        - name: label
+          label: שם המקור
+          widget: string
+        - name: href
+          label: קישור
           widget: string
           required: false
       - name: officialUrl

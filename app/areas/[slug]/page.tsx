@@ -200,6 +200,25 @@ export default async function AreaPage({ params }: Props) {
               <p>{area.gettingThere.text}</p>
             </section>
           )}
+
+          {area.sources?.length ? (
+            <div className="ed-sources">
+              <div className="kicker">מקורות</div>
+              <ul>
+                {area.sources.map((s) => (
+                  <li key={s.label}>
+                    {s.href ? (
+                      <a href={s.href} target="_blank" rel="noopener">
+                        {s.label}
+                      </a>
+                    ) : (
+                      s.label
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
 
         <aside className="detail-side">
