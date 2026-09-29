@@ -7,6 +7,7 @@ import { Photo } from "@/components/Photo";
 import { absoluteUrl, getAttractionsPage, getCollection, getHome, getItem, getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { getBakuTemperature } from "@/lib/weather";
+import "./home-fixes.css";
 
 // Home page — design/Baku40 Home.dc.html (1a). All texts: content/pages/home.json.
 
@@ -60,7 +61,13 @@ export default async function Home() {
       {/* hero — design/Baku40 Home v2.dc.html */}
       <section className="hero2">
         <div className="hero2__media">
-          <Photo photo={home.hero.photo} alt={home.hero.photoAlt} sizes="100vw" priority showTags={false} />
+          {/* sizes keep each device from downloading the other one's photo at full size */}
+          <div className="hfix-hero hfix-hero--desktop">
+            <Photo photo={home.hero.photo} alt={home.hero.photoAlt} sizes="(max-width: 700px) 16px, 100vw" priority showTags={false} />
+          </div>
+          <div className="hfix-hero hfix-hero--mobile">
+            <Photo photo={home.hero.photo.replace("-desktop.", "-mobile.")} alt={home.hero.photoAlt} sizes="(max-width: 700px) 100vw, 16px" priority showTags={false} />
+          </div>
           <div className="hero2__shade" />
         </div>
         <div className="hero2__body">
@@ -268,13 +275,12 @@ export default async function Home() {
                     </span>
                     <span>{h.area}</span>
                   </div>
-                  <h3 className="hotel2__name">
-                    {item.nameHe ?? item.name}
+                  <h3 className="hotel2__name hfix-name">
+                    <span className="hfix-name__he">{item.nameHe ?? item.name}</span>
                     {item.nameHe && (
-                      <>
-                        {" "}
-                        <span dir="ltr">({item.name})</span>
-                      </>
+                      <span className="hfix-name__en" dir="ltr">
+                        {item.name}
+                      </span>
                     )}
                   </h3>
                   <p className="hotel2__text">{h.text}</p>
@@ -317,9 +323,7 @@ export default async function Home() {
               <Link key={r.slug} href={`/restaurants/?q=${encodeURIComponent(item.name)}`} className="food2__card">
                 <div className="food2__media">
                   <Photo photo={r.photo} alt={r.photoAlt} sizes="(max-width: 700px) 280px, 300px" showTags={false} icon="restaurant" />
-                  <span className="food2__price" aria-label={`טווח מחיר ${r.price.length} מתוך 3`}>
-                    {r.price}
-                  </span>
+                  <span className="food2__price">מחיר: {r.price}</span>
                   {r.pick && <span className="food2__pick">בחירת המערכת</span>}
                 </div>
                 <div className="food2__body">
@@ -333,7 +337,7 @@ export default async function Home() {
                       <Icon name="info" />
                       כשרות: {r.kosher}
                     </span>
-                    <Icon name="arrow_back" className="food2__arrow" />
+                    <span className="food2__arrow hfix-arrow" aria-hidden="true">←</span>
                   </span>
                 </div>
               </Link>

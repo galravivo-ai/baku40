@@ -1,0 +1,27 @@
+/* Home v2 fixes, 29.9.2026 (design/Baku40 Home v2.dc.html) */
+
+/* Hero: separate desktop / mobile cover photos */
+.hfix-hero { position: absolute; inset: 0; }
+.hfix-hero img { object-position: 50% 35%; }
+.hfix-hero--mobile { display: none; }
+@media (max-width: 700px) {
+  .hfix-hero--desktop { display: none; }
+  .hfix-hero--mobile { display: block; }
+  .hfix-hero--mobile img { object-position: 50% 30%; }
+}
+
+/* Hotel card title: Hebrew line + English line (no broken parentheses) */
+.hfix-name { display: flex; flex-direction: column; gap: 2px; }
+.hotel2__name .hfix-name__he { font: 800 23px/1.25 var(--font-head); color: #13233f; }
+.hotel2__name .hfix-name__en {
+  display: block; font: 600 15px/1.3 var(--font-body, var(--font-head)); color: #0a6da8;
+  text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; unicode-bidi: normal;
+}
+.hotel2:hover .hfix-name__he { color: #0a6da8; }
+@media (max-width: 700px) {
+  .hotel2__name .hfix-name__he { font-size: 19px; }
+  .hotel2__name .hfix-name__en { font-size: 13px; }
+}
+
+/* Text arrow instead of an icon glyph */
+.hfix-arrow { font: 700 18px/1 var(--font-head); color: #0a6da8; }

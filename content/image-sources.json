@@ -211,5 +211,17 @@
     "type": "הדמיה",
     "subject": "Royal Casino — הדמיה",
     "note": "README: חייבת תווית הדמיה. מקור ורישיון להשלמה."
+  },
+  "hero-sunset-desktop.png": {
+    "source": "נוצרה ב‑AI (ChatGPT) עבור Baku40, ספטמבר 2026",
+    "license": "תמונה שנוצרה ב‑AI · בבעלות האתר",
+    "type": "איור AI",
+    "note": "קאבר דף הבית, דסקטופ"
+  },
+  "hero-sunset-mobile.png": {
+    "source": "נוצרה ב‑AI (ChatGPT) עבור Baku40, ספטמבר 2026",
+    "license": "תמונה שנוצרה ב‑AI · בבעלות האתר",
+    "type": "איור AI",
+    "note": "קאבר דף הבית, מובייל"
   }
 }
