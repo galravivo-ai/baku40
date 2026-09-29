@@ -1874,3 +1874,8 @@ html.a11y-contrast .a11y__tile[aria-checked="true"] { outline: 3px solid #ffe600
   .topic__source { flex-wrap: wrap; }
   .topic__faq summary { font-size: 17px; }
 }
+
+/* Hebrew hotel name with the English name (CHANGELOG 29.9) */
+.detail-title__en { font: 600 26px var(--font-head); color: var(--text-muted); unicode-bidi: isolate; }
+.card__name-en { display: block; font: 500 13px var(--font-body); color: var(--text-muted); margin-top: 2px; text-align: start; }
+@media (max-width: 700px) { .detail-title__en { font-size: 18px; } }

@@ -67,7 +67,7 @@ export default async function AreaPage({ params }: Props) {
     tabs.push({
       label: "מלונות",
       items: hotels.map((h) => ({
-        name: h.name,
+        name: h.nameHe ?? h.name,
         meta: h.meta,
         href: h.url ?? undefined,
         photo: <Photo photo={h.photo} alt={h.photoAlt} note={h.photoNote} sizes="96px" showTags={false} />,

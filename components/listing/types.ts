@@ -4,6 +4,8 @@ import type { PhotoInfo, VerifyKind } from "@/lib/content";
 export type CardData = {
   id: string;
   name: string;
+  /** Latin name shown under a Hebrew hotel name. */
+  nameEn?: string;
   meta: string;
   text: string;
   foot: string;

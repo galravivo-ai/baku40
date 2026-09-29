@@ -36,7 +36,8 @@ function toCard(key: CollectionKey, item: Item): CardData {
   ].filter(Boolean);
   return {
     id: `${key}:${item.slug}`,
-    name: item.name,
+    name: item.nameHe ?? item.name,
+    ...(item.nameHe ? { nameEn: item.name } : {}),
     meta: item.meta,
     text: item.text,
     foot: item.foot,
@@ -55,7 +56,7 @@ function toCard(key: CollectionKey, item: Item): CardData {
     verify: item.verify,
     verifyKind: verifyKind(item.verify),
     facets,
-    searchText: [item.name, item.meta, item.text, item.area, item.foot]
+    searchText: [item.name, item.nameHe, item.meta, item.text, item.area, item.foot]
       .filter(Boolean)
       .join(" ")
       .toLowerCase(),

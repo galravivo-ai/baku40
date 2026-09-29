@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: Props) {
   return pageMetadata({
     path: item.url!,
     title: item.seo.metaTitle,
-    fallbackTitle: item.name,
+    fallbackTitle: item.nameHe ? `${item.nameHe} (${item.name})` : item.name,
     description: item.seo.metaDescription,
     fallbackDescription: item.text,
     // SEO spec §8: pages with under 150 words of unique text stay noindex.
@@ -63,7 +63,7 @@ export default async function HotelPage({ params }: Props) {
   const site = getSite();
   const hotels = getCollection("hotels");
   const area = areaFor(item);
-  const crumbs = parseCrumbs(`${hotels.crumbs} ← ${item.name}`, item.url!);
+  const crumbs = parseCrumbs(`${hotels.crumbs} ← ${item.nameHe ?? item.name}`, item.url!);
   const stars = item.stars ? "★".repeat(item.stars) : "";
   const booking = bookingHref(item);
   const photo = getPhoto(item.photo, item.photoNote, item.photoAlt, item.photoLicense);
@@ -79,6 +79,7 @@ export default async function HotelPage({ params }: Props) {
   const hotelLd = {
     "@type": "Hotel",
     name: item.name,
+    ...(item.nameHe ? { alternateName: item.nameHe } : {}),
     url: absoluteUrl(item.url!),
     description: item.seo.metaDescription ?? shorten(item.text, 155),
     address: { "@type": "PostalAddress", addressLocality: "Baku", addressCountry: "AZ" },
@@ -109,7 +110,17 @@ export default async function HotelPage({ params }: Props) {
                 <figcaption>צילום: {photo.credit}</figcaption>
               </figure>
             )}
-            <h1>{item.name}</h1>
+            <h1>
+              {item.nameHe ?? item.name}
+              {item.nameHe && (
+                <>
+                  {" "}
+                  <span className="detail-title__en" dir="ltr">
+                    ({item.name})
+                  </span>
+                </>
+              )}
+            </h1>
             {stars && (
               <span className="detail-title__stars" aria-label={`${item.stars} כוכבים`}>
                 {stars}
@@ -276,7 +287,7 @@ export default async function HotelPage({ params }: Props) {
                   אתר רשמי
                 </a>
               )}
-              <SaveButton id={`hotels:${item.slug}`} name={item.name} />
+              <SaveButton id={`hotels:${item.slug}`} name={item.nameHe ?? item.name} />
             </div>
           </div>
 

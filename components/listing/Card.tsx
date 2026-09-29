@@ -43,7 +43,14 @@ export function Card({ card, priority = false }: { card: CardData; priority?: bo
       </div>
       <div className="card__body">
         {card.meta && <div className="card__meta">{card.meta}</div>}
-        <h3 className="card__name">{card.href ? <a href={card.href}>{card.name}</a> : card.name}</h3>
+        <h3 className="card__name">
+          {card.href ? <a href={card.href}>{card.name}</a> : card.name}
+          {card.nameEn && (
+            <span className="card__name-en" dir="ltr">
+              {card.nameEn}
+            </span>
+          )}
+        </h3>
         <p className="card__text">{card.text}</p>
         <VerifyBadge kind={card.verifyKind} text={card.verify} />
         <div className="card__fill" />
