@@ -1,0 +1,208 @@
+{
+  "source": "Wikimedia Commons",
+  "collectedAt": "2026-09-20",
+  "note": "שדה author חסר ב‑JSON-LD ונדרש לרישיונות CC BY/BY-SA — יש להשלים מעמוד הקובץ לפני פרסום.",
+  "images": [
+    {
+      "subject": "גובוסטן",
+      "name": "Gobustan rock paintings - a boat",
+      "page": "https://commons.wikimedia.org/wiki/File:Gobustan_rock_paintings_-_a_boat.jpg",
+      "file": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Gobustan_rock_paintings_-_a_boat.jpg",
+      "thumb1280": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Gobustan_rock_paintings_-_a_boat.jpg/1280px-Gobustan_rock_paintings_-_a_boat.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "dimensions": "3872×2592",
+      "uploaded": "2017-05-20",
+      "author": "TODO — לא נכלל ב‑JSON-LD, לשלוף מעמוד הקובץ",
+      "usedIn": [
+        "Baku40 Mobile Screens.dc.html#14?",
+        "Baku40 Listing and Details.dc.html"
+      ]
+    },
+    {
+      "subject": "גובוסטן",
+      "name": "Petroglyphs of Qobustan 2",
+      "page": "https://commons.wikimedia.org/wiki/File:Petroglyphs_of_Qobustan_2.jpg",
+      "file": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Petroglyphs_of_Qobustan_2.jpg",
+      "thumb1280": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Petroglyphs_of_Qobustan_2.jpg/1280px-Petroglyphs_of_Qobustan_2.jpg",
+      "license": "CC BY 1.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/1.0",
+      "dimensions": "2048×1365",
+      "uploaded": "2011-05-15",
+      "author": "TODO",
+      "usedIn": []
+    },
+    {
+      "subject": "גובוסטן",
+      "name": "Petroglyphs in Gobustan 01",
+      "page": "https://commons.wikimedia.org/wiki/File:Petroglyphs_in_Gobustan_01.jpg",
+      "file": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Petroglyphs_in_Gobustan_01.jpg",
+      "thumb1280": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Petroglyphs_in_Gobustan_01.jpg",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "dimensions": "1280×853",
+      "uploaded": "2008-05-21",
+      "author": "TODO",
+      "usedIn": []
+    },
+    {
+      "subject": "גובוסטן",
+      "name": "Gobustan, Azerbaijan 1",
+      "page": "https://commons.wikimedia.org/wiki/File:Gobustan,_Azerbaijan_1.JPG",
+      "file": "https://upload.wikimedia.org/wikipedia/commons/7/74/Gobustan%2C_Azerbaijan_1.JPG",
+      "thumb1280": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Gobustan%2C_Azerbaijan_1.JPG/960px-Gobustan%2C_Azerbaijan_1.JPG",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "dimensions": "1944×2592 (לאורך)",
+      "uploaded": "2014-01-12",
+      "author": "TODO",
+      "usedIn": []
+    },
+    {
+      "subject": "חצי האי אבשרון",
+      "name": "Ateshgah Zoroastrian Fire Temple (Baku)",
+      "page": "https://commons.wikimedia.org/wiki/File:Ateshgah_Zoroastrian_Fire_Temple_(Baku).jpg",
+      "thumb1280": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Ateshgah_Zoroastrian_Fire_Temple_%28Baku%29.jpg/1280px-Ateshgah_Zoroastrian_Fire_Temple_%28Baku%29.jpg",
+      "license": "CC BY 4.0",
+      "dimensions": "5013×3342",
+      "uploaded": "2025-04-30",
+      "author": "TODO",
+      "usedIn": [
+        "Baku40 Collection Listings.dc.html#8e"
+      ]
+    },
+    {
+      "subject": "גבאלה",
+      "name": "Gabala in Azerbaijan",
+      "page": "https://commons.wikimedia.org/wiki/File:Gabala_in_Azerbaijan.jpg",
+      "thumb1280": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Gabala_in_Azerbaijan.jpg/1280px-Gabala_in_Azerbaijan.jpg",
+      "license": "CC BY-SA 4.0",
+      "dimensions": "2592×1728",
+      "uploaded": "2020-05-25",
+      "author": "TODO",
+      "usedIn": [
+        "Baku40 Collection Listings.dc.html#8e"
+      ]
+    },
+    {
+      "subject": "שאהדאג",
+      "name": "Shahdag Mountain Resort, 2025 views (54991)",
+      "page": "https://commons.wikimedia.org/wiki/File:Shahdag_Mountain_Resort,_2025_views_(54991).jpg",
+      "thumb1280": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Shahdag_Mountain_Resort%2C_2025_views_%2854991%29.jpg/1280px-Shahdag_Mountain_Resort%2C_2025_views_%2854991%29.jpg",
+      "license": "CC BY 4.0",
+      "dimensions": "3648×2736",
+      "uploaded": "2026-05-26",
+      "author": "TODO",
+      "usedIn": [
+        "Baku40 Collection Listings.dc.html#8e"
+      ]
+    },
+    {
+      "subject": "שאהדאג · חלופה",
+      "name": "Shahdag, Qusar region, Azerbaijan. 2016-05-26 28",
+      "page": "https://commons.wikimedia.org/wiki/File:Shahdag,_Qusar_region,_Azerbaijan._2016-05-26_28.jpg",
+      "license": "CC BY-SA 4.0",
+      "dimensions": "3264×2448",
+      "uploaded": "2017-05-01",
+      "author": "TODO",
+      "usedIn": []
+    },
+    {
+      "subject": "אבשרון · חלופה",
+      "name": "Ateshgah Fire Temple",
+      "page": "https://commons.wikimedia.org/wiki/File:Ateshgah_Fire_Temple.jpg",
+      "license": "CC BY 2.0",
+      "dimensions": "4372×2906",
+      "uploaded": "2009-10-06",
+      "author": "TODO",
+      "usedIn": []
+    },
+    {
+      "subject": "גבאלה · חלופה",
+      "name": "Waterfall Gabala Azerbaijan",
+      "page": "https://commons.wikimedia.org/wiki/File:Waterfall_Gabala_Azerbaijan.jpg",
+      "license": "CC BY-SA 3.0",
+      "dimensions": "1200×1600 (לאורך)",
+      "uploaded": "2009-12-08",
+      "author": "TODO",
+      "usedIn": []
+    }
+  ],
+  "seabreeze-island-aerial.jpg": {
+    "source": "חומרי שיווק של היזם",
+    "license": "ברשות היזם · לשימוש Baku40",
+    "type": "הדמיה",
+    "subject": "Sea Breeze — תכנון האי מלמעלה",
+    "note": "הדמיה, לא צילום. שם היזם וטווח הרשות להשלמה."
+  },
+  "seabreeze-masterplan.jpg": {
+    "source": "חומרי שיווק של היזם",
+    "license": "ברשות היזם · לשימוש Baku40",
+    "type": "הדמיה",
+    "subject": "Sea Breeze — תוכנית אב של המכלול",
+    "note": "הדמיה, לא צילום."
+  },
+  "seabreeze-hotel-pier.jpg": {
+    "source": "חומרי שיווק של היזם",
+    "license": "ברשות היזם · לשימוש Baku40",
+    "type": "הדמיה",
+    "subject": "Sea Breeze — המלון והרציף",
+    "note": "הדמיה של מבנה שטרם נבנה."
+  },
+  "seabreeze-bay-overview.jpg": {
+    "source": "חומרי שיווק של היזם",
+    "license": "ברשות היזם · לשימוש Baku40",
+    "type": "הדמיה",
+    "subject": "Sea Breeze — המפרץ והאזור",
+    "note": "הדמיה, לא צילום."
+  },
+  "seabreeze-sunset.jpg": {
+    "source": "חומרי שיווק של היזם",
+    "license": "ברשות היזם · לשימוש Baku40",
+    "type": "הדמיה",
+    "subject": "Sea Breeze — המכלול בשקיעה",
+    "note": "הדמיה, לא צילום."
+  },
+  "flame-towers-night.png": {
+    "source": "לא תועד",
+    "license": "לא תועד",
+    "type": "צילום",
+    "use": "דף הבית, חיי לילה",
+    "note": "חוסם פרסום — מקור ורישיון אינם ידועים. לברר או להחליף לפני עלייה לאוויר."
+  },
+  "maiden-tower.png": {
+    "source": "לא תועד",
+    "license": "לא תועד",
+    "type": "צילום",
+    "use": "אטרקציות, העיר העתיקה",
+    "note": "חוסם פרסום — מקור ורישיון אינם ידועים. לברר או להחליף לפני עלייה לאוויר."
+  },
+  "port-baku-mall.png": {
+    "source": "לא תועד",
+    "license": "לא תועד",
+    "type": "צילום",
+    "use": "קניות (13a)",
+    "note": "חוסם פרסום — מקור ורישיון אינם ידועים. לברר או להחליף לפני עלייה לאוויר."
+  },
+  "skyline-dusk.png": {
+    "source": "לא תועד",
+    "license": "לא תועד",
+    "type": "צילום",
+    "use": "קטגוריה (13c)",
+    "note": "חוסם פרסום — מקור ורישיון אינם ידועים. לברר או להחליף לפני עלייה לאוויר."
+  },
+  "boulevard-wheel.png": {
+    "source": "לא תועד",
+    "license": "לא תועד",
+    "type": "צילום",
+    "use": "אזורים, קטגוריה",
+    "note": "חוסם פרסום — מקור ורישיון אינם ידועים. לברר או להחליף לפני עלייה לאוויר."
+  },
+  "bay-night.png": {
+    "source": "לא תועד",
+    "license": "לא תועד",
+    "type": "צילום",
+    "use": "קטגוריה (13c)",
+    "note": "חוסם פרסום — מקור ורישיון אינם ידועים. לברר או להחליף לפני עלייה לאוויר."
+  }
+}

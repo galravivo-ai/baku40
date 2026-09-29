@@ -1,0 +1,277 @@
+{
+  "id": "itineraries",
+  "screen": "8c",
+  "url": "/itineraries/",
+  "h1": "מסלולים מוכנים",
+  "crumbs": "דף הבית ← מסלולים וטיולים ← מסלולים",
+  "intro": "כל מסלול בנוי מגיאוגרפיה, משך ביקור וזמני מעבר — ולא מרשימת אטרקציות. אפשר לשמור מסלול, לשנות אותו ולפתוח כל יום במפה.",
+  "searchPlaceholder": "חיפוש מסלול",
+  "sort": "לפי מספר ימים",
+  "count": "9 מסלולים במאגר",
+  "filterGroups": [
+    {
+      "head": "מספר ימים",
+      "items": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "7"
+      ]
+    },
+    {
+      "head": "קהל",
+      "items": [
+        "משפחות",
+        "זוגות",
+        "חברים"
+      ]
+    },
+    {
+      "head": "קצב",
+      "items": [
+        "רגוע",
+        "רגיל",
+        "אינטנסיבי"
+      ]
+    },
+    {
+      "head": "דגש",
+      "items": [
+        "אוכל",
+        "הרים",
+        "תקציב",
+        "חורף"
+      ]
+    }
+  ],
+  "seo": {
+    "metaTitle": "מסלולים בבאקו: 2 עד 7 ימים, מוכנים להורדה | Baku40",
+    "metaDescription": "מסלולי טיול מוכנים לבאקו לפי מספר ימים, קהל וקצב, עם זמני מעבר אמיתיים בין המקומות.",
+    "canonical": "/itineraries/",
+    "ogImage": "",
+    "ogImageAlt": "מסלולים מוכנים",
+    "robots": "index,follow",
+    "schema": [
+      "CollectionPage",
+      "BreadcrumbList",
+      "ItemList"
+    ],
+    "editorialHeading": "כמה ימים באמת צריך בבאקו",
+    "editorialBody": "שלושה ימים מכסים את העיר בנוחות: יום בליבה ההיסטורית והטיילת, יום במרכז המודרני ויום גמיש. ארבעה ימים מאפשרים יום מחוץ לעיר בלי לדחוס, וחמישה מתאימים למי שרוצה גם הרים או לינה מחוץ לבאקו."
+  },
+  "box": {
+    "title": "איך אנחנו בונים מסלול",
+    "text": "סדר העצירות נקבע לפי מרחק וזמן מעבר אמיתיים, שעות פתיחה ומשך ביקור מומלץ. בכל יום יש גם חלופה למזג אוויר וסימון של מה שאפשר לוותר עליו. שימו לב לתג הכחול על הכרטיסים: תשעת המסלולים הם תוכן עריכתי של Baku40 — המלצה שלנו על סדר וקצב — ולכן הם נושאים סימון עריכתי ולא סטטוס אימות. אין בהם עובדה שניתן לאמת מול מקור חיצוני; האטרקציות, המסעדות והיעדים שהם מפנים אליהם מאומתים כל אחד באוסף שלו."
+  },
+  "items": [
+    {
+      "name": "סוף שבוע בבאקו",
+      "meta": "2 ימים · זוגות · קצב רגוע",
+      "text": "העיר העתיקה, הטיילת ומרכז העיר, בלי יציאה מהעיר.",
+      "foot": "הליכה: רוב הזמן",
+      "badge": "",
+      "photo": "assets/photos/nizami-street.png",
+      "photoNote": "",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "directions_walk",
+      "cta": "למסלול",
+      "slug": "סוף-שבוע-בבאקו",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "העיר העתיקה, הטיילת ומרכז העיר, בלי יציאה מהעיר.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "סוף שבוע בבאקו, באקו",
+      "areaSlug": null
+    },
+    {
+      "name": "שלושה ימים קלאסיים",
+      "meta": "3 ימים · פעם ראשונה · רגיל",
+      "text": "הליבה ההיסטורית, באקו המודרנית ויום גמיש בסוף.",
+      "foot": "המסלול המבוקש",
+      "badge": "מומלץ",
+      "photo": "assets/photos/maiden-tower.png",
+      "photoNote": "",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "star",
+      "cta": "למסלול",
+      "slug": "שלושה-ימים-קלאסיים",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "הליבה ההיסטורית, באקו המודרנית ויום גמיש בסוף.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "שלושה ימים קלאסיים, באקו",
+      "areaSlug": null
+    },
+    {
+      "name": "ארבעה ימים עם יום מחוץ לעיר",
+      "meta": "4 ימים · זוגות ומשפחות",
+      "text": "שלושה ימים בעיר ויום לגובוסטן או לחצי האי אבשרון.",
+      "foot": "נסיעה: יום אחד",
+      "badge": "",
+      "photo": "assets/photos/skyline-cloudy.png",
+      "photoNote": "",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "local_taxi",
+      "cta": "למסלול",
+      "slug": "ארבעה-ימים-עם-יום-מחוץ-לעיר",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "שלושה ימים בעיר ויום לגובוסטן או לחצי האי אבשרון.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "ארבעה ימים עם יום מחוץ לעיר, באקו",
+      "areaSlug": null
+    },
+    {
+      "name": "חמישה ימים כולל הרים",
+      "meta": "5 ימים · חברים · אינטנסיבי",
+      "text": "באקו, יום בגבאלה או שאהדאג ולינה מחוץ לעיר.",
+      "foot": "לינה מחוץ לעיר",
+      "badge": "",
+      "photo": "",
+      "photoNote": "photo · mountains · נדרשת תמונה",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "hotel",
+      "cta": "למסלול",
+      "slug": "חמישה-ימים-כולל-הרים",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "באקו, יום בגבאלה או שאהדאג ולינה מחוץ לעיר.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "",
+      "areaSlug": null
+    },
+    {
+      "name": "מסלול משפחתי",
+      "meta": "3 ימים · משפחות · רגוע",
+      "text": "חזרה למלון באמצע היום, שתי אטרקציות מקורות וטיילת בערב.",
+      "foot": "עם ילדים",
+      "badge": "",
+      "photo": "assets/photos/central-park.png",
+      "photoNote": "",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "child_care",
+      "cta": "למסלול",
+      "slug": "מסלול-משפחתי",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "חזרה למלון באמצע היום, שתי אטרקציות מקורות וטיילת בערב.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "מסלול משפחתי, באקו",
+      "areaSlug": null
+    },
+    {
+      "name": "יום אחד בבאקו",
+      "meta": "1 יום · עצירת ביניים",
+      "text": "מה אפשר להספיק בין טיסות, בלי לרוץ בין אזורים.",
+      "foot": "קצר ומרוכז",
+      "badge": "",
+      "photo": "assets/photos/crystal-hall.png",
+      "photoNote": "",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "schedule",
+      "cta": "למסלול",
+      "slug": "יום-אחד-בבאקו",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "מה אפשר להספיק בין טיסות, בלי לרוץ בין אזורים.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "יום אחד בבאקו, באקו",
+      "areaSlug": null
+    },
+    {
+      "name": "שבוע באזרבייג׳ן",
+      "meta": "7 ימים · אינטנסיבי · כולל צפון",
+      "text": "באקו, גבאלה ושקי, עם שתי לינות מחוץ לעיר. למי שרוצה לראות מדינה ולא עיר.",
+      "foot": "שתי לינות בחוץ",
+      "badge": "",
+      "photo": "",
+      "photoNote": "photo · itinerary · נדרשת תמונה",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "hotel",
+      "cta": "למסלול",
+      "slug": "שבוע-באזרבייג׳ן",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "באקו, גבאלה ושקי, עם שתי לינות מחוץ לעיר. למי שרוצה לראות מדינה ולא עיר.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "",
+      "areaSlug": null
+    },
+    {
+      "name": "באקו בתקציב",
+      "meta": "3 ימים · תקציב · קצב רגיל",
+      "text": "אטרקציות חינמיות, מטרו ואוכל מקומי. מסלול שנבנה סביב מה לא לשלם עליו.",
+      "foot": "תקציב",
+      "badge": "",
+      "photo": "",
+      "photoNote": "photo · itinerary · נדרשת תמונה",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "savings",
+      "cta": "למסלול",
+      "slug": "באקו-בתקציב",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "אטרקציות חינמיות, מטרו ואוכל מקומי. מסלול שנבנה סביב מה לא לשלם עליו.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "",
+      "areaSlug": null
+    },
+    {
+      "name": "באקו בחורף",
+      "meta": "3 ימים · זוגות · רגוע",
+      "text": "מסלול שמניח רוח וגשם: אטרקציות מקורות, חלופה לכל יום ופחות טיילת.",
+      "foot": "חלופה לכל יום",
+      "badge": "",
+      "photo": "",
+      "photoNote": "photo · itinerary · נדרשת תמונה",
+      "verify": "מסלול עריכתי · המלצה",
+      "icon": "ac_unit",
+      "cta": "למסלול",
+      "slug": "באקו-בחורף",
+      "url": null,
+      "area": null,
+      "seo": {
+        "metaTitle": null,
+        "metaDescription": "מסלול שמניח רוח וגשם: אטרקציות מקורות, חלופה לכל יום ופחות טיילת.",
+        "schemaType": "TouristTrip",
+        "noindex": false
+      },
+      "photoAlt": "",
+      "areaSlug": null
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200..400,0,-25&display=block" rel="stylesheet">
+<style>
+  html { background:#F6F7F9 !important; }
+  body { margin:0; background:#F6F7F9; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#1A63B8; text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:hover { color:#1665C1; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+<div dir="rtl" style="padding:48px 56px 80px; display:flex; flex-direction:column; gap:40px">
+  <div style="display:flex; flex-direction:column; gap:10px; max-width:900px">
+    <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#1A63B8">BAKU40 · 9g · הסכמה לעוגיות</div>
+    <h1 style="font:800 40px/1.2 'Heebo',sans-serif; color:#262A5B; margin:0">באנר עוגיות</h1>
+    <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#2A2A30; margin:0; text-wrap:pretty"><a href="Baku40%20Site.dc.html" style="font-weight:600">← מפת המסכים</a> · הבאנר מופיע בביקור הראשון ולא חוסם את הקריאה. "אישור הכל" ו"רק הכרחיות" באותו גודל ובאותו משקל, כך שהסירוב קל כמו ההסכמה. Analytics, Meta Pixel ו‑Google Ads נטענים רק אחרי הסכמה לקטגוריה שלהם. המסכים אינטראקטיביים.</p>
+  </div>
+
+  <div style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start">
+
+    <div id="9g-1" style="display:flex; flex-direction:column; gap:14px">
+      <div style="display:flex; align-items:center; gap:12px">
+        <span style="font:800 15px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:5px 11px">9g‑1</span>
+        <span style="font:700 20px 'Heebo',sans-serif; color:#262A5B">דסקטופ · ביקור ראשון</span>
+        <div onClick="{{ dReset }}" style="margin-inline-start:auto; font:600 14px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer; display:flex; align-items:center; gap:6px"><span style="font-family:'Material Symbols Rounded'; font-size:18px">replay</span><span>הצגה מחדש</span></div>
+      </div>
+      <div style="position:relative; width:1180px; height:720px; border-radius:14px; overflow:hidden; border:1px solid #D9E3F0; background:#FFFFFF">
+        <div style="height:72px; display:flex; align-items:center; gap:28px; padding:0 36px; border-bottom:1px solid #E3EBF5; background:#FFFFFF">
+          <img src="assets/baku40-logo-skyblue.png" alt="Baku40" style="height:30px; width:auto">
+          <div style="display:flex; gap:22px; font:600 16px 'Assistant',sans-serif; color:#262A5B">
+            <span>מדריך באקו</span><span>אטרקציות</span><span>מלונות</span><span>אוכל</span><span>קניות</span><span>השקעות</span><span>קזינו</span><span>מגזין</span>
+          </div>
+        </div>
+        <div style="position:relative; height:648px; background:#262A5B">
+          <img src="assets/photos/flame-towers-night.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.75">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(26,29,66,.15),rgba(26,29,66,.7))"></div>
+          <div style="position:absolute; top:120px; inset-inline-start:56px; max-width:620px">
+            <h2 style="font:900 60px/1.05 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 14px">באקו, בלי ניחושים</h2>
+            <div style="font:400 20px/1.6 'Assistant',sans-serif; color:#FFFFFF">מדריך בעברית, עם מקור לכל פרט.</div>
+          </div>
+
+          <sc-if value="{{ dBanner }}" hint-placeholder-val="{{ true }}">
+            <div role="dialog" aria-label="הסכמה לעוגיות" style="position:absolute; bottom:28px; inset-inline-start:28px; width:460px; background:#FFFFFF; border-radius:18px; box-shadow:0 24px 60px rgba(26,29,66,.35); padding:26px 26px 22px; display:flex; flex-direction:column; gap:16px">
+              <div style="display:flex; align-items:center; gap:12px">
+                <div style="width:44px; height:44px; border-radius:50%; background:#E4EFFB; display:flex; align-items:center; justify-content:center; flex:0 0 auto"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 300; font-size:24px; color:#1665C1">cookie</span></div>
+                <div style="font:800 21px 'Heebo',sans-serif; color:#262A5B">עוגיות, בקצרה</div>
+              </div>
+              <p style="font:400 16px/1.65 'Assistant',sans-serif; color:#2A2A30; margin:0; text-wrap:pretty">עוגיות הכרחיות מפעילות את האתר. אם תאשרו, נפעיל גם מדידה ושיווק: כך נדע מה עוזר למטיילים, ונוכל להציג לכם מודעות של Baku40. <a href="Baku40%20Flights%20and%20System%20Pages.dc.html#privacy">מדיניות פרטיות</a></p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px">
+                <div onClick="{{ dAll }}" style="background:#1665C1; color:#FFFFFF; border-radius:10px; height:48px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer" style-hover="background:#1A63B8">אישור הכל</div>
+                <div onClick="{{ dNone }}" style="background:#FFFFFF; color:#262A5B; border:1.5px solid #262A5B; border-radius:10px; height:48px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer" style-hover="background:#F6F7F9">רק הכרחיות</div>
+              </div>
+              <div onClick="{{ dOpenPrefs }}" style="align-self:center; display:flex; align-items:center; gap:6px; font:600 15px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-size:18px">tune</span><span>בחירה לפי סוג</span></div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ dPrefs }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; inset:0; background:rgba(26,29,66,.45); display:flex; align-items:center; justify-content:center">
+              <div role="dialog" aria-label="העדפות עוגיות" style="width:560px; background:#FFFFFF; border-radius:18px; box-shadow:0 24px 60px rgba(26,29,66,.35); overflow:hidden">
+                <div style="padding:24px 28px 8px; display:flex; align-items:center; gap:12px">
+                  <div style="font:800 23px 'Heebo',sans-serif; color:#262A5B">מה להפעיל?</div>
+                  <div onClick="{{ dClosePrefs }}" style="margin-inline-start:auto; width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#262A5B" style-hover="background:#F6F7F9"><span style="font-family:'Material Symbols Rounded'; font-size:22px">close</span></div>
+                </div>
+                <div style="padding:0 28px">
+                  <sc-for list="{{ dRows }}" as="r" hint-placeholder-count="3">
+                    <div style="display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-bottom:1px solid #EDF2F9">
+                      <div style="flex:1; display:flex; flex-direction:column; gap:4px">
+                        <div style="display:flex; align-items:baseline; gap:10px; flex-wrap:wrap">
+                          <span style="font:700 18px 'Heebo',sans-serif; color:#262A5B">{{ r.title }}</span>
+                          <span style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ r.tools }}</span>
+                        </div>
+                        <div style="font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30">{{ r.text }}</div>
+                      </div>
+                      <sc-if value="{{ r.locked }}" hint-placeholder-val="{{ false }}">
+                        <span style="font:600 13px 'Assistant',sans-serif; color:#2D7D6B; background:#EAF5F1; border-radius:999px; padding:6px 11px; white-space:nowrap">תמיד פעיל</span>
+                      </sc-if>
+                      <sc-if value="{{ r.free }}" hint-placeholder-val="{{ true }}">
+                        <div role="switch" aria-checked="{{ r.on }}" onClick="{{ r.toggle }}" style="width:48px; height:28px; border-radius:999px; background:{{ r.track }}; position:relative; cursor:pointer; flex:0 0 auto; margin-top:2px; transition:background .2s">
+                          <div style="position:absolute; top:3px; inset-inline-start:{{ r.knob }}px; width:22px; height:22px; border-radius:50%; background:#FFFFFF; box-shadow:0 1px 3px rgba(26,29,66,.3); transition:inset-inline-start .2s"></div>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="padding:20px 28px 24px; display:grid; grid-template-columns:1fr 1fr; gap:10px">
+                  <div onClick="{{ dSave }}" style="background:#FFFFFF; color:#262A5B; border:1.5px solid #262A5B; border-radius:10px; height:48px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer" style-hover="background:#F6F7F9">שמירת הבחירה</div>
+                  <div onClick="{{ dAll }}" style="background:#1665C1; color:#FFFFFF; border-radius:10px; height:48px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer" style-hover="background:#1A63B8">אישור הכל</div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ dDone }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; bottom:28px; inset-inline-start:28px; display:flex; flex-direction:column; gap:10px; align-items:flex-start">
+              <div style="background:#262A5B; color:#FFFFFF; border-radius:10px; padding:12px 16px; font:600 15px 'Assistant',sans-serif; display:flex; align-items:center; gap:8px"><span style="font-family:'Material Symbols Rounded'; font-size:20px; color:#8FBEF2">check_circle</span><span>{{ dSummary }}</span></div>
+              <div onClick="{{ dOpenPrefs }}" style="background:#FFFFFF; color:#262A5B; border-radius:999px; padding:9px 14px; font:600 14px 'Assistant',sans-serif; display:flex; align-items:center; gap:6px; cursor:pointer; box-shadow:0 6px 18px rgba(26,29,66,.25)"><span style="font-family:'Material Symbols Rounded'; font-size:18px; color:#1665C1">cookie</span><span>הגדרות עוגיות</span></div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+    <div id="9g-2" style="display:flex; flex-direction:column; gap:14px">
+      <div style="display:flex; align-items:center; gap:12px">
+        <span style="font:800 15px 'Heebo',sans-serif; color:#FFFFFF; background:#262A5B; border-radius:8px; padding:5px 11px">9g‑2</span>
+        <span style="font:700 20px 'Heebo',sans-serif; color:#262A5B">מובייל</span>
+        <div onClick="{{ mReset }}" style="margin-inline-start:auto; font:600 14px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer; display:flex; align-items:center; gap:6px"><span style="font-family:'Material Symbols Rounded'; font-size:18px">replay</span><span>הצגה מחדש</span></div>
+      </div>
+      <div style="position:relative; width:390px; height:844px; border-radius:36px; overflow:hidden; border:1px solid #D9E3F0; background:#262A5B">
+        <img src="assets/photos/maiden-tower.png" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.8">
+        <div style="position:absolute; inset:0; background:linear-gradient(180deg,rgba(26,29,66,.1),rgba(26,29,66,.6))"></div>
+        <div style="position:absolute; top:0; inset-inline:0; height:64px; background:#FFFFFF; display:flex; align-items:center; padding:0 18px; gap:12px; border-bottom:1px solid #E3EBF5">
+          <img src="assets/baku40-logo-skyblue.png" alt="Baku40" style="height:26px; width:auto">
+          <span style="margin-inline-start:auto; font-family:'Material Symbols Rounded'; font-size:26px; color:#262A5B">menu</span>
+        </div>
+        <div style="position:absolute; top:130px; inset-inline:22px">
+          <h2 style="font:900 40px/1.08 'Heebo',sans-serif; color:#FFFFFF; margin:0">באקו, בלי ניחושים</h2>
+        </div>
+
+        <sc-if value="{{ mBanner }}" hint-placeholder-val="{{ true }}">
+          <div role="dialog" aria-label="הסכמה לעוגיות" style="position:absolute; bottom:0; inset-inline:0; background:#FFFFFF; border-radius:22px 22px 0 0; box-shadow:0 -12px 40px rgba(26,29,66,.3); padding:14px 22px 30px; display:flex; flex-direction:column; gap:14px">
+            <div style="align-self:center; width:40px; height:4px; border-radius:999px; background:#D9E3F0"></div>
+            <div style="display:flex; align-items:center; gap:10px">
+              <div style="width:38px; height:38px; border-radius:50%; background:#E4EFFB; display:flex; align-items:center; justify-content:center"><span style="font-family:'Material Symbols Rounded'; font-variation-settings:'wght' 300; font-size:21px; color:#1665C1">cookie</span></div>
+              <div style="font:800 19px 'Heebo',sans-serif; color:#262A5B">עוגיות, בקצרה</div>
+            </div>
+            <p style="font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30; margin:0">עוגיות הכרחיות מפעילות את האתר. אם תאשרו, נפעיל גם מדידה ושיווק. <a href="Baku40%20Flights%20and%20System%20Pages.dc.html#privacy">פרטיות</a></p>
+            <div onClick="{{ mAll }}" style="background:#1665C1; color:#FFFFFF; border-radius:12px; height:50px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer">אישור הכל</div>
+            <div onClick="{{ mNone }}" style="background:#FFFFFF; color:#262A5B; border:1.5px solid #262A5B; border-radius:12px; height:50px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer">רק הכרחיות</div>
+            <div onClick="{{ mOpenPrefs }}" style="align-self:center; height:44px; display:flex; align-items:center; gap:6px; font:600 15px 'Assistant',sans-serif; color:#1A63B8; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-size:18px">tune</span><span>בחירה לפי סוג</span></div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ mPrefs }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute; inset:0; background:rgba(26,29,66,.45)"></div>
+          <div role="dialog" aria-label="העדפות עוגיות" style="position:absolute; bottom:0; inset-inline:0; background:#FFFFFF; border-radius:22px 22px 0 0; padding:14px 22px 28px; display:flex; flex-direction:column">
+            <div style="align-self:center; width:40px; height:4px; border-radius:999px; background:#D9E3F0; margin-bottom:12px"></div>
+            <div style="display:flex; align-items:center">
+              <div style="font:800 21px 'Heebo',sans-serif; color:#262A5B">מה להפעיל?</div>
+              <div onClick="{{ mClosePrefs }}" style="margin-inline-start:auto; width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:#262A5B"><span style="font-family:'Material Symbols Rounded'; font-size:22px">close</span></div>
+            </div>
+            <sc-for list="{{ mRows }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #EDF2F9">
+                <div style="flex:1; display:flex; flex-direction:column; gap:3px">
+                  <span style="font:700 17px 'Heebo',sans-serif; color:#262A5B">{{ r.title }}</span>
+                  <span style="font:400 13px 'Assistant',sans-serif; color:#6E6B78">{{ r.tools }}</span>
+                  <div style="font:400 14px/1.55 'Assistant',sans-serif; color:#2A2A30">{{ r.text }}</div>
+                </div>
+                <sc-if value="{{ r.locked }}" hint-placeholder-val="{{ false }}">
+                  <span style="font:600 12px 'Assistant',sans-serif; color:#2D7D6B; background:#EAF5F1; border-radius:999px; padding:5px 10px; white-space:nowrap">תמיד פעיל</span>
+                </sc-if>
+                <sc-if value="{{ r.free }}" hint-placeholder-val="{{ true }}">
+                  <div role="switch" aria-checked="{{ r.on }}" onClick="{{ r.toggle }}" style="width:48px; height:28px; border-radius:999px; background:{{ r.track }}; position:relative; cursor:pointer; flex:0 0 auto; margin-top:2px; transition:background .2s">
+                    <div style="position:absolute; top:3px; inset-inline-start:{{ r.knob }}px; width:22px; height:22px; border-radius:50%; background:#FFFFFF; box-shadow:0 1px 3px rgba(26,29,66,.3); transition:inset-inline-start .2s"></div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:18px">
+              <div onClick="{{ mAll }}" style="background:#1665C1; color:#FFFFFF; border-radius:12px; height:50px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer">אישור הכל</div>
+              <div onClick="{{ mSave }}" style="background:#FFFFFF; color:#262A5B; border:1.5px solid #262A5B; border-radius:12px; height:50px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; cursor:pointer">שמירת הבחירה</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ mDone }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute; bottom:24px; inset-inline:18px; display:flex; flex-direction:column; gap:10px; align-items:flex-start">
+            <div style="background:#262A5B; color:#FFFFFF; border-radius:10px; padding:12px 14px; font:600 14px 'Assistant',sans-serif; display:flex; align-items:center; gap:8px"><span style="font-family:'Material Symbols Rounded'; font-size:20px; color:#8FBEF2">check_circle</span><span>{{ mSummary }}</span></div>
+            <div onClick="{{ mOpenPrefs }}" style="background:#FFFFFF; color:#262A5B; border-radius:999px; padding:0 14px; height:44px; font:600 14px 'Assistant',sans-serif; display:flex; align-items:center; gap:6px; cursor:pointer; box-shadow:0 6px 18px rgba(26,29,66,.25)"><span style="font-family:'Material Symbols Rounded'; font-size:18px; color:#1665C1">cookie</span><span>הגדרות עוגיות</span></div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="width:390px; display:flex; flex-direction:column; gap:14px; padding-top:48px">
+      <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.12em; color:#1A63B8">למפתח</div>
+      <sc-for list="{{ devNotes }}" as="n" hint-placeholder-count="6">
+        <div style="display:flex; gap:10px; align-items:flex-start; font:400 15px/1.6 'Assistant',sans-serif; color:#2A2A30">
+          <span style="font-family:'Material Symbols Rounded'; font-size:18px; color:#1665C1; margin-top:2px">{{ n.icon }}</span>
+          <span>{{ n.text }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { d: 'banner', dA: false, dM: false, m: 'banner', mA: false, mM: false };
+
+  rows(p) {
+    const s = this.state;
+    const sw = (key) => ({
+      free: true, locked: false, on: String(!!s[p + key]),
+      track: s[p + key] ? '#1665C1' : '#C9D3E0', knob: s[p + key] ? 23 : 3,
+      toggle: () => this.setState(st => ({ [p + key]: !st[p + key] }))
+    });
+    return [
+      { title: 'הכרחיות', tools: 'ניווט, אבטחה, שמירת הבחירה הזו', text: 'בלעדיהן האתר לא עובד. לא משמשות למעקב.', free: false, locked: true },
+      Object.assign({ title: 'מדידה', tools: 'Google Analytics', text: 'כמה אנשים קוראים כל עמוד ומאיפה הגיעו. בלי זיהוי אישי.' }, sw('A')),
+      Object.assign({ title: 'שיווק', tools: 'Meta Pixel · Google Ads', text: 'מדידת קמפיינים והצגת מודעות של Baku40 באתרים אחרים.' }, sw('M'))
+    ];
+  }
+
+  summary(a, m) {
+    if (a && m) return 'אישרתם את כל העוגיות';
+    if (!a && !m) return 'רק עוגיות הכרחיות פעילות';
+    return a ? 'פעילות: הכרחיות ומדידה' : 'פעילות: הכרחיות ושיווק';
+  }
+
+  handlers(p) {
+    return {
+      all: () => this.setState({ [p]: 'done', [p + 'A']: true, [p + 'M']: true }),
+      none: () => this.setState({ [p]: 'done', [p + 'A']: false, [p + 'M']: false }),
+      open: () => this.setState({ [p]: 'prefs' }),
+      close: () => this.setState(st => ({ [p]: st[p + 'Saved'] ? 'done' : 'banner' })),
+      save: () => this.setState({ [p]: 'done', [p + 'Saved']: true }),
+      reset: () => this.setState({ [p]: 'banner', [p + 'A']: false, [p + 'M']: false, [p + 'Saved']: false })
+    };
+  }
+
+  renderVals() {
+    const s = this.state, d = this.handlers('d'), m = this.handlers('m');
+    const wrap = (h, p) => () => { if (p === 'all' || p === 'none') this.setState({ [h + 'Saved']: true }); };
+    return {
+      dBanner: s.d === 'banner', dPrefs: s.d === 'prefs', dDone: s.d === 'done',
+      dAll: () => { d.all(); this.setState({ dSaved: true }); }, dNone: () => { d.none(); this.setState({ dSaved: true }); },
+      dOpenPrefs: d.open, dClosePrefs: d.close, dSave: d.save, dReset: d.reset,
+      dRows: this.rows('d'), dSummary: this.summary(s.dA, s.dM),
+      mBanner: s.m === 'banner', mPrefs: s.m === 'prefs', mDone: s.m === 'done',
+      mAll: () => { m.all(); this.setState({ mSaved: true }); }, mNone: () => { m.none(); this.setState({ mSaved: true }); },
+      mOpenPrefs: m.open, mClosePrefs: m.close, mSave: m.save, mReset: m.reset,
+      mRows: this.rows('m'), mSummary: this.summary(s.mA, s.mM),
+      devNotes: [
+        { icon: 'block', text: 'לפני בחירה: שום סקריפט של Analytics, Meta או Google Ads לא נטען. Google Consent Mode v2 במצב denied כברירת מחדל.' },
+        { icon: 'balance', text: '"אישור הכל" ו"רק הכרחיות" זהים בגודל ובבולטות. בלי כפתור סגירה שנחשב כהסכמה.' },
+        { icon: 'save', text: 'הבחירה נשמרת ב‑localStorage (baku40_consent: {analytics, marketing, date, version}) ל‑12 חודשים. אחרי זה, או כשמשתנה רשימת הכלים, שואלים שוב.' },
+        { icon: 'cookie', text: 'אחרי הבחירה נשאר כפתור קטן "הגדרות עוגיות", וקישור זהה בפוטר, כדי לשנות בכל רגע.' },
+        { icon: 'keyboard', text: 'הבאנר לא חוסם גלילה. מקבל פוקוס בטעינה, נסגר ב‑Esc כ"רק הכרחיות". חלון ההעדפות לוכד פוקוס. המתגים הם role="switch".' },
+        { icon: 'smartphone', text: 'במובייל: bottom sheet, כפתורים ברוחב מלא, 50px גובה.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

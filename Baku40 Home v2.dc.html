@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,200..400,0,0&display=block" rel="stylesheet">
+<style>
+  html, body { margin:0; background:#EEF1F5; font-family:'Assistant',system-ui,sans-serif; }
+  a { color:#0A6DA8; text-underline-offset:3px; }
+  a:hover { color:#13233F; }
+  * { box-sizing:border-box; }
+</style>
+</helmet>
+
+<section dir="rtl" style="padding:56px 64px 96px; display:flex; flex-direction:column; gap:36px">
+  <div style="display:flex; flex-direction:column; gap:10px; max-width:900px">
+    <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8">BAKU40 · דף הבית · גרסה 2</div>
+    <h1 style="font:900 44px/1.15 'Heebo',sans-serif; color:#13233F; margin:0">דף הבית, גרסה משודרגת</h1>
+    <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#3B4658; margin:0; text-wrap:pretty">פלטה חדשה: רקע לבן‑אפור קר, כחול־לילה ותכלת הלוגו כצבע הדגשה יחיד. במקום קופסאות צבעוניות לכל אזור, יש קצב קבוע של רקע בהיר, פס לילה אחד ופס צילום אחד. גופנים נשארו Heebo ו‑Assistant. <a href="Baku40%20Home.dc.html">לגרסה הקודמת</a></p>
+  </div>
+
+  <div id="2a" style="display:flex; flex-direction:column; gap:20px">
+    <div style="display:flex; align-items:center; gap:14px">
+      <span style="font:800 16px 'Heebo',sans-serif; color:#FFFFFF; background:#13233F; border-radius:8px; padding:6px 12px">2a</span>
+      <span style="font:500 16px 'Assistant',sans-serif; color:#3B4658">דסקטופ 1440 · מובייל 390</span>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:40px; align-items:flex-start">
+
+      <!-- ================= DESKTOP ================= -->
+      <div style="width:1440px; flex:0 0 1440px; background:#F6F7F9; border-radius:16px; overflow:hidden; position:relative; box-shadow:0 30px 60px -40px rgba(19,35,63,.5)">
+
+        <!-- HERO -->
+        <div style="position:relative; height:820px; overflow:visible">
+          <div style="position:absolute; inset:0; overflow:hidden">
+            <div role="img" aria-label="קו הרקיע של באקו ומגדלי הלהבה" style="position:absolute; inset:0; background-image:var(--p); --p:{{ heroBg }}; background-size:cover; background-position:50% 40%"></div>
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,.55) 0%, rgba(13,24,48,.1) 28%, rgba(13,24,48,.35) 55%, rgba(13,24,48,.92) 100%)"></div>
+          </div>
+
+          <div style="position:relative; z-index:30">
+            <div style="max-width:1360px; margin:0 auto; padding:0 40px; height:92px; display:flex; align-items:center; gap:36px">
+              <a href="Baku40%20Home%20v2.dc.html" style="display:flex"><img src="assets/baku40-logo-white-text.png" alt="Baku40" style="height:32px; width:auto"></a>
+              <nav style="display:flex; gap:26px; align-items:center; height:92px">
+                <sc-for list="{{ nav }}" as="n" hint-placeholder-count="9">
+                  <a href="{{ n.href }}" onMouseEnter="{{ n.onEnter }}" style="height:92px; display:flex; align-items:center; font:600 16px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none; box-shadow:inset 0 -2px 0 {{ n.line }}">{{ n.label }}</a>
+                </sc-for>
+              </nav>
+              <div style="flex:1"></div>
+              <div onClick="{{ openSearchD }}" role="button" aria-label="חיפוש" style="width:46px; height:46px; border-radius:50%; border:1px solid rgba(255,255,255,.45); display:flex; align-items:center; justify-content:center; cursor:pointer; color:#FFFFFF" style-hover="background:rgba(255,255,255,.12)">
+                <span style="font-family:'Material Symbols Rounded'; font-size:22px; line-height:1">search</span>
+              </div>
+              <a href="Baku40%20Collection%20Listings.dc.html#8c" style="background:#3BA9E6; color:#0D1830; font:700 16px 'Assistant',sans-serif; padding:0 22px; height:46px; border-radius:999px; display:flex; align-items:center; text-decoration:none" style-hover="background:#FFFFFF">{{ ctaLabel }}</a>
+            </div>
+
+            <sc-if value="{{ megaOpen }}" hint-placeholder-val="{{ false }}">
+              <div onMouseLeave="{{ closeMega }}" style="position:absolute; inset-inline:0; top:92px; background:#FFFFFF; box-shadow:0 30px 60px -30px rgba(13,24,48,.5)">
+                <div style="max-width:1360px; margin:0 auto; padding:32px 40px 36px; display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:48px">
+                  <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px">
+                    <sc-for list="{{ megaLinks }}" as="it" hint-placeholder-count="3">
+                      <a href="{{ it.href }}" style="padding:18px; border-radius:12px; display:flex; flex-direction:column; gap:6px; text-decoration:none" style-hover="background:#F6F7F9">
+                        <span style="font:700 20px 'Heebo',sans-serif; color:#13233F">{{ it.label }}</span>
+                        <span style="font:400 15px/1.5 'Assistant',sans-serif; color:#4A5568">{{ it.sub }}</span>
+                      </a>
+                    </sc-for>
+                  </div>
+                  <a href="{{ megaHref }}" style="display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; text-decoration:none; border-inline-start:1px solid #E3E8EF; padding-inline-start:32px">
+                    <img src="assets/photos/skyline-dusk.png" alt="" style="width:120px; height:120px; object-fit:cover; border-radius:10px">
+                    <div style="display:flex; flex-direction:column; gap:6px">
+                      <span style="font:700 12px 'Heebo',sans-serif; letter-spacing:.1em; color:#0A6DA8">מומלץ במערכת</span>
+                      <span style="font:700 18px/1.35 'Heebo',sans-serif; color:#13233F">{{ megaFeatureTitle }}</span>
+                      <span style="font:400 14px/1.55 'Assistant',sans-serif; color:#4A5568">{{ megaFeatureText }}</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="position:absolute; z-index:10; inset-inline:0; bottom:120px">
+            <div style="max-width:1360px; margin:0 auto; padding:0 40px; display:grid; grid-template-columns:minmax(0,1fr) 420px; gap:64px; align-items:end">
+              <div>
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:22px">
+                  <span style="width:36px; height:2px; background:#3BA9E6"></span>
+                  <span style="font:700 14px 'Heebo',sans-serif; letter-spacing:.16em; color:#FFFFFF">מדריך באקו בעברית</span>
+                </div>
+                <h1 style="font:900 104px/.98 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 24px; letter-spacing:-.01em">באקו,<br>בלי ניחושים.</h1>
+                <p style="font:400 22px/1.6 'Assistant',sans-serif; color:#FFFFFF; margin:0; max-width:600px; text-wrap:pretty">אטרקציות, מלונות, אוכל ומסלולים לפי אזור ולפי מספר הימים שיש לכם. הכול נבדק, הכול במקום אחד.</p>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:14px">
+                <div onClick="{{ openSearchD }}" style="background:#FFFFFF; border-radius:14px; padding:8px 8px 8px 8px; display:flex; align-items:center; gap:10px; cursor:pointer; box-shadow:0 20px 40px -20px rgba(0,0,0,.5)">
+                  <span style="font-family:'Material Symbols Rounded'; font-size:24px; line-height:1; color:#13233F; padding:0 10px">search</span>
+                  <span style="flex:1; font:400 17px 'Assistant',sans-serif; color:#4A5568">מקום, אזור, מסלול או שאלה</span>
+                  <span style="background:#13233F; color:#FFFFFF; font:700 16px 'Assistant',sans-serif; height:48px; padding:0 20px; border-radius:10px; display:flex; align-items:center">חיפוש</span>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:8px">
+                  <sc-for list="{{ heroChoices }}" as="h" hint-placeholder-count="4">
+                    <a href="{{ h.href }}" style="background:rgba(13,24,48,.45); border:1px solid rgba(255,255,255,.35); color:#FFFFFF; border-radius:999px; padding:10px 16px; font:600 15px 'Assistant',sans-serif; text-decoration:none" style-hover="background:#FFFFFF; color:#13233F">{{ h.title }}</a>
+                  </sc-for>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- utility card overlapping -->
+          <div style="position:absolute; z-index:12; inset-inline:0; bottom:-64px">
+            <div style="max-width:1280px; margin:0 auto; background:#13233F; border-radius:20px; padding:10px; box-shadow:0 30px 60px -30px rgba(13,24,48,.7); display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px">
+              <sc-for list="{{ utility }}" as="u" hint-placeholder-count="5">
+                <a href="{{ u.href }}" style="padding:18px 20px; display:flex; align-items:center; gap:14px; border-radius:14px; background:{{ u.tileBg }}; text-decoration:none" style-hover="background:#1E3358">
+                  <span style="flex:0 0 48px; width:48px; height:48px; border-radius:12px; background:{{ u.iconBg }}; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:24px; line-height:1; color:{{ u.iconFg }}">{{ u.icon }}</span>
+                  <span style="display:flex; flex-direction:column; gap:2px; min-width:0">
+                    <span style="display:flex; align-items:center; gap:6px; font:600 13px 'Assistant',sans-serif; color:#A9B8CF">
+                      <sc-if value="{{ u.live }}" hint-placeholder-val="{{ false }}"><span style="width:7px; height:7px; border-radius:50%; background:#4ADE80; box-shadow:0 0 0 3px rgba(74,222,128,.25)"></span></sc-if>
+                      {{ u.label }}
+                    </span>
+                    <span style="font:800 21px 'Heebo',sans-serif; color:#FFFFFF; white-space:nowrap">{{ u.value }}</span>
+                  </span>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK ENTRY -->
+        <div style="max-width:1280px; margin:0 auto; padding:144px 0 0">
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:24px">
+            <h2 style="font:900 40px/1.1 'Heebo',sans-serif; color:#13233F; margin:0">מאיפה מתחילים?</h2>
+            <span style="font:500 16px 'Assistant',sans-serif; color:#4A5568">שש דלתות לכל האתר</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:14px">
+            <sc-for list="{{ quick }}" as="q" hint-placeholder-count="6">
+              <a href="{{ q.href }}" style="position:relative; height:300px; border-radius:18px; overflow:hidden; text-decoration:none; background:#13233F; display:block" style-hover="transform:translateY(-4px); box-shadow:0 24px 40px -24px rgba(13,24,48,.6)">
+                <div role="img" aria-label="{{ q.title }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ q.bg }}; background-size:cover; background-position:center"></div>
+                <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,.05) 20%, rgba(13,24,48,.92) 100%)"></div>
+                <span style="position:absolute; top:14px; inset-inline-start:14px; width:46px; height:46px; border-radius:12px; background:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:24px; line-height:1; color:#0A6DA8">{{ q.icon }}</span>
+                <span style="position:absolute; bottom:0; inset-inline:0; padding:18px; display:flex; flex-direction:column; gap:4px">
+                  <span style="font:800 24px/1.1 'Heebo',sans-serif; color:#FFFFFF">{{ q.title }}</span>
+                  <span style="font:500 14px/1.4 'Assistant',sans-serif; color:#DCE6F2">{{ q.sub }}</span>
+                  <span style="margin-top:8px; width:34px; height:34px; border-radius:50%; background:#3BA9E6; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:18px; color:#0D1830">arrow_back</span>
+                </span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- FIRST TIME -->
+        <div style="max-width:1280px; margin:0 auto; padding:112px 0 0; display:grid; grid-template-columns:minmax(0,1fr) 520px; gap:72px; align-items:center">
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px">
+              <span style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8">להתחיל מכאן</span>
+              <span style="display:flex; align-items:center; gap:6px; background:#E7F8EE; color:#1D7A45; border-radius:999px; padding:4px 11px; font:700 12px 'Heebo',sans-serif"><span style="width:6px; height:6px; border-radius:50%; background:#22A55A"></span>נבדק ספטמבר 2026</span>
+            </div>
+            <h2 style="font:900 52px/1.1 'Heebo',sans-serif; color:#13233F; margin:0 0 18px">פעם ראשונה בבאקו?</h2>
+            <p style="font:400 19px/1.75 'Assistant',sans-serif; color:#3B4658; margin:0 0 36px; max-width:600px; text-wrap:pretty">כל מה שצריך לסדר לפני הטיסה ובימים הראשונים. לכל נושא יש מדריך מלא עם מקור רשמי ותאריך בדיקה.</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; column-gap:40px">
+              <sc-for list="{{ firstTime }}" as="f" hint-placeholder-count="8">
+                <a href="{{ f.href }}" style="display:grid; grid-template-columns:52px 1fr auto; gap:14px; align-items:center; padding:18px 0; border-top:1px solid #E3E8EF; text-decoration:none" style-hover="background:#FFFFFF">
+                  <span style="font:700 26px 'Heebo',sans-serif; color:#3BA9E6">{{ f.num }}</span>
+                  <span>
+                    <span style="display:block; font:700 19px 'Heebo',sans-serif; color:#13233F">{{ f.title }}</span>
+                    <span style="display:block; font:400 15px 'Assistant',sans-serif; color:#4A5568">{{ f.sub }}</span>
+                  </span>
+                  <span style="font-family:'Material Symbols Rounded'; font-size:20px; color:#0A6DA8">arrow_back</span>
+                </a>
+              </sc-for>
+            </div>
+            <a href="Baku40%20Travel%20Info.dc.html#7a" style="display:inline-flex; align-items:center; gap:8px; margin-top:28px; background:#13233F; color:#FFFFFF; height:48px; padding:0 22px; border-radius:999px; font:700 15px 'Assistant',sans-serif; text-decoration:none" style-hover="background:#0A6DA8">לכל המידע למטייל <span style="font-family:'Material Symbols Rounded'; font-size:20px">arrow_back</span></a>
+          </div>
+          <div style="position:relative; height:640px; border-radius:22px; overflow:hidden; box-shadow:0 30px 60px -36px rgba(13,24,48,.55)">
+            <img src="assets/photos/nizami-street.png" alt="רחוב נזאמי במרכז באקו" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 60%">
+            <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,0) 55%, rgba(13,24,48,.7) 100%)"></div>
+            <div style="position:absolute; bottom:20px; inset-inline:20px; background:rgba(19,35,63,.92); color:#FFFFFF; border-radius:16px; padding:18px 22px">
+              <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.12em; color:#3BA9E6; margin-bottom:6px">טיפ מהמערכת</div>
+              <div style="font:500 16px/1.5 'Assistant',sans-serif">שלושה ימים מכסים את העיר בנוחות. רביעי מאפשר יום מחוץ לעיר.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MUST SEE -->
+        <div style="max-width:1280px; margin:0 auto; padding:120px 0 0">
+          <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:32px; margin-bottom:28px">
+            <div>
+              <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8; margin-bottom:14px">אטרקציות</div>
+              <h2 style="font:900 52px/1.1 'Heebo',sans-serif; color:#13233F; margin:0">מה באמת שווה לראות</h2>
+            </div>
+            <a href="Baku40%20Listing%20and%20Details.dc.html#2a" style="display:flex; align-items:center; gap:6px; font:700 16px 'Assistant',sans-serif; color:#0A6DA8; text-decoration:none; white-space:nowrap">כל 68 האטרקציות <span style="font-family:'Material Symbols Rounded'; font-size:20px">arrow_back</span></a>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="8">
+              <div onClick="{{ c.onClick }}" role="button" style="cursor:pointer; font:600 15px 'Assistant',sans-serif; padding:9px 18px; border-radius:999px; border:1px solid {{ c.border }}; background:{{ c.bg }}; color:{{ c.fg }}">{{ c.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-auto-rows:250px; gap:16px">
+            <sc-for list="{{ attractions }}" as="a" hint-placeholder-count="5">
+              <a href="Baku40%20Listing%20and%20Details.dc.html#2c" style="grid-column:span {{ a.span }}; grid-row:span {{ a.span }}; position:relative; border-radius:16px; overflow:hidden; text-decoration:none; background:repeating-linear-gradient(135deg,#1B2D4F,#1B2D4F 14px,#20355C 14px,#20355C 28px)">
+                <sc-if value="{{ a.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                  <div role="img" aria-label="{{ a.name }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ a.bg }}; background-size:cover; background-position:center"></div>
+                </sc-if>
+                <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,0) 35%, rgba(13,24,48,.9) 100%)"></div>
+                <div onClick="{{ a.onSave }}" role="button" aria-label="שמירה" style="position:absolute; top:14px; inset-inline-end:14px; width:40px; height:40px; border-radius:50%; background:{{ a.saveBg }}; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:20px; line-height:1; color:{{ a.saveFg }}; font-variation-settings:'FILL' {{ a.fill }}">favorite</div>
+                <div style="position:absolute; bottom:0; inset-inline:0; padding:22px; display:flex; flex-direction:column; gap:6px">
+                  <span style="font:600 13px 'Assistant',sans-serif; color:#BFE3F8">{{ a.meta }}</span>
+                  <span style="font:700 {{ a.titleSize }}px/1.15 'Heebo',sans-serif; color:#FFFFFF">{{ a.name }}</span>
+                  <sc-if value="{{ a.big }}" hint-placeholder-val="{{ false }}">
+                    <span style="font:400 17px/1.6 'Assistant',sans-serif; color:#FFFFFF; max-width:520px">{{ a.note }}</span>
+                  </sc-if>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- ITINERARIES (night band) -->
+        <div style="margin-top:120px; background:#0D1830; padding:96px 0">
+          <div style="max-width:1280px; margin:0 auto">
+            <div style="display:grid; grid-template-columns:minmax(0,1fr) auto; gap:48px; align-items:end; margin-bottom:40px">
+              <div>
+                <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#3BA9E6; margin-bottom:14px">מסלולים מוכנים</div>
+                <h2 style="font:900 52px/1.1 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 14px">כמה ימים יש לכם?</h2>
+                <p style="font:400 19px/1.7 'Assistant',sans-serif; color:#D5DCE8; margin:0; max-width:560px">בחרו מספר ימים וקבלו את המסלולים שכתבנו בדיוק לזה, עם סדר עצירות וקצב שבדקנו בעצמנו.</p>
+              </div>
+              <div style="display:flex; gap:6px; background:#16254A; padding:6px; border-radius:999px">
+                <sc-for list="{{ dayOptions }}" as="d" hint-placeholder-count="6">
+                  <div onClick="{{ d.onClick }}" role="button" aria-pressed="{{ d.pressed }}" style="cursor:pointer; min-width:64px; height:56px; padding:0 14px; border-radius:999px; display:flex; align-items:center; justify-content:center; gap:4px; background:{{ d.bg }}; color:{{ d.fg }}">
+                    <span style="font:700 22px 'Heebo',sans-serif">{{ d.label }}</span>
+                    <span style="font:600 13px 'Assistant',sans-serif">{{ d.unit }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:20px">
+              <sc-for list="{{ itinCards }}" as="c" hint-placeholder-count="4">
+                <a href="Baku40%20Collection%20Listings.dc.html#8c" style="display:flex; flex-direction:column; background:#16254A; border-radius:16px; overflow:hidden; text-decoration:none" style-hover="box-shadow:0 0 0 2px #3BA9E6">
+                  <div style="position:relative; height:190px; background:repeating-linear-gradient(135deg,#1B2D4F,#1B2D4F 14px,#20355C 14px,#20355C 28px)">
+                    <sc-if value="{{ c.hasPhoto }}" hint-placeholder-val="{{ true }}">
+                      <div role="img" aria-label="{{ c.name }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ c.bg }}; background-size:cover; background-position:center"></div>
+                    </sc-if>
+                    <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ false }}">
+                      <span style="position:absolute; top:14px; inset-inline-start:14px; background:#3BA9E6; color:#0D1830; border-radius:999px; padding:5px 12px; font:700 13px 'Heebo',sans-serif">{{ c.badge }}</span>
+                    </sc-if>
+                  </div>
+                  <div style="padding:22px; display:flex; flex-direction:column; gap:8px; flex:1">
+                    <span style="font:600 13px 'Assistant',sans-serif; color:#8FCBF0">{{ c.meta }}</span>
+                    <span style="font:700 23px/1.25 'Heebo',sans-serif; color:#FFFFFF">{{ c.name }}</span>
+                    <span style="font:400 16px/1.6 'Assistant',sans-serif; color:#D5DCE8">{{ c.text }}</span>
+                    <span style="flex:1"></span>
+                    <span style="display:flex; align-items:center; gap:6px; font:700 15px 'Assistant',sans-serif; color:#3BA9E6; margin-top:8px">למסלול <span style="font-family:'Material Symbols Rounded'; font-size:18px">arrow_back</span></span>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOTELS -->
+        <div style="background:#FFFFFF; padding:112px 0">
+          <div style="max-width:1280px; margin:0 auto">
+            <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:32px; margin-bottom:32px">
+              <div>
+                <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8; margin-bottom:14px">איפה לישון</div>
+                <h2 style="font:900 52px/1.1 'Heebo',sans-serif; color:#13233F; margin:0">מלונות מומלצים</h2>
+              </div>
+              <a href="Baku40%20Collection%20Listings.dc.html#8b" style="display:flex; align-items:center; gap:6px; font:700 16px 'Assistant',sans-serif; color:#0A6DA8; text-decoration:none; white-space:nowrap">כל 28 המלונות <span style="font-family:'Material Symbols Rounded'; font-size:20px">arrow_back</span></a>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px">
+              <sc-for list="{{ hotels }}" as="h" hint-placeholder-count="3">
+                <a href="Baku40%20Listing%20and%20Details.dc.html#2f" style="display:flex; flex-direction:column; gap:16px; text-decoration:none">
+                  <div style="position:relative; height:240px; border-radius:14px; overflow:hidden; background:repeating-linear-gradient(135deg,#EDF1F6,#EDF1F6 12px,#F6F7F9 12px,#F6F7F9 24px); display:flex; align-items:flex-end; padding:12px">
+                    <div role="img" aria-label="{{ h.alt }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ h.bg }}; background-size:cover; background-position:center"></div>
+                    <span style="position:relative; font:400 11px ui-monospace,monospace; color:#5A6475">{{ h.photoNote }}</span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:10px; font:600 14px 'Assistant',sans-serif; color:#4A5568">
+                    <span style="color:#0A6DA8; letter-spacing:.1em">{{ h.stars }}</span><span>{{ h.area }}</span>
+                  </div>
+                  <h3 style="margin:-8px 0 0; font:800 23px/1.3 'Heebo',sans-serif; color:#13233F; text-wrap:pretty">{{ h.nameHe }} <span style="font:600 18px 'Heebo',sans-serif; color:#0A6DA8; unicode-bidi:isolate">({{ h.name }})</span></h3>
+                  <div style="font:400 16px/1.65 'Assistant',sans-serif; color:#3B4658">{{ h.text }}</div>
+                  <div style="display:flex; flex-wrap:wrap; gap:6px">
+                    <sc-for list="{{ h.tags }}" as="t" hint-placeholder-count="3">
+                      <span style="background:#F6F7F9; border-radius:999px; padding:6px 12px; font:600 13px 'Assistant',sans-serif; color:#13233F">{{ t }}</span>
+                    </sc-for>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOD -->
+        <div style="max-width:1280px; margin:0 auto; padding:112px 0 0">
+          <div style="display:grid; grid-template-columns:330px minmax(0,1fr); gap:40px; align-items:stretch">
+            <div style="display:flex; flex-direction:column; gap:14px">
+              <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8">אוכל</div>
+              <h2 style="font:900 44px/1.1 'Heebo',sans-serif; color:#13233F; margin:0">מנגל, דולמה ולחם טרי</h2>
+              <p style="font:400 16px/1.65 'Assistant',sans-serif; color:#3B4658; margin:0">טווח מחירים, אזור ושעות לכל מסעדה. כשרות מסומנת רק אחרי אימות.</p>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 12px; margin-top:4px">
+                <sc-for list="{{ foodLinks }}" as="f" hint-placeholder-count="6">
+                  <a href="Baku40%20Collection%20Listings.dc.html#8a" style="display:flex; align-items:center; gap:7px; min-height:36px; font:600 14px/1.3 'Assistant',sans-serif; color:#13233F; text-decoration:none" style-hover="color:#0A6DA8">
+                    <span style="font-family:'Material Symbols Rounded'; font-size:18px; color:#0A6DA8">{{ f.icon }}</span>{{ f.short }}
+                  </a>
+                </sc-for>
+              </div>
+              <span style="flex:1"></span>
+              <a href="Baku40%20Collection%20Listings.dc.html#8a" style="align-self:flex-start; display:flex; align-items:center; gap:8px; background:#13233F; color:#FFFFFF; height:48px; padding:0 22px; border-radius:999px; font:700 15px 'Assistant',sans-serif; text-decoration:none" style-hover="background:#0A6DA8">כל המסעדות <span style="font-family:'Material Symbols Rounded'; font-size:20px">arrow_back</span></a>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px">
+              <sc-for list="{{ restaurants }}" as="r" hint-placeholder-count="3">
+                <a href="Baku40%20Collection%20Listings.dc.html#8a" style="background:#FFFFFF; border-radius:18px; overflow:hidden; display:flex; flex-direction:column; text-decoration:none; box-shadow:0 14px 30px -24px rgba(13,24,48,.4)" style-hover="transform:translateY(-3px); box-shadow:0 24px 40px -24px rgba(13,24,48,.5)">
+                  <div style="position:relative; height:200px">
+                    <div role="img" aria-label="{{ r.name }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ r.bg }}; background-size:cover; background-position:center"></div>
+                    <span style="position:absolute; top:12px; inset-inline-start:12px; background:#FFFFFF; color:#13233F; border-radius:999px; padding:5px 11px; font:700 13px 'Heebo',sans-serif">{{ r.price }}</span>
+                    <sc-if value="{{ r.pick }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:12px; inset-inline-end:12px; background:#3BA9E6; color:#0D1830; border-radius:999px; padding:5px 11px; font:700 12px 'Heebo',sans-serif">בחירת המערכת</span></sc-if>
+                  </div>
+                  <div style="padding:18px 20px 20px; display:flex; flex-direction:column; gap:6px; flex:1">
+                    <span style="font:600 13px 'Assistant',sans-serif; color:#0A6DA8">{{ r.cuisine }} · {{ r.area }}</span>
+                    <span style="font:800 20px/1.2 'Heebo',sans-serif; color:#13233F">{{ r.name }}</span>
+                    <span style="font:400 14px/1.55 'Assistant',sans-serif; color:#4A5568">{{ r.note }}</span>
+                    <span style="flex:1"></span>
+                    <span style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid #EDF1F6; padding-top:12px; margin-top:6px">
+                      <span style="display:flex; align-items:center; gap:5px; font:600 13px 'Assistant',sans-serif; color:#4A5568"><span style="font-family:'Material Symbols Rounded'; font-size:16px; color:#8A96A8">info</span>כשרות: {{ r.kosher }}</span>
+                      <span style="font-family:'Material Symbols Rounded'; font-size:20px; color:#0A6DA8">arrow_back</span>
+                    </span>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- REAL ESTATE (photo band) -->
+        <sc-if value="{{ showRealEstate }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:120px; position:relative; overflow:hidden">
+            <img src="assets/photos/seabreeze-bay-overview.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover">
+            <div style="position:absolute; inset:0; background:linear-gradient(90deg, rgba(13,24,48,.55) 0%, rgba(13,24,48,.94) 60%)"></div>
+            <div style="position:relative; max-width:1280px; margin:0 auto; padding:104px 0; display:grid; grid-template-columns:420px minmax(0,1fr); gap:64px; align-items:center">
+              <div style="display:flex; flex-direction:column; gap:18px">
+                <div style="font:700 13px 'Heebo',sans-serif; letter-spacing:.14em; color:#3BA9E6">נדל״ן והשקעות</div>
+                <h2 style="font:900 52px/1.1 'Heebo',sans-serif; color:#FFFFFF; margin:0">באקו, גם מעבר לחופשה</h2>
+                <p style="font:400 18px/1.7 'Assistant',sans-serif; color:#E2E8F1; margin:0">אזורים, תהליך רכישה לזרים, מיסוי ופרויקטים. כל מחיר ותשואה מוצגים עם מקור ותאריך בדיקה.</p>
+                <div style="display:flex; flex-wrap:wrap; gap:8px">
+                  <sc-for list="{{ reLinks }}" as="l" hint-placeholder-count="6">
+                    <a href="Baku40%20Real%20Estate.dc.html#5a" style="border:1px solid rgba(255,255,255,.35); border-radius:999px; padding:8px 14px; font:600 14px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none" style-hover="background:#FFFFFF; color:#13233F">{{ l }}</a>
+                  </sc-for>
+                </div>
+                <a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9b" style="align-self:flex-start; margin-top:8px; background:#3BA9E6; color:#0D1830; font:700 16px 'Assistant',sans-serif; height:50px; padding:0 24px; border-radius:999px; display:flex; align-items:center; text-decoration:none" style-hover="background:#FFFFFF">למדריך ההשקעות</a>
+              </div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px">
+                <sc-for list="{{ reProjects }}" as="p" hint-placeholder-count="2">
+                  <a href="{{ p.href }}" style="background:#FFFFFF; border-radius:16px; overflow:hidden; display:flex; flex-direction:column; text-decoration:none">
+                    <div style="position:relative; height:260px">
+                      <div role="img" aria-label="{{ p.name }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ p.bg }}; background-size:cover; background-position:center"></div>
+                      <span style="position:absolute; top:14px; inset-inline-start:14px; background:#FFFFFF; color:#13233F; border-radius:999px; padding:5px 12px; font:700 12px 'Heebo',sans-serif">{{ p.badge }}</span>
+                    </div>
+                    <div style="padding:22px; display:flex; flex-direction:column; gap:8px">
+                      <span style="font:700 24px 'Heebo',sans-serif; color:#13233F">{{ p.name }}</span>
+                      <span style="font:400 15px/1.6 'Assistant',sans-serif; color:#3B4658">{{ p.text }}</span>
+                      <span style="font:500 13px 'Assistant',sans-serif; color:#4A5568; border-top:1px solid #EDF1F6; padding-top:10px; margin-top:4px">{{ p.meta }}</span>
+                    </div>
+                  </a>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="height:120px"></div>
+        <!-- FOOTER -->
+        <div style="background:#0D1830; padding:72px 0 32px">
+          <div style="max-width:1280px; margin:0 auto">
+            <div style="display:grid; grid-template-columns:1.6fr repeat(5,minmax(0,1fr)); gap:32px">
+              <div style="display:flex; flex-direction:column; gap:16px">
+                <img src="assets/baku40-logo-white-text.png" alt="Baku40" style="height:32px; width:auto; align-self:flex-start">
+                <div style="font:400 16px/1.7 'Assistant',sans-serif; color:#D5DCE8; max-width:280px">מדריך באקו ואזרבייג'ן בעברית. מידע מאומת, מסלולים מסודרים וכלי תכנון.</div>
+              </div>
+              <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="5">
+                <div style="display:flex; flex-direction:column; gap:10px">
+                  <div style="font:700 15px 'Heebo',sans-serif; color:#3BA9E6; margin-bottom:4px">{{ c.head }}</div>
+                  <sc-for list="{{ c.items }}" as="it" hint-placeholder-count="5">
+                    <a href="{{ it.href }}" style="font:400 15px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none" style-hover="color:#3BA9E6">{{ it.label }}</a>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+            <div style="margin-top:56px; border-top:1px solid #22325A; padding-top:20px; display:flex; gap:22px; flex-wrap:wrap; font:400 14px 'Assistant',sans-serif">
+              <sc-for list="{{ legal }}" as="l" hint-placeholder-count="7">
+                <a href="{{ l.href }}" style="color:#B8C3D6; text-decoration:none" style-hover="color:#FFFFFF">{{ l.label }}</a>
+              </sc-for>
+              <span style="margin-inline-start:auto; color:#B8C3D6">© 2026 Baku40</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- desktop search -->
+        <sc-if value="{{ searchD }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeSearch }}" style="position:absolute; inset:0; background:rgba(13,24,48,.6); z-index:60; display:flex; justify-content:center; padding-top:96px">
+            <div onClick="{{ stop }}" style="width:820px; align-self:flex-start; background:#FFFFFF; border-radius:18px; overflow:hidden; box-shadow:0 40px 80px -30px rgba(0,0,0,.6)">
+              <div style="display:flex; align-items:center; gap:14px; padding:22px 26px; border-bottom:1px solid #EDF1F6">
+                <span style="font-family:'Material Symbols Rounded'; font-size:26px; color:#13233F">search</span>
+                <input value="{{ q }}" onChange="{{ onQuery }}" placeholder="מקום, אזור, מסלול או שאלה" style="flex:1; border:0; outline:0; font:400 22px 'Assistant',sans-serif; color:#13233F; background:transparent">
+                <div onClick="{{ closeSearch }}" style="font:600 14px 'Assistant',sans-serif; color:#4A5568; cursor:pointer; border:1px solid #E3E8EF; border-radius:8px; padding:6px 10px">ESC</div>
+              </div>
+              <div style="padding:20px 26px 26px; display:flex; flex-direction:column; gap:20px; max-height:460px; overflow:auto">
+                <sc-for list="{{ searchGroups }}" as="g" hint-placeholder-count="3">
+                  <div style="display:flex; flex-direction:column; gap:4px">
+                    <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.12em; color:#0A6DA8; margin-bottom:4px">{{ g.head }}</div>
+                    <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                      <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 12px; border-radius:10px; cursor:pointer" style-hover="background:#F6F7F9">
+                        <span style="font:600 17px 'Assistant',sans-serif; color:#13233F">{{ it.name }}</span>
+                        <span style="font:400 14px 'Assistant',sans-serif; color:#4A5568">{{ it.meta }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <!-- ================= MOBILE ================= -->
+      <div style="width:390px; flex:0 0 390px; background:#F6F7F9; border-radius:32px; overflow:hidden; position:relative; box-shadow:0 30px 60px -40px rgba(19,35,63,.5)">
+        <div style="position:relative; height:500px; overflow:hidden">
+          <div role="img" aria-label="קו הרקיע של באקו" style="position:absolute; inset:0; background-image:var(--p); --p:{{ heroBg }}; background-size:cover; background-position:55% 40%"></div>
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,.6) 0%, rgba(13,24,48,.05) 22%, rgba(13,24,48,.5) 52%, rgba(13,24,48,.95) 100%)"></div>
+          <div style="position:relative; z-index:2; display:flex; align-items:center; gap:10px; padding:16px 16px">
+            <img src="assets/baku40-logo-white-text.png" alt="Baku40" style="height:26px; width:auto">
+            <div style="flex:1"></div>
+            <div onClick="{{ openSearchM }}" role="button" aria-label="חיפוש" style="width:44px; height:44px; border-radius:50%; border:1px solid rgba(255,255,255,.45); display:flex; align-items:center; justify-content:center; color:#FFFFFF; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-size:22px">search</span></div>
+            <div onClick="{{ openDrawer }}" role="button" aria-label="תפריט" style="width:44px; height:44px; border-radius:50%; background:#FFFFFF; display:flex; align-items:center; justify-content:center; color:#13233F; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-size:22px">menu</span></div>
+          </div>
+          <div style="position:absolute; z-index:2; inset-inline:0; bottom:0; padding:0 20px 20px; display:flex; flex-direction:column; gap:10px">
+            <h1 style="font:900 40px/1.05 'Heebo',sans-serif; color:#FFFFFF; margin:0">באקו, בלי ניחושים.</h1>
+            <p style="font:400 16px/1.5 'Assistant',sans-serif; color:#FFFFFF; margin:0 0 4px">אטרקציות, מלונות ומסלולים לפי מספר הימים שלכם.</p>
+            <div onClick="{{ openSearchM }}" style="background:#FFFFFF; border-radius:12px; height:52px; padding:0 6px 0 14px; display:flex; align-items:center; gap:10px; cursor:pointer">
+              <span style="font-family:'Material Symbols Rounded'; font-size:22px; color:#13233F">search</span>
+              <span style="flex:1; font:400 16px 'Assistant',sans-serif; color:#4A5568">מקום, אזור או שאלה</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#0D1830; padding:0 12px 14px">
+          <div style="display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); background:#13233F; border-radius:14px; border:1px solid rgba(255,255,255,.08)">
+            <sc-for list="{{ utilityM }}" as="u" hint-placeholder-count="3">
+              <a href="{{ u.href }}" style="display:flex; align-items:center; gap:8px; padding:10px; min-height:56px; text-decoration:none; border-inline-start:{{ u.divider }}">
+                <span style="font-family:'Material Symbols Rounded'; font-size:20px; line-height:1; color:#6CC0F0">{{ u.icon }}</span>
+                <span style="display:flex; flex-direction:column; min-width:0">
+                  <span style="display:flex; align-items:center; gap:4px; font:600 11px 'Assistant',sans-serif; color:#A9B8CF; white-space:nowrap">
+                    <sc-if value="{{ u.live }}" hint-placeholder-val="{{ false }}"><span style="width:6px; height:6px; border-radius:50%; background:#4ADE80"></span></sc-if>{{ u.label }}
+                  </span>
+                  <span style="font:800 15px 'Heebo',sans-serif; color:#FFFFFF; white-space:nowrap">{{ u.value }}</span>
+                </span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="padding:32px 16px 0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px">
+          <sc-for list="{{ quick }}" as="q" hint-placeholder-count="6">
+            <a href="{{ q.href }}" style="position:relative; height:132px; border-radius:16px; overflow:hidden; text-decoration:none; background:#13233F; display:block">
+              <div role="img" aria-label="{{ q.title }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ q.bg }}; background-size:cover; background-position:center"></div>
+              <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,.1) 10%, rgba(13,24,48,.9) 100%)"></div>
+              <span style="position:absolute; top:10px; inset-inline-start:10px; width:36px; height:36px; border-radius:10px; background:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:20px; color:#0A6DA8">{{ q.icon }}</span>
+              <span style="position:absolute; bottom:12px; inset-inline-start:12px; font:800 18px 'Heebo',sans-serif; color:#FFFFFF">{{ q.title }}</span>
+            </a>
+          </sc-for>
+        </div>
+
+        <div style="padding:48px 20px 0">
+          <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8; margin-bottom:10px">להתחיל מכאן</div>
+          <h2 style="font:900 34px/1.1 'Heebo',sans-serif; color:#13233F; margin:0 0 18px">פעם ראשונה בבאקו?</h2>
+          <sc-for list="{{ firstTime }}" as="f" hint-placeholder-count="8">
+            <a href="{{ f.href }}" style="display:grid; grid-template-columns:40px 1fr auto; gap:10px; align-items:center; min-height:64px; padding:10px 0; border-top:1px solid #E3E8EF; text-decoration:none">
+              <span style="font:700 20px 'Heebo',sans-serif; color:#3BA9E6">{{ f.num }}</span>
+              <span><span style="display:block; font:700 17px 'Heebo',sans-serif; color:#13233F">{{ f.title }}</span><span style="display:block; font:400 14px 'Assistant',sans-serif; color:#4A5568">{{ f.sub }}</span></span>
+              <span style="font-family:'Material Symbols Rounded'; font-size:20px; color:#0A6DA8">arrow_back</span>
+            </a>
+          </sc-for>
+        </div>
+
+        <div style="padding:52px 0 0">
+          <div style="padding:0 20px; display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:14px">
+            <h2 style="font:900 34px/1.1 'Heebo',sans-serif; color:#13233F; margin:0">מה שווה לראות</h2>
+            <a href="Baku40%20Listing%20and%20Details.dc.html#2a" style="font:700 15px 'Assistant',sans-serif; color:#0A6DA8; text-decoration:none">הכול</a>
+          </div>
+          <div style="display:flex; gap:8px; overflow-x:auto; padding:0 20px 14px">
+            <sc-for list="{{ chips }}" as="c" hint-placeholder-count="8">
+              <div onClick="{{ c.onClick }}" role="button" style="flex:0 0 auto; cursor:pointer; font:600 14px 'Assistant',sans-serif; height:40px; padding:0 16px; display:flex; align-items:center; border-radius:999px; border:1px solid {{ c.border }}; background:{{ c.bg }}; color:{{ c.fg }}">{{ c.label }}</div>
+            </sc-for>
+          </div>
+          <div style="display:flex; gap:12px; overflow-x:auto; padding:0 20px 4px; scroll-snap-type:x mandatory">
+            <sc-for list="{{ attractionsM }}" as="a" hint-placeholder-count="4">
+              <a href="Baku40%20Listing%20and%20Details.dc.html#2c" style="flex:0 0 270px; height:340px; scroll-snap-align:start; position:relative; border-radius:16px; overflow:hidden; text-decoration:none; background:repeating-linear-gradient(135deg,#1B2D4F,#1B2D4F 14px,#20355C 14px,#20355C 28px)">
+                <sc-if value="{{ a.hasPhoto }}" hint-placeholder-val="{{ false }}">
+                  <div role="img" aria-label="{{ a.name }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ a.bg }}; background-size:cover; background-position:center"></div>
+                </sc-if>
+                <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,0) 35%, rgba(13,24,48,.92) 100%)"></div>
+                <div onClick="{{ a.onSave }}" role="button" aria-label="שמירה" style="position:absolute; top:12px; inset-inline-end:12px; width:44px; height:44px; border-radius:50%; background:{{ a.saveBg }}; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:20px; color:{{ a.saveFg }}; font-variation-settings:'FILL' {{ a.fill }}">favorite</div>
+                <div style="position:absolute; bottom:0; inset-inline:0; padding:18px; display:flex; flex-direction:column; gap:4px">
+                  <span style="font:600 13px 'Assistant',sans-serif; color:#BFE3F8">{{ a.meta }}</span>
+                  <span style="font:700 24px/1.15 'Heebo',sans-serif; color:#FFFFFF">{{ a.name }}</span>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="margin-top:52px; background:#0D1830; padding:44px 0 40px">
+          <div style="padding:0 20px">
+            <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.14em; color:#3BA9E6; margin-bottom:10px">מסלולים מוכנים</div>
+            <h2 style="font:900 34px/1.1 'Heebo',sans-serif; color:#FFFFFF; margin:0 0 18px">כמה ימים יש לכם?</h2>
+            <div style="display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:4px; background:#16254A; padding:4px; border-radius:14px; margin-bottom:20px">
+              <sc-for list="{{ dayOptions }}" as="d" hint-placeholder-count="6">
+                <div onClick="{{ d.onClick }}" role="button" aria-pressed="{{ d.pressed }}" style="cursor:pointer; height:48px; border-radius:10px; display:flex; align-items:center; justify-content:center; font:700 20px 'Heebo',sans-serif; background:{{ d.bg }}; color:{{ d.fg }}">{{ d.label }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex; gap:12px; overflow-x:auto; padding:0 20px">
+            <sc-for list="{{ itinCards }}" as="c" hint-placeholder-count="3">
+              <a href="Baku40%20Collection%20Listings.dc.html#8c" style="flex:0 0 280px; background:#16254A; border-radius:16px; overflow:hidden; text-decoration:none; display:flex; flex-direction:column">
+                <div style="position:relative; height:150px; background:repeating-linear-gradient(135deg,#1B2D4F,#1B2D4F 14px,#20355C 14px,#20355C 28px)">
+                  <sc-if value="{{ c.hasPhoto }}" hint-placeholder-val="{{ true }}"><div role="img" aria-label="{{ c.name }}" style="position:absolute; inset:0; background-image:var(--p); --p:{{ c.bg }}; background-size:cover; background-position:center"></div></sc-if>
+                  <sc-if value="{{ c.badge }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:12px; inset-inline-start:12px; background:#3BA9E6; color:#0D1830; border-radius:999px; padding:4px 10px; font:700 12px 'Heebo',sans-serif">{{ c.badge }}</span></sc-if>
+                </div>
+                <div style="padding:18px; display:flex; flex-direction:column; gap:6px">
+                  <span style="font:600 13px 'Assistant',sans-serif; color:#8FCBF0">{{ c.meta }}</span>
+                  <span style="font:700 21px/1.25 'Heebo',sans-serif; color:#FFFFFF">{{ c.name }}</span>
+                  <span style="font:400 15px/1.55 'Assistant',sans-serif; color:#D5DCE8">{{ c.text }}</span>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="background:#FFFFFF; padding:48px 20px">
+          <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8; margin-bottom:10px">איפה לישון</div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:14px">
+            <h2 style="font:900 34px/1.1 'Heebo',sans-serif; color:#13233F; margin:0">מלונות מומלצים</h2>
+            <a href="Baku40%20Collection%20Listings.dc.html#8b" style="font:700 15px 'Assistant',sans-serif; color:#0A6DA8; text-decoration:none">כל 28</a>
+          </div>
+          <sc-for list="{{ hotels }}" as="h" hint-placeholder-count="3">
+            <a href="Baku40%20Listing%20and%20Details.dc.html#2f" style="display:grid; grid-template-columns:96px 1fr; gap:14px; align-items:center; padding:12px 0; border-top:1px solid #EDF1F6; text-decoration:none">
+              <div role="img" aria-label="{{ h.alt }}" style="width:96px; height:96px; border-radius:12px; background:repeating-linear-gradient(135deg,#EDF1F6,#EDF1F6 8px,#F6F7F9 8px,#F6F7F9 16px); background-image:var(--p); --p:{{ h.bgOrStripe }}; background-size:cover; background-position:center"></div>
+              <div>
+                <div style="font:600 13px 'Assistant',sans-serif; color:#0A6DA8">{{ h.stars }} · {{ h.area }}</div>
+                <h3 style="margin:0; font:800 17px/1.3 'Heebo',sans-serif; color:#13233F">{{ h.nameHe }} <span style="font:600 14px 'Heebo',sans-serif; color:#0A6DA8; unicode-bidi:isolate">({{ h.name }})</span></h3>
+                <div style="font:400 14px 'Assistant',sans-serif; color:#4A5568">{{ h.walk }}</div>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+
+        <div style="padding:48px 20px 0">
+          <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.14em; color:#0A6DA8; margin-bottom:10px">אוכל</div>
+          <h2 style="font:900 34px/1.1 'Heebo',sans-serif; color:#13233F; margin:0 0 10px">מנגל, דולמה ולחם טרי</h2>
+          <p style="font:400 16px/1.65 'Assistant',sans-serif; color:#3B4658; margin:0 0 18px">כשרות מסומנת רק אחרי אימות.</p>
+          <div style="display:flex; flex-direction:column; gap:12px">
+            <sc-for list="{{ restaurants }}" as="r" hint-placeholder-count="3">
+              <a href="Baku40%20Collection%20Listings.dc.html#8a" style="background:#FFFFFF; border-radius:14px; overflow:hidden; display:grid; grid-template-columns:110px 1fr; text-decoration:none">
+                <div role="img" aria-label="{{ r.name }}" style="background-image:var(--p); --p:{{ r.bg }}; background-size:cover; background-position:center; min-height:120px"></div>
+                <div style="padding:14px; display:flex; flex-direction:column; gap:4px">
+                  <span style="font:700 18px/1.25 'Heebo',sans-serif; color:#13233F">{{ r.name }}</span>
+                  <span style="font:500 13px/1.45 'Assistant',sans-serif; color:#4A5568">{{ r.meta }}</span>
+                </div>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{ showRealEstate }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:52px; background:#0D1830; padding:0 0 36px">
+            <div style="position:relative; height:220px; overflow:hidden">
+              <div role="img" aria-label="מפרץ באקו" style="position:absolute; inset:0; background-image:url('assets/photos/seabreeze-bay-overview.jpg'); background-size:cover; background-position:center"></div>
+              <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(13,24,48,.1) 0%, rgba(13,24,48,1) 100%)"></div>
+              <span style="position:absolute; top:16px; inset-inline-start:20px; display:flex; align-items:center; gap:6px; background:rgba(13,24,48,.7); color:#FFFFFF; border-radius:999px; padding:6px 12px; font:700 12px 'Heebo',sans-serif"><span style="font-family:'Material Symbols Rounded'; font-size:16px; color:#3BA9E6">apartment</span>נדל״ן והשקעות</span>
+            </div>
+            <div style="padding:0 20px; margin-top:-40px; position:relative; display:flex; flex-direction:column; gap:12px">
+              <h2 style="font:900 32px/1.1 'Heebo',sans-serif; color:#FFFFFF; margin:0">באקו, גם מעבר לחופשה</h2>
+              <p style="font:400 16px/1.6 'Assistant',sans-serif; color:#D5DCE8; margin:0">אזורים, רכישה לזרים ומיסוי. כל מחיר ותשואה עם מקור ותאריך בדיקה.</p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px; padding:20px 20px 0">
+              <sc-for list="{{ reProjects }}" as="p" hint-placeholder-count="2">
+                <a href="{{ p.href }}" style="display:grid; grid-template-columns:112px minmax(0,1fr); background:#FFFFFF; border-radius:16px; overflow:hidden; text-decoration:none; min-height:112px">
+                  <div role="img" aria-label="{{ p.name }}" style="background-image:var(--p); --p:{{ p.bg }}; background-size:cover; background-position:center"></div>
+                  <div style="padding:14px 14px 12px; display:flex; flex-direction:column; gap:4px; min-width:0">
+                    <span style="align-self:flex-start; background:#E3F2FB; color:#0A6DA8; border-radius:999px; padding:3px 9px; font:700 11px 'Heebo',sans-serif">{{ p.badge }}</span>
+                    <span style="font:800 18px 'Heebo',sans-serif; color:#13233F">{{ p.name }}</span>
+                    <span style="display:flex; align-items:center; justify-content:space-between; gap:8px">
+                      <span style="font:500 12px/1.4 'Assistant',sans-serif; color:#4A5568">{{ p.meta }}</span>
+                      <span style="flex:0 0 auto; width:30px; height:30px; border-radius:50%; background:#13233F; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Rounded'; font-size:16px">arrow_back</span>
+                    </span>
+                  </div>
+                </a>
+              </sc-for>
+            </div>
+            
+            <div style="padding:20px 20px 0">
+              <a href="Baku40%20SEO%20Pillar%20Pages.dc.html#9b" style="background:#3BA9E6; color:#0D1830; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; gap:8px; font:700 16px 'Assistant',sans-serif; text-decoration:none">למדריך ההשקעות <span style="font-family:'Material Symbols Rounded'; font-size:20px">arrow_back</span></a>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="height:48px"></div>
+        <div style="background:#0D1830; padding:36px 20px 28px; display:flex; flex-direction:column; gap:20px">
+          <img src="assets/baku40-logo-white-text.png" alt="Baku40" style="height:28px; width:auto; align-self:flex-start">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:22px">
+            <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="4">
+              <div style="display:flex; flex-direction:column; gap:8px">
+                <div style="font:700 14px 'Heebo',sans-serif; color:#3BA9E6">{{ c.head }}</div>
+                <sc-for list="{{ c.itemsShort }}" as="it" hint-placeholder-count="3">
+                  <a href="{{ it.href }}" style="font:400 15px 'Assistant',sans-serif; color:#FFFFFF; text-decoration:none">{{ it.label }}</a>
+                </sc-for>
+              </div>
+            </sc-for>
+          </div>
+          <div style="border-top:1px solid #22325A; padding-top:16px; display:flex; flex-wrap:wrap; gap:8px 16px; font:400 13px 'Assistant',sans-serif">
+            <sc-for list="{{ legal }}" as="l" hint-placeholder-count="7">
+              <a href="{{ l.href }}" style="color:#B8C3D6; text-decoration:none">{{ l.label }}</a>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- drawer -->
+        <sc-if value="{{ drawerOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute; inset:0; z-index:50; background:#0D1830; padding:16px 20px; display:flex; flex-direction:column">
+            <div style="display:flex; align-items:center; margin-bottom:24px">
+              <img src="assets/baku40-logo-white-text.png" alt="Baku40" style="height:26px; width:auto">
+              <div style="flex:1"></div>
+              <div onClick="{{ closeDrawer }}" role="button" aria-label="סגירה" style="width:44px; height:44px; border-radius:50%; background:#16254A; display:flex; align-items:center; justify-content:center; color:#FFFFFF; cursor:pointer"><span style="font-family:'Material Symbols Rounded'; font-size:22px">close</span></div>
+            </div>
+            <sc-for list="{{ nav }}" as="n" hint-placeholder-count="9">
+              <a href="{{ n.href }}" style="display:flex; align-items:center; justify-content:space-between; min-height:58px; border-bottom:1px solid #22325A; font:700 24px 'Heebo',sans-serif; color:#FFFFFF; text-decoration:none">
+                <span>{{ n.label }}</span><span style="font-family:'Material Symbols Rounded'; font-size:20px; color:#3BA9E6">arrow_back</span>
+              </a>
+            </sc-for>
+            <a href="Baku40%20Collection%20Listings.dc.html#8c" style="margin-top:24px; background:#3BA9E6; color:#0D1830; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; font:700 16px 'Assistant',sans-serif; text-decoration:none">{{ ctaLabel }}</a>
+          </div>
+        </sc-if>
+
+        <!-- mobile search -->
+        <sc-if value="{{ searchM }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute; inset:0; z-index:55; background:#FFFFFF; display:flex; flex-direction:column">
+            <div style="display:flex; align-items:center; gap:10px; padding:16px; border-bottom:1px solid #EDF1F6">
+              <span style="font-family:'Material Symbols Rounded'; font-size:24px; color:#13233F">search</span>
+              <input value="{{ q }}" onChange="{{ onQuery }}" placeholder="מקום, אזור או שאלה" style="flex:1; border:0; outline:0; font:400 18px 'Assistant',sans-serif; color:#13233F; min-height:44px">
+              <div onClick="{{ closeSearch }}" role="button" style="font:700 15px 'Assistant',sans-serif; color:#0A6DA8; cursor:pointer; padding:10px">ביטול</div>
+            </div>
+            <div style="padding:16px; display:flex; flex-direction:column; gap:18px; overflow:auto">
+              <sc-for list="{{ searchGroups }}" as="g" hint-placeholder-count="3">
+                <div>
+                  <div style="font:700 12px 'Heebo',sans-serif; letter-spacing:.12em; color:#0A6DA8; margin-bottom:6px">{{ g.head }}</div>
+                  <sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+                    <div style="min-height:52px; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid #EEF1F5">
+                      <span style="font:600 16px 'Assistant',sans-serif; color:#13233F">{{ it.name }}</span>
+                      <span style="font:400 13px 'Assistant',sans-serif; color:#4A5568">{{ it.meta }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+    </div>
+  </div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroPhoto&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;night&quot;,&quot;red&quot;,&quot;dusk&quot;,&quot;bay&quot;],&quot;default&quot;:&quot;night&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;ctaLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;מסלולים מוכנים&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showRealEstate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = { mega: null, search: null, q: '', drawer: false, saved: { heydar: true }, filter: 'הכול', days: 3, area: 0, openPractical: 'ויזה', wxNow: null };
+
+  L = 'Baku40%20Listing%20and%20Details.dc.html';
+  C = 'Baku40%20Collection%20Listings.dc.html';
+  S = 'Baku40%20Flights%20and%20System%20Pages.dc.html';
+
+  D = {
+    nav: [
+      { label: 'מדריך באקו', key: 'baku', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9a', links: [
+        { label: 'מדריך באקו המלא', sub: 'למה באקו, מתי לנסוע, כמה ימים', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9a' },
+        { label: 'אזורי העיר', sub: 'איפה לישון ואיך להתמצא', href: 'Baku40%20Editorial%20Templates.dc.html#3b' },
+        { label: 'מידע למטייל', sub: 'ויזה, כסף, תחבורה וטיסות', href: 'Baku40%20Travel%20Info.dc.html#7a' }
+      ], feature: { title: 'כמה ימים באמת צריך בבאקו?', text: 'שלושה ימים מכסים את העיר בנוחות. ארבעה מאפשרים יום מחוץ לעיר.' } },
+      { label: 'אטרקציות', key: 'do', href: 'Baku40%20Listing%20and%20Details.dc.html#2a', links: [
+        { label: 'כל האטרקציות', sub: 'סינון לפי סוג, אזור, מחיר וקהל', href: 'Baku40%20Listing%20and%20Details.dc.html#2a' },
+        { label: 'מסלולים לפי ימים', sub: 'מיום אחד ועד שבוע', href: 'Baku40%20Collection%20Listings.dc.html#8c' },
+        { label: 'טיולי יום', sub: 'גובוסטן, אבשרון, גבאלה, שאהדאג', href: 'Baku40%20Collection%20Listings.dc.html#8e' }
+      ], feature: { title: 'מה שווה לדלג עליו', text: 'לא כל מוזיאון בעיר העתיקה מצדיק כניסה כשיש יום אחד.' } },
+      { label: 'מלונות', key: 'stay', href: 'Baku40%20Collection%20Listings.dc.html#8b' },
+      { label: 'אוכל', key: 'food', href: 'Baku40%20Collection%20Listings.dc.html#8a' },
+      { label: 'קניות', key: 'shop', href: 'Baku40%20Collection%20Listings.dc.html#8d' },
+      { label: 'השקעות', key: 'inv', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9b', links: [
+        { label: 'השקעות בבאקו', sub: 'נדל״ן לזרים, היתר שהייה, תהליך', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9b' },
+        { label: 'השקעות באזרבייג׳ן', sub: 'ענפים, תמריצים והגנה משפטית', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9c' },
+        { label: 'פרויקטים', sub: 'Sea Breeze ופרויקטים נוספים', href: 'Baku40%20Real%20Estate.dc.html#5a' }
+      ], feature: { title: 'לפני שקונים בבאקו', text: 'מה לבדוק בתהליך רכישה לזרים, ואילו נתונים חייבים מקור.' } },
+      { label: 'קזינו', key: 'casino', href: 'Baku40%20Royal%20Casino.dc.html' },
+      { label: 'טיסות', key: 'flights', href: 'Baku40%20Flights%20and%20System%20Pages.dc.html#9a' },
+      { label: 'מזג אוויר', key: 'wx', href: 'Baku40%20Travel%20Info.dc.html#7c' }
+    ],
+    quick: [
+      { title: 'אטרקציות', photo: 'assets/photos/maiden-tower.png', icon: 'castle', href: 'Baku40%20Listing%20and%20Details.dc.html#2a', sub: '68 מקומות עם שעות ומחירים' },
+      { title: 'מסלולים', photo: 'assets/photos/boulevard-wheel.png', icon: 'route', href: 'Baku40%20Collection%20Listings.dc.html#8c', sub: 'מיום אחד ועד שבוע' },
+      { title: 'מלונות', photo: 'assets/photos/flame-towers-day.png', icon: 'hotel', href: 'Baku40%20Collection%20Listings.dc.html#8b', sub: 'לפי אזור ולפי קהל' },
+      { title: 'אוכל', photo: 'assets/photos/nizami-street.png', icon: 'restaurant', href: 'Baku40%20Collection%20Listings.dc.html#8a', sub: 'מקומי, גגות, ארוחת בוקר' },
+      { title: 'טיולי יום', photo: 'assets/photos/skyline-cloudy.png', icon: 'landscape', href: 'Baku40%20Collection%20Listings.dc.html#8e', sub: 'גובוסטן, גבאלה, שאהדאג' },
+      { title: 'מידע למטייל', photo: 'assets/photos/heydar-center-plaza.png', icon: 'luggage', href: 'Baku40%20Travel%20Info.dc.html#7a', sub: 'ויזה, כסף, תחבורה' }
+    ],
+    firstTime: [
+      { num: '01', title: "ויזה לאזרבייג'ן", sub: 'e‑visa מראש, אין ויזה בהגעה', href: 'Baku40%20Travel%20Info.dc.html#7b' },
+      { num: '02', title: 'איפה לישון', sub: 'שלושה אזורים, הבדל אמיתי', href: 'Baku40%20Editorial%20Templates.dc.html#3b' },
+      { num: '03', title: 'תחבורה בבאקו', sub: 'מטרו, BakiKart, Bolt והליכה', href: 'Baku40%20Travel%20Info.dc.html#7f' },
+      { num: '04', title: 'כסף ותשלומים', sub: 'מאנאט, כרטיסים, מזומן', href: 'Baku40%20Travel%20Info.dc.html#7d' },
+      { num: '05', title: 'SIM ואינטרנט', sub: 'SIM בשדה או eSIM מראש', href: 'Baku40%20Travel%20Info.dc.html#7e' },
+      { num: '06', title: 'מזג אוויר בבאקו', sub: 'מתי לנסוע ומה ללבוש', href: 'Baku40%20Travel%20Info.dc.html#7c' },
+      { num: '07', title: 'בטיחות ובריאות', sub: 'מה חשוב לדעת בעיר', href: 'Baku40%20Travel%20Info.dc.html#7g' },
+      { num: '08', title: 'כמה ימים צריך', sub: 'שלושה, ארבעה או יותר', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9a' }
+    ],
+    attractions: [
+      { id: 'flame', photo: 'assets/photos/flame-towers-night.png', name: 'מגדלי הלהבה', area: 'סבאיל', dur: 'תצפית בערב', tags: ['חובה', 'תצפית', 'ערב'], note: 'שלושת המגדלים שמזוהים עם קו הרקיע של באקו. מרשימים בעיקר בחשכה, כשתאורת החזיתות פועלת.' },
+      { id: 'maiden', photo: 'assets/photos/maiden-tower.png', name: 'מגדל הבתולה', area: 'העיר העתיקה', dur: '40 דקות', tags: ['חובה', 'היסטוריה', 'תצפית'], note: 'מגדל אבן בתוך העיר העתיקה, עם תצפית על הגגות והמפרץ.' },
+      { id: 'heydar', photo: 'assets/photos/heydar-center.png', name: 'מרכז היידר אלייב', area: 'נרימנוב', dur: '1.5–2 שעות', tags: ['חובה', 'מוזיאונים'], note: 'בניין בעיצוב זהא חדיד, מחוץ למרכז ההיסטורי. שווה נסיעה נפרדת.' },
+      { id: 'boulevard', photo: 'assets/photos/boulevard-wheel.png', name: 'טיילת הים', area: 'הטיילת', dur: '1–2 שעות', tags: ['חינם', 'משפחות', 'ערב'], note: 'טיילת ארוכה לאורך הים הכספי עם גנים, בתי קפה ומתקנים לילדים.' },
+      { id: 'fountain', photo: 'assets/photos/nizami-street.png', name: 'כיכר המזרקות', area: 'נזאמי', dur: '1 שעה', tags: ['חינם', 'ערב'], note: 'הכיכר המרכזית של באקו המודרנית, בקצה רחוב נזאמי.' },
+      { id: 'mosque', photo: 'assets/photos/heydar-mosque.png', name: 'מסגד היידר', area: 'בינגאדי', dur: '45 דקות', tags: ['היסטוריה'], note: 'אחד המסגדים הגדולים בקווקז.' },
+      { id: 'crystal', photo: 'assets/photos/crystal-hall.png', name: 'קריסטל הול', area: 'הטיילת', dur: '30 דקות', tags: ['ערב', 'תצפית'], note: 'אולם אירועים על קו המים, מואר בלילה.' },
+      { id: 'old-city', photo: '', name: 'העיר העתיקה', area: 'העיר העתיקה', dur: '2–3 שעות', tags: ['חובה', 'היסטוריה', 'חינם'], note: 'הליבה ההיסטורית של באקו, אתר מורשת עולמית.' },
+      { id: 'carpet', photo: '', name: 'מוזיאון השטיחים', area: 'הטיילת', dur: '1 שעה', tags: ['מוזיאונים', 'משפחות'], note: 'מוזיאון בצורת שטיח מגולגל על הטיילת.' }
+    ],
+    restaurants: [
+      { photo: 'assets/photos/maiden-tower.png', name: 'Shirvanshah Museum Restaurant', cuisine: 'אזרבייג׳ני', area: 'העיר העתיקה', price: '₼₼₼', kosher: 'לא מאומתת', meta: 'אזרבייג׳ני · העיר העתיקה · בינוני-גבוה', note: 'ארוחה אחת "מסודרת" בטיול, בין חפצים מקומיים. כדאי להזמין מראש.' },
+      { photo: 'assets/photos/nizami-street.png', name: 'Dolma', cuisine: 'מטבח מקומי', area: 'מרכז', price: '₼₼', kosher: 'לא מאומתת', meta: 'מטבח מקומי · מרכז · בינוני', note: 'טעימה ראשונה נוחה של דולמה ומרקים מקומיים.' },
+      { photo: 'assets/photos/port-baku-mall.png', name: 'Nakhchivan', cuisine: 'מנגל', area: 'מרכז', price: '₼₼', kosher: 'לא מאומתת', meta: 'מנגל · מרכז · בינוני', note: 'מנות לשיתוף, מתאים לארוחה משפחתית.' }
+    ],
+    foodLinks: [{ label: 'מה מזמינים במסעדה אזרבייג׳נית', short: 'מה מזמינים', icon: 'menu_book' }, { label: 'מסעדות בעיר העתיקה', short: 'העיר העתיקה', icon: 'fort' }, { label: 'ארוחת בוקר', short: 'ארוחת בוקר', icon: 'free_breakfast' }, { label: 'מסעדות גג', short: 'מסעדות גג', icon: 'roofing' }, { label: 'כשרות בבאקו', short: 'כשרות', icon: 'verified' }, { label: 'אוכל עם ילדים', short: 'עם ילדים', icon: 'family_restroom' }],
+    hotels: [
+      { name: 'Fairmont Baku Flame Towers', nameHe: 'פיירמונט באקו מגדלי הלהבה', stars: '★★★★★', area: 'מגדלי הלהבה', photo: 'assets/photos/flame-towers-day.png', text: 'נוף פתוח על המפרץ וספא מקורה. מתאים לזוגות; פחות למי שרוצה לצאת ברגל כל היום.', tags: ['לזוגות', 'ספא', 'נוף'], walk: 'למרכז: נסיעה קצרה' },
+      { name: 'Four Seasons Hotel Baku', nameHe: 'פור סיזנס באקו', stars: '★★★★★', area: 'קצה העיר העתיקה', photo: '', photoNote: 'נדרשת תמונת מלון', text: 'המיקום הוא היתרון: העיר העתיקה, הטיילת וכיכר המזרקות במרחק הליכה.', tags: ['מיקום מרכזי', 'ביקור ראשון'], walk: 'העיר העתיקה: 5 דק׳' },
+      { name: 'JW Marriott Absheron Baku', nameHe: 'ג׳יי. וו. מריוט אבשרון באקו', stars: '★★★★★', area: 'מול הטיילת', photo: 'assets/photos/skyline-dusk.png', text: 'מרכזי, עם בריכה וחדרים משפחתיים. נוח למשפחות שחוזרות למלון באמצע היום.', tags: ['למשפחות', 'בריכה'], walk: 'הטיילת: 3 דק׳' }
+    ],
+    areas: [
+      { name: 'העיר העתיקה', photo: 'assets/photos/maiden-tower.png', text: 'הליכתי, אטמוספרי ומרוכז. מתאים לביקור ראשון ולמי שרוצה לצאת מהמלון ישר לאתרים.', levels: [{ label: 'קרוב לאתרים', pct: 95 }, { label: 'אוכל בסביבה', pct: 70 }, { label: 'שקט בלילה', pct: 60 }] },
+      { name: 'נזאמי והמזרקות', photo: 'assets/photos/nizami-street.png', text: 'מרכז מסחרי וחיי רחוב. הרבה מסעדות ובתי קפה, ומרחק הליכה לעיר העתיקה ולטיילת.', levels: [{ label: 'קרוב לאתרים', pct: 80 }, { label: 'אוכל בסביבה', pct: 95 }, { label: 'שקט בלילה', pct: 40 }] },
+      { name: 'הטיילת ופורט באקו', photo: 'assets/photos/port-baku-mall.png', text: 'נוף לים, מלונות חדשים וקניות. פחות אווירה היסטורית, יותר נוחות.', levels: [{ label: 'קרוב לאתרים', pct: 65 }, { label: 'אוכל בסביבה', pct: 75 }, { label: 'שקט בלילה', pct: 75 }] }
+    ],
+    practical: [
+      { title: 'ויזה', href: 'Baku40%20Travel%20Info.dc.html#7b', path: '/travel-info/visa/', h1: "ויזה לאזרבייג'ן", icon: 'badge', text: 'בדקו את הדרישות מול הגורם הרשמי לפני ההזמנה.', detail: 'הכניסה לאזרבייג\'ן דורשת הסדרת ויזה מראש, והנהלים משתנים מעת לעת. בעמוד המלא מופיע מקור רשמי ותאריך בדיקה.' },
+      { title: 'כסף ותשלומים', href: 'Baku40%20Travel%20Info.dc.html#7d', path: '/travel-info/currency/', h1: "כסף ותשלומים", icon: 'payments', text: 'מאנאט (AZN). כרטיסים נפוצים, שווה מזומן קטן.', detail: 'רוב המסעדות והחנויות במרכז מקבלות כרטיסים. בשווקים ובחלק מהמוניות עדיף מזומן.' },
+      { title: 'SIM ואינטרנט', href: 'Baku40%20Travel%20Info.dc.html#7e', path: '/travel-info/sim/', h1: "SIM ואינטרנט", icon: 'sim_card', text: 'SIM מקומי בשדה התעופה או בעיר; eSIM כחלופה.', detail: 'החבילות משתנות בין המפעילים, ולכן מוצג טווח מחירים עם תאריך בדיקה.' },
+      { title: 'תחבורה בעיר', href: 'Baku40%20Travel%20Info.dc.html#7f', path: '/travel-info/transportation/', h1: "תחבורה בבאקו", icon: 'directions_subway', text: 'מטרו זול, Bolt למרחקים קצרים, מרכז הליכתי.', detail: 'המטרו מחייב כרטיס BakiKart נטען. בין העיר העתיקה, המזרקות והטיילת אין צורך בתחבורה.' },
+      { title: 'מזג אוויר', href: 'Baku40%20Travel%20Info.dc.html#7c', path: '/weather/', h1: "מזג אוויר בבאקו", icon: 'partly_cloudy_day', text: 'אביב וסתיו נוחים; הרוח מורגשת כל השנה.', detail: 'לכל חודש יש עמוד עם טמפרטורות, ימי גשם, טמפרטורת ים והמלצות לבוש.' },
+      { title: 'בטיחות', href: 'Baku40%20Travel%20Info.dc.html#7g', path: '/travel-info/safety/', h1: "בטיחות ובריאות", icon: 'shield', text: 'מרכז העיר נוח להליכה גם בערב.', detail: 'אין הנחיות חריגות למטייל. עדכונים ביטחוניים ותעופתיים נבדקים מול גורמים רשמיים.' }
+    ],
+    reLinks: ['שוק הנדל"ן', 'רכישה לזרים', 'מיסוי ועלויות', 'אזורים', 'שכירות', 'על הנייר'],
+    reProjects: [
+      { name: 'Sea Breeze', text: 'מכלול מגורים ותיירות על חוף הים הכספי, צפונית לבאקו.', meta: 'מחירים עם מקור ותאריך בדיקה', photo: 'assets/photos/seabreeze-sunset.jpg', badge: 'הדמיית יזם', href: 'Baku40%20Real%20Estate.dc.html#5b' },
+      { name: 'Royal Casino', text: 'מתחם קזינו ובידור בפיתוח בחוף נרדרן. מה ידוע ומה עדיין לא מאומת.', meta: 'בפיתוח · נבדק ספטמבר 2026', photo: 'assets/photos/royal-casino-render.jpg', badge: 'הדמיית יזם', href: 'Baku40%20Royal%20Casino.dc.html' }
+    ],
+    footer: [
+      { head: 'לגלות את באקו', items: ['אטרקציות', 'העיר העתיקה', 'אזורי העיר', 'מפה', 'מגזין'] },
+      { head: 'לתכנן', items: ['פעם ראשונה', 'מסלולים מוכנים', 'מזג אוויר', 'טיסות'] },
+      { head: 'אוכל ולינה', items: ['מסעדות', 'מטבח מקומי', 'מלונות', 'למשפחות'] },
+      { head: 'מעבר לבאקו', items: ['גובוסטן', 'אבשרון', 'גבאלה', 'שאהדאג'] },
+      { head: 'השקעות', items: ['השקעות בבאקו', 'השקעות באזרבייג׳ן', 'Sea Breeze', 'Royal Casino'] }
+    ],
+    heroChoices: [
+      { title: 'יש לי 3 ימים', href: 'Baku40%20Collection%20Listings.dc.html#8c' },
+      { title: 'פעם ראשונה', href: 'Baku40%20SEO%20Pillar%20Pages.dc.html#9a' },
+      { title: 'עם ילדים', href: 'Baku40%20Collection%20Listings.dc.html#8c' },
+      { title: 'יום מחוץ לעיר', href: 'Baku40%20Collection%20Listings.dc.html#8e' }
+    ],
+    filters: ['הכול', 'חובה', 'היסטוריה', 'משפחות', 'חינם', 'ערב', 'תצפית', 'מוזיאונים']
+  };
+
+  FOOT = {
+    'אטרקציות': 'Baku40%20Listing%20and%20Details.dc.html#2a', 'העיר העתיקה': 'Baku40%20Editorial%20Templates.dc.html#3b', 'אזורי העיר': 'Baku40%20Editorial%20Templates.dc.html#3b', 'מפה': 'Baku40%20Product%20Screens.dc.html#4a', 'מגזין': 'Baku40%20Editorial%20Templates.dc.html#3a',
+    'פעם ראשונה': 'Baku40%20SEO%20Pillar%20Pages.dc.html#9a', 'מסלולים מוכנים': 'Baku40%20Collection%20Listings.dc.html#8c', 'טיסות': 'Baku40%20Flights%20and%20System%20Pages.dc.html#9a', 'מזג אוויר': 'Baku40%20Travel%20Info.dc.html#7c',
+    'מסעדות': 'Baku40%20Collection%20Listings.dc.html#8a', 'מטבח מקומי': 'Baku40%20Collection%20Listings.dc.html#8a', 'מלונות': 'Baku40%20Collection%20Listings.dc.html#8b', 'למשפחות': 'Baku40%20Collection%20Listings.dc.html#8c',
+    'השקעות בבאקו': 'Baku40%20SEO%20Pillar%20Pages.dc.html#9b', 'השקעות באזרבייג׳ן': 'Baku40%20SEO%20Pillar%20Pages.dc.html#9c', 'Sea Breeze': 'Baku40%20Real%20Estate.dc.html#5b', 'Royal Casino': 'Baku40%20Royal%20Casino.dc.html'
+  };
+
+  ITIN = [
+    { days: 1, name: 'יום אחד בבאקו', meta: '1 יום · עצירת ביניים', text: 'מה אפשר להספיק בין טיסות, בלי לרוץ בין אזורים.', photo: 'assets/photos/crystal-hall.png' },
+    { days: 2, name: 'סוף שבוע בבאקו', meta: '2 ימים · זוגות · קצב רגוע', text: 'העיר העתיקה, הטיילת ומרכז העיר, בלי יציאה מהעיר.', photo: 'assets/photos/nizami-street.png' },
+    { days: 3, name: 'שלושה ימים קלאסיים', meta: '3 ימים · פעם ראשונה', text: 'הליבה ההיסטורית, באקו המודרנית ויום גמיש בסוף.', photo: 'assets/photos/maiden-tower.png', badge: 'מומלץ' },
+    { days: 3, name: 'מסלול משפחתי', meta: '3 ימים · משפחות · רגוע', text: 'חזרה למלון באמצע היום, שתי אטרקציות מקורות וטיילת בערב.', photo: 'assets/photos/central-park.png' },
+    { days: 3, name: 'באקו בתקציב', meta: '3 ימים · תקציב', text: 'אטרקציות חינמיות, מטרו ואוכל מקומי.', photo: 'assets/photos/boulevard-wheel.png' },
+    { days: 3, name: 'באקו בחורף', meta: '3 ימים · זוגות · רגוע', text: 'אטרקציות מקורות, חלופה לכל יום ופחות טיילת.', photo: 'assets/photos/skyline-cloudy.png' },
+    { days: 4, name: 'ארבעה ימים עם יום מחוץ לעיר', meta: '4 ימים · זוגות ומשפחות', text: 'שלושה ימים בעיר ויום לגובוסטן או לחצי האי אבשרון.', photo: 'assets/photos/skyline-cloudy.png' },
+    { days: 5, name: 'חמישה ימים כולל הרים', meta: '5 ימים · חברים', text: 'באקו, יום בגבאלה או שאהדאג ולינה מחוץ לעיר.', photo: '' },
+    { days: 7, name: 'שבוע באזרבייג׳ן', meta: '7 ימים · כולל צפון', text: 'באקו, גבאלה ושקי, עם שתי לינות מחוץ לעיר.', photo: '' }
+  ];
+
+  componentDidMount() {
+    this.loadWx();
+    this._wx = setInterval(() => this.loadWx(), 30 * 60 * 1000);
+    this._esc = (e) => { if (e.key === 'Escape') this.setState({ search: null, drawer: false }); };
+    window.addEventListener('keydown', this._esc);
+  }
+  componentWillUnmount() { clearInterval(this._wx); window.removeEventListener('keydown', this._esc); }
+  loadWx() {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=40.4093&longitude=49.8671&current=temperature_2m&timezone=Asia%2FBaku')
+      .then(r => r.json())
+      .then(j => { const t = j && j.current && j.current.temperature_2m; if (typeof t === 'number') this.setState({ wxNow: Math.round(t) + '°C' }); })
+      .catch(() => {});
+  }
+
+  renderVals() {
+    const s = this.state, D = this.D, p = this.props;
+    const bg = (x) => x ? 'url("' + x + '")' : 'none';
+    const heroMap = { night: 'assets/photos/flame-towers-night.png', red: 'assets/photos/flame-towers-red.png', dusk: 'assets/photos/skyline-dusk.png', bay: 'assets/photos/bay-night.png' };
+    const active = D.nav.find(n => n.key === s.mega && n.links);
+    const wx = s.wxNow || '—';
+
+    const mapAttr = (a, i, withSpan) => {
+      const big = withSpan && i === 0;
+      return {
+        name: a.name, note: a.note, meta: a.area + ' · ' + a.dur, hasPhoto: !!a.photo, bg: bg(a.photo),
+        span: big ? 2 : 1, big, titleSize: big ? 40 : 24,
+        saveBg: s.saved[a.id] ? '#3BA9E6' : 'rgba(255,255,255,.92)', saveFg: s.saved[a.id] ? '#0D1830' : '#13233F', fill: s.saved[a.id] ? 1 : 0,
+        onSave: (e) => { e.preventDefault(); e.stopPropagation(); this.setState(st => ({ saved: Object.assign({}, st.saved, { [a.id]: !st.saved[a.id] }) })); }
+      };
+    };
+    const filtered = s.filter === 'הכול' ? D.attractions : D.attractions.filter(a => a.tags.indexOf(s.filter) >= 0);
+
+    const q = s.q.trim(), match = (t) => !q || t.indexOf(q) >= 0;
+    const searchGroups = [
+      { head: 'מדריכים', items: [{ name: 'באקו עם ילדים', meta: 'מדריך' }, { name: 'כמה ימים צריך בבאקו', meta: 'מדריך' }, { name: 'ויזה לאזרבייג׳ן', meta: 'מידע למטייל' }].filter(i => match(i.name)) },
+      { head: 'אטרקציות', items: D.attractions.filter(a => match(a.name)).slice(0, 4).map(a => ({ name: a.name, meta: a.area })) },
+      { head: 'מלונות', items: D.hotels.filter(h => match(h.name) || match(h.nameHe)).map(h => ({ name: h.nameHe, meta: h.name + ' · ' + h.area })) }
+    ].filter(g => g.items.length);
+
+    const itinList = this.ITIN.filter(i => i.days === s.days);
+
+    return {
+      ctaLabel: p.ctaLabel ?? 'מסלולים מוכנים',
+      showRealEstate: p.showRealEstate ?? true,
+      heroBg: bg(heroMap[p.heroPhoto ?? 'night'] || heroMap.night),
+      nav: D.nav.map(n => ({ label: n.label, href: n.href, line: s.mega === n.key ? '#3BA9E6' : 'transparent', onEnter: () => this.setState({ mega: n.links ? n.key : null }) })),
+      megaOpen: !!active, megaLinks: active ? active.links : [], megaHref: active ? active.href : '#',
+      megaFeatureTitle: active ? active.feature.title : '', megaFeatureText: active ? active.feature.text : '',
+      closeMega: () => this.setState({ mega: null }),
+      heroChoices: D.heroChoices,
+      utility: [
+        { icon: 'flight', label: 'טיסה מתל אביב', value: '~3 שעות', href: this.S + '#9a' },
+        { icon: 'partly_cloudy_day', label: 'עכשיו בבאקו', value: wx, live: true, href: 'Baku40%20Travel%20Info.dc.html#7c' },
+        { icon: 'schedule', label: 'הפרש שעות', value: '+1 שעה', href: 'Baku40%20Travel%20Info.dc.html#7a' },
+        { icon: 'payments', label: 'מטבע', value: 'מאנאט · AZN', href: 'Baku40%20Travel%20Info.dc.html#7a' },
+        { icon: 'badge', label: 'ויזה', value: 'נדרשת מראש', href: 'Baku40%20Travel%20Info.dc.html#7a' }
+      ].map(u => Object.assign(u, { live: !!u.live, tileBg: u.live ? '#1A2C50' : 'transparent', iconBg: u.live ? '#3BA9E6' : 'rgba(59,169,230,.14)', iconFg: u.live ? '#0D1830' : '#6CC0F0' })),
+      utilityM: [{ icon: 'partly_cloudy_day', label: 'עכשיו', value: wx, live: true, href: 'Baku40%20Travel%20Info.dc.html#7c' }, { icon: 'flight', label: 'טיסה', value: '~3 שעות', href: this.S + '#9a' }, { icon: 'schedule', label: 'הפרש', value: '+1 שעה', href: 'Baku40%20Travel%20Info.dc.html#7a' }].map((u, i) => Object.assign(u, { divider: i ? '1px solid rgba(255,255,255,.08)' : '0', live: !!u.live, tileBg: u.live ? '#1A2C50' : '#13233F', border: u.live ? 'rgba(59,169,230,.45)' : 'rgba(255,255,255,.08)', iconBg: u.live ? '#3BA9E6' : 'rgba(59,169,230,.16)', iconFg: u.live ? '#0D1830' : '#6CC0F0' })),
+      quick: D.quick.map(x => Object.assign({}, x, { bg: bg(x.photo) })), firstTime: D.firstTime,
+      chips: D.filters.map(f => ({ label: f, onClick: () => this.setState({ filter: f }), bg: s.filter === f ? '#13233F' : 'transparent', fg: s.filter === f ? '#FFFFFF' : '#13233F', border: s.filter === f ? '#13233F' : '#D5DCE6' })),
+      attractions: filtered.slice(0, 5).map((a, i) => mapAttr(a, i, true)),
+      attractionsM: filtered.map((a, i) => mapAttr(a, i, false)),
+      dayOptions: [1, 2, 3, 4, 5, 7].map(d => ({ label: String(d), unit: d === 1 ? 'יום' : 'ימים', pressed: String(s.days === d), onClick: () => this.setState({ days: d }), bg: s.days === d ? '#3BA9E6' : 'transparent', fg: s.days === d ? '#0D1830' : '#FFFFFF' })),
+      itinCards: itinList.map(c => ({ name: c.name, meta: c.meta, text: c.text, badge: c.badge || '', hasPhoto: !!c.photo, bg: bg(c.photo) })),
+      hotels: D.hotels.map(h => Object.assign({}, h, { alt: h.nameHe + ' (' + h.name + ')', bg: bg(h.photo), bgOrStripe: h.photo ? bg(h.photo) : 'repeating-linear-gradient(135deg,#EDF1F6,#EDF1F6 8px,#F6F7F9 8px,#F6F7F9 16px)', photoNote: h.photo ? '' : (h.photoNote || '') })),
+      restaurants: D.restaurants.map((r, i) => Object.assign({}, r, { bg: bg(r.photo), pick: i === 0 })),
+      foodLinks: D.foodLinks,
+      foodMain: Object.assign({}, D.restaurants[0], { bg: bg(D.restaurants[0].photo) }),
+      foodSide: D.restaurants.slice(1).map(r => Object.assign({}, r, { bg: bg(r.photo) })),
+      reLinks: D.reLinks,
+      reProjects: D.reProjects.map(r => Object.assign({}, r, { bg: bg(r.photo) })),
+      practicalRows: D.practical.map((x, i) => ({ num: '0' + (i + 1), expanded: String(s.openPractical === x.title), border: s.openPractical === x.title ? '#13233F' : 'transparent', iconBg: s.openPractical === x.title ? '#13233F' : '#E3F2FB', iconFg: s.openPractical === x.title ? '#FFFFFF' : '#0A6DA8', cta: s.openPractical === x.title ? 'סגירה' : 'פרטים', ctaIcon: s.openPractical === x.title ? 'expand_less' : 'expand_more', title: x.title, h1: x.h1, href: x.href, path: x.path, icon: x.icon, text: x.text, detail: x.detail, open: s.openPractical === x.title, sign: s.openPractical === x.title ? 'remove' : 'add', onClick: () => this.setState({ openPractical: s.openPractical === x.title ? null : x.title }) })),
+      footerCols: D.footer.map(c => ({ head: c.head, items: c.items.map(l => ({ label: l, href: this.FOOT[l] || this.C + '#8e' })), itemsShort: c.items.slice(0, 3).map(l => ({ label: l, href: this.FOOT[l] || this.C + '#8e' })) })),
+      legal: [['מגזין', 'Baku40%20Editorial%20Templates.dc.html#3a'], ['אודות', this.S + '#9c'], ['צור קשר', this.S + '#9d'], ['הצהרת נגישות', this.S + '#accessibility'], ['מדיניות פרטיות', this.S + '#privacy'], ['תנאי שימוש', this.S + '#terms'], ['גילוי נאות', this.S + '#disclosure']].map(x => ({ label: x[0], href: x[1] })),
+      searchD: s.search === 'd', searchM: s.search === 'm', q: s.q, searchGroups,
+      openSearchD: () => this.setState({ search: 'd' }), openSearchM: () => this.setState({ search: 'm' }),
+      closeSearch: () => this.setState({ search: null }), stop: (e) => e.stopPropagation(),
+      onQuery: (e) => this.setState({ q: e.target.value }),
+      drawerOpen: s.drawer, openDrawer: () => this.setState({ drawer: true }), closeDrawer: () => this.setState({ drawer: false })
+    };
+  }
+}
+</script>
+</body>
+</html>
