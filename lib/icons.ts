@@ -22,7 +22,7 @@ export function usedIcons(): string[] {
   for (const c of getAllCollections()) for (const i of c.items) if (i.icon) names.add(i.icon);
   for (const u of home.hero.utility) names.add(u.icon);
   for (const q of home.quick) names.add(q.icon);
-  for (const f of home.firstTime.items) names.add(f.icon);
+  for (const f of home.firstTime.items) if (f.icon) names.add(f.icon);
   for (const r of home.food.items) names.add(r.icon);
   for (const p of home.practical.items) names.add(p.icon);
   for (const a of getAreas()) for (const b of a.bestFor ?? []) names.add(b.icon);

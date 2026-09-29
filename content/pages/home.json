@@ -109,55 +109,66 @@
     }
   ],
   "firstTime": {
-    "kicker": "להתחיל מכאן",
-    "title": "פעם ראשונה בבאקו?",
-    "text": "ארבעה דברים מסדרים כמעט את כל הטיול: איפה לישון, איך זזים בעיר, מה עושים עם הכסף וכמה ימים באמת צריך. שאר ההחלטות נגררות מהן.",
     "photo": "assets/photos/nizami-street.png",
     "photoAlt": "רחוב נזאמי במרכז באקו",
+    "kicker": "להתחיל מכאן",
+    "badge": "נבדק ספטמבר 2026",
+    "title": "פעם ראשונה בבאקו?",
+    "text": "כל מה שצריך לסדר לפני הטיסה ובימים הראשונים. לכל נושא יש מדריך מלא עם מקור רשמי ותאריך בדיקה.",
     "items": [
       {
         "num": "01",
-        "title": "ויזה וכניסה",
-        "icon": "badge",
-        "sub": "מה צריך לבדוק לפני הטיסה",
-        "href": "/travel-info/"
+        "title": "ויזה לאזרבייג'ן",
+        "sub": "e‑visa מראש, אין ויזה בהגעה",
+        "href": "/travel-info/visa/"
       },
       {
         "num": "02",
         "title": "איפה לישון",
-        "icon": "hotel",
         "sub": "שלושה אזורים, הבדל אמיתי",
-        "href": "/hotels/"
+        "href": "/areas/"
       },
       {
         "num": "03",
-        "title": "איך זזים בעיר",
-        "icon": "directions_subway",
-        "sub": "מטרו, Bolt והליכה",
-        "href": "/travel-info/"
+        "title": "תחבורה בבאקו",
+        "sub": "מטרו, BakiKart, Bolt והליכה",
+        "href": "/travel-info/transportation/"
       },
       {
         "num": "04",
-        "title": "כספים ותשלומים",
-        "icon": "payments",
+        "title": "כסף ותשלומים",
         "sub": "מאנאט, כרטיסים, מזומן",
-        "href": "/travel-info/"
+        "href": "/travel-info/currency/"
       },
       {
         "num": "05",
-        "title": "כמה ימים צריך",
-        "icon": "today",
-        "sub": "שלושה, ארבעה או יותר",
-        "href": "/itineraries/"
+        "title": "SIM ואינטרנט",
+        "sub": "SIM בשדה או eSIM מראש",
+        "href": "/travel-info/sim/"
       },
       {
         "num": "06",
-        "title": "מה לא לפספס",
-        "icon": "star",
-        "sub": "וממה אפשר לוותר",
-        "href": "/attractions/"
+        "title": "מזג אוויר בבאקו",
+        "sub": "מתי לנסוע ומה ללבוש",
+        "href": "/weather/september/"
+      },
+      {
+        "num": "07",
+        "title": "בטיחות ובריאות",
+        "sub": "מה חשוב לדעת בעיר",
+        "href": "/travel-info/safety/"
+      },
+      {
+        "num": "08",
+        "title": "כמה ימים צריך",
+        "sub": "שלושה, ארבעה או יותר",
+        "href": "/baku/"
       }
-    ]
+    ],
+    "ctaLabel": "לכל המידע למטייל",
+    "ctaHref": "/travel-info/",
+    "tipTitle": "טיפ מהמערכת",
+    "tipText": "שלושה ימים מכסים את העיר בנוחות. רביעי מאפשר יום מחוץ לעיר."
   },
   "attractions": {
     "title": "מה באמת שווה לראות",

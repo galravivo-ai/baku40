@@ -381,6 +381,26 @@ collections:
         label: טקסט
         widget: text
         required: false
+      - name: badge
+        label: תגית בדיקה
+        widget: string
+        required: false
+      - name: ctaLabel
+        label: כפתור
+        widget: string
+        required: false
+      - name: ctaHref
+        label: קישור הכפתור
+        widget: string
+        required: false
+      - name: tipTitle
+        label: כותרת הטיפ
+        widget: string
+        required: false
+      - name: tipText
+        label: טיפ
+        widget: text
+        required: false
       - name: photo
         label: תמונה
         widget: image

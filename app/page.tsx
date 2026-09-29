@@ -152,29 +152,48 @@ export default async function Home() {
         ))}
       </nav>
 
-      {/* first time */}
-      <section className="container home-section">
-        <div className="first-time">
-          <div className="first-time__body">
-            <div className="kicker">{home.firstTime.kicker}</div>
-            <h2 className="section-title">{home.firstTime.title}</h2>
-            <p className="section-text section-text--lg">{home.firstTime.text}</p>
-            <div className="first-time__grid">
-              {home.firstTime.items.map((f) => (
-                <Link key={f.num} href={f.href} className="first-time__item">
-                  <Icon name={f.icon} className="first-time__icon" />
-                  <span className="first-time__label">
-                    <strong>{f.title}</strong>
-                    <span>{f.sub}</span>
-                  </span>
-                  <span className="first-time__num">{f.num}</span>
-                </Link>
-              ))}
+      {/* first time — Home v2 */}
+      <section className="first2">
+        <div className="first2__body">
+          <div className="first2__kicker">
+            <span>{home.firstTime.kicker}</span>
+            {home.firstTime.badge && (
+              <span className="first2__badge">
+                <span aria-hidden="true" />
+                {home.firstTime.badge}
+              </span>
+            )}
+          </div>
+          <h2 className="first2__title">{home.firstTime.title}</h2>
+          <p className="first2__text">{home.firstTime.text}</p>
+          <div className="first2__list">
+            {home.firstTime.items.map((f) => (
+              <Link key={f.num} href={f.href} className="first2__item">
+                <span className="first2__num">{f.num}</span>
+                <span>
+                  <strong>{f.title}</strong>
+                  <span>{f.sub}</span>
+                </span>
+                <Icon name="arrow_back" className="first2__arrow" />
+              </Link>
+            ))}
+          </div>
+          {home.firstTime.ctaHref && (
+            <Link href={home.firstTime.ctaHref} className="first2__cta">
+              {home.firstTime.ctaLabel}
+              <Icon name="arrow_back" />
+            </Link>
+          )}
+        </div>
+        <div className="first2__photo">
+          <Photo photo={home.firstTime.photo} alt={home.firstTime.photoAlt} sizes="(max-width: 900px) 100vw, 520px" showTags={false} />
+          <div className="first2__shade" />
+          {home.firstTime.tipText && (
+            <div className="first2__tip">
+              <div>{home.firstTime.tipTitle}</div>
+              <p>{home.firstTime.tipText}</p>
             </div>
-          </div>
-          <div className="first-time__photo">
-            <Photo photo={home.firstTime.photo} alt={home.firstTime.photoAlt} sizes="(max-width: 900px) 100vw, 560px" />
-          </div>
+          )}
         </div>
       </section>
 

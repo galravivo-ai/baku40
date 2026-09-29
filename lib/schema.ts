@@ -269,9 +269,14 @@ export const homeSchema = z.object({
   firstTime: z.object({
     ...photoFields,
     kicker: text,
+    badge: text.optional(),
     title: text,
     text: text,
-    items: z.array(z.object({ num: text, title: text, icon: text, sub: text, href: text })),
+    items: z.array(z.object({ num: text, title: text, icon: text.optional(), sub: text, href: text })),
+    ctaLabel: text.optional(),
+    ctaHref: text.optional(),
+    tipTitle: text.optional(),
+    tipText: text.optional(),
   }),
   attractions: z.object({
     title: text,
