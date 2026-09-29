@@ -7,7 +7,7 @@ const CODE_ICONS = [
   "directions_walk", "edit_note", "error", "help", "hotel", "image", "location_city", "menu",
   "restaurant", "route", "schedule", "search", "tune",
   // footer accordion, home, cookie banner and accessibility menu
-  "accessibility_new", "add", "arrow_back", "arrow_selector_tool", "cookie", "filter_b_and_w",
+  "accessibility_new", "add", "favorite", "info", "arrow_back", "arrow_selector_tool", "cookie", "filter_b_and_w",
   "format_line_spacing", "format_size", "link", "motion_photos_paused", "remove", "restart_alt",
   "text_fields", "title",
 ];
@@ -23,8 +23,7 @@ export function usedIcons(): string[] {
   for (const u of home.hero.utility) names.add(u.icon);
   for (const q of home.quick) names.add(q.icon);
   for (const f of home.firstTime.items) if (f.icon) names.add(f.icon);
-  for (const r of home.food.items) names.add(r.icon);
-  for (const p of home.practical.items) names.add(p.icon);
+  for (const l of home.food.links) names.add(l.icon);
   for (const a of getAreas()) for (const b of a.bestFor ?? []) names.add(b.icon);
   return [...names].filter((n) => /^[a-z0-9_]+$/.test(n)).sort();
 }

@@ -41,8 +41,9 @@ export function ReadyItineraries({ p, cards }: { p: Home["planner"]; cards: Itin
         <span className="itin2__name">{c.name}</span>
         <span className="itin2__text">{c.text}</span>
         <span className="itin2__foot">
-          <span className="itin2__tag">מסלול עריכתי</span>
-          <span className="itin2__cta">{p.cardCta} ←</span>
+          <span className="itin2__cta">
+            {p.cardCta} <span aria-hidden="true">←</span>
+          </span>
         </span>
       </div>
     </Link>
@@ -61,7 +62,8 @@ export function ReadyItineraries({ p, cards }: { p: Home["planner"]; cards: Itin
           <div role="group" aria-labelledby="ready-days-label">
             {p.days.map((d) => (
               <button key={d} type="button" aria-pressed={d === days} onClick={() => setDays(d)}>
-                {d}
+                <strong>{d}</strong>
+                <span>{d === 1 ? "יום" : "ימים"}</span>
               </button>
             ))}
           </div>

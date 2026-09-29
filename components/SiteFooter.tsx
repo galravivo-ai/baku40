@@ -11,7 +11,7 @@ export function SiteFooter() {
       <div className="site-footer__main">
         <div className="site-footer__brand">
           <Link href="/" aria-label={`${site.name}, דף הבית`}>
-            <Image className="site-footer__logo" src="/assets/baku40-logo.png" alt={site.name} width={106} height={30} />
+            <Image className="site-footer__logo" src="/baku40-logo-white-text.png" alt={site.name} width={113} height={32} />
           </Link>
           <p>{site.footerTagline}</p>
         </div>

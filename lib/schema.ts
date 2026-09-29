@@ -267,7 +267,8 @@ export const homeSchema = z.object({
       }),
     ),
   }),
-  quick: z.array(z.object({ title: text, icon: text, href: text, sub: text })),
+  quickHead: z.object({ title: text, text: text }).optional(),
+  quick: z.array(z.object({ title: text, icon: text, href: text, sub: text, photo: text.optional() })),
   firstTime: z.object({
     ...photoFields,
     kicker: text,
@@ -281,6 +282,7 @@ export const homeSchema = z.object({
     tipText: text.optional(),
   }),
   attractions: z.object({
+    kicker: text.optional(),
     title: text,
     text: text,
     linkLabel: text,
@@ -311,18 +313,24 @@ export const homeSchema = z.object({
     ),
   }),
   food: z.object({
+    kicker: text.optional(),
     title: text,
     text: text,
-    items: z.array(z.object({ slug: text, icon: text, ...photoFields, meta: text, note: text })),
-    linksTitle: text,
-    links: z.array(linkSchema),
-  }),
-  practical: z.object({
-    title: text,
-    checked: text,
-    linkLabel: text,
-    href: text,
-    items: z.array(z.object({ title: text, icon: text, text: text })),
+    items: z.array(
+      z.object({
+        slug: text,
+        ...photoFields,
+        cuisine: text,
+        area: text,
+        price: text,
+        kosher: text,
+        note: text,
+        pick: z.boolean().optional(),
+      }),
+    ),
+    links: z.array(z.object({ label: text, short: text, icon: text, href: text })),
+    ctaLabel: text,
+    ctaHref: text,
   }),
   realEstate: z.object({
     kicker: text,
@@ -333,6 +341,7 @@ export const homeSchema = z.object({
     linksTitle: text,
     guideLabel: text,
     guideHref: text,
+    bandPhoto: text.optional(),
     projects: z.array(
       z.object({ name: text, text: text, meta: text, photo: text, badge: text, href: text }),
     ),

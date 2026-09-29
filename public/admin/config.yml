@@ -342,6 +342,14 @@ collections:
           widget: hidden
           required: false
       collapsed: true
+    - name: quickHead
+      label: מאיפה מתחילים — כותרת
+      widget: object
+      required: false
+      collapsed: true
+      fields:
+      - {name: title, label: כותרת, widget: string, required: false}
+      - {name: text, label: טקסט, widget: string, required: false}
     - name: quick
       label: כניסה מהירה
       widget: list
@@ -360,6 +368,11 @@ collections:
         label: קישור
         widget: string
         required: false
+      - name: photo
+        label: תמונה
+        widget: image
+        required: false
+        choose_url: true
       - name: sub
         label: תת־כותרת
         widget: string
@@ -442,6 +455,7 @@ collections:
       widget: object
       required: false
       fields:
+      - {name: kicker, label: תווית, widget: string, required: false}
       - name: title
         label: כותרת
         widget: string
@@ -626,105 +640,36 @@ collections:
       label: אוכל
       widget: object
       required: false
+      collapsed: true
       fields:
-      - name: title
-        label: כותרת
-        widget: string
-        required: false
-      - name: text
-        label: טקסט
-        widget: text
-        required: false
+      - {name: kicker, label: תווית, widget: string, required: false}
+      - {name: title, label: כותרת, widget: string, required: false}
+      - {name: text, label: טקסט, widget: text, required: false}
       - name: items
-        label: מסעדות
+        label: מסעדות (3)
         widget: list
         required: false
-        collapsed: true
         fields:
-        - name: slug
-          label: slug של המסעדה
-          widget: string
-          required: false
-        - name: icon
-          label: אייקון
-          widget: string
-          required: false
-        - name: photo
-          label: תמונה
-          widget: image
-          required: false
-          choose_url: true
-        - name: photoAlt
-          label: תיאור
-          widget: string
-          required: false
-        - name: meta
-          label: מטא
-          widget: string
-          required: false
-        - name: note
-          label: טקסט
-          widget: text
-          required: false
-      - name: linksTitle
-        label: כותרת קישורים
-        widget: string
-        required: false
+        - {name: slug, label: slug של המסעדה, widget: string, required: false}
+        - {name: photo, label: תמונה, widget: image, required: false, choose_url: true}
+        - {name: photoAlt, label: תיאור תמונה, widget: string, required: false}
+        - {name: cuisine, label: מטבח, widget: string, required: false}
+        - {name: area, label: אזור, widget: string, required: false}
+        - {name: price, label: טווח מחיר (₼), widget: string, required: false}
+        - {name: kosher, label: כשרות, widget: string, required: false}
+        - {name: note, label: טקסט, widget: text, required: false}
+        - {name: pick, label: בחירת המערכת, widget: boolean, required: false}
       - name: links
-        label: קישורים
+        label: מדריכי אוכל
         widget: list
         required: false
-        collapsed: true
         fields:
-        - name: label
-          label: תווית
-          widget: string
-          required: false
-        - name: href
-          label: קישור
-          widget: string
-          required: false
-      collapsed: true
-    - name: practical
-      label: מידע שימושי
-      widget: object
-      required: false
-      fields:
-      - name: title
-        label: כותרת
-        widget: string
-        required: false
-      - name: checked
-        label: נבדק
-        widget: string
-        required: false
-      - name: linkLabel
-        label: קישור
-        widget: string
-        required: false
-      - name: href
-        label: כתובת
-        widget: string
-        required: false
-      - name: items
-        label: פריטים
-        widget: list
-        required: false
-        collapsed: true
-        fields:
-        - name: title
-          label: כותרת
-          widget: string
-          required: false
-        - name: icon
-          label: אייקון
-          widget: string
-          required: false
-        - name: text
-          label: טקסט
-          widget: text
-          required: false
-      collapsed: true
+        - {name: label, label: שם מלא, widget: string, required: false}
+        - {name: short, label: שם קצר, widget: string, required: false}
+        - {name: icon, label: אייקון, widget: string, required: false}
+        - {name: href, label: קישור, widget: string, required: false}
+      - {name: ctaLabel, label: כפתור, widget: string, required: false}
+      - {name: ctaHref, label: קישור הכפתור, widget: string, required: false}
     - name: realEstate
       label: נדל״ן
       widget: object
@@ -767,6 +712,7 @@ collections:
         label: קישור למדריך
         widget: string
         required: false
+      - {name: bandPhoto, label: תמונת רקע, widget: image, required: false, choose_url: true}
       - name: projects
         label: פרויקטים
         widget: list

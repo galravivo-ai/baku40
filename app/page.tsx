@@ -25,22 +25,6 @@ export function generateMetadata() {
   });
 }
 
-function SectionHead({ title, text, link }: { title: string; text?: string; link?: { label: string; href: string } }) {
-  return (
-    <div className="section-head">
-      <div>
-        <h2 className="section-title">{title}</h2>
-        {text && <p className="section-text">{text}</p>}
-      </div>
-      {link && (
-        <Link href={link.href} className="section-link">
-          {link.label}
-        </Link>
-      )}
-    </div>
-  );
-}
-
 export default async function Home() {
   const site = getSite();
   const home = getHome();
@@ -140,15 +124,28 @@ export default async function Home() {
         </ul>
       </div>
 
-      {/* quick entry */}
-      <nav className="container home-section home-quick" aria-label="כניסה מהירה">
-        {home.quick.map((q) => (
-          <Link key={q.title} href={q.href} className="quick-card">
-            <Icon name={q.icon} className="quick-card__icon" />
-            <span className="quick-card__title">{q.title}</span>
-            <span className="quick-card__sub">{q.sub}</span>
-          </Link>
-        ))}
+      {/* quick entry — Home v2 */}
+      <nav className="quick2" aria-label={home.quickHead?.title ?? "כניסה מהירה"}>
+        {home.quickHead && (
+          <div className="quick2__head">
+            <h2>{home.quickHead.title}</h2>
+            <span>{home.quickHead.text}</span>
+          </div>
+        )}
+        <div className="quick2__grid">
+          {home.quick.map((q) => (
+            <Link key={q.title} href={q.href} className="quick2__tile">
+              {q.photo && <Photo photo={q.photo} alt="" sizes="(max-width: 700px) 50vw, 210px" showTags={false} />}
+              <span className="quick2__shade" />
+              <Icon name={q.icon} className="quick2__icon" />
+              <span className="quick2__body">
+                <strong>{q.title}</strong>
+                <span>{q.sub}</span>
+                <Icon name="arrow_back" className="quick2__arrow" />
+              </span>
+            </Link>
+          ))}
+        </div>
       </nav>
 
       {/* first time — Home v2 */}
@@ -196,32 +193,37 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* must see */}
-      <section className="container home-section">
-        <div className="tinted-panel">
-          <SectionHead
-            title={home.attractions.title}
-            text={home.attractions.text}
-            link={{ label: home.attractions.linkLabel, href: "/attractions/" }}
-          />
-          <AttractionsStrip
-            filters={home.attractions.filters}
-            items={home.attractions.items.map((a) => ({
-              id: a.id,
-              name: a.name,
-              meta: `${a.area} · ${a.dur}`,
-              note: a.note,
-              dur: a.dur,
-              tags: a.tags,
-              href: attractionHref.get(a.id) ?? "/attractions/",
-              photo: <Photo photo={a.photo} alt={a.photoAlt} sizes="(max-width: 700px) 85vw, 420px" icon="castle" />,
-            }))}
-          />
+      {/* must see — Home v2 */}
+      <section className="mosaic">
+        <div className="mosaic__head">
+          <div>
+            {home.attractions.kicker && <div className="mosaic__kicker">{home.attractions.kicker}</div>}
+            <h2>{home.attractions.title}</h2>
+          </div>
+          <Link href="/attractions/" className="mosaic__all">
+            {home.attractions.linkLabel}
+            <Icon name="arrow_back" />
+          </Link>
         </div>
+        <AttractionsStrip
+          filters={home.attractions.filters}
+          items={home.attractions.items.map((a, i) => ({
+            id: a.id,
+            name: a.name,
+            meta: `${a.area} · ${a.dur}`,
+            note: a.note,
+            dur: a.dur,
+            tags: a.tags,
+            href: attractionHref.get(a.id) ?? "/attractions/",
+            photo: a.photo ? (
+              <Photo photo={a.photo} alt={a.photoAlt} sizes={i === 0 ? "(max-width: 700px) 270px, 640px" : "(max-width: 700px) 270px, 320px"} showTags={false} />
+            ) : null,
+          }))}
+        />
       </section>
 
-      {/* ready itineraries by days */}
-      <section className="container home-section">
+      {/* ready itineraries by days — night band (Home v2) */}
+      <section className="ready-band">
         <ReadyItineraries
           p={home.planner}
           cards={getCollection("itineraries").items.map((i) => ({
@@ -235,52 +237,6 @@ export default async function Home() {
             photo: <Photo photo={i.photo} alt={i.photoAlt} note={i.photoNote} sizes="(max-width: 700px) 262px, 320px" icon="route" />,
           }))}
         />
-      </section>
-
-      {/* real estate */}
-      <section className="container home-section">
-        <div className="re2">
-          <div className="re2__top">
-            <div className="re2__intro">
-              <div className="kicker kicker--on-dark">{home.realEstate.kicker}</div>
-              <h2 className="re2__title">{home.realEstate.title}</h2>
-              <p className="re2__text">{home.realEstate.text}</p>
-            </div>
-            <Link href={home.realEstate.guideHref} className="re2__guide">
-              <span>{home.realEstate.guideLabel}</span>
-              <Icon name="arrow_back" />
-            </Link>
-          </div>
-          <div className="re2__projects">
-            {home.realEstate.projects.map((p) => (
-              <Link key={p.name} href={p.href} className="re2__project">
-                <Photo photo={p.photo} alt={`${p.name}, ${p.badge}`} sizes="(max-width: 700px) 280px, 620px" showTags={false} />
-                <span className="re2__shade" />
-                <span className="re2__badge">{p.badge}</span>
-                <span className="re2__body">
-                  <strong>{p.name}</strong>
-                  <span>{p.text}</span>
-                  <span className="re2__foot">
-                    <span className="re2__meta">{p.meta}</span>
-                    <span className="re2__cta">לפרויקט ←</span>
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-          <div className="re2__links">
-            <span>{home.realEstate.linksTitle}</span>
-            {home.realEstate.links.map((l) => (
-              <Link key={l} href={home.realEstate.linksHref}>
-                {l}
-              </Link>
-            ))}
-          </div>
-          <Link href={home.realEstate.guideHref} className="re2__guide re2__guide--mobile">
-            <span>{home.realEstate.guideLabel}</span>
-            <Icon name="arrow_back" />
-          </Link>
-        </div>
       </section>
 
       {/* recommended hotels — Home v2 */}
@@ -334,85 +290,92 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* food */}
-      <section className="container home-section">
-        <div className="food-panel">
-          <div>
-            <h2 className="section-title section-title--light">{home.food.title}</h2>
-            <p className="section-text section-text--light">{home.food.text}</p>
-            <div className="grid-3 grid-3--tight">
-              {home.food.items.map((r) => {
-                const item = getItem("restaurants", r.slug);
-                if (!item) return null;
-                return (
-                  <Link key={r.slug} href="/restaurants/" className="food-card">
-                    <div className="food-card__media">
-                      <Photo photo={r.photo} alt={r.photoAlt} sizes="(max-width: 700px) 100vw, 280px" icon={r.icon} />
-                    </div>
-                    <div className="food-card__body">
-                      <span className="food-card__name">
-                        <Icon name={r.icon} />
-                        {item.name}
-                      </span>
-                      <span className="card__meta">{r.meta}</span>
-                      <span className="food-card__note">{r.note}</span>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-          <nav className="food-links" aria-label={home.food.linksTitle}>
-            <div className="kicker">{home.food.linksTitle}</div>
+      {/* food — Home v2 */}
+      <section className="food2">
+        <div className="food2__side">
+          {home.food.kicker && <div className="food2__kicker">{home.food.kicker}</div>}
+          <h2>{home.food.title}</h2>
+          <p>{home.food.text}</p>
+          <nav className="food2__links" aria-label="מדריכי אוכל">
             {home.food.links.map((l) => (
-              <Link key={l.label} href={l.href}>
-                <Icon name="chevron_left" />
-                {l.label}
+              <Link key={l.label} href={l.href} title={l.label}>
+                <Icon name={l.icon} />
+                {l.short}
               </Link>
             ))}
           </nav>
+          <Link href={home.food.ctaHref} className="food2__cta">
+            {home.food.ctaLabel}
+            <Icon name="arrow_back" />
+          </Link>
         </div>
-      </section>
-
-      {/* practical */}
-      <section className="container home-section">
-        <div className="practical-panel">
-          <div className="section-head">
-            <h2 className="section-title section-title--md">{home.practical.title}</h2>
-            <div className="practical-panel__meta">
-              <span>{home.practical.checked}</span>
-              <Link href={home.practical.href} className="section-link">
-                {home.practical.linkLabel}
-              </Link>
-            </div>
-          </div>
-          <div className="grid-3 grid-3--tight">
-            {home.practical.items.map((p) => (
-              <Link key={p.title} href={home.practical.href} className="practical-card">
-                <span className="practical-card__title">
-                  <Icon name={p.icon} />
-                  {p.title}
-                </span>
-                <span>{p.text}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* magazine */}
-      <section className="container home-section home-section--last">
-        <div className="tinted-panel">
-          <SectionHead title={home.magazine.title} />
-          <div className="grid-3">
-            {home.magazine.items.map((m) => (
-              <Link key={m.title} href={home.magazine.href} className="mag-card">
-                <div className="mag-card__media">
-                  <Photo photo={m.photo} alt="" sizes="(max-width: 700px) 100vw, 400px" />
+        <div className="food2__cards">
+          {home.food.items.map((r) => {
+            const item = getItem("restaurants", r.slug);
+            if (!item) return null;
+            return (
+              <Link key={r.slug} href={`/restaurants/?q=${encodeURIComponent(item.name)}`} className="food2__card">
+                <div className="food2__media">
+                  <Photo photo={r.photo} alt={r.photoAlt} sizes="(max-width: 700px) 280px, 300px" showTags={false} icon="restaurant" />
+                  <span className="food2__price" aria-label={`טווח מחיר ${r.price.length} מתוך 3`}>
+                    {r.price}
+                  </span>
+                  {r.pick && <span className="food2__pick">בחירת המערכת</span>}
                 </div>
-                <span className="mag-card__cat">{m.cat}</span>
-                <span className="mag-card__title">{m.title}</span>
-                <span className="mag-card__text">{m.text}</span>
+                <div className="food2__body">
+                  <span className="food2__meta">
+                    {r.cuisine} · {r.area}
+                  </span>
+                  <strong>{item.name}</strong>
+                  <span className="food2__note">{r.note}</span>
+                  <span className="food2__foot">
+                    <span>
+                      <Icon name="info" />
+                      כשרות: {r.kosher}
+                    </span>
+                    <Icon name="arrow_back" className="food2__arrow" />
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* real estate — photo band (Home v2) */}
+      <section className="re3">
+        {home.realEstate.bandPhoto && (
+          <Photo photo={home.realEstate.bandPhoto} alt="" sizes="100vw" showTags={false} />
+        )}
+        <div className="re3__shade" />
+        <div className="re3__inner">
+          <div className="re3__text">
+            <div className="re3__kicker">{home.realEstate.kicker}</div>
+            <h2>{home.realEstate.title}</h2>
+            <p>{home.realEstate.text}</p>
+            <div className="re3__links">
+              {home.realEstate.links.map((l) => (
+                <Link key={l} href={home.realEstate.linksHref}>
+                  {l}
+                </Link>
+              ))}
+            </div>
+            <Link href={home.realEstate.guideHref} className="re3__cta">
+              {home.realEstate.guideLabel}
+            </Link>
+          </div>
+          <div className="re3__projects">
+            {home.realEstate.projects.map((p) => (
+              <Link key={p.name} href={p.href} className="re3__project">
+                <div className="re3__media">
+                  <Photo photo={p.photo} alt={`${p.name}, ${p.badge}`} sizes="(max-width: 700px) 120px, 380px" showTags={false} />
+                  <span className="re3__badge">{p.badge}</span>
+                </div>
+                <div className="re3__body">
+                  <strong>{p.name}</strong>
+                  <span>{p.text}</span>
+                  <span className="re3__meta">{p.meta}</span>
+                </div>
               </Link>
             ))}
           </div>

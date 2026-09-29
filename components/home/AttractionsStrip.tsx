@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Icon } from "@/components/Icon";
 import { useSaved } from "@/lib/saved";
+
+// "מה באמת שווה לראות" (design Home v2): filter chips, a mosaic of five on
+// desktop (the first one 2×2), and a swipe row of all matches on phones.
 
 export type StripItem = {
   id: string;
@@ -12,58 +16,51 @@ export type StripItem = {
   dur: string;
   tags: string[];
   href: string;
-  photo: React.ReactNode;
+  photo: React.ReactNode | null;
 };
 
 export function AttractionsStrip({ filters, items }: { filters: string[]; items: StripItem[] }) {
   const [filter, setFilter] = useState(filters[0]);
   const { has, toggle } = useSaved();
-  const all = filter === filters[0];
-  const visible = all ? items : items.filter((a) => a.tags.includes(filter));
+  const visible = filter === filters[0] ? items : items.filter((a) => a.tags.includes(filter));
+
+  const tile = (a: StripItem, big: boolean) => {
+    const id = `attractions:${a.id}`;
+    const saved = has(id);
+    return (
+      <div key={a.id} className={big ? "mosaic__tile mosaic__tile--big" : "mosaic__tile"}>
+        {a.photo}
+        <span className="mosaic__shade" />
+        <Link href={a.href} className="mosaic__link">
+          <span className="mosaic__meta">{a.meta}</span>
+          <span className="mosaic__name">{a.name}</span>
+          {big && <span className="mosaic__note">{a.note}</span>}
+        </Link>
+        <button
+          type="button"
+          className="mosaic__save"
+          aria-pressed={saved}
+          onClick={() => toggle(id)}
+          aria-label={saved ? `הסרת ${a.name} מהשמורים` : `שמירת ${a.name}`}
+        >
+          <Icon name="favorite" />
+        </button>
+      </div>
+    );
+  };
+
   return (
     <>
-      <div className="chip-row" role="group" aria-label="סינון אטרקציות">
+      <div className="mosaic__chips" role="group" aria-label="סינון אטרקציות">
         {filters.map((f) => (
-          <button key={f} type="button" className="chip" aria-pressed={f === filter} onClick={() => setFilter(f)}>
+          <button key={f} type="button" aria-pressed={f === filter} onClick={() => setFilter(f)}>
             {f}
           </button>
         ))}
       </div>
-      <div className="strip">
-        {visible.map((a) => {
-          const id = `attractions:${a.id}`;
-          const saved = has(id);
-          return (
-            <article key={a.id} className="strip-card">
-              <div className="strip-card__media">
-                {a.photo}
-                <button
-                  type="button"
-                  className="save-pill"
-                  aria-pressed={saved}
-                  onClick={() => toggle(id)}
-                  aria-label={saved ? `הסרת ${a.name} מהטיול שלי` : `שמירת ${a.name} בטיול שלי`}
-                >
-                  {saved ? "✓ נשמר" : "+ שמירה"}
-                </button>
-              </div>
-              <div className="strip-card__body">
-                <div className="card__meta">{a.meta}</div>
-                <h3 className="card__name">
-                  <Link href={a.href}>{a.name}</Link>
-                </h3>
-                <p className="card__text">{a.note}</p>
-                <div className="card__fill" />
-                <div className="strip-card__foot">
-                  <span>{a.dur}</span>
-                  <span className="dot" aria-hidden="true" />
-                  <span>{a.tags.join(" · ")}</span>
-                </div>
-              </div>
-            </article>
-          );
-        })}
-      </div>
+      <div className="mosaic__grid">{visible.slice(0, 5).map((a, i) => tile(a, i === 0))}</div>
+      <div className="mosaic__row">{visible.map((a) => tile(a, false))}</div>
+      {visible.length === 0 && <p className="mosaic__empty">אין אטרקציות בסינון הזה.</p>}
     </>
   );
 }
