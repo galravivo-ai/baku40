@@ -247,11 +247,23 @@ export const homeSchema = z.object({
     kicker: text,
     h1: text.min(1),
     intro: text,
+    introMobile: text.optional(),
     searchPlaceholder: text,
     ctaLabel: text,
     ctaHref: text,
     choices: z.array(z.object({ title: text, href: text })),
-    utility: z.array(z.object({ label: text, value: text, live: z.literal("weather").optional() })),
+    // Facts strip under the hero (design Home v2). `mobile` items also show on phones.
+    utility: z.array(
+      z.object({
+        icon: text,
+        label: text,
+        labelMobile: text.optional(),
+        value: text,
+        href: text,
+        live: z.literal("weather").optional(),
+        mobile: z.boolean().optional(),
+      }),
+    ),
   }),
   quick: z.array(z.object({ title: text, icon: text, href: text, sub: text })),
   firstTime: z.object({

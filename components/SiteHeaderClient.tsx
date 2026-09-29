@@ -71,7 +71,7 @@ export function SiteHeaderClient({
         </button>
         <Link href="/" className="site-header__logo" aria-label={`${siteName}, דף הבית`}>
           <Image
-            src={overlay ? "/assets/baku40-logo.png" : "/assets/baku40-logo-skyblue.png"}
+            src={overlay ? "/baku40-logo-white-text.png" : "/assets/baku40-logo-skyblue.png"}
             alt={siteName}
             width={113}
             height={32}

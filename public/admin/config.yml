@@ -277,6 +277,10 @@ collections:
         label: פתיח
         widget: text
         required: false
+      - name: introMobile
+        label: פתיח במובייל
+        widget: text
+        required: false
       - name: searchPlaceholder
         label: שדה חיפוש
         widget: string
@@ -309,13 +313,29 @@ collections:
         required: false
         collapsed: true
         fields:
+        - name: icon
+          label: אייקון
+          widget: string
+          required: false
         - name: label
           label: תווית
+          widget: string
+          required: false
+        - name: labelMobile
+          label: תווית במובייל
           widget: string
           required: false
         - name: value
           label: ערך
           widget: string
+          required: false
+        - name: href
+          label: קישור
+          widget: string
+          required: false
+        - name: mobile
+          label: להציג במובייל
+          widget: boolean
           required: false
         - name: live
           label: live

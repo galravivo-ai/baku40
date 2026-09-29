@@ -3,12 +3,13 @@
     "note": "metaTitle/metaDescription של דף הבית נמצאים ב-site.json (staticPages '/')."
   },
   "hero": {
-    "photo": "assets/photos/flame-towers-red.png",
-    "photoAlt": "מגדלי הלהבה מעל מפרץ באקו",
-    "kicker": "באקו · אזרבייג'ן · מדריך בעברית",
-    "h1": "באקו,\nבלי ניחושים",
-    "intro": "אטרקציות, מלונות, אוכל ומסלולים לפי אזור ולפי מספר הימים שיש לכם — במקום אחד.",
-    "searchPlaceholder": "חפשו מקום, אזור, מסלול או שאלה",
+    "photo": "assets/photos/flame-towers-night.png",
+    "photoAlt": "קו הרקיע של באקו ומגדלי הלהבה בלילה",
+    "kicker": "מדריך באקו בעברית",
+    "h1": "באקו,\nבלי ניחושים.",
+    "intro": "אטרקציות, מלונות, אוכל ומסלולים לפי אזור ולפי מספר הימים שיש לכם. הכול נבדק, הכול במקום אחד.",
+    "introMobile": "אטרקציות, מלונות ומסלולים לפי מספר הימים שלכם.",
+    "searchPlaceholder": "מקום, אזור, מסלול או שאלה",
     "ctaLabel": "מסלולים מוכנים",
     "ctaHref": "/itineraries/",
     "choices": [
@@ -31,25 +32,41 @@
     ],
     "utility": [
       {
+        "icon": "flight",
         "label": "טיסה מתל אביב",
-        "value": "~3 שעות"
+        "labelMobile": "טיסה",
+        "value": "~3 שעות",
+        "href": "/flights/israel-to-baku/",
+        "mobile": true
       },
       {
-        "label": "מטבע",
-        "value": "מאנאט · AZN"
-      },
-      {
-        "label": "הפרש שעות",
-        "value": "+1"
-      },
-      {
+        "icon": "partly_cloudy_day",
         "label": "עכשיו בבאקו",
+        "labelMobile": "עכשיו",
         "value": "",
-        "live": "weather"
+        "live": "weather",
+        "href": "/weather/september/",
+        "mobile": true
       },
       {
+        "icon": "schedule",
+        "label": "הפרש שעות",
+        "labelMobile": "הפרש",
+        "value": "+1 שעה",
+        "href": "/travel-info/",
+        "mobile": true
+      },
+      {
+        "icon": "payments",
+        "label": "מטבע",
+        "value": "מאנאט · AZN",
+        "href": "/travel-info/"
+      },
+      {
+        "icon": "badge",
         "label": "ויזה",
-        "value": "נדרשת מראש"
+        "value": "נדרשת מראש",
+        "href": "/travel-info/"
       }
     ]
   },

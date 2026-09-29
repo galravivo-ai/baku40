@@ -50,6 +50,7 @@ export default async function Home() {
   const utility = home.hero.utility
     .map((u) => (u.live === "weather" ? { ...u, value: temperature ?? "" } : u))
     .filter((u) => u.value);
+  const [h1First, ...h1Rest] = home.hero.h1.split("\n");
 
   return (
     <>
@@ -73,48 +74,72 @@ export default async function Home() {
         }}
       />
 
-      {/* hero */}
-      <section className="home-hero">
-        <Photo photo={home.hero.photo} alt={home.hero.photoAlt} sizes="100vw" priority />
-        <div className="home-hero__shade" />
-        <div className="home-hero__body">
-          <div className="kicker kicker--light">{home.hero.kicker}</div>
-          <h1 className="home-hero__h1">
-            {home.hero.h1.split("\n").map((line, i) => (
-              <span key={i}>
-                {i > 0 && <br />}
-                {line}
-              </span>
-            ))}
-          </h1>
-          <p className="home-hero__intro">{home.hero.intro}</p>
-          <form action="/search/" role="search" className="home-search">
-            <label className="visually-hidden" htmlFor="home-q">
-              {home.hero.searchPlaceholder}
-            </label>
-            <Icon name="search" />
-            <input id="home-q" name="q" type="search" placeholder={home.hero.searchPlaceholder} />
-            <button type="submit" className="btn btn--primary">
-              חיפוש
-            </button>
-          </form>
-          <div className="home-hero__choices">
-            {home.hero.choices.map((c) => (
-              <Link key={c.title} href={c.href} className="ghost-pill">
-                {c.title}
-              </Link>
-            ))}
+      {/* hero — design/Baku40 Home v2.dc.html */}
+      <section className="hero2">
+        <div className="hero2__media">
+          <Photo photo={home.hero.photo} alt={home.hero.photoAlt} sizes="100vw" priority showTags={false} />
+          <div className="hero2__shade" />
+        </div>
+        <div className="hero2__body">
+          <div className="hero2__text">
+            <div className="hero2__kicker">
+              <span aria-hidden="true" />
+              {home.hero.kicker}
+            </div>
+            <h1 className="hero2__h1">
+              {h1First}
+              {h1Rest.map((line) => (
+                <span key={line}>
+                  <br />
+                  {line}
+                </span>
+              ))}
+            </h1>
+            <p className="hero2__intro">
+              <span className="hero2__intro-full">{home.hero.intro}</span>
+              {home.hero.introMobile && <span className="hero2__intro-short">{home.hero.introMobile}</span>}
+            </p>
+          </div>
+          <div className="hero2__side">
+            <form action="/search/" role="search" className="hero2__search">
+              <label className="visually-hidden" htmlFor="home-q">
+                {home.hero.searchPlaceholder}
+              </label>
+              <Icon name="search" />
+              <input id="home-q" name="q" type="search" placeholder={home.hero.searchPlaceholder} />
+              <button type="submit">חיפוש</button>
+            </form>
+            <div className="hero2__choices">
+              {home.hero.choices.map((c) => (
+                <Link key={c.title} href={c.href}>
+                  {c.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
-        <dl className="home-utility">
-          {utility.map((u) => (
-            <div key={u.label}>
-              <dt>{u.label}</dt>
-              <dd>{u.value}</dd>
-            </div>
-          ))}
-        </dl>
       </section>
+
+      {/* facts strip, overlapping the hero on desktop */}
+      <div className="facts2">
+        <ul className="facts2__card">
+          {utility.map((u) => (
+            <li key={u.label} className={u.mobile ? "facts2__item facts2__item--mobile" : "facts2__item"}>
+              <Link href={u.href} data-live={u.live ? "true" : undefined}>
+                <Icon name={u.icon} className="facts2__icon" />
+                <span className="facts2__text">
+                  <span className="facts2__label">
+                    {u.live && <span className="facts2__dot" aria-hidden="true" />}
+                    <span className="facts2__label-full">{u.label}</span>
+                    <span className="facts2__label-short">{u.labelMobile ?? u.label}</span>
+                  </span>
+                  <span className="facts2__value">{u.value}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* quick entry */}
       <nav className="container home-section home-quick" aria-label="כניסה מהירה">
