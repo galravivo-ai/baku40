@@ -4,7 +4,6 @@ import { ReadyItineraries } from "@/components/home/ReadyItineraries";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { Photo } from "@/components/Photo";
-import { bookingHref } from "@/lib/booking";
 import { absoluteUrl, getAttractionsPage, getCollection, getHome, getItem, getSite } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { getBakuTemperature } from "@/lib/weather";
@@ -284,55 +283,54 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* recommended hotels */}
-      <section className="container home-section">
-        <SectionHead
-          title={home.hotels.title}
-          text={home.hotels.text}
-          link={{ label: home.hotels.linkLabel, href: "/hotels/" }}
-        />
-        <div className="grid-3 home-hotels">
-          {home.hotels.items.map((h) => {
-            const item = getItem("hotels", h.slug);
-            if (!item) return null;
-            return (
-              <article key={h.slug} className="card">
-                <div className="card__media card__media--tall">
-                  <Photo photo={h.photo} alt={h.photoAlt} sizes="(max-width: 700px) 100vw, 430px" icon="hotel" />
-                </div>
-                <div className="card__body">
-                  <div className="hotel-line">
-                    <span className="hotel-line__stars" aria-label={`${h.stars.length} כוכבים`}>
+      {/* recommended hotels — Home v2 */}
+      <section className="hotels2">
+        <div className="hotels2__inner">
+          <div className="hotels2__head">
+            <div>
+              {home.hotels.kicker && <div className="hotels2__kicker">{home.hotels.kicker}</div>}
+              <h2 className="hotels2__title">{home.hotels.title}</h2>
+            </div>
+            <Link href="/hotels/" className="hotels2__all">
+              {home.hotels.linkLabel.replace("{n}", String(getCollection("hotels").items.length))}
+              <Icon name="arrow_back" />
+            </Link>
+          </div>
+          <div className="hotels2__grid">
+            {home.hotels.items.map((h) => {
+              const item = getItem("hotels", h.slug);
+              if (!item) return null;
+              const alt = item.nameHe ? `${item.nameHe} (${item.name})` : item.name;
+              return (
+                <Link key={h.slug} href={item.url ?? "/hotels/"} className="hotel2">
+                  <div className="hotel2__media">
+                    <Photo photo={h.photo} alt={h.photoAlt || alt} sizes="(max-width: 700px) 100vw, 410px" icon="hotel" />
+                  </div>
+                  <div className="hotel2__line">
+                    <span className="hotel2__stars" aria-label={`${h.stars.length} כוכבים`}>
                       {h.stars}
                     </span>
                     <span>{h.area}</span>
                   </div>
-                  <h3 className="card__name">
-                    <Link href={item.url ?? "/hotels/"}>{item.name}</Link>
+                  <h3 className="hotel2__name">
+                    {item.nameHe ?? item.name}
+                    {item.nameHe && (
+                      <>
+                        {" "}
+                        <span dir="ltr">({item.name})</span>
+                      </>
+                    )}
                   </h3>
-                  <p className="card__text">{h.text}</p>
-                  <div className="card__fill" />
-                  <ul className="tag-list">
+                  <p className="hotel2__text">{h.text}</p>
+                  <ul className="hotel2__tags">
                     {h.tags.map((t) => (
                       <li key={t}>{t}</li>
                     ))}
                   </ul>
-                  <div className="card__foot">
-                    <span className="card__foot-label">
-                      <Icon name="directions_walk" />
-                      <span>{h.walk}</span>
-                    </span>
-                    <a className="card__cta" href={bookingHref(item)} target="_blank" rel="sponsored nofollow noopener">
-                      {item.cta}
-                    </a>
-                  </div>
-                  <p className="card__disclosure">
-                    {site.affiliateDisclosureShort} <Link href="/affiliate-disclosure/">גילוי נאות</Link>
-                  </p>
-                </div>
-              </article>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 

@@ -12,10 +12,10 @@ export function buildSearchIndex(): IndexEntry[] {
       out.push({
         id: `${key}:${item.slug}`,
         group: c.h1,
-        name: item.name,
+        name: item.nameHe ? `${item.nameHe} (${item.name})` : item.name,
         meta: item.meta,
         href: item.url ?? `${c.url}?q=${encodeURIComponent(item.name)}`,
-        text: [item.name, item.meta, item.text, item.area].filter(Boolean).join(" "),
+        text: [item.name, item.nameHe, item.meta, item.text, item.area].filter(Boolean).join(" "),
       });
     }
   }

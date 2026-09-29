@@ -561,6 +561,10 @@ collections:
       widget: object
       required: false
       fields:
+      - name: kicker
+        label: תווית
+        widget: string
+        required: false
       - name: title
         label: כותרת
         widget: string
@@ -570,7 +574,7 @@ collections:
         widget: text
         required: false
       - name: linkLabel
-        label: קישור
+        label: קישור ({n} = מספר המלונות)
         widget: string
         required: false
       - name: items
@@ -1439,6 +1443,10 @@ collections:
         label: שם
         widget: string
         required: true
+      - name: nameHe
+        label: שם בעברית
+        widget: string
+        required: false
       - name: slug
         label: כתובת (slug)
         widget: string

@@ -73,6 +73,8 @@ export const itemSeoSchema = z.object({
 export const itemSchema = z
   .object({
     name: text.min(1, "name חובה"),
+    // Hebrew name for hotels, shown as "{nameHe} ({name})" (CHANGELOG 29.9).
+    nameHe: text.optional(),
     slug: text.min(1, "slug חובה"),
     url: nullableText,
     meta: text,
@@ -300,6 +302,7 @@ export const homeSchema = z.object({
     cardCta: text,
   }),
   hotels: z.object({
+    kicker: text.optional(),
     title: text,
     text: text,
     linkLabel: text,
