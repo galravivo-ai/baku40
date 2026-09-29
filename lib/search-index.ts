@@ -1,5 +1,5 @@
 import "server-only";
-import { COLLECTION_FILES, getAreas, getAttractionsPage, getCollection, type CollectionKey } from "./content";
+import { COLLECTION_FILES, getAreas, getAttractionsPage, getCollection, type CollectionKey, getTravelTopics } from "./content";
 
 export type IndexEntry = { id: string; group: string; name: string; meta: string; href: string; text: string };
 
@@ -38,6 +38,16 @@ export function buildSearchIndex(): IndexEntry[] {
       meta: area.subtitle ?? "",
       href: area.url,
       text: [area.name, area.subtitle ?? ""].join(" "),
+    });
+  }
+  for (const t of getTravelTopics()) {
+    out.push({
+      id: `travel-info:${t.slug}`,
+      group: "מידע למטייל",
+      name: t.h1,
+      meta: t.title,
+      href: `/travel-info/${t.slug}/`,
+      text: [t.title, t.h1, t.answer].join(" "),
     });
   }
   return out;

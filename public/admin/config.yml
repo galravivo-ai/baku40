@@ -3569,3 +3569,54 @@ collections:
         label: note
         widget: hidden
         required: false
+
+- name: travel_info
+  label: מידע למטייל (ויזה, כסף, SIM…)
+  label_singular: נושא
+  folder: content/pages/travel-info
+  extension: json
+  format: json
+  create: true
+  slug: "{{slug}}"
+  identifier_field: title
+  fields:
+  - {name: slug, label: slug בכתובת (אנגלית), widget: string, pattern: ["^[a-z-]+$", "אותיות באנגלית ומקף בלבד"]}
+  - {name: order, label: סדר בתפריט, widget: number, value_type: int}
+  - {name: icon, label: אייקון, widget: string}
+  - {name: title, label: שם קצר (בתפריט), widget: string}
+  - {name: h1, label: כותרת (H1), widget: string}
+  - name: seo
+    label: SEO
+    widget: object
+    collapsed: true
+    fields:
+    - {name: metaTitle, label: כותרת לגוגל, widget: string, required: false}
+    - {name: metaDescription, label: תיאור לגוגל, widget: text, required: false}
+  - {name: answer, label: התשובה הקצרה, widget: text}
+  - {name: checksTitle, label: כותרת רשימת הבדיקות, widget: string}
+  - {name: checks, label: מה לבדוק, widget: list, field: {name: c, label: שורה, widget: text}}
+  - {name: detailTitle, label: כותרת פירוט, widget: string}
+  - {name: detailText, label: פירוט, widget: text}
+  - name: cards
+    label: כרטיסים
+    widget: list
+    fields:
+    - {name: icon, label: אייקון, widget: string}
+    - {name: title, label: כותרת, widget: string}
+    - {name: text, label: טקסט, widget: text}
+  - {name: sourceNote, label: הערת מקור, widget: text}
+  - {name: sourceHref, label: קישור למקור, widget: string, required: false}
+  - name: faq
+    label: שאלות נפוצות
+    widget: list
+    fields:
+    - {name: q, label: שאלה, widget: string}
+    - {name: a, label: תשובה, widget: text}
+  - name: facts
+    label: מידע מהיר
+    widget: list
+    fields:
+    - {name: k, label: שם, widget: string}
+    - {name: v, label: ערך, widget: string}
+  - {name: sources, label: מקורות, widget: list, field: {name: s, label: מקור, widget: string}}
+  - {name: verified, label: שורת בדיקה, widget: string}

@@ -7,6 +7,7 @@ import {
   getCollection,
   getEditorialPages,
   getLicensedPhoto,
+  getTravelTopics,
 } from "./content";
 import { editorialMetadata, isoDate, pageDates } from "./editorial";
 import { areaWordCount, itemWordCount, MIN_INDEXABLE_WORDS } from "./seo";
@@ -51,6 +52,7 @@ export const SITEMAPS = {
         images: photos.map((p) => getLicensedPhoto(p, "", "")).flatMap((p) => (p ? [p.src] : [])),
       });
     }
+    for (const t of getTravelTopics()) entries.push({ path: `/travel-info/${t.slug}/` });
     return entries;
   },
   collections(): Entry[] {

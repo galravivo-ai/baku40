@@ -13,6 +13,7 @@ import {
   imageSourcesSchema,
   redirectsSchema,
   siteSchema,
+  travelTopicSchema,
   type Area,
   type Collection,
   type EditorialPage,
@@ -20,6 +21,7 @@ import {
   type ImageSources,
   type Item,
   type Site,
+  type TravelTopic,
 } from "./schema";
 
 // The single read layer for site content. Pages and components get content
@@ -91,6 +93,16 @@ export function getEditorialPages(): EditorialPage[] {
       seen.add(p.url);
     }
     return pages;
+  });
+}
+
+export function getTravelTopics(): TravelTopic[] {
+  return cached("travel-topics", () => {
+    const dir = join(CONTENT_DIR, "pages", "travel-info");
+    return readdirSync(dir)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => load(`pages/travel-info/${f}`, travelTopicSchema))
+      .sort((a, b) => a.order - b.order);
   });
 }
 

@@ -474,3 +474,27 @@ export const editorialPageSchema = z.object({
   blocks: z.array(block),
 });
 export type EditorialPage = z.infer<typeof editorialPageSchema>;
+
+// Travel-info topic page (design/Baku40 Travel Info.dc.html, template 7b):
+// content/pages/travel-info/{slug}.json → /travel-info/{slug}/
+export const travelTopicSchema = z.object({
+  slug: text.regex(/^[a-z-]+$/, "slug באנגלית בלבד"),
+  order: z.number(),
+  icon: text,
+  title: text,
+  h1: text,
+  seo: z.object({ metaTitle: text.nullable().optional(), metaDescription: text.nullable().optional() }),
+  answer: text,
+  checksTitle: text,
+  checks: z.array(text),
+  detailTitle: text,
+  detailText: text,
+  cards: z.array(z.object({ icon: text, title: text, text: text })),
+  sourceNote: text,
+  sourceHref: text.optional(),
+  faq: z.array(z.object({ q: text, a: text })),
+  facts: z.array(z.object({ k: text, v: text })),
+  sources: z.array(text),
+  verified: text,
+});
+export type TravelTopic = z.infer<typeof travelTopicSchema>;
