@@ -25,3 +25,70 @@
 
 /* Text arrow instead of an icon glyph */
 .hfix-arrow { font: 700 18px/1 var(--font-head); color: #0a6da8; }
+
+/* Hotels: 4 per row on desktop */
+@media (min-width: 1101px) {
+  .hotels2__grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 20px !important; }
+  .hotel2__media { height: 210px !important; }
+  .hotel2__name .hfix-name__he { font-size: 21px; }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .hotels2__grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+/* Food section (29.9 redesign) */
+.hfood { max-width: 1280px; margin: 0 auto; padding: 80px 20px 0; }
+.hfood__panel { background: #eaf4fb; border-radius: 28px; padding: 44px; display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 40px; }
+.hfood__side { display: flex; flex-direction: column; gap: 14px; }
+.hfood__kicker { font: 700 13px var(--font-head); letter-spacing: .14em; color: #0a6da8; }
+.hfood__side h2 { font: 900 42px/1.1 var(--font-head); color: #13233f; margin: 0; }
+.hfood__side p { font: 400 16px/1.65 var(--font-body, sans-serif); color: #3b4658; margin: 0; }
+.hfood__links { display: flex; flex-direction: column; margin-top: 6px; background: #fff; border-radius: 16px; padding: 6px 16px; }
+.hfood__links a { display: flex; align-items: center; gap: 10px; min-height: 44px; border-bottom: 1px solid #edf1f6; font: 600 15px var(--font-body, sans-serif); color: #13233f; text-decoration: none; }
+.hfood__links a:last-child { border-bottom: 0; }
+.hfood__links a:hover { color: #0a6da8; }
+.hfood__links .icon { font-size: 19px; color: #0a6da8; }
+.hfood__links a > span:nth-of-type(2) { flex: 1; }
+.hfood__chev { font: 700 15px var(--font-head); color: #8fb7d3; }
+.hfood__cta { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: #13233f; color: #fff; height: 48px; padding: 0 22px; border-radius: 999px; font: 700 15px var(--font-body, sans-serif); text-decoration: none; }
+.hfood__cta:hover { background: #0a6da8; color: #fff; }
+.hfood__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.hfood__card { position: relative; min-height: 460px; border-radius: 22px; overflow: hidden; background: #13233f; text-decoration: none; display: block; }
+.hfood__card:hover { box-shadow: 0 30px 50px -30px rgba(13, 24, 48, .7); }
+.hfood__card img { object-fit: cover; }
+.hfood__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(13,24,48,.25) 0%, rgba(13,24,48,0) 30%, rgba(13,24,48,.55) 55%, rgba(13,24,48,.96) 100%); }
+.hfood__top { position: absolute; top: 14px; inset-inline: 14px; display: flex; justify-content: space-between; gap: 8px; z-index: 2; }
+.hfood__price { background: #fff; color: #13233f; border-radius: 999px; padding: 6px 12px; font: 700 13px var(--font-head); }
+.hfood__pick { background: #3ba9e6; color: #0d1830; border-radius: 999px; padding: 6px 12px; font: 700 12px var(--font-head); }
+.hfood__body { position: absolute; bottom: 0; inset-inline: 0; padding: 22px; display: flex; flex-direction: column; gap: 8px; z-index: 2; }
+.hfood__meta { font: 600 13px var(--font-body, sans-serif); color: #bfe3f8; }
+.hfood__body strong { font: 800 24px/1.15 var(--font-head); color: #fff; }
+.hfood__note { font: 400 15px/1.55 var(--font-body, sans-serif); color: #e2e8f1; }
+.hfood__foot { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.2); padding-top: 12px; margin-top: 4px; font: 600 13px var(--font-body, sans-serif); color: #d5dce8; }
+.hfood__go { width: 34px; height: 34px; border-radius: 50%; background: #3ba9e6; color: #0d1830; display: flex; align-items: center; justify-content: center; font: 800 16px var(--font-head); }
+@media (max-width: 1100px) {
+  .hfood__panel { grid-template-columns: 1fr; padding: 32px; }
+}
+@media (max-width: 700px) {
+  .hfood { padding: 48px 0 0; }
+  .hfood__panel { border-radius: 0; padding: 32px 20px; gap: 24px; }
+  .hfood__side h2 { font-size: 32px; }
+  .hfood__cards { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 0 20px 4px; gap: 12px; }
+  .hfood__card { flex: 0 0 82%; min-height: 380px; scroll-snap-align: start; }
+}
+
+/* Itinerary cards (כמה ימים יש לכם): blue gradient + illustration, 1.10.2026 */
+.itin2 { background: linear-gradient(180deg, #153D79 0%, #0B2A5E 45%, #05214A 100%); border: 1px solid rgba(143,203,240,.12); border-radius: 18px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
+.itin2:hover { transform: translateY(-4px); box-shadow: 0 0 0 2px #3BA9E6, 0 24px 48px -24px rgba(0,0,0,.6); }
+.itin2__media { position: relative; height: 230px; background: none; }
+.itin2__media img { object-fit: cover; object-position: center bottom; }
+.itin2__cta { color: #3BA9E6; font-weight: 700; }
+@media (max-width: 700px) {
+  .ready__row .itin2 { flex: 0 0 220px; }
+  .itin2__media { height: 140px; }
+  .itin2__body { padding: 14px; gap: 4px; }
+  .itin2__meta { font-size: 12px; }
+  .itin2__name { font-size: 18px; }
+  .itin2__text { font-size: 14px; }
+  .itin2__cta { font-size: 14px; }
+}

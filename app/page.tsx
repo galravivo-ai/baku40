@@ -9,6 +9,13 @@ import { pageMetadata } from "@/lib/seo";
 import { getBakuTemperature } from "@/lib/weather";
 import "./home-fixes.css";
 
+const ITIN_ILLUS = [
+  "assets/photos/itin-classic.png",
+  "assets/photos/itin-family.png",
+  "assets/photos/itin-summer.png",
+  "assets/photos/itin-winter.png",
+];
+
 // Home page — design/Baku40 Home.dc.html (1a). All texts: content/pages/home.json.
 
 export const revalidate = 1800; // live weather badge
@@ -61,7 +68,6 @@ export default async function Home() {
       {/* hero — design/Baku40 Home v2.dc.html */}
       <section className="hero2">
         <div className="hero2__media">
-          {/* sizes keep each device from downloading the other one's photo at full size */}
           <div className="hfix-hero hfix-hero--desktop">
             <Photo photo={home.hero.photo} alt={home.hero.photoAlt} sizes="(max-width: 700px) 16px, 100vw" priority showTags={false} />
           </div>
@@ -233,7 +239,7 @@ export default async function Home() {
       <section className="ready-band">
         <ReadyItineraries
           p={home.planner}
-          cards={getCollection("itineraries").items.map((i) => ({
+          cards={getCollection("itineraries").items.map((i, idx) => ({
             slug: i.slug,
             days: Number(/^(\d+)/.exec(i.meta)?.[1] ?? 0),
             name: i.name,
@@ -241,7 +247,7 @@ export default async function Home() {
             text: i.text,
             badge: i.badge || undefined,
             href: i.url ?? home.planner.href,
-            photo: <Photo photo={i.photo} alt={i.photoAlt} note={i.photoNote} sizes="(max-width: 700px) 262px, 320px" icon="route" />,
+            photo: <Photo photo={ITIN_ILLUS[idx % ITIN_ILLUS.length]} alt="" sizes="(max-width: 700px) 220px, 320px" icon="route" />,
           }))}
         />
       </section>
@@ -296,53 +302,53 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* food — Home v2 */}
-      <section className="food2">
-        <div className="food2__side">
-          {home.food.kicker && <div className="food2__kicker">{home.food.kicker}</div>}
-          <h2>{home.food.title}</h2>
-          <p>{home.food.text}</p>
-          <nav className="food2__links" aria-label="מדריכי אוכל">
-            {home.food.links.map((l) => (
-              <Link key={l.label} href={l.href} title={l.label}>
-                <Icon name={l.icon} />
-                {l.short}
-              </Link>
-            ))}
-          </nav>
-          <Link href={home.food.ctaHref} className="food2__cta">
-            {home.food.ctaLabel}
-            <Icon name="arrow_back" />
-          </Link>
-        </div>
-        <div className="food2__cards">
-          {home.food.items.map((r) => {
-            const item = getItem("restaurants", r.slug);
-            if (!item) return null;
-            return (
-              <Link key={r.slug} href={`/restaurants/?q=${encodeURIComponent(item.name)}`} className="food2__card">
-                <div className="food2__media">
-                  <Photo photo={r.photo} alt={r.photoAlt} sizes="(max-width: 700px) 280px, 300px" showTags={false} icon="restaurant" />
-                  <span className="food2__price">מחיר: {r.price}</span>
-                  {r.pick && <span className="food2__pick">בחירת המערכת</span>}
-                </div>
-                <div className="food2__body">
-                  <span className="food2__meta">
-                    {r.cuisine} · {r.area}
+      {/* food — Home v2 (29.9 redesign) */}
+      <section className="hfood">
+        <div className="hfood__panel">
+          <div className="hfood__side">
+            {home.food.kicker && <div className="hfood__kicker">{home.food.kicker}</div>}
+            <h2>{home.food.title}</h2>
+            <p>{home.food.text}</p>
+            <nav className="hfood__links" aria-label="מדריכי אוכל">
+              {home.food.links.map((l) => (
+                <Link key={l.label} href={l.href}>
+                  <Icon name={l.icon} />
+                  <span>{l.label}</span>
+                  <span className="hfood__chev" aria-hidden="true">←</span>
+                </Link>
+              ))}
+            </nav>
+            <Link href={home.food.ctaHref} className="hfood__cta">
+              {home.food.ctaLabel} <span aria-hidden="true">←</span>
+            </Link>
+          </div>
+          <div className="hfood__cards">
+            {home.food.items.map((r) => {
+              const item = getItem("restaurants", r.slug);
+              if (!item) return null;
+              return (
+                <Link key={r.slug} href={`/restaurants/?q=${encodeURIComponent(item.name)}`} className="hfood__card">
+                  <Photo photo={r.photo} alt={r.photoAlt} sizes="(max-width: 700px) 85vw, 300px" showTags={false} icon="restaurant" />
+                  <span className="hfood__shade" />
+                  <span className="hfood__top">
+                    <span className="hfood__price">מחיר: {r.price}</span>
+                    {r.pick && <span className="hfood__pick">בחירת המערכת</span>}
                   </span>
-                  <strong>{item.name}</strong>
-                  <span className="food2__note">{r.note}</span>
-                  <span className="food2__foot">
-                    <span>
-                      <Icon name="info" />
-                      כשרות: {r.kosher}
+                  <span className="hfood__body">
+                    <span className="hfood__meta">
+                      {r.cuisine} · {r.area}
                     </span>
-                    <span className="food2__arrow hfix-arrow" aria-hidden="true">←</span>
+                    <strong>{item.name}</strong>
+                    <span className="hfood__note">{r.note}</span>
+                    <span className="hfood__foot">
+                      <span>כשרות: {r.kosher}</span>
+                      <span className="hfood__go" aria-hidden="true">←</span>
+                    </span>
                   </span>
-                </div>
-              </Link>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 

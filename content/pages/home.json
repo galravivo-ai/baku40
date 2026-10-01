@@ -80,49 +80,48 @@
       "icon": "castle",
       "href": "/attractions/",
       "sub": "68 מקומות עם שעות ומחירים",
-      "photo": "assets/photos/maiden-tower.png"
+      "photo": "assets/photos/quick-attractions.png"
     },
     {
       "title": "מסלולים",
       "icon": "route",
       "href": "/itineraries/",
       "sub": "מיום אחד ועד שבוע",
-      "photo": "assets/photos/boulevard-wheel.png"
+      "photo": "assets/photos/quick-routes.png"
     },
     {
       "title": "מלונות",
       "icon": "hotel",
       "href": "/hotels/",
       "sub": "לפי אזור ולפי קהל",
-      "photo": "assets/photos/flame-towers-day.png"
+      "photo": "assets/photos/quick-hotels.png"
     },
     {
       "title": "אוכל",
       "icon": "restaurant",
       "href": "/restaurants/",
       "sub": "מקומי, גגות, ארוחת בוקר",
-      "photo": "assets/photos/nizami-street.png"
+      "photo": "assets/photos/quick-food.png"
     },
     {
       "title": "טיולי יום",
       "icon": "landscape",
       "href": "/day-trips/",
       "sub": "גובוסטן, גבאלה, שאהדאג",
-      "photo": "assets/photos/skyline-cloudy.png"
+      "photo": "assets/photos/quick-daytrips.png"
     },
     {
       "title": "מידע למטייל",
       "icon": "luggage",
       "href": "/travel-info/",
       "sub": "ויזה, כסף, תחבורה",
-      "photo": "assets/photos/heydar-center-plaza.png"
+      "photo": "assets/photos/quick-info.png"
     }
   ],
   "firstTime": {
     "photo": "assets/photos/nizami-street.png",
     "photoAlt": "רחוב נזאמי במרכז באקו",
     "kicker": "להתחיל מכאן",
-    "badge": "נבדק ספטמבר 2026",
     "title": "פעם ראשונה בבאקו?",
     "text": "כל מה שצריך לסדר לפני הטיסה ובימים הראשונים. לכל נושא יש מדריך מלא עם מקור רשמי ותאריך בדיקה.",
     "items": [
@@ -346,8 +345,8 @@
         "slug": "fairmont-baku-flame-towers",
         "stars": "★★★★★",
         "area": "מגדלי הלהבה · סבאיל",
-        "photo": "assets/photos/flame-towers-day.png",
-        "photoAlt": "מגדלי הלהבה ביום",
+        "photo": "assets/photos/hotel-fairmont.png",
+        "photoAlt": "פיירמונט באקו מגדלי הלהבה בערב",
         "text": "נוף פתוח על המפרץ וספא מקורה. מתאים לזוגות ולנוסעים עסקיים; פחות למי שרוצה לצאת ולהיכנס ברגל כל היום.",
         "tags": [
           "לזוגות",
@@ -360,8 +359,8 @@
         "slug": "four-seasons-hotel-baku",
         "stars": "★★★★★",
         "area": "קצה העיר העתיקה",
-        "photo": "",
-        "photoAlt": "",
+        "photo": "assets/photos/hotel-fourseasons.png",
+        "photoAlt": "פור סיזנס באקו בערב",
         "text": "המיקום הוא היתרון: העיר העתיקה, הטיילת וכיכר המזרקות במרחק הליכה. בחירה טובה לביקור ראשון קצר.",
         "tags": [
           "מיקום מרכזי",
@@ -374,8 +373,8 @@
         "slug": "jw-marriott-absheron-baku",
         "stars": "★★★★★",
         "area": "מרכז · מול הטיילת",
-        "photo": "assets/photos/skyline-dusk.png",
-        "photoAlt": "קו הרקיע של באקו בשעת בין ערביים",
+        "photo": "assets/photos/hotel-jw.png",
+        "photoAlt": "ג׳יי. וו. מריוט אבשרון באקו",
         "text": "מרכזי מאוד, עם בריכה וחדרים משפחתיים. הכי נוח למשפחות שרוצות לחזור למלון באמצע היום.",
         "tags": [
           "למשפחות",
@@ -383,6 +382,19 @@
           "מול הטיילת"
         ],
         "walk": "הטיילת: 3 דק׳"
+      },
+      {
+        "slug": "hilton-baku",
+        "stars": "★★★★★",
+        "area": "על הטיילת",
+        "photo": "assets/photos/hotel-hilton.webp",
+        "photoAlt": "הכניסה למלון הילטון באקו",
+        "text": "על הטיילת, במרחק הליכה לעיר העתיקה. בריכה ובר גג עם נוף למפרץ.",
+        "tags": [
+          "מול הים",
+          "בריכה"
+        ],
+        "walk": "העיר העתיקה: 10 דק׳"
       }
     ]
   },
@@ -393,8 +405,8 @@
     "items": [
       {
         "slug": "shirvanshah-museum-restaurant",
-        "photo": "assets/photos/maiden-tower.png",
-        "photoAlt": "העיר העתיקה של באקו",
+        "photo": "assets/photos/food-shirvanshah.png",
+        "photoAlt": "חדר האוכל המקומר במסעדת שירוואנשאה",
         "cuisine": "אזרבייג׳ני",
         "area": "העיר העתיקה",
         "price": "יקר",
@@ -404,8 +416,8 @@
       },
       {
         "slug": "dolma",
-        "photo": "assets/photos/nizami-street.png",
-        "photoAlt": "רחוב נזאמי במרכז באקו",
+        "photo": "assets/photos/food-dolma.png",
+        "photoAlt": "חלל המסעדה דולמה",
         "cuisine": "מטבח מקומי",
         "area": "מרכז",
         "price": "בינוני",
@@ -414,8 +426,8 @@
       },
       {
         "slug": "nakhchivan",
-        "photo": "assets/photos/port-baku-mall.png",
-        "photoAlt": "פורט באקו",
+        "photo": "assets/photos/food-nakhchivan.png",
+        "photoAlt": "חזית מסעדת נחצ׳יוון",
         "cuisine": "מנגל",
         "area": "מרכז",
         "price": "בינוני",
