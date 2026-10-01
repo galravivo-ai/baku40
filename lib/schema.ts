@@ -323,7 +323,6 @@ export const homeSchema = z.object({
         cuisine: text,
         area: text,
         price: text,
-        kosher: text,
         note: text,
         pick: z.boolean().optional(),
       }),

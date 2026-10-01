@@ -656,7 +656,6 @@ collections:
         - {name: cuisine, label: מטבח, widget: string, required: false}
         - {name: area, label: אזור, widget: string, required: false}
         - {name: price, label: טווח מחיר (₼), widget: string, required: false}
-        - {name: kosher, label: כשרות, widget: string, required: false}
         - {name: note, label: טקסט, widget: text, required: false}
         - {name: pick, label: בחירת המערכת, widget: boolean, required: false}
       - name: links

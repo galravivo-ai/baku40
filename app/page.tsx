@@ -341,7 +341,7 @@ export default async function Home() {
                     <strong>{item.name}</strong>
                     <span className="hfood__note">{r.note}</span>
                     <span className="hfood__foot">
-                      <span>כשרות: {r.kosher}</span>
+                      <span>לפרטים</span>
                       <span className="hfood__go" aria-hidden="true">←</span>
                     </span>
                   </span>
