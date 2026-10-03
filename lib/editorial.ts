@@ -57,10 +57,23 @@ export function isoDate(d: string): string | undefined {
   return m ? `${m[3]}-${m[2].padStart(2, "0")}-${m[1].padStart(2, "0")}` : undefined;
 }
 
-/** Published / modified dates from the page meta line ("פורסם 4.9.2026 · עודכן 12.9.2026"). */
+const HE_MONTHS = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
+
+/** "אוקטובר 2026" → "2026-10-01" (pages that only state the month they were checked). */
+function monthDate(text: string): string | undefined {
+  const m = text.match(new RegExp(`(${HE_MONTHS.join("|")})\\s+(\\d{4})`));
+  return m ? `${m[2]}-${String(HE_MONTHS.indexOf(m[1]) + 1).padStart(2, "0")}-01` : undefined;
+}
+
+/** Published / modified dates from the page meta line ("פורסם 4.9.2026 · עודכן 12.9.2026"),
+ * falling back to a "נבדק … אוקטובר 2026" line in the meta or the notes. */
 export function pageDates(page: EditorialPage): { published?: string; modified?: string } {
   const meta = page.meta.join(" · ");
   const published = meta.match(/פורסם\s+([\d.]+)/)?.[1];
   const modified = meta.match(/(?:עודכן|נבדק)[^\d]*([\d]{1,2}\.[\d]{1,2}\.[\d]{4})/)?.[1];
-  return { published: published && isoDate(published), modified: modified && isoDate(modified) };
+  const notes = page.blocks.flatMap((b) => (b.type === "note" ? [b.text] : [])).join(" · ");
+  return {
+    published: published && isoDate(published),
+    modified: (modified && isoDate(modified)) || monthDate(meta) || monthDate(notes),
+  };
 }

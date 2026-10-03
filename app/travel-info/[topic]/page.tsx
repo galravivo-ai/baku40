@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
-import { getTravelTopics } from "@/lib/content";
+import { absoluteUrl, getTravelTopics } from "@/lib/content";
 import type { TravelTopic } from "@/lib/schema";
 import { breadcrumbJsonLd, MIN_INDEXABLE_WORDS, pageMetadata, type Crumb } from "@/lib/seo";
 
@@ -52,6 +52,15 @@ const RELATED = [
   { title: "מסלולים מוכנים", meta: "יום עד שבוע", href: "/itineraries/" },
 ];
 
+const HE_MONTHS = ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"];
+
+/** "נבדק לאחרונה: 9 בספטמבר 2026" → "2026-09-09" */
+function verifiedDate(text: string): string | undefined {
+  const m = text.match(new RegExp(`(\\d{1,2})\\s+ב(${HE_MONTHS.join("|")})\\s+(\\d{4})`));
+  if (!m) return undefined;
+  return `${m[3]}-${String(HE_MONTHS.indexOf(m[2]) + 1).padStart(2, "0")}-${m[1].padStart(2, "0")}`;
+}
+
 export default async function TravelTopicPage({ params }: Props) {
   const t = load((await params).topic);
   const topics = getTravelTopics();
@@ -65,9 +74,21 @@ export default async function TravelTopicPage({ params }: Props) {
     mainEntity: t.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
   };
 
+  const modified = verifiedDate(t.verified);
+  const articleLd = {
+    "@type": "Article",
+    headline: t.h1,
+    description: t.answer,
+    url: absoluteUrl(url(t)),
+    inLanguage: "he",
+    author: { "@type": "Organization", name: "מערכת Baku40", url: absoluteUrl("/authors/baku40/") },
+    publisher: { "@type": "Organization", name: "Baku40", url: absoluteUrl("/") },
+    ...(modified ? { dateModified: modified } : {}),
+  };
+
   return (
     <>
-      <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbJsonLd(crumbs), faqLd] }} />
+      <JsonLd data={{ "@context": "https://schema.org", "@graph": [breadcrumbJsonLd(crumbs), articleLd, faqLd] }} />
       <div className="container topic">
         <Breadcrumbs crumbs={crumbs} />
         <div className="topic__layout">

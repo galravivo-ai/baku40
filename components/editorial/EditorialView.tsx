@@ -10,11 +10,15 @@ import { breadcrumbJsonLd } from "@/lib/seo";
 
 // Renders an editorial page (content/pages/editorial/*.json).
 
+// Guides get Article markup (author, publisher, dates); legal and system pages don't.
+const NOT_ARTICLE = ["/about/", "/contact/", "/privacy/", "/terms/", "/accessibility/", "/affiliate-disclosure/", "/authors/", "/sitemap/", "/credits/"];
+
 export function EditorialView({ page }: { page: EditorialPage }) {
   const crumbs = editorialCrumbs(page);
-  const headings = page.blocks.filter((b) => b.type === "h2").map((b) => ("text" in b ? b.text : ""));
   const faq = page.blocks.flatMap((b) => (b.type === "faq" ? b.items : []));
-  const isArticle = page.url.startsWith("/magazine/");
+  const headings = page.blocks.filter((b) => b.type === "h2").map((b) => ("text" in b ? b.text : ""));
+
+  const isArticle = !NOT_ARTICLE.some((p) => page.url.startsWith(p));
 
   const graph: Record<string, unknown>[] = [breadcrumbJsonLd(crumbs)];
   const site = getSite();
@@ -25,6 +29,7 @@ export function EditorialView({ page }: { page: EditorialPage }) {
     graph.push({
       "@type": "Article",
       headline: page.h1,
+      description: page.intro,
       url: absoluteUrl(page.url),
       inLanguage: "he",
       author,
@@ -44,14 +49,26 @@ export function EditorialView({ page }: { page: EditorialPage }) {
         ? "Store"
         : null;
   if (venueType) {
-    const address = page.blocks.flatMap((b) => (b.type === "facts" ? b.items : [])).find((f) => f.k === "כתובת")?.v;
+    const facts = page.blocks.flatMap((b) => (b.type === "facts" ? b.items : []));
+    const address = facts.find((f) => f.k === "כתובת")?.v;
+    const cuisine = venueType === "Restaurant" ? facts.find((f) => f.k === "מטבח")?.v : undefined;
     graph.push({
       "@type": venueType,
       name: page.meta[0] || page.h1,
       alternateName: page.h1,
       url: absoluteUrl(page.url),
       description: page.intro,
+      ...(cuisine ? { servesCuisine: cuisine } : {}),
       ...(address ? { address: { "@type": "PostalAddress", streetAddress: address, addressLocality: "Baku", addressCountry: "AZ" } } : {}),
+    });
+  }
+  if (page.url.startsWith("/destinations/")) {
+    graph.push({
+      "@type": "TouristDestination",
+      name: page.h1,
+      url: absoluteUrl(page.url),
+      description: page.intro,
+      containedInPlace: { "@type": "Country", name: "Azerbaijan" },
     });
   }
   if (page.url.startsWith("/itineraries/")) {
