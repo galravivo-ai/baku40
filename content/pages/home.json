@@ -45,7 +45,7 @@
         "labelMobile": "עכשיו",
         "value": "",
         "live": "weather",
-        "href": "/weather/september/",
+        "href": "/weather/",
         "mobile": true
       },
       {
@@ -159,7 +159,7 @@
         "num": "06",
         "title": "מזג אוויר בבאקו",
         "sub": "מתי לנסוע ומה ללבוש",
-        "href": "/weather/september/"
+        "href": "/weather/"
       },
       {
         "num": "07",

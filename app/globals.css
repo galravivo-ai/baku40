@@ -1147,6 +1147,7 @@ a.card__cta:hover { text-decoration: underline; }
 .ed-card span { font: 400 15px/1.6 var(--font-body); color: var(--text); }
 .ed-sources { border-top: 1px solid var(--line); margin-top: 32px; padding-top: 16px; }
 .ed-sources ul { margin: 0; padding-inline-start: 20px; display: flex; flex-direction: column; gap: 6px; font: 400 15px/1.6 var(--font-body); }
+.ed-main { min-width: 0; }
 .ed-table-wrap { overflow-x: auto; margin: 12px 0 20px; border: 1px solid var(--line); border-radius: var(--r-12); }
 .ed-table { width: 100%; border-collapse: collapse; font: 400 15px/1.6 var(--font-body); color: var(--text); }
 .ed-table th, .ed-table td { text-align: start; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }

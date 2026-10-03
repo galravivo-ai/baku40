@@ -301,7 +301,7 @@
     },
     {
       "label": "מזג אוויר",
-      "href": "/weather/september/"
+      "href": "/weather/"
     }
   ],
   "footer": [
@@ -395,7 +395,7 @@
         },
         {
           "label": "מזג אוויר",
-          "href": "/weather/september/"
+          "href": "/weather/"
         },
         {
           "label": "טיסות",

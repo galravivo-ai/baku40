@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props) {
 
 const RELATED = [
   { title: "כל המידע למטייל", meta: "עמוד אב", href: "/travel-info/" },
-  { title: "מזג אוויר בבאקו", meta: "לפי חודש", href: "/weather/september/" },
+  { title: "מזג אוויר בבאקו", meta: "לפי חודש", href: "/weather/" },
   { title: "מסלולים מוכנים", meta: "יום עד שבוע", href: "/itineraries/" },
 ];
 

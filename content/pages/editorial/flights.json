@@ -118,7 +118,7 @@
     {
       "type": "link",
       "label": "מזג אוויר לפי חודשים",
-      "href": "/weather/september/"
+      "href": "/weather/"
     }
   ]
 }
