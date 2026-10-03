@@ -53,6 +53,7 @@
         "label": "הפרש שעות",
         "labelMobile": "הפרש",
         "value": "+1 שעה",
+        "live": "timezone",
         "href": "/travel-info/",
         "mobile": true
       },

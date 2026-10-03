@@ -262,7 +262,7 @@ export const homeSchema = z.object({
         labelMobile: text.optional(),
         value: text,
         href: text,
-        live: z.literal("weather").optional(),
+        live: z.enum(["weather", "timezone"]).optional(),
         mobile: z.boolean().optional(),
       }),
     ),

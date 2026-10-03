@@ -406,6 +406,10 @@
           "href": "/flights/israel-to-baku/"
         },
         {
+          "label": "כמה זה עולה",
+          "href": "/baku/cost/"
+        },
+        {
           "label": "באקו עם ילדים",
           "href": "/topics/baku-with-kids/"
         }
@@ -462,6 +466,14 @@
         {
           "label": "קובה",
           "href": "/destinations/quba/"
+        },
+        {
+          "label": "שקי",
+          "href": "/destinations/sheki/"
+        },
+        {
+          "label": "טיול לאזרבייג׳ן",
+          "href": "/azerbaijan/"
         }
       ]
     },

@@ -33,13 +33,23 @@ export function generateMetadata() {
   });
 }
 
+// Baku has no DST and Israel does, so the gap is +1 in summer and +2 in winter.
+function bakuOffsetLabel(): string {
+  const now = new Date();
+  const hour = (tz: string) => Number(new Intl.DateTimeFormat("en-GB", { timeZone: tz, hour: "numeric", hourCycle: "h23" }).format(now));
+  const diff = (hour("Asia/Baku") - hour("Asia/Jerusalem") + 24) % 24;
+  return diff === 1 ? "+1 שעה" : `+${diff} שעות`;
+}
+
 export default async function Home() {
   const site = getSite();
   const home = getHome();
   const attractionHref = new Map(getAttractionsPage().items.map((a) => [a.id, a.href]));
   const temperature = await getBakuTemperature();
   const utility = home.hero.utility
-    .map((u) => (u.live === "weather" ? { ...u, value: temperature ?? "" } : u))
+    .map((u) =>
+      u.live === "weather" ? { ...u, value: temperature ?? "" } : u.live === "timezone" ? { ...u, value: bakuOffsetLabel() } : u,
+    )
     .filter((u) => u.value);
   const [h1First, ...h1Rest] = home.hero.h1.split("\n");
 
@@ -121,11 +131,11 @@ export default async function Home() {
         <ul className="facts2__card">
           {utility.map((u) => (
             <li key={u.label} className={u.mobile ? "facts2__item facts2__item--mobile" : "facts2__item"}>
-              <Link href={u.href} data-live={u.live ? "true" : undefined}>
+              <Link href={u.href} data-live={u.live === "weather" ? "true" : undefined}>
                 <Icon name={u.icon} className="facts2__icon" />
                 <span className="facts2__text">
                   <span className="facts2__label">
-                    {u.live && <span className="facts2__dot" aria-hidden="true" />}
+                    {u.live === "weather" && <span className="facts2__dot" aria-hidden="true" />}
                     <span className="facts2__label-full">{u.label}</span>
                     <span className="facts2__label-short">{u.labelMobile ?? u.label}</span>
                   </span>
