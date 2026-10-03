@@ -1967,3 +1967,8 @@ html.a11y-contrast .a11y__tile[aria-checked="true"] { outline: 3px solid #ffe600
 .site-footer__bottom { border-top-color: #22325a; color: #b8c3d6; }
 .site-footer__bottom a, .site-footer__bottom .link-button { color: #b8c3d6; }
 @media (max-width: 700px) { .site-footer { margin-top: 52px; } }
+
+/* FAQ section shared by home, hotels, areas and listings */
+.faq-section { margin: 48px 0 0; }
+.faq-section .section-title { margin-bottom: 12px; }
+.home-faq { padding-bottom: 64px; }

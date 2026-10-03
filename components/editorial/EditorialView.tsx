@@ -6,7 +6,7 @@ import { Photo } from "@/components/Photo";
 import { absoluteUrl, getSite } from "@/lib/content";
 import { editorialCrumbs, pageDates } from "@/lib/editorial";
 import type { EditorialPage } from "@/lib/schema";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, orgRef } from "@/lib/seo";
 
 // Renders an editorial page (content/pages/editorial/*.json).
 
@@ -23,7 +23,7 @@ export function EditorialView({ page }: { page: EditorialPage }) {
   const graph: Record<string, unknown>[] = [breadcrumbJsonLd(crumbs)];
   const site = getSite();
   const dates = pageDates(page);
-  const publisher = { "@type": "Organization", name: site.name, url: absoluteUrl("/") };
+  const publisher = orgRef();
   const author = { "@type": "Organization", name: "מערכת Baku40", url: absoluteUrl("/authors/baku40/") };
   if (isArticle) {
     graph.push({

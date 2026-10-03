@@ -1,3 +1,4 @@
+import { FaqSection } from "@/components/FaqSection";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
@@ -96,6 +97,7 @@ export default function AreasHub() {
             </article>
           ))}
         </div>
+        <FaqSection items={hub.faq} title="שאלות נפוצות על אזורי באקו" url="/areas/" />
       </div>
       <div className="related" />
     </>

@@ -1,3 +1,5 @@
+import { JsonLd } from "@/components/JsonLd";
+import { siteJsonLd } from "@/lib/seo";
 import type { Metadata, Viewport } from "next";
 import { Assistant, Heebo } from "next/font/google";
 import { A11yWidget } from "@/components/A11yWidget";
@@ -45,6 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* Accessibility-menu choices, applied before the first paint (design 9h). */}
         <script dangerouslySetInnerHTML={{ __html: A11Y_BOOT }} />
+        {/* Organization + WebSite on every page; other markup points to them by @id. */}
+        <JsonLd data={siteJsonLd()} />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         {/* Icon font: only the icons in use, loaded without blocking the first render. */}
         <link rel="preload" as="style" href={iconsHref} />

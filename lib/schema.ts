@@ -137,6 +137,8 @@ export const collectionSeoSchema = z.object({
 });
 
 export const collectionSchema = z.object({
+  faqTitle: text.optional(),
+  faq: z.array(z.object({ q: text, a: text })).default([]),
   id: text.min(1),
   screen: text,
   url: text.regex(/^\/.*\/$/, "url חייב להתחיל ולהסתיים ב-/"),
@@ -164,7 +166,13 @@ const paragraphsBlock = z.object({ title: text, paragraphs: z.array(text) });
 export const areasSchema = z.object({
   note: text.optional(),
   // The /areas/ hub page.
-  hub: z.object({ h1: text.min(1), intro: text, metaTitle: text, metaDescription: text }),
+  hub: z.object({
+    h1: text.min(1),
+    intro: text,
+    metaTitle: text,
+    metaDescription: text,
+    faq: z.array(z.object({ q: text, a: text })).default([]),
+  }),
   items: z.array(
     z.object({
       slug: text.min(1),
@@ -244,6 +252,8 @@ const photoFields = { photo: text, photoAlt: text };
 const linkSchema = z.object({ label: text, href: text });
 
 export const homeSchema = z.object({
+  faqTitle: text.optional(),
+  faq: z.array(z.object({ q: text, a: text })).default([]),
   hero: z.object({
     ...photoFields,
     kicker: text,

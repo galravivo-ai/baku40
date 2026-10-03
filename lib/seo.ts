@@ -187,3 +187,58 @@ export function areaWordCount(area: Area): number {
   ].join(" ");
   return text.split(/\s+/).filter(Boolean).length;
 }
+
+// ---- Site-wide structured data -------------------------------------------
+// Organization and WebSite go on every page (app/layout.tsx); other nodes
+// point to them by @id instead of repeating the details.
+
+export const ORG_ID_PATH = "/#organization";
+export const WEBSITE_ID_PATH = "/#website";
+
+export function orgRef() {
+  return { "@id": absoluteUrl(ORG_ID_PATH) };
+}
+
+export function siteJsonLd() {
+  const site = getSite();
+  const org = site.organization as Record<string, unknown>;
+  const sameAs = Array.isArray(org.sameAs) ? (org.sameAs as string[]).filter(Boolean) : [];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": absoluteUrl(ORG_ID_PATH),
+        name: site.name,
+        alternateName: ["באקו 40", "Baku 40"],
+        url: absoluteUrl("/"),
+        logo: { "@type": "ImageObject", url: String(org.logo ?? absoluteUrl("/assets/baku40-logo.png")) },
+        description: site.defaultDescription,
+        ...(sameAs.length ? { sameAs } : {}),
+      },
+      {
+        "@type": "WebSite",
+        "@id": absoluteUrl(WEBSITE_ID_PATH),
+        name: site.name,
+        url: absoluteUrl("/"),
+        inLanguage: "he",
+        publisher: orgRef(),
+        potentialAction: {
+          "@type": "SearchAction",
+          target: { "@type": "EntryPoint", urlTemplate: `${absoluteUrl("/search/")}?q={search_term_string}` },
+          "query-input": "required name=search_term_string",
+        },
+      },
+    ],
+  };
+}
+
+export type FaqItem = { q: string; a: string };
+
+export function faqJsonLd(items: FaqItem[], url?: string) {
+  return {
+    "@type": "FAQPage",
+    ...(url ? { "@id": `${absoluteUrl(url)}#faq` } : {}),
+    mainEntity: items.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  };
+}

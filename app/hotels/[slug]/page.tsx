@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { hotelFaq } from "@/lib/faq";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -248,6 +250,8 @@ export default async function HotelPage({ params }: Props) {
               </div>
             ) : null}
 
+            <FaqSection items={hotelFaq(item, area?.name.replace(/\s*\(.*\)$/, ""))} title={`שאלות נפוצות על ${item.nameHe ?? item.name}`} url={item.url!} />
+
             <p className="disclosure-box">
               <b>גילוי נאות:</b> {site.affiliateDisclosure}
             </p>
@@ -308,7 +312,7 @@ export default async function HotelPage({ params }: Props) {
               <>
                 <div className="kicker">מסעדות באזור</div>
                 {nearbyRestaurants.map((r) => (
-                  <Link key={r.slug} href={`/restaurants/?q=${encodeURIComponent(r.name)}`}>
+                  <Link key={r.slug} href={r.url ?? `/restaurants/?q=${encodeURIComponent(r.name)}`}>
                     <Icon name="restaurant" />
                     {r.name}
                   </Link>

@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { orgRef, WEBSITE_ID_PATH } from "@/lib/seo";
 import Link from "next/link";
 import { AttractionsStrip } from "@/components/home/AttractionsStrip";
 import { ReadyItineraries } from "@/components/home/ReadyItineraries";
@@ -60,17 +62,16 @@ export default async function Home() {
           "@context": "https://schema.org",
           "@graph": [
             {
-              "@type": "WebSite",
-              name: site.name,
+              "@type": "WebPage",
+              "@id": absoluteUrl("/"),
               url: absoluteUrl("/"),
+              name: site.defaultTitle,
+              description: site.defaultDescription,
               inLanguage: "he",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: `${absoluteUrl("/search/")}?q={search_term_string}`,
-                "query-input": "required name=search_term_string",
-              },
+              isPartOf: { "@id": absoluteUrl(WEBSITE_ID_PATH) },
+              about: { "@type": "City", name: "Baku", sameAs: "https://en.wikipedia.org/wiki/Baku" },
+              publisher: orgRef(),
             },
-            site.organization,
           ],
         }}
       />
@@ -401,6 +402,11 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* questions and answers, with FAQPage markup */}
+      <div className="container home-faq">
+        <FaqSection items={home.faq} title={home.faqTitle} url="/" />
+      </div>
     </>
   );
 }

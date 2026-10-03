@@ -1,3 +1,5 @@
+import { FaqSection } from "@/components/FaqSection";
+import { areaFaq } from "@/lib/faq";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -80,7 +82,7 @@ export default async function AreaPage({ params }: Props) {
       items: restaurants.map((r) => ({
         name: r.name,
         meta: r.meta,
-        href: `/restaurants/?q=${encodeURIComponent(r.name)}`,
+        href: r.url ?? `/restaurants/?q=${encodeURIComponent(r.name)}`,
         photo: <Photo photo={r.photo} alt={r.photoAlt} note={r.photoNote} sizes="96px" showTags={false} />,
       })),
     });
@@ -91,6 +93,7 @@ export default async function AreaPage({ params }: Props) {
       items: shopping.map((s) => ({
         name: s.name,
         meta: s.meta,
+        ...(s.url ? { href: s.url } : {}),
         photo: <Photo photo={s.photo} alt={s.photoAlt} note={s.photoNote} sizes="96px" showTags={false} />,
       })),
     });
@@ -200,6 +203,8 @@ export default async function AreaPage({ params }: Props) {
               <p>{area.gettingThere.text}</p>
             </section>
           )}
+
+          <FaqSection items={areaFaq(area, hotels.map((h) => h.nameHe ?? h.name))} url={area.url} />
 
           {area.sources?.length ? (
             <div className="ed-sources">

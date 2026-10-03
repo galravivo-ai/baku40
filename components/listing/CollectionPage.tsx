@@ -1,3 +1,4 @@
+import { FaqSection } from "@/components/FaqSection";
 import Image from "next/image";
 import Link from "next/link";
 import { bookingHref } from "@/lib/booking";
@@ -113,6 +114,10 @@ export function CollectionPage({ collectionKey }: { collectionKey: CollectionKey
           </aside>
         </div>
       </section>
+
+      <div className="container">
+        <FaqSection items={c.faq} title={c.faqTitle ?? `שאלות נפוצות: ${c.h1}`} url={c.seo.canonical || c.url} />
+      </div>
 
       <nav className="container related" aria-labelledby="related-heading">
         <h2 id="related-heading" className="related__head">

@@ -5,7 +5,7 @@ import { Icon } from "@/components/Icon";
 import { JsonLd } from "@/components/JsonLd";
 import { absoluteUrl, getTravelTopics } from "@/lib/content";
 import type { TravelTopic } from "@/lib/schema";
-import { breadcrumbJsonLd, MIN_INDEXABLE_WORDS, pageMetadata, type Crumb } from "@/lib/seo";
+import { breadcrumbJsonLd, MIN_INDEXABLE_WORDS, orgRef, pageMetadata, type Crumb } from "@/lib/seo";
 
 // Travel-info topic page — design/Baku40 Travel Info.dc.html, template 7b
 // (visa, currency, SIM, transportation, safety). Content:
@@ -82,7 +82,7 @@ export default async function TravelTopicPage({ params }: Props) {
     url: absoluteUrl(url(t)),
     inLanguage: "he",
     author: { "@type": "Organization", name: "מערכת Baku40", url: absoluteUrl("/authors/baku40/") },
-    publisher: { "@type": "Organization", name: "Baku40", url: absoluteUrl("/") },
+    publisher: orgRef(),
     ...(modified ? { dateModified: modified } : {}),
   };
 
