@@ -373,6 +373,10 @@
           "href": "/shopping/"
         },
         {
+          "label": "חיי לילה",
+          "href": "/nightlife/"
+        },
+        {
           "label": "טיולי יום",
           "href": "/day-trips/"
         },
