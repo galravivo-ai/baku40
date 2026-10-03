@@ -68,7 +68,7 @@
     {
       "name": "Shirvanshah Museum Restaurant",
       "meta": "מטבח אזרבייג׳ני · מרכז · ₪₪₪",
-      "text": "מסעדה־מוזיאון בבניין קרוואנסראי מהמאה ה‑19, עם אוסף חפצים בכל חדר. פלוב, דולמה וקבב. הזמנה מומלצת.",
+      "text": "מסעדה־מוזיאון סביב חמאם מימי הביניים שהוסב, עם חדרים בעיצוב שונה ואוסף עתיקות. פלוב, דולמה וקבב. הזמנה מומלצת.",
       "foot": "הזמנה מומלצת",
       "badge": "מומלץ",
       "photo": "assets/photos/maiden-tower.png",
@@ -77,11 +77,11 @@
       "icon": "restaurant",
       "cta": "לעמוד",
       "slug": "shirvanshah-museum-restaurant",
-      "url": null,
+      "url": "/restaurants/shirvanshah-museum-restaurant/",
       "area": "מרכז",
       "seo": {
         "metaTitle": null,
-        "metaDescription": "מסעדה־מוזיאון בבניין קרוואנסראי מהמאה ה‑19, עם אוסף חפצים בכל חדר. פלוב, דולמה וקבב. הזמנה מומלצת.",
+        "metaDescription": "מסעדה־מוזיאון סביב חמאם מימי הביניים שהוסב, עם חדרים בעיצוב שונה ואוסף עתיקות. פלוב, דולמה וקבב. הזמנה מומלצת.",
         "schemaType": "Restaurant",
         "noindex": false
       },
@@ -90,7 +90,7 @@
     },
     {
       "name": "Sumakh",
-      "meta": "מטבח אזרבייג׳ני · מרכז · ₪₪",
+      "meta": "מטבח אזרבייג׳ני · שדרות חוג׳אלי · ₪₪",
       "text": "מטבח מקומי בגרסה מודרנית, עם מטבח פתוח שאפשר לראות. מהמוכרות בעיר — סלט מנגל, קותאב ופלוב.",
       "foot": "מטבח פתוח",
       "badge": "",
@@ -100,8 +100,8 @@
       "icon": "soup_kitchen",
       "cta": "לעמוד",
       "slug": "sumakh",
-      "url": null,
-      "area": "מרכז",
+      "url": "/restaurants/sumakh/",
+      "area": "שדרות חוג׳אלי",
       "seo": {
         "metaTitle": null,
         "metaDescription": "מטבח מקומי בגרסה מודרנית, עם מטבח פתוח שאפשר לראות. מהמוכרות בעיר — סלט מנגל, קותאב ופלוב.",
@@ -109,7 +109,7 @@
         "noindex": false
       },
       "photoAlt": "",
-      "areaSlug": "city-center"
+      "areaSlug": ""
     },
     {
       "name": "Nakhchivan",
@@ -123,7 +123,7 @@
       "icon": "group",
       "cta": "לעמוד",
       "slug": "nakhchivan",
-      "url": null,
+      "url": "/restaurants/nakhchivan/",
       "area": "מרכז",
       "seo": {
         "metaTitle": null,
@@ -146,7 +146,7 @@
       "icon": "history",
       "cta": "לעמוד",
       "slug": "firuze",
-      "url": null,
+      "url": "/restaurants/firuze/",
       "area": "מרכז",
       "seo": {
         "metaTitle": null,
@@ -169,7 +169,7 @@
       "icon": "place",
       "cta": "לעמוד",
       "slug": "nergiz",
-      "url": null,
+      "url": "/restaurants/nergiz/",
       "area": "כיכר המזרקות",
       "seo": {
         "metaTitle": null,
@@ -182,7 +182,7 @@
     },
     {
       "name": "Dolma",
-      "meta": "מטבח מקומי ולבנוני · ליד הפוניקולר · ₪₪",
+      "meta": "מטבח מקומי ולבנוני · ליד העיר העתיקה · ₪₪",
       "text": "דולמה בכל הגרסאות — עלי גפן, כרוב וירקות ממולאים. נקודת פתיחה נוחה לטעימה ראשונה.",
       "foot": "טעימה ראשונה",
       "badge": "",
@@ -192,8 +192,8 @@
       "icon": "restaurant",
       "cta": "לעמוד",
       "slug": "dolma",
-      "url": null,
-      "area": "ליד הפוניקולר",
+      "url": "/restaurants/dolma/",
+      "area": "ליד העיר העתיקה",
       "seo": {
         "metaTitle": null,
         "metaDescription": "דולמה בכל הגרסאות — עלי גפן, כרוב וירקות ממולאים. נקודת פתיחה נוחה לטעימה ראשונה.",
@@ -201,7 +201,7 @@
         "noindex": false
       },
       "photoAlt": "",
-      "areaSlug": "sabail"
+      "areaSlug": "city-center"
     },
     {
       "name": "Dolmama",
@@ -238,7 +238,7 @@
       "icon": "deck",
       "cta": "לעמוד",
       "slug": "art-garden",
-      "url": null,
+      "url": "/restaurants/art-garden/",
       "area": "העיר העתיקה",
       "seo": {
         "metaTitle": null,
@@ -261,7 +261,7 @@
       "icon": "local_cafe",
       "cta": "לעמוד",
       "slug": "cay-bagi-145",
-      "url": null,
+      "url": "/restaurants/cay-bagi-145/",
       "area": "העיר העתיקה",
       "seo": {
         "metaTitle": null,
@@ -284,7 +284,7 @@
       "icon": "palette",
       "cta": "לעמוד",
       "slug": "art-club-restaurant",
-      "url": null,
+      "url": "/restaurants/art-club-restaurant/",
       "area": "העיר העתיקה",
       "seo": {
         "metaTitle": null,
@@ -307,7 +307,7 @@
       "icon": "music_note",
       "cta": "לעמוד",
       "slug": "mugam-club",
-      "url": null,
+      "url": "/restaurants/mugam-club/",
       "area": "העיר העתיקה",
       "seo": {
         "metaTitle": null,
@@ -330,7 +330,7 @@
       "icon": "nightlife",
       "cta": "לעמוד",
       "slug": "chinar",
-      "url": null,
+      "url": "/restaurants/chinar/",
       "area": "סבאיל",
       "seo": {
         "metaTitle": null,
@@ -353,7 +353,7 @@
       "icon": "restaurant",
       "cta": "לעמוד",
       "slug": "scalini",
-      "url": null,
+      "url": "/restaurants/scalini/",
       "area": "מרכז",
       "seo": {
         "metaTitle": null,
@@ -376,7 +376,7 @@
       "icon": "eco",
       "cta": "לעמוד",
       "slug": "maharani",
-      "url": null,
+      "url": "/restaurants/maharani/",
       "area": "מרכז",
       "seo": {
         "metaTitle": null,

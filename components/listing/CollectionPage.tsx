@@ -19,7 +19,7 @@ import type { CardData } from "./types";
 
 // Collections whose records have their own page. Cards of other collections
 // are not linked, so the site never links to a 404.
-const COLLECTIONS_WITH_DETAIL_PAGES = new Set<CollectionKey>(["hotels", "itineraries", "day-trips"]);
+const COLLECTIONS_WITH_DETAIL_PAGES = new Set<CollectionKey>(["hotels", "itineraries", "day-trips", "restaurants", "shopping"]);
 
 function toCard(key: CollectionKey, item: Item): CardData {
   const site = getSite();

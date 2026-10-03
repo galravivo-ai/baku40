@@ -70,7 +70,7 @@
       "icon": "storefront",
       "cta": "לעמוד",
       "slug": "port-baku-mall",
-      "url": null,
+      "url": "/shopping/port-baku-mall/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -84,7 +84,7 @@
     {
       "name": "Ganjlik Mall",
       "meta": "קניון · פאתלי חאן חויסקי · ₪₪",
-      "text": "הגדול באזרבייג׳ן, עם אטריום בן ארבע קומות, קולנוע רב־אולמות ואזורי משחק לילדים. יציאה ישירה לתחנת המטרו.",
+      "text": "היה בפתיחתו ב‑2016 הגדול באזרבייג׳ן, עם קולנוע רב־אולמות ואזורי משחק לילדים. יציאה ישירה לתחנת המטרו.",
       "foot": "למשפחות · מטרו צמוד",
       "badge": "",
       "photo": "",
@@ -93,11 +93,11 @@
       "icon": "family_restroom",
       "cta": "לעמוד",
       "slug": "ganjlik-mall",
-      "url": null,
+      "url": "/shopping/ganjlik-mall/",
       "area": null,
       "seo": {
         "metaTitle": null,
-        "metaDescription": "הגדול באזרבייג׳ן, עם אטריום בן ארבע קומות, קולנוע רב־אולמות ואזורי משחק לילדים. יציאה ישירה לתחנת המטרו.",
+        "metaDescription": "היה בפתיחתו ב‑2016 הגדול באזרבייג׳ן, עם קולנוע רב־אולמות ואזורי משחק לילדים. יציאה ישירה לתחנת המטרו.",
         "schemaType": "ShoppingCenter",
         "noindex": false
       },
@@ -116,7 +116,7 @@
       "icon": "subway",
       "cta": "לעמוד",
       "slug": "28-mall",
-      "url": null,
+      "url": "/shopping/28-mall/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -139,7 +139,7 @@
       "icon": "storefront",
       "cta": "לעמוד",
       "slug": "deniz-mall",
-      "url": null,
+      "url": "/shopping/deniz-mall/",
       "area": "הטיילת",
       "seo": {
         "metaTitle": null,
@@ -162,7 +162,7 @@
       "icon": "directions_walk",
       "cta": "לעמוד",
       "slug": "park-bulvar-mall",
-      "url": null,
+      "url": "/shopping/park-bulvar-mall/",
       "area": "הטיילת",
       "seo": {
         "metaTitle": null,
@@ -208,7 +208,7 @@
       "icon": "payments",
       "cta": "לעמוד",
       "slug": "sadarak-trade-center",
-      "url": null,
+      "url": "/shopping/sadarak-trade-center/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -231,7 +231,7 @@
       "icon": "beach_access",
       "cta": "לעמוד",
       "slug": "amburan-mall",
-      "url": null,
+      "url": "/shopping/amburan-mall/",
       "area": "חופי הצפון",
       "seo": {
         "metaTitle": null,
@@ -254,7 +254,7 @@
       "icon": "storefront",
       "cta": "לעמוד",
       "slug": "תזה-בזאר",
-      "url": null,
+      "url": "/attractions/taza-bazaar/",
       "area": "נאסימי",
       "seo": {
         "metaTitle": null,
@@ -277,7 +277,7 @@
       "icon": "wb_sunny",
       "cta": "לעמוד",
       "slug": "yasil-bazar",
-      "url": null,
+      "url": "/shopping/yasil-bazar/",
       "area": "מרכז",
       "seo": {
         "metaTitle": null,
@@ -300,7 +300,7 @@
       "icon": "payments",
       "cta": "לעמוד",
       "slug": "sarq-bazari",
-      "url": null,
+      "url": "/shopping/sarq-bazari/",
       "area": "נאסימי",
       "seo": {
         "metaTitle": null,
@@ -323,7 +323,7 @@
       "icon": "inventory",
       "cta": "לעמוד",
       "slug": "bit-bazari",
-      "url": null,
+      "url": "/shopping/bit-bazari/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -346,7 +346,7 @@
       "icon": "handshake",
       "cta": "לעמוד",
       "slug": "שוק-איצ׳רי-שהר",
-      "url": null,
+      "url": "/attractions/old-city/",
       "area": "העיר העתיקה",
       "seo": {
         "metaTitle": null,
@@ -369,7 +369,7 @@
       "icon": "nightlife",
       "cta": "לעמוד",
       "slug": "רחוב-נזאמי",
-      "url": null,
+      "url": "/attractions/nizami-street/",
       "area": "נזאמי",
       "seo": {
         "metaTitle": null,

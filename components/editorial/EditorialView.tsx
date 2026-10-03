@@ -36,6 +36,24 @@ export function EditorialView({ page }: { page: EditorialPage }) {
   if (page.url.startsWith("/attractions/")) {
     graph.push({ "@type": "TouristAttraction", name: page.h1, url: absoluteUrl(page.url), description: page.intro });
   }
+  // Venue pages: Restaurant / Store, with the address from the facts block when there is one.
+  const venueType =
+    page.url.startsWith("/restaurants/") && page.url !== "/restaurants/kosher/"
+      ? "Restaurant"
+      : page.url.startsWith("/shopping/")
+        ? "Store"
+        : null;
+  if (venueType) {
+    const address = page.blocks.flatMap((b) => (b.type === "facts" ? b.items : [])).find((f) => f.k === "כתובת")?.v;
+    graph.push({
+      "@type": venueType,
+      name: page.meta[0] || page.h1,
+      alternateName: page.h1,
+      url: absoluteUrl(page.url),
+      description: page.intro,
+      ...(address ? { address: { "@type": "PostalAddress", streetAddress: address, addressLocality: "Baku", addressCountry: "AZ" } } : {}),
+    });
+  }
   if (page.url.startsWith("/itineraries/")) {
     graph.push({
       "@type": "TouristTrip",
