@@ -69,7 +69,7 @@
       "icon": "local_fire_department",
       "cta": "לעמוד",
       "slug": "חצי-האי-אבשרון",
-      "url": null,
+      "url": "/destinations/absheron/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -92,7 +92,7 @@
       "icon": "landscape",
       "cta": "לעמוד",
       "slug": "גובוסטן",
-      "url": null,
+      "url": "/destinations/gobustan/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -115,7 +115,7 @@
       "icon": "directions_car",
       "cta": "לעמוד",
       "slug": "קובה",
-      "url": null,
+      "url": "/destinations/quba/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -138,7 +138,7 @@
       "icon": "terrain",
       "cta": "לעמוד",
       "slug": "חינאליק",
-      "url": null,
+      "url": "/destinations/khinalug/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -161,7 +161,7 @@
       "icon": "downhill_skiing",
       "cta": "לעמוד",
       "slug": "שאהדאג",
-      "url": null,
+      "url": "/destinations/shahdag/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -184,7 +184,7 @@
       "icon": "warning",
       "cta": "לעמוד",
       "slug": "גבאלה",
-      "url": null,
+      "url": "/destinations/gabala/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -207,7 +207,7 @@
       "icon": "handyman",
       "cta": "לעמוד",
       "slug": "לאהיג׳",
-      "url": null,
+      "url": "/destinations/lahij/",
       "area": null,
       "seo": {
         "metaTitle": null,

@@ -124,8 +124,19 @@
       "text": "מסלולים שכוללים גובוסטן"
     },
     {
-      "type": "p",
-      "text": "שמרו ליום טיול"
+      "type": "cards",
+      "items": [
+        {
+          "title": "ארבעה ימים עם יום מחוץ לעיר",
+          "text": "שלושה ימים בעיר ויום טיול",
+          "href": "/itineraries/4-days/"
+        },
+        {
+          "title": "שבוע באזרבייג׳ן",
+          "text": "כולל יום לגובוסטן או לאבשרון",
+          "href": "/itineraries/7-days-azerbaijan/"
+        }
+      ]
     },
     {
       "type": "kicker",
@@ -136,19 +147,33 @@
       "items": [
         {
           "title": "חצי האי אבשרון",
-          "text": "מבצר ומקדש האש · חצי יום"
+          "text": "מקדש האש וההר הבוער · חצי יום",
+          "href": "/destinations/absheron/"
         },
         {
-          "title": "גבאלה",
-          "text": "הרים ויערות · יום שלם"
+          "title": "קובה וקרסני סלובודה",
+          "text": "צפון · יום שלם",
+          "href": "/destinations/quba/"
+        },
+        {
+          "title": "חינאליק",
+          "text": "כפר הרים · יום ארוך",
+          "href": "/destinations/khinalug/"
         },
         {
           "title": "שאהדאג",
-          "text": "הרים וסקי בחורף · עדיף לינה"
+          "text": "הרים וסקי · עדיף לינה",
+          "href": "/destinations/shahdag/"
         },
         {
-          "title": "קובה",
-          "text": "צפון · יום שלם"
+          "title": "גבאלה",
+          "text": "הרים, אגם ורכבל · עדיף לינה",
+          "href": "/destinations/gabala/"
+        },
+        {
+          "title": "לאהיג׳",
+          "text": "כפר נפחי הנחושת · עצירה בדרך",
+          "href": "/destinations/lahij/"
         }
       ]
     }
