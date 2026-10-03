@@ -11,7 +11,7 @@
   },
   "searchPlaceholder": "חיפוש בתוך אטרקציות",
   "sort": "מומלץ",
-  "count": "9 אטרקציות במאגר",
+  "count": "18 אטרקציות במאגר",
   "filterGroups": [
     {
       "head": "אזור",
@@ -20,6 +20,7 @@
         "נזאמי",
         "הטיילת",
         "סבאיל",
+        "מחוץ למרכז",
         "מחוץ לעיר"
       ]
     },
@@ -205,6 +206,159 @@
       "note": "שמורת ציורי סלע דרומית לבאקו, לעיתים בשילוב הרי הבוץ. נוסעים לשם כטיול של חצי יום.",
       "slug": "gobustan",
       "href": "/destinations/gobustan/"
+    },
+    {
+      "id": "highland",
+      "photo": "",
+      "photoAlt": "",
+      "name": "פארק ההר ושדרת השהידים",
+      "area": "סבאיל",
+      "areaSlug": "sabail",
+      "dur": "45 דקות–שעה",
+      "tags": [
+        "תצפית",
+        "חינם"
+      ],
+      "badge": "",
+      "note": "נקודת התצפית הטובה על המפרץ והעיר העתיקה, ממש מתחת למגדלי הלהבה. הכי יפה בשקיעה.",
+      "slug": "highland-park",
+      "href": "/attractions/highland-park/"
+    },
+    {
+      "id": "funicular",
+      "photo": "",
+      "photoAlt": "",
+      "name": "הפוניקולר",
+      "area": "סבאיל",
+      "areaSlug": "sabail",
+      "dur": "דקות ספורות",
+      "tags": [
+        "תצפית",
+        "משפחות"
+      ],
+      "badge": "",
+      "note": "נסיעה קצרה מהטיילת לפארק ההר, במקום המדרגות. נפתח ב‑1960.",
+      "slug": "funicular",
+      "href": "/attractions/funicular/"
+    },
+    {
+      "id": "nizami",
+      "photo": "",
+      "photoAlt": "",
+      "name": "רחוב נזאמי",
+      "area": "נזאמי",
+      "areaSlug": "nasimi",
+      "dur": "1–2 שעות",
+      "tags": [
+        "חינם",
+        "פעם ראשונה"
+      ],
+      "badge": "",
+      "note": "רחוב הולכי הרגל המרכזי, עם חזיתות מהמאה ה‑19, חנויות ובתי קפה.",
+      "slug": "nizami-street",
+      "href": "/attractions/nizami-street/"
+    },
+    {
+      "id": "taza",
+      "photo": "",
+      "photoAlt": "",
+      "name": "שוק טזה",
+      "area": "נזאמי",
+      "areaSlug": "nasimi",
+      "dur": "1 שעה",
+      "tags": [
+        "חינם",
+        "עד שעה"
+      ],
+      "badge": "",
+      "note": "השוק הגדול של העיר: פירות, תבלינים, אגוזים וריבות. מזומן קטן.",
+      "slug": "taza-bazaar",
+      "href": "/attractions/taza-bazaar/"
+    },
+    {
+      "id": "venice",
+      "photo": "",
+      "photoAlt": "",
+      "name": "ונציה הקטנה",
+      "area": "הטיילת",
+      "areaSlug": "boulevard",
+      "dur": "30–45 דקות",
+      "tags": [
+        "משפחות",
+        "עד שעה"
+      ],
+      "badge": "",
+      "note": "תעלות, גשרי אבן ושייט קצר בגונדולה על הטיילת.",
+      "slug": "little-venice",
+      "href": "/attractions/little-venice/"
+    },
+    {
+      "id": "eye",
+      "photo": "",
+      "photoAlt": "",
+      "name": "הגלגל הענק",
+      "area": "הטיילת",
+      "areaSlug": "boulevard",
+      "dur": "30 דקות",
+      "tags": [
+        "תצפית",
+        "משפחות",
+        "עד שעה"
+      ],
+      "badge": "",
+      "note": "גלגל ענק בגובה 60 מטר עם תאים סגורים ונוף על המפרץ.",
+      "slug": "baku-eye",
+      "href": "/attractions/baku-eye/"
+    },
+    {
+      "id": "moma",
+      "photo": "",
+      "photoAlt": "",
+      "name": "המוזיאון לאמנות מודרנית",
+      "area": "מחוץ למרכז",
+      "areaSlug": "",
+      "dur": "1–1.5 שעות",
+      "tags": [
+        "מוזיאונים",
+        "מקורה"
+      ],
+      "badge": "",
+      "note": "כ‑800 עבודות של אמנים אזרבייג׳נים, בבניין בלי פינות חדות.",
+      "slug": "museum-of-modern-art",
+      "href": "/attractions/museum-of-modern-art/"
+    },
+    {
+      "id": "crystal",
+      "photo": "",
+      "photoAlt": "",
+      "name": "קריסטל הול",
+      "area": "סבאיל",
+      "areaSlug": "sabail",
+      "dur": "מבחוץ · 20 דקות",
+      "tags": [
+        "תצפית"
+      ],
+      "badge": "",
+      "note": "אולם האירוויזיון 2012. נכנסים רק באירועים, והחזית מוארת בלילה.",
+      "slug": "crystal-hall",
+      "href": "/attractions/crystal-hall/"
+    },
+    {
+      "id": "absheron",
+      "photo": "",
+      "photoAlt": "",
+      "name": "מקדש האש וינאר דאג",
+      "area": "מחוץ לעיר",
+      "areaSlug": "",
+      "dur": "חצי יום",
+      "tags": [
+        "היסטוריה",
+        "טבע"
+      ],
+      "badge": "",
+      "note": "מקדש האש אטשגאה וההר הבוער באבשרון. כדאי להגיע לינאר דאג אחרי השקיעה.",
+      "slug": "absheron",
+      "href": "/destinations/absheron/"
     }
   ],
   "editorialHeading": "איך לבחור אטרקציות בבאקו",
