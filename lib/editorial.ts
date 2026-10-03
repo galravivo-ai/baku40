@@ -10,6 +10,7 @@ const PARENTS: [string, Crumb][] = [
   ["/invest/", { label: "השקעות", href: "/invest/baku/" }],
   ["/magazine/", { label: "מגזין", href: "/magazine/" }],
   ["/authors/", { label: "אודות", href: "/about/" }],
+  ["/azerbaijan/", { label: "טיול לאזרבייג׳ן", href: "/azerbaijan/" }],
   ["/baku/", { label: "מדריך באקו", href: "/baku/" }],
   ["/weather/", { label: "מידע למטייל", href: "/travel-info/" }],
   ["/flights/", { label: "מידע למטייל", href: "/travel-info/" }],

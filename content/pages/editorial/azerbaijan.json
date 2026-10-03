@@ -153,6 +153,64 @@
       ]
     },
     {
+      "type": "h2",
+      "text": "חגים ואירועים"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "title": "פסח בבאקו",
+          "text": "סדר, כשרות ומזג אוויר",
+          "href": "/baku/passover/"
+        },
+        {
+          "title": "סוכות בבאקו",
+          "text": "מהעונות הטובות בשנה",
+          "href": "/baku/sukkot/"
+        },
+        {
+          "title": "חנוכה בבאקו",
+          "text": "חורף ואווירת חג",
+          "href": "/baku/hanukkah/"
+        },
+        {
+          "title": "נוברוז",
+          "text": "החג הגדול של אזרבייג׳ן",
+          "href": "/baku/novruz/"
+        },
+        {
+          "title": "פורמולה 1",
+          "text": "הגרנד פרי של באקו",
+          "href": "/baku/formula-1/"
+        }
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "לינה ונסיעות מחוץ לבאקו"
+    },
+    {
+      "type": "cards",
+      "items": [
+        {
+          "title": "איפה לישון מחוץ לבאקו",
+          "text": "גבאלה, שאהדאג, שקי וקובה",
+          "href": "/azerbaijan/where-to-stay/"
+        },
+        {
+          "title": "השכרת רכב",
+          "text": "חוקים, מחירים וטיפים",
+          "href": "/azerbaijan/car-rental/"
+        },
+        {
+          "title": "מה לקנות",
+          "text": "מזכרות ושטיחים",
+          "href": "/baku/souvenirs/"
+        }
+      ]
+    },
+    {
       "type": "kicker",
       "text": "מידע מעשי"
     },

@@ -373,6 +373,10 @@
           "href": "/shopping/"
         },
         {
+          "label": "מה לקנות",
+          "href": "/baku/souvenirs/"
+        },
+        {
           "label": "חיי לילה",
           "href": "/nightlife/"
         },
@@ -412,6 +416,10 @@
         {
           "label": "באקו עם ילדים",
           "href": "/topics/baku-with-kids/"
+        },
+        {
+          "label": "השכרת רכב",
+          "href": "/azerbaijan/car-rental/"
         }
       ]
     },
