@@ -14,7 +14,7 @@
     {
       "type": "image",
       "photo": "assets/photos/royal-casino-render.jpg",
-      "alt": "Royal Casino באקו — הדמיית מבט אווירי של המתחם על חוף הים הכספי"
+      "alt": "Royal Casino באקו: הדמיית מבט אווירי של המתחם על חוף הים הכספי"
     },
     {
       "type": "kicker",
@@ -75,7 +75,7 @@
     },
     {
       "type": "p",
-      "text": "הימורים ובתי קזינו אסורים באזרבייג׳ן מאז 1998. ב‑2025 אושרה חקיקה שמאפשרת הפעלת קזינו על איים מלאכותיים בים הכספי — המסלול שעליו נשען הפרויקט. עד הפתיחה בפועל, פרטי הרישוי והתנאים לכניסת תיירים עשויים להשתנות."
+      "text": "הימורים ובתי קזינו אסורים באזרבייג׳ן מאז 1998. ב‑2025 אושרה חקיקה שמאפשרת הפעלת קזינו על איים מלאכותיים בים הכספי. המסלול שעליו נשען הפרויקט. עד הפתיחה בפועל, פרטי הרישוי והתנאים לכניסת תיירים עשויים להשתנות."
     },
     {
       "type": "h2",
@@ -84,9 +84,9 @@
     {
       "type": "list",
       "items": [
-        "השם הרשמי \"Royal Casino\" — לא מופיע עדיין במקורות שבדקנו.",
-        "מועד פתיחה צפוי — היזם לא פרסם תאריך.",
-        "שלב הבנייה בפועל — מבוסס על עדכוני היזם ברשתות, לא על בדיקה בשטח."
+        "השם הרשמי \"Royal Casino\", לא מופיע עדיין במקורות שבדקנו.",
+        "מועד פתיחה צפוי: היזם לא פרסם תאריך.",
+        "שלב הבנייה בפועל: מבוסס על עדכוני היזם ברשתות, לא על בדיקה בשטח."
       ]
     },
     {
@@ -118,15 +118,15 @@
       "type": "sources",
       "items": [
         {
-          "label": "News.az — היקף הפרויקט (אפריל 2026)",
+          "label": "News.az: היקף הפרויקט (אפריל 2026)",
           "href": "https://news.az/news/europes-largest-casino-but-will-it-work"
         },
         {
-          "label": "SoloAzar — החקיקה לאיים מלאכותיים (יולי 2025)",
+          "label": "SoloAzar: החקיקה לאיים מלאכותיים (יולי 2025)",
           "href": "https://www.soloazar.com/en/category/legislation/azerbaijan-approves-casino-legalization-on-artificial-islands-in-the-caspian-sea"
         },
         {
-          "label": "JAMnews — רקע ואיסור 1998 (מאי 2025)",
+          "label": "JAMnews: רקע ואיסור 1998 (מאי 2025)",
           "href": "https://jam-news.net/azerbaijan-laying-the-groundwork-for-ex-presidents-former-son-in-law-to-open-casino-while-gambling-remains-banned-video/"
         },
         {
