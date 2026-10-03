@@ -1,3 +1,4 @@
+import { FaqList } from "@/components/FaqSection";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -142,13 +143,8 @@ export default async function TravelTopicPage({ params }: Props) {
               </div>
 
               <h2>שאלות נפוצות</h2>
-              <div className="faq topic__faq">
-                {t.faq.map((f, i) => (
-                  <details key={f.q} open={i === 0}>
-                    <summary>{f.q}</summary>
-                    <p>{f.a}</p>
-                  </details>
-                ))}
+              <div className="topic__faq">
+                <FaqList items={t.faq} />
               </div>
 
               <div className="topic__sources">

@@ -214,6 +214,8 @@ export function siteJsonLd() {
         url: absoluteUrl("/"),
         logo: { "@type": "ImageObject", url: String(org.logo ?? absoluteUrl("/assets/baku40-logo.png")) },
         description: site.defaultDescription,
+        email: "hello@baku40.co.il",
+        contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: "hello@baku40.co.il", availableLanguage: ["he"] },
         ...(sameAs.length ? { sameAs } : {}),
       },
       {

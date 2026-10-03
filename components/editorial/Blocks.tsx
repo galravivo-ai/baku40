@@ -1,3 +1,4 @@
+import { FaqList } from "@/components/FaqSection";
 import Link from "next/link";
 import { getAttractionsPage, getCollection } from "@/lib/content";
 import type { Block } from "@/lib/schema";
@@ -214,13 +215,8 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             );
           case "faq":
             return (
-              <div key={i} className="faq ed-block">
-                {b.items.map((f) => (
-                  <details key={f.q}>
-                    <summary>{f.q}</summary>
-                    <p>{f.a}</p>
-                  </details>
-                ))}
+              <div key={i} className="ed-block">
+                <FaqList items={b.items} />
               </div>
             );
           case "sources":

@@ -404,8 +404,15 @@ export default async function Home() {
       </section>
 
       {/* questions and answers, with FAQPage markup */}
-      <div className="container home-faq">
-        <FaqSection items={home.faq} title={home.faqTitle} url="/" />
+      <div className="home-faq">
+        <FaqSection
+          items={home.faq}
+          title={home.faqTitle}
+          url="/"
+          variant="panel"
+          intro="התשובות הקצרות לשאלות שהכי הרבה ישראלים שואלים לפני טיסה לבאקו. הפירוט המלא, עם מקורות ותאריכי בדיקה, בעמודי המידע למטייל."
+          cta={{ label: "כל המידע למטייל", href: "/travel-info/" }}
+        />
       </div>
     </>
   );

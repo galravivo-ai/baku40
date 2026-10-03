@@ -1,3 +1,4 @@
+import { FaqList } from "@/components/FaqSection";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
@@ -99,14 +100,7 @@ export default function AttractionsPage() {
       <section className="container editorial" aria-labelledby="faq-heading">
         <div className="editorial__card">
           <h2 id="faq-heading">{page.faqTitle}</h2>
-          <div className="faq">
-            {page.faq.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
+          <FaqList items={page.faq} />
         </div>
       </section>
 
