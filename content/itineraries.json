@@ -78,7 +78,7 @@
       "icon": "directions_walk",
       "cta": "למסלול",
       "slug": "סוף-שבוע-בבאקו",
-      "url": null,
+      "url": "/itineraries/2-days/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -101,7 +101,7 @@
       "icon": "star",
       "cta": "למסלול",
       "slug": "שלושה-ימים-קלאסיים",
-      "url": null,
+      "url": "/itineraries/3-days/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -124,7 +124,7 @@
       "icon": "local_taxi",
       "cta": "למסלול",
       "slug": "ארבעה-ימים-עם-יום-מחוץ-לעיר",
-      "url": null,
+      "url": "/itineraries/4-days/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -147,7 +147,7 @@
       "icon": "hotel",
       "cta": "למסלול",
       "slug": "חמישה-ימים-כולל-הרים",
-      "url": null,
+      "url": "/itineraries/5-days/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -170,7 +170,7 @@
       "icon": "child_care",
       "cta": "למסלול",
       "slug": "מסלול-משפחתי",
-      "url": null,
+      "url": "/itineraries/family/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -193,7 +193,7 @@
       "icon": "schedule",
       "cta": "למסלול",
       "slug": "יום-אחד-בבאקו",
-      "url": null,
+      "url": "/itineraries/1-day/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -216,7 +216,7 @@
       "icon": "hotel",
       "cta": "למסלול",
       "slug": "שבוע-באזרבייג׳ן",
-      "url": null,
+      "url": "/itineraries/7-days-azerbaijan/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -239,7 +239,7 @@
       "icon": "savings",
       "cta": "למסלול",
       "slug": "באקו-בתקציב",
-      "url": null,
+      "url": "/itineraries/budget/",
       "area": null,
       "seo": {
         "metaTitle": null,
@@ -262,7 +262,7 @@
       "icon": "ac_unit",
       "cta": "למסלול",
       "slug": "באקו-בחורף",
-      "url": null,
+      "url": "/itineraries/winter/",
       "area": null,
       "seo": {
         "metaTitle": null,
