@@ -13,11 +13,21 @@ const nextConfig: NextConfig = {
     return { beforeFiles: [{ source: "/admin", destination: "/admin/index.html" }], afterFiles: [], fallback: [] };
   },
   async redirects() {
-    return (redirects.items as { from: string; to: string }[]).map((r) => ({
-      source: r.from,
-      destination: r.to,
-      statusCode: 301 as const,
-    }));
+    return [
+      // One host only: the bare domain goes to www, which is what canonical
+      // tags, the sitemap and structured data use (content/site.json baseUrl).
+      ...[
+        // pages keep the trailing slash in a single hop; files (.xml, .png…) don't get one
+        { source: "/", destination: "https://www.baku40.co.il/" },
+        { source: "/:file(.*\\.\\w+)", destination: "https://www.baku40.co.il/:file" },
+        { source: "/:path+", destination: "https://www.baku40.co.il/:path+/" },
+      ].map((r) => ({ ...r, has: [{ type: "host" as const, value: "baku40.co.il" }], statusCode: 301 as const })),
+      ...(redirects.items as { from: string; to: string }[]).map((r) => ({
+        source: r.from,
+        destination: r.to,
+        statusCode: 301 as const,
+      })),
+    ];
   },
 };
 

@@ -30,7 +30,7 @@ collections:
       label: כתובת האתר
       widget: string
       required: true
-      hint: https://baku40.co.il
+      hint: https://www.baku40.co.il
     - name: titleTemplate
       label: תבנית כותרת
       widget: string
